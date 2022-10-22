@@ -33,14 +33,23 @@ $ rails db:migrate
 ## Customization
 Lato can be customized on every part. Customization can be done by N ways:
 - Customize the engine configuration;
-- Customize engine views with custom partials;
+- Customize layout boostrap classes;
 
 ### Customize the engine configuration
-Create a **config/initializers/lato.rb** file to edit the default configuration:
+Create a **config/initializers/lato_config.rb** file to edit the default configuration:
 
 ```ruby
 Lato.configure do |config|
   config.application_title = 'Demo app'
+end
+```
+
+### Customize layout boostrap classes
+Create a **config/initializers/lato_boostrap.rb** file to edit the default classes:
+
+```ruby
+Lato.bootstrap do |btstrap|
+  btstrap.nav = 'navbar-dark bg-primary'
 end
 ```
 
