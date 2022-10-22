@@ -1,5 +1,5 @@
 # Lato
-Rails engine to manage lato projects.
+Basic engine for all Lato projects.
 
 ## Usage
 How to use my plugin.
