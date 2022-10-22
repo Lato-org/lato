@@ -1,5 +1,5 @@
 module Lato
-  class AuthenticationController < ActionController::Base
+  class AuthenticationController < ApplicationController
     def signin; end
 
     def signup; end

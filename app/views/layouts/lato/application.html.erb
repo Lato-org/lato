@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lato</title>
+  <title><%= Lato.config.application_title %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    "lato/application", media: "all" %>
+  <!-- Lato engine stylesheet -->
+  <%= stylesheet_link_tag "lato/application", media: "all" %>
+  <!-- Lato application stylesheet (used to override engine style) -->
+  <%= stylesheet_link_tag "lato", media: "all" %>
 </head>
 <body>
+  <header>
+    <%= render 'layouts/lato/nav' %>
+  </header>
 
-<%= yield %>
+  <main>
+    <%= yield %>
+  </main>
 
+  <footer>
+
+  </footer>
 </body>
 </html>

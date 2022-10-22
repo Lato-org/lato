@@ -1,6 +1,15 @@
 require "lato/version"
 require "lato/engine"
+require "lato/config"
 
 module Lato
-  # Your code goes here...
+  class << self
+    def config
+      @config ||= Config.new
+    end
+
+    def configure
+      yield config
+    end
+  end
 end

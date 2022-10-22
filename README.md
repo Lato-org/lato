@@ -1,21 +1,47 @@
 # Lato
 Basic engine for all Lato projects.
 
-## Usage
-How to use my plugin.
-
 ## Installation
+Add required dependencies to your application's Gemfile:
+
+```ruby
+gem "sassc-rails"
+
+gem "bootstrap
+```
+
 Add this line to your application's Gemfile:
 
 ```ruby
 gem "lato"
 ```
 
+Create a css file **app/assets/stylesheet/lato.scss** to import bootstrap and override default style:
+
+```scss
+@import "bootstrap";
+```
+
 And then execute:
+
 ```bash
 $ bundle
 $ rails lato:install:migrations
 $ rails db:migrate
+```
+
+## Customization
+Lato can be customized on every part. Customization can be done by N ways:
+- Customize the engine configuration;
+- Customize engine views with custom partials;
+
+### Customize the engine configuration
+Create a **config/initializers/lato.rb** file to edit the default configuration:
+
+```ruby
+Lato.configure do |config|
+  config.application_title = 'Demo app'
+end
 ```
 
 ## License
