@@ -7,7 +7,7 @@ Add required dependencies to your application's Gemfile:
 ```ruby
 gem "sassc-rails"
 
-gem "bootstrap
+gem "bootstrap"
 ```
 
 Add this line to your application's Gemfile:
