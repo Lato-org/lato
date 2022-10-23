@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     lato (0.1.0)
+      bcrypt
       rails (>= 7.0.4)
 
 GEM
@@ -74,6 +75,7 @@ GEM
       tzinfo (~> 2.0)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
+    bcrypt (3.1.18)
     bootstrap (5.2.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.6, < 3)
