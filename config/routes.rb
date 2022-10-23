@@ -1,4 +1,6 @@
 Lato::Engine.routes.draw do
+  root 'application#index'
+
   # Authentication
   ##
 

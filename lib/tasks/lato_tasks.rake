@@ -4,7 +4,7 @@ namespace :lato do
     task :assets do
       # Copy sass assets to main application
       src = "#{Lato::Engine.root}/app/assets/stylesheets/lato"
-      dst = "#{Rails.root}/app/assets"
+      dst = "#{Rails.root}/app/assets/stylesheets"
       FileUtils.copy_entry(src, dst)
     end
   end
