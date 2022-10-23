@@ -1,7 +1,11 @@
 module Lato
   class AuthenticationController < ApplicationController
-    def signin; end
+    def signin
+      @user = Lato::User.new
+    end
 
-    def signup; end
+    def signup
+      @user = Lato::User.new
+    end
   end
 end
