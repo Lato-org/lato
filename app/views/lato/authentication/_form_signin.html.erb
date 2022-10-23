@@ -1,4 +1,6 @@
-<%= form_with model: user, url: '#' do |form| %>
+<%= form_with model: user, url: lato.authentication_signin_action_path do |form| %>
+  <%= lato_form_errors user, class: %w[col col-12 mb-3] %>
+  
   <div class="mb-3">
     <%= lato_form_item_label form, :email, 'Email' %>
     <%= lato_form_item_input_email form, :email, required: true %>

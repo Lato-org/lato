@@ -1,11 +1,30 @@
 module Lato
   class AuthenticationController < ApplicationController
+    before_action :not_authenticate_session, except: %i[signout signout_action]
+    before_action :authenticate_session, only: %i[signout signout_action]
+
     def signin
       @user = Lato::User.new
     end
 
+    def signin_action
+      @user = Lato::User.new
+
+      respond_to do |format|
+        if @user.signin(params.require(:user).permit(:email, :password))
+          session_create(@user.id)
+
+          format.html { redirect_to lato.root_path }
+          format.json { render json: @user }
+        else
+          format.html { render :signin, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     def signup
-      @user = Lato::User.new(email: 'me@gregoriogalante.com', first_name: 'Greg', last_name: 'Greg')
+      @user = Lato::User.new
     end
 
     def signup_action
@@ -13,12 +32,25 @@ module Lato
 
       respond_to do |format|
         if @user.save
+          session_create(@user.id)
+
           format.html { redirect_to lato.root_path }
           format.json { render json: @user }
         else
           format.html { render :signup, status: :unprocessable_entity }
-          format.json { render json: @model.errors, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
         end
+      end
+    end
+
+    def signout; end
+
+    def signout_action
+      session_destroy
+
+      respond_to do |format|
+        format.html { redirect_to lato.root_path }
+        format.json { render plain: '' }
       end
     end
   end

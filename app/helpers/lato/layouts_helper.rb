@@ -20,7 +20,7 @@ module Lato
       return unless instance.errors.any?
 
       content_tag :div, options do
-        content_tag :div, class: %w[alert alert-danger] do
+        content_tag :div, class: %w[alert alert-danger mb-0] do
           content_tag :ul, class: %w[mb-0] do
             instance.errors.collect do |error|
               content_tag :li, error.full_message

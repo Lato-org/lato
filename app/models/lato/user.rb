@@ -15,5 +15,29 @@ module Lato
     before_validation do
       self.email = email&.downcase&.strip
     end
+
+    # Operations
+    ##
+
+    def signin(params)
+      self.email = params[:email]
+
+      user = Lato::User.find_by(email: params[:email])
+      unless user
+        errors.add(:email, 'non valido')
+        return
+      end
+
+      unless user.authenticate(params[:password])
+        errors.add(:password, 'non valida')
+        return
+      end
+
+      self.id = user.id
+      reload
+
+      true
+    end
+
   end
 end
