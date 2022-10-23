@@ -1,5 +1,8 @@
 module Lato
   module LayoutsHelper
+    # Navbar
+    ##
+
     def lato_navbar_nav_item(content, path, key = nil)
       is_active = request.path == path
 
@@ -10,32 +13,58 @@ module Lato
       end
     end
 
+    # Forms
+    ##
+
+    def lato_form_errors(instance, options = {})
+      return unless instance.errors.any?
+
+      content_tag :div, options do
+        content_tag :div, class: %w[alert alert-danger] do
+          content_tag :ul, class: %w[mb-0] do
+            instance.errors.collect do |error|
+              content_tag :li, error.full_message
+            end.join.html_safe
+          end
+        end
+      end
+    end
+
     def lato_form_item_label(form, key, label, options = {})
-      options[:class] = "form-label #{options[:class]}"
+      options[:class] ||= []
+      options[:class].push('form-label')
 
       form.label key, label, options
     end
 
     def lato_form_item_input_text(form, key, options = {})
-      options[:class] = "form-control #{options[:class]}"
+      options[:class] ||= []
+      options[:class].push('form-control')
+
 
       form.text_field key, options
     end
 
     def lato_form_item_input_email(form, key, options = {})
-      options[:class] = "form-control #{options[:class]}"
+      options[:class] ||= []
+      options[:class].push('form-control')
+
 
       form.email_field key, options
     end
 
     def lato_form_item_input_password(form, key, options = {})
-      options[:class] = "form-control #{options[:class]}"
+      options[:class] ||= []
+      options[:class].push('form-control')
+
 
       form.password_field key, options
     end
 
     def lato_form_submit(form, label, options = {})
-      options[:class] = "btn btn-primary #{options[:class]}"
+      options[:class] ||= []
+      options[:class].push('btn')
+      options[:class].push('btn-primary')
 
       form.submit label, options
     end

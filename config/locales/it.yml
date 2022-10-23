@@ -1,0 +1,14 @@
+it:
+  activerecord:
+    attributes:
+      lato/user:
+        password_confirmation: Conferma password
+        email: Indirizzo email
+    errors:
+      models:
+        lato/user:
+          attributes:
+            password_confirmation:
+              confirmation: non corrisponde alla password
+            email:
+              taken: già utilizzato da un altro account

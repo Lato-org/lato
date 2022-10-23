@@ -34,6 +34,20 @@ Rails.application.routes.draw do
 end
 ```
 
+Setup italian locale to the application (currently Lato works with IT locale) on the **config/application.rb** file:
+
+```ruby
+module MyApplication
+  class Application < Rails::Application
+    config.i18n.available_locales = [:it]
+    config.i18n.default_locale = :it
+
+    # ...
+  end
+end
+
+```
+
 ## Customization
 Lato can be customized on every part. Customization can be done by N ways:
 - Customize the engine configuration;

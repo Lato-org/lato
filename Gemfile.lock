@@ -4,6 +4,7 @@ PATH
     lato (0.1.0)
       bcrypt
       rails (>= 7.0.4)
+      rails-i18n
 
 GEM
   remote: https://rubygems.org/
@@ -134,6 +135,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
+    rails-i18n (7.0.5)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (7.0.4)
       actionpack (= 7.0.4)
       activesupport (= 7.0.4)
