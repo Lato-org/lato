@@ -1,9 +1,2 @@
-<li class="nav-item">
-  <%= link_to 'Sign-in', lato.authentication_signin_path, class: 'nav-link' %>
-</li>
-<li class="nav-item">
-  <%= link_to 'Sign-up', lato.authentication_signup_path, class: 'nav-link' %>
-</li>
-<li class="nav-item">
-  <a class="nav-link active" aria-current="page" href="#">Home</a>
-</li>
+<%= lato_navbar_nav_item 'Sign in', lato.authentication_signin_path %>
+<%= lato_navbar_nav_item 'Sign up', lato.authentication_signup_path %>

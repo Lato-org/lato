@@ -15,7 +15,7 @@ gem "bootstrap"
 gem "lato"
 ```
 
-Install gem and run required tasks then execute:
+Install gem and run required tasks:
 
 ```bash
 $ bundle
@@ -38,6 +38,7 @@ end
 Lato can be customized on every part. Customization can be done by N ways:
 - Customize the engine configuration;
 - Customize layout boostrap classes;
+- Customize view partials;
 
 ### Customize the engine configuration
 Create a **config/initializers/lato_config.rb** file to edit the default configuration:
@@ -55,6 +56,16 @@ Create a **config/initializers/lato_boostrap.rb** file to edit the default class
 Lato.bootstrap do |btstrap|
   btstrap.navbar = 'navbar-dark bg-primary'
 end
+```
+
+### Customize view partials
+Override lato partials on main application and edit it's HTML.
+This is an example to customize navbar brand:
+
+Create a partial file in **app/views/layouts/lato/_navbar-brand_content.html.erb** and add your custom code:
+
+```html
+<img src="./logo.jpg" class="custom-logo" alt="My custom logo">
 ```
 
 ## License

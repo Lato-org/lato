@@ -1,5 +1,5 @@
 <nav id="nav" class="navbar <%= Lato.btstrap.navbar %>">
-  <div class="<%= Lato.btstrap.navbar__container %>">
+  <div class="<%= Lato.btstrap.navbar_container %>">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= render 'layouts/lato/navbar-brand_content' %>
     <% end %>
@@ -7,7 +7,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse <%= Lato.btstrap.navbar__collapse %>" id="navbarMenu">
+    <div class="collapse navbar-collapse <%= Lato.btstrap.navbar_collapse %>" id="navbarMenu">
       <ul class="navbar-nav">
         <%= render 'layouts/lato/navbar-nav_content' %>
       </ul>
