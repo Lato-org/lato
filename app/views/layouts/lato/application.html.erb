@@ -5,14 +5,11 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <!-- Lato engine stylesheet -->
-  <%= stylesheet_link_tag "lato/application", media: "all" %>
-  <!-- Lato application stylesheet (used to override engine style) -->
   <%= stylesheet_link_tag "lato", media: "all" %>
 </head>
 <body>
   <header>
-    <%= render 'layouts/lato/nav' %>
+    <%= render 'layouts/lato/navbar' %>
   </header>
 
   <main>

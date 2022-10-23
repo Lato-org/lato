@@ -1,11 +1,13 @@
 module Lato
+  # Btstrap
+  # This class contains the default boostrap classes used on layout elements of the application.
+  ##
   class Btstrap
-    attr_accessor :nav
-    attr_accessor :nav__container
+    attr_accessor :navbar, :navbar__container
 
     def initialize
-      @nav = 'navbar-light bg-light'
-      @nav__container = 'container-fluid'
+      @navbar = 'navbar-light bg-light'
+      @navbar__container = 'container-fluid'
     end
   end
 end

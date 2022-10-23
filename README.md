@@ -5,29 +5,33 @@ Basic engine for all Lato projects.
 Add required dependencies to your application's Gemfile:
 
 ```ruby
+# Use Sass to process CSS
 gem "sassc-rails"
 
+# Use bootstrap as front-end framework
 gem "bootstrap"
-```
 
-Add this line to your application's Gemfile:
-
-```ruby
+# Use lato as application panel
 gem "lato"
 ```
 
-Create a css file **app/assets/stylesheet/lato.scss** to import bootstrap and override default style:
-
-```scss
-@import "bootstrap";
-```
-
-And then execute:
+Install gem and run required tasks then execute:
 
 ```bash
 $ bundle
+$ rails lato:install:assets
 $ rails lato:install:migrations
 $ rails db:migrate
+```
+
+Mount lato routes on the **config/routes.rb** file:
+
+```ruby
+Rails.application.routes.draw do
+  mount Lato::Engine => "/lato"
+
+  # ....
+end
 ```
 
 ## Customization
@@ -49,7 +53,7 @@ Create a **config/initializers/lato_boostrap.rb** file to edit the default class
 
 ```ruby
 Lato.bootstrap do |btstrap|
-  btstrap.nav = 'navbar-dark bg-primary'
+  btstrap.navbar = 'navbar-dark bg-primary'
 end
 ```
 

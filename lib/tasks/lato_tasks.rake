@@ -1,4 +1,11 @@
-# desc "Explaining what the task does"
-# task :lato do
-#   # Task goes here
-# end
+namespace :lato do
+  namespace :install do
+    desc 'Install lato engine assets on your applicaction'
+    task :assets do
+      # Copy sass assets to main application
+      src = "#{Lato::Engine.root}/app/assets/stylesheets/lato"
+      dst = "#{Rails.root}/app/assets"
+      FileUtils.copy_entry(src, dst)
+    end
+  end
+end
