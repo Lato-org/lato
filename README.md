@@ -60,9 +60,7 @@ end
 
 ### Customize view partials
 Override lato partials on main application and edit it's HTML.
-This is an example to customize navbar brand:
-
-Create a partial file in **app/views/layouts/lato/_navbar-brand_content.html.erb** and add your custom code:
+For example, to customize the navbar brand, create a partial file in **app/views/layouts/lato/_navbar-brand_content.html.erb** and add your custom code:
 
 ```html
 <img src="./logo.jpg" class="custom-logo" alt="My custom logo">
