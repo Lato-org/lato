@@ -86,5 +86,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## To do
 - Manage javascript inside the engine and load turbo-rails gem
 - Manage signout and write tests
+- Manage password recovery
+- Setup a way to configure the custom dashboard page
 - Account page
 - Account settings and plans
