@@ -1,5 +1,5 @@
 <header>
-  <h1>My application</h1>
+  <h1 data-controller="hello"></h1>
 </header>
 
 <main>
@@ -9,7 +9,7 @@
   </p>
 
   <ul>
-    <li><%= link_to 'Sign-in', lato.authentication_signin_path %></li>
-    <li><%= link_to 'Sign-up', lato.authentication_signup_path %></li>
+    <li><%= link_to 'Sign-in', lato.authentication_signin_path, data: { turbo: false } %></li>
+    <li><%= link_to 'Sign-up', lato.authentication_signup_path, data: { turbo: false } %></li>
   </ul>
 </main>
