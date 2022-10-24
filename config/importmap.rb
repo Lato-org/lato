@@ -1,1 +1,3 @@
-pin_all_from File.expand_path('../app/assets/javascripts/lato/controllers', __dir__) , under: "lato_controllers"
+pin "lato"
+pin "bootstrap", to: "bootstrap.min.js"
+pin "@popperjs/core", to: "popper.js"

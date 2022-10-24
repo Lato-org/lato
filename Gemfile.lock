@@ -3,6 +3,7 @@ PATH
   specs:
     lato (0.1.0)
       bcrypt
+      bootstrap
       rails (>= 7.0.4)
       rails-i18n
 

@@ -1,5 +1,4 @@
 import "@hotwired/turbo-rails"
-import "controllers"
-// import "lato_controllers"
+import "bootstrap"
 
 console.log('Lato JS!')

@@ -17,9 +17,6 @@ gem "stimulus-rails" # NOTE: Probably already installed in default rails 7 proje
 # Use Sass to process CSS
 gem "sassc-rails"
 
-# Use bootstrap as front-end framework
-gem "bootstrap"
-
 # Use lato as application panel
 gem "lato"
 ```
@@ -31,14 +28,6 @@ $ bundle
 $ rails lato:install:assets
 $ rails lato:install:migrations
 $ rails db:migrate
-```
-
-Pin lato js on **config/importmap.rb** file:
-
-```ruby
-# ...
-
-pin "lato", preload: true
 ```
 
 Mount lato routes on the **config/routes.rb** file:
