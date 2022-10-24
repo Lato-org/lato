@@ -1,1 +1,1 @@
-console.log('Real Lato JS!')
+console.log('Lato JS!')
