@@ -6,13 +6,13 @@ Add required dependencies to your application's Gemfile:
 
 ```ruby
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+gem "importmap-rails" # NOTE: Probably already installed in default rails 7 project
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem "turbo-rails" # NOTE: Probably already installed in default rails 7 project
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+gem "stimulus-rails" # NOTE: Probably already installed in default rails 7 project
 
 # Use Sass to process CSS
 gem "sassc-rails"
