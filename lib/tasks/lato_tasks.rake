@@ -6,6 +6,9 @@ namespace :lato do
       src = "#{Lato::Engine.root}/app/assets/stylesheets/lato"
       dst = "#{Rails.root}/app/assets/stylesheets"
       FileUtils.copy_entry(src, dst)
+
+      # Create js assets to main application
+      # TO-DO
     end
   end
 end
