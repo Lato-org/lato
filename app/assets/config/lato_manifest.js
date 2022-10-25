@@ -1,3 +1,4 @@
 //= link_directory ../stylesheets/lato .css
+//= link_tree ../javascripts/lato .js
 //= link bootstrap.min.js
 //= link popper.js
