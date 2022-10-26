@@ -13,3 +13,15 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.file_fixture_path = ActiveSupport::TestCase.fixture_path + "/files"
   ActiveSupport::TestCase.fixtures :all
 end
+
+# Add helpers on ActionDispatch::IntegrationTest
+class ActionDispatch::IntegrationTest
+  protected def authenticate_user(user = nil, password = 'Password1!')
+    user ||= @user
+
+    post lato.authentication_signin_action_url, params: { user: {
+      email: user.email,
+      password: password
+    } }
+  end
+end

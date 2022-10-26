@@ -104,8 +104,6 @@ For example, to customize the navbar brand, create a partial file in **app/views
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## To do
-- Manage signout and write tests
 - Manage password recovery
-- Setup a way to configure the custom dashboard page
 - Account page
 - Account settings and plans

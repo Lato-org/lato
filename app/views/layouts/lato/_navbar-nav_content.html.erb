@@ -1,4 +1,5 @@
 <% if @session.valid? %>
+  <%= lato_navbar_nav_item 'Account', lato.account_path %>
   <%= lato_navbar_nav_item 'Esci', lato.authentication_signout_path %>
 <% else %>
   <%= lato_navbar_nav_item 'Accedi', lato.authentication_signin_path %>

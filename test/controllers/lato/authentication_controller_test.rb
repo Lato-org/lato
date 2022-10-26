@@ -32,6 +32,8 @@ module Lato
         password: 'Password1!'
       } }
       assert_redirected_to lato.root_path
+
+      assert_lato_session_cookie
     end
 
     test "signup should response with success" do
@@ -55,6 +57,41 @@ module Lato
         password_confirmation: 'Password1!'
       }}
       assert_redirected_to lato.root_path
+
+      assert_lato_session_cookie
+    end
+
+    test "signout should response with redirect without session" do
+      get lato.authentication_signout_url
+      assert_redirected_to lato.root_path
+    end
+
+    test "signout should response with success with session" do
+      authenticate_user
+
+      get lato.authentication_signout_url
+      assert_response :success
+    end
+
+    test "signout action should destroy user session" do
+      authenticate_user
+
+      delete lato.authentication_signout_action_url
+      assert_redirected_to lato.root_path
+
+      assert_not_lato_session_cookie
+    end
+
+    private
+
+    def assert_lato_session_cookie
+      jar = ActionDispatch::Cookies::CookieJar.build(request, cookies.to_hash)
+      assert_not_nil jar.encrypted[:lato_session]
+    end
+
+    def assert_not_lato_session_cookie
+      jar = ActionDispatch::Cookies::CookieJar.build(request, cookies.to_hash)
+      assert_nil jar.encrypted[:lato_session]
     end
   end
 end
