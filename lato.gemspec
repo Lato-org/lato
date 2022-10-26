@@ -25,4 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", ">= 7.0.4"
   spec.add_dependency "rails-i18n"
   spec.add_dependency "bcrypt"
+  spec.add_dependency "bootstrap"
 end

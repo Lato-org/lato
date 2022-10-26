@@ -5,11 +5,17 @@ Basic engine for all Lato projects.
 Add required dependencies to your application's Gemfile:
 
 ```ruby
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem "importmap-rails" # NOTE: Probably already installed in default rails 7 project
+
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails" # NOTE: Probably already installed in default rails 7 project
+
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails" # NOTE: Probably already installed in default rails 7 project
+
 # Use Sass to process CSS
 gem "sassc-rails"
-
-# Use bootstrap as front-end framework
-gem "bootstrap"
 
 # Use lato as application panel
 gem "lato"
@@ -32,6 +38,20 @@ Rails.application.routes.draw do
 
   # ....
 end
+```
+
+Import Lato Scss on **app/assets/stylesheets/application.scss** file:
+```scss
+@import 'lato/application';
+
+// ....
+```
+
+Import Lato Js on **app/javascript/application.js** file:
+```js
+import "lato/application";
+
+// ....
 ```
 
 Setup italian locale to the application (currently Lato works with IT locale) on the **config/application.rb** file:
@@ -84,7 +104,6 @@ For example, to customize the navbar brand, create a partial file in **app/views
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## To do
-- Manage javascript inside the engine and load turbo-rails gem
 - Manage signout and write tests
 - Manage password recovery
 - Setup a way to configure the custom dashboard page
