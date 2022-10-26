@@ -49,7 +49,7 @@ Import Lato Scss on **app/assets/stylesheets/application.scss** file:
 
 Import Lato Js on **app/javascript/application.js** file:
 ```js
-import "lato/application"
+import "lato/application";
 
 // ....
 ```
@@ -104,7 +104,6 @@ For example, to customize the navbar brand, create a partial file in **app/views
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## To do
-- Manage javascript inside the engine and load turbo-rails gem
 - Manage signout and write tests
 - Account page
 - Account settings and plans
