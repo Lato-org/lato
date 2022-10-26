@@ -1,4 +1,5 @@
-class ApplicationController < ActionController::Base
-  # This is the homepage of the application.
+class ApplicationController < Lato::ApplicationController
+  layout 'lato/application'
+
   def index; end
 end

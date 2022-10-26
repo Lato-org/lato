@@ -2,6 +2,7 @@
 
 import "@hotwired/turbo-rails"
 import "controllers"
+import "lato/application"
 
 console.log('Application JS!')
 

@@ -1,0 +1,7 @@
+@import "bootstrap";
+
+// Set the content padding valid for layout with a fixed navbar.
+// It consider 54px (navbar height) + 1rem (vertical padding added with .py-3 class)
+.content-fixed {
+  padding-top: calc(54px + 1rem) !important;
+}

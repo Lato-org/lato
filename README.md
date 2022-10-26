@@ -40,6 +40,20 @@ Rails.application.routes.draw do
 end
 ```
 
+Import Lato Scss on **app/assets/stylesheets/application.scss** file:
+```scss
+@import 'lato/application';
+
+// ....
+```
+
+Import Lato Js on **app/javascript/application.js** file:
+```js
+import "lato/application"
+
+// ....
+```
+
 Setup italian locale to the application (currently Lato works with IT locale) on the **config/application.rb** file:
 
 ```ruby
