@@ -1,1 +1,3 @@
-<h1>Dashboard</h1>
+<%= lato_page_head 'Dashboard' do %>
+  <p class="text-muted">👋 <%= @session.user.first_name %>, benvenuto su Lato!</p>
+<% end %>

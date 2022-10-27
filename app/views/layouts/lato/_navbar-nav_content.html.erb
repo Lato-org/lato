@@ -1,7 +1,15 @@
 <% if @session.valid? %>
-  <%= lato_navbar_nav_item 'Account', lato.account_path %>
-  <%= lato_navbar_nav_item 'Esci', lato.authentication_signout_path %>
+  <%= lato_navbar_nav_item :account, lato.account_path do %>
+    Account
+  <% end %>
+  <%= lato_navbar_nav_item :authentication_logout, lato.authentication_signout_path do %>
+    Esci
+  <% end %>
 <% else %>
-  <%= lato_navbar_nav_item 'Accedi', lato.authentication_signin_path %>
-  <%= lato_navbar_nav_item 'Registrati', lato.authentication_signup_path %>
+  <%= lato_navbar_nav_item :authentication_signin, lato.authentication_signin_path do %>
+    Accedi
+  <% end %>
+  <%= lato_navbar_nav_item :authentication_signup, lato.authentication_signup_path do %>
+    Registrati
+  <% end %>
 <% end %>

@@ -25,7 +25,7 @@ module Lato
       @sidebar = 'p-3 bg-light'
 
       # Content defaults
-      @content = 'content-fixed min-vh-100 py-3'
+      @content = 'content-fixed py-3'
       @content_container = 'container-fluid'
 
       # Footer defaults

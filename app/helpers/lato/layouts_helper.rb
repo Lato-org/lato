@@ -3,12 +3,13 @@ module Lato
     # Navbar
     ##
 
-    def lato_navbar_nav_item(content, path, key = nil)
+    def lato_navbar_nav_item(key, path, &block)
       is_active = request.path == path
+      is_active = @navbar_key == key if @navbar_key
 
       content_tag :li, class: 'nav-item' do
         link_to path, class: "nav-link #{is_active ? 'active' : ''}" do
-          content
+          yield
         end
       end
     end
@@ -16,12 +17,13 @@ module Lato
     # Sidebar
     ##
 
-    def lato_sidebar_nav_item(content, path, key = nil)
+    def lato_sidebar_nav_item(key, path, &block)
       is_active = request.path == path
+      is_active = @sidebar_key == key if @sidebar_key
 
-      content_tag :li, class: 'nav-item' do
+      content_tag :li, class: 'nav-item border-bottom py-2' do
         link_to path, class: "nav-link #{is_active ? 'active' : 'link-dark'}" do
-          content
+          yield
         end
       end
     end
@@ -80,6 +82,16 @@ module Lato
       options[:class].push('btn-primary')
 
       form.submit label, options
+    end
+
+    # Page head
+    ##
+
+    def lato_page_head(title, &block)
+      content_tag :div do
+        concat content_tag :h1, title
+        yield if block
+      end
     end
   end
 end
