@@ -2,6 +2,7 @@ module Lato
   class AuthenticationController < ApplicationController
     before_action :not_authenticate_session, except: %i[signout signout_action]
     before_action :authenticate_session, only: %i[signout signout_action]
+    before_action :hide_sidebar
 
     def signin
       @user = Lato::User.new

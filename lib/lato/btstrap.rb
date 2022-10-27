@@ -6,6 +6,9 @@ module Lato
     # Navbar classes
     attr_accessor :navbar, :navbar_container, :navbar_collapse
 
+    # Sidebar classes
+    attr_accessor :sidebar
+
     # Content classes
     attr_accessor :content, :content_container
 
@@ -17,6 +20,9 @@ module Lato
       @navbar = 'navbar-light navbar-expand-lg fixed-top bg-light'
       @navbar_container = 'container-fluid'
       @navbar_collapse = 'justify-content-end'
+
+      # Sidebar defaults
+      @sidebar = 'p-3 bg-light'
 
       # Content defaults
       @content = 'content-fixed min-vh-100 py-3'

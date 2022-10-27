@@ -1,6 +1,7 @@
 module Lato
   class ApplicationController < ActionController::Base
     include Lato::Sessionable
+    include Lato::Layoutable
 
     def index
       session_root_path = Lato.config.session_root_path ? main_app.send(Lato.config.session_root_path) : lato.account_path

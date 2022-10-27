@@ -13,9 +13,18 @@
     <%= render 'layouts/lato/navbar' %>
   </header>
 
-  <main>
-    <%= render 'layouts/lato/content' %>
-  </main>
+  <div class="d-flex" style="padding-top: calc(54px)">
+
+    <% if @layout_sidebar %>
+      <aside>
+        <%= render 'layouts/lato/sidebar' %>
+      </aside>
+    <% end %>
+
+    <main class="w-100">
+      <%= render 'layouts/lato/content' %>
+    </main>
+  </div>
 
   <footer>
     <%= render 'layouts/lato/footer' %>
