@@ -17,12 +17,12 @@ module Lato
 
     def initialize
       # Navbar defaults
-      @navbar = 'navbar-light navbar-expand-lg fixed-top bg-light'
+      @navbar = 'navbar-light navbar-expand-lg fixed-top bg-light shadow-sm'
       @navbar_container = 'container-fluid'
       @navbar_collapse = 'justify-content-end'
 
       # Sidebar defaults
-      @sidebar = 'p-3 bg-light'
+      @sidebar = 'p-3 bg-light border-end'
 
       # Content defaults
       @content = 'content-fixed p-3'

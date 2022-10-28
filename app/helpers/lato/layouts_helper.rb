@@ -91,6 +91,7 @@ module Lato
       content_tag :div do
         concat content_tag :h1, title
         yield if block
+        
       end
     end
   end
