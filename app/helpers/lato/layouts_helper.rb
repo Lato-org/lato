@@ -9,7 +9,7 @@ module Lato
 
       content_tag :li, class: 'nav-item' do
         link_to path, class: "nav-link #{is_active ? 'active' : ''}" do
-          yield
+          yield if block
         end
       end
     end
@@ -23,7 +23,7 @@ module Lato
 
       content_tag :li, class: 'nav-item border-bottom py-2' do
         link_to path, class: "nav-link #{is_active ? 'active' : 'link-dark'}" do
-          yield
+          yield if block
         end
       end
     end
@@ -56,7 +56,6 @@ module Lato
       options[:class] ||= []
       options[:class].push('form-control')
 
-
       form.text_field key, options
     end
 
@@ -64,14 +63,12 @@ module Lato
       options[:class] ||= []
       options[:class].push('form-control')
 
-
       form.email_field key, options
     end
 
     def lato_form_item_input_password(form, key, options = {})
       options[:class] ||= []
       options[:class].push('form-control')
-
 
       form.password_field key, options
     end
@@ -87,11 +84,25 @@ module Lato
     # Page head
     ##
 
-    def lato_page_head(title, &block)
-      content_tag :div do
-        concat content_tag :h1, title
+    def lato_page_head(title, breadcrumbs = [], &block)
+      title_tag = content_tag :h1, title
+
+      if breadcrumbs.length.positive?
+        breadcrumbs_tag = content_tag :ol, class: %w[breadcrumb mb-0] do
+          breadcrumbs.collect do |breadcrumb|
+            content_tag :li, class: %w[breadcrumb-item] do
+              link_to breadcrumb[:label], breadcrumb[:path]
+            end
+          end.join.html_safe
+        end
+      else
+        breadcrumbs_tag = nil
+      end
+
+      content_tag :div, class: %w[border-bottom mb-3] do
+        concat breadcrumbs_tag
+        concat title_tag
         yield if block
-        
       end
     end
   end

@@ -15,5 +15,6 @@ Lato::Engine.routes.draw do
 
   scope :account do
     get '', to: 'account#index', as: :account
+    patch :update_user_action, to: 'account#update_user_action', as: :account_update_user_action
   end
 end
