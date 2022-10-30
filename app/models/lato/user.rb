@@ -16,6 +16,10 @@ module Lato
       self.email = email&.downcase&.strip
     end
 
+    before_save do
+      self.email_verified_at = nil if email_changed?
+    end
+
     # Operations
     ##
 
