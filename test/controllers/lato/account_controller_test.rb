@@ -126,5 +126,28 @@ module Lato
       #   assert_redirected_to lato.account_path
       # end
     end
+
+    # update_password_action
+    ##
+
+    test "update_password_action should response with redirect without session" do
+      patch lato.account_update_password_action_url
+      assert_redirected_to lato.root_path
+    end
+
+    test "update_password_action should change user password" do
+      authenticate_user
+
+      patch lato.account_update_password_action_url, params: {
+        user: {
+          password: 'New password',
+          password_confirmation: 'New password'
+        }
+      }
+      assert_redirected_to lato.account_path
+
+      @user.reload
+      assert @user.authenticate('New password')
+    end
   end
 end

@@ -28,5 +28,17 @@ module Lato
         end
       end
     end
+
+    def update_password_action
+      respond_to do |format|
+        if @session.user.update(params.require(:user).permit(:password, :password_confirmation))
+          format.html { redirect_to lato.account_path, notice: 'Password aggiornate correttamente' }
+          format.json { render json: @session.user }
+        else
+          format.html { render :index, status: :unprocessable_entity }
+          format.json { render json: @session.user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
   end
 end
