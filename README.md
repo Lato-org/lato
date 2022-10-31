@@ -109,6 +109,4 @@ For example, to customize the navbar brand, create a partial file in **app/views
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## To do
-- Privacy policy url
-- Term and conditions url
 - Account plans
