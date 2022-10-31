@@ -16,12 +16,19 @@
 
       <div class="col col-12 col-md-4 mb-3">
         <%= lato_form_item_label form, :email, 'Indirizzo email' %>
-        <%= lato_form_item_input_email form, :email, required: true %>
+        <div class="input-group mb-3">
+          <%= lato_form_item_input_email form, :email, required: true %>
+          <% if user.email_verified_at %>
+
+          <% else %>
+            <%= link_to 'Verifica email', account_request_email_verification_action_path, class: 'btn btn-warning', data: { turbo_method: :post, turbo_frame: '_self' } %>
+          <% end %>
+        </div>
       </div>
     </div>
 
     <div class="d-flex justify-content-end">
-      <%= lato_form_submit form, 'Aggiorna' %>
+      <%= lato_form_submit form, 'Aggiorna', class: %w[btn-success] %>
     </div>
   <% end %>
 <% end %>

@@ -14,6 +14,9 @@ gem "turbo-rails" # NOTE: Probably already installed in default rails 7 project
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails" # NOTE: Probably already installed in default rails 7 project
 
+# Use Kredis as Redis interface [https://github.com/rails/kredis]
+gem "kredis"
+
 # Use Sass to process CSS
 gem "sassc-rails"
 

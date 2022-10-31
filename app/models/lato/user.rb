@@ -2,6 +2,12 @@ module Lato
   class User < ApplicationRecord
     has_secure_password
 
+    # Kredis
+    ##
+
+    kredis_boolean :email_verification_semaphore, expires_in: 2.minutes
+    kredis_string :email_verification_code, expires_in: 30.minutes
+
     # Validations
     ##
 
@@ -39,6 +45,25 @@ module Lato
 
       self.id = user.id
       reload
+
+      true
+    end
+
+    def send_email_verification_mail
+      if email_verification_semaphore.value
+        errors.add(:base, 'Attendi almeno 2 minuti per provare un nuovo tentativo di verifica email')
+        return
+      end
+
+      code = SecureRandom.hex
+      delivery = Lato::UserMailer.email_verification_mail(id, code).deliver_now
+      unless delivery
+        errors.add(:base, 'Impossibile inviare mail')
+        return
+      end
+
+      email_verification_code.value = code
+      email_verification_semaphore.value = true
 
       true
     end

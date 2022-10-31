@@ -53,13 +53,16 @@ module Lato
 
       close_button_tag = button_tag '', type: 'button', class: 'btn-close', data: { bs_dismiss: 'alert' }
 
-      errors_list_tag = content_tag :ul, class: %w[mb-0 ps-2] do
+      errors_title_tag = content_tag :span, 'Si sono verificati i seguenti errori:'
+
+      errors_list_tag = content_tag :ul, class: %w[mb-0 ps-3] do
         instance.errors.collect do |error|
           content_tag :li, error.full_message
         end.join.html_safe
       end
 
       content_tag :div, options do
+        concat errors_title_tag
         concat errors_list_tag
         concat close_button_tag
       end
