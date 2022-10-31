@@ -76,7 +76,7 @@ end
 Lato can be customized on every part. Customization can be done by N ways:
 - Customize the engine configuration;
 - Customize layout boostrap classes;
-- Customize view partials;
+- Customize view content partials;
 
 ### Customize the engine configuration
 Create a **config/initializers/lato_config.rb** file to edit the default configuration:
@@ -96,8 +96,9 @@ Lato.bootstrap do |btstrap|
 end
 ```
 
-### Customize view partials
-Override lato partials on main application and edit it's HTML.
+### Customize view content partials
+Override lato content partials on main application and edit it's HTML.
+Content partials are specific partial files with this format **partial-name_content** created to helps to override lato pages content without override a full page.
 For example, to customize the navbar brand, create a partial file in **app/views/layouts/lato/_navbar-brand_content.html.erb** and add your custom code:
 
 ```html
@@ -108,6 +109,6 @@ For example, to customize the navbar brand, create a partial file in **app/views
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## To do
-- Manage password recovery
-- Account page
-- Account settings and plans
+- Privacy policy url
+- Term and conditions url
+- Account plans

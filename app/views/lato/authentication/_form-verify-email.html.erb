@@ -7,8 +7,10 @@ code ||= nil
 
 
 <%= turbo_frame_tag 'authentication_form_verify_email' do %>
-  <%= form_with model: user, url: lato.authentication_verify_email_action_path(id: user.id, code: code), class: 'text-center', data: { turbo_frame: '_self' } do |form| %>
+  <%= form_with model: user, url: lato.authentication_verify_email_action_path(id: user.id), class: 'text-center', data: { turbo_frame: '_self' } do |form| %>
     <% if code %>
+      <%= form.hidden_field :code, value: code %>
+
       <div class="alert alert-info mb-0">
         <h4 class="alert-heading">Attendi</h4>
         <p>Stiamo verificando l'indirizzo email</p>
@@ -20,8 +22,8 @@ code ||= nil
       <button type="submit" style="display: none;"></button>
       <script>document.getElementById('authentication_form_verify_email').querySelector('button[type="submit"]').click()</script>
     <% else %>
-      <%= lato_form_notices class: %w[col col-12 mb-3], fixed: true %>
-      <%= lato_form_errors user, class: %w[col col-12 mb-3], fixed: true %>
+      <%= lato_form_notices class: %w[mb-3], fixed: true %>
+      <%= lato_form_errors user, class: %w[mb-3], fixed: true %>
 
       <%= link_to 'Torna all tuo account', lato.account_path, class: %w[btn btn-primary] %>
     <% end %>

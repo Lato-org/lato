@@ -2,7 +2,7 @@ module Lato
   class AuthenticationController < ApplicationController
     before_action :not_authenticate_session, only: %i[signin signin_action signup signup_action]
     before_action :authenticate_session, only: %i[signout signout_action]
-    before_action :find_user, only: %i[verify_email verify_email_action]
+    before_action :find_user, only: %i[verify_email verify_email_action update_password update_password_action]
     before_action :hide_sidebar
 
     def signin
@@ -62,11 +62,43 @@ module Lato
 
     def verify_email_action
       respond_to do |format|
-        if @user.verify_email(params.permit(:code))
+        if @user.verify_email(params.require(:user).permit(:code))
           format.html { redirect_to lato.authentication_verify_email_path(id: @user.id), notice: 'Indirizzo email verificato correttamente' }
           format.json { render json: @user }
         else
           format.html { render :verify_email, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    def recover_password
+      @user = Lato::User.new
+    end
+
+    def recover_password_action
+      @user = Lato::User.new
+
+      respond_to do |format|
+        if @user.request_recover_password(params.require(:user).permit(:email))
+          format.html { redirect_to lato.authentication_update_password_path(id: @user.id) }
+          format.json { render json: @user }
+        else
+          format.html { render :recover_password, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    def update_password; end
+
+    def update_password_action
+      respond_to do |format|
+        if @user.update_password(params.require(:user).permit(:code, :password, :password_confirmation))
+          format.html { redirect_to lato.authentication_signin_path, notice: 'La tua password è stata aggiornata correttamente' }
+          format.json { render json: @user }
+        else
+          format.html { render :update_password, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end

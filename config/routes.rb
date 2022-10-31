@@ -13,6 +13,10 @@ Lato::Engine.routes.draw do
     delete :signout_action, to: 'authentication#signout_action', as: :authentication_signout_action
     get :verify_email, to: 'authentication#verify_email', as: :authentication_verify_email
     patch :verify_email_action, to: 'authentication#verify_email_action', as: :authentication_verify_email_action
+    get :recover_password, to: 'authentication#recover_password', as: :authentication_recover_password
+    post :recover_password_action, to: 'authentication#recover_password_action', as: :authentication_recover_password_action
+    get :update_password, to: 'authentication#update_password', as: :authentication_update_password
+    patch :update_password_action, to: 'authentication#update_password_action', as: :authentication_update_password_action
   end
 
   scope :account do

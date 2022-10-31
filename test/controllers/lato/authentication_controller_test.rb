@@ -143,7 +143,11 @@ module Lato
     test "verify_email_action should response with unprocessable_entity error if code is not valid" do
       @user.email_verification_code.value = nil
 
-      patch lato.authentication_verify_email_action_url(id: @user.id, code: 'invalid_code')
+      patch lato.authentication_verify_email_action_url(id: @user.id), params: {
+        user: {
+          code: 'invalid_code'
+        }
+      }
       assert_response :unprocessable_entity
     end
 
@@ -151,11 +155,98 @@ module Lato
       @user.update_columns(email_verified_at: nil)
       @user.email_verification_code.value = 'valid_code'
 
-      patch lato.authentication_verify_email_action_url(id: @user.id, code: 'valid_code')
+      patch lato.authentication_verify_email_action_url(id: @user.id), params: {
+        user: {
+          code: 'valid_code'
+        }
+      }
       assert_redirected_to lato.authentication_verify_email_url(id: @user.id)
 
       @user.reload
       assert_not_nil @user.email_verified_at
+    end
+
+    # recover_password
+    ##
+
+    test "recover_password should response with success" do
+      get lato.authentication_recover_password_url
+      assert_response :success
+    end
+
+    # recover_password_action
+    ##
+
+    test "recover_password_action should response with unprocessable_entity error if email not exists" do
+      post lato.authentication_recover_password_action_url, params: {
+        user: {
+          email: 'cocaina'
+        }
+      }
+      assert_response :unprocessable_entity
+    end
+
+    test "recover_password_action should generate an password_update_code and send it via email to user" do
+      @user.password_update_code.value = nil
+
+      post lato.authentication_recover_password_action_url, params: {
+        user: {
+          email: @user.email
+        }
+      }
+      assert_redirected_to lato.authentication_update_password_url(id: @user.id)
+
+      @user.reload
+      assert_not_nil @user.password_update_code.value
+      assert_equal ActionMailer::Base.deliveries.count, 1
+    end
+
+    # update_password
+    ##
+
+    test "update_password should response with not_found error if user not exists" do
+      get lato.authentication_update_password_url(id: 9999999)
+      assert_response :not_found
+    end
+
+    test "update_password should response with success" do
+      get lato.authentication_update_password_url(id: @user.id)
+      assert_response :success
+    end
+
+    # update_password_action
+    ##
+
+    test "update_password_action should response with not_found error if user not exists" do
+      patch lato.authentication_update_password_action_url(id: 9999999)
+      assert_response :not_found
+    end
+
+    test "update_password_action should response with unprocessable_entity error if code is not valid" do
+      @user.password_update_code.value = nil
+
+      patch lato.authentication_update_password_action_url(id: @user.id), params: {
+        user: {
+          code: 'invalid_code'
+        }
+      }
+      assert_response :unprocessable_entity
+    end
+
+    test "update_password_action should update user password" do
+      @user.password_update_code.value = 'valid_code'
+
+      patch lato.authentication_update_password_action_url(id: @user.id), params: {
+        user: {
+          code: 'valid_code',
+          password: 'New password',
+          password_confirmation: 'New password'
+        }
+      }
+      assert_redirected_to lato.authentication_signin_path
+
+      @user.reload
+      assert @user.authenticate('New password')
     end
 
     private

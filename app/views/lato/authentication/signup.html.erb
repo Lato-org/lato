@@ -4,7 +4,10 @@
       <h1 class="fs-3 mb-0 text-center">Registrati</h1>
     </div>
     <div class="card-body">
-      <%= render 'lato/authentication/form_signup', user: @user %>
+      <%= render 'lato/authentication/form-signup', user: @user %>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Hai già un account?', lato.authentication_signin_path, class: 'text-muted' %>
     </div>
   </div>
 </div>

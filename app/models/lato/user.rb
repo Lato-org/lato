@@ -7,6 +7,7 @@ module Lato
 
     kredis_boolean :email_verification_semaphore, expires_in: 2.minutes
     kredis_string :email_verification_code, expires_in: 30.minutes
+    kredis_string :password_update_code, expires_in: 30.minutes
 
     # Validations
     ##
@@ -55,7 +56,7 @@ module Lato
         return
       end
 
-      code = SecureRandom.hex
+      code = SecureRandom.hex.upcase
       delivery = Lato::UserMailer.email_verification_mail(id, code).deliver_now
       unless delivery
         errors.add(:base, 'Impossibile inviare mail')
@@ -93,6 +94,44 @@ module Lato
       end
 
       destroy
+    end
+
+    def request_recover_password(params)
+      user = Lato::User.find_by(email: params[:email])
+      unless user
+        errors.add(:email, 'non registrato')
+        return
+      end
+
+      code = SecureRandom.hex.upcase
+      delivery = Lato::UserMailer.password_update_mail(user.id, code).deliver_now
+      unless delivery
+        errors.add(:base, 'Impossibile inviare mail')
+        return
+      end
+
+      self.id = user.id
+      reload
+
+      password_update_code.value = code
+
+      true
+    end
+
+    def update_password(params)
+      unless password_update_code.value
+        errors.add(:base, 'Il codice di verifica risulta scaduto')
+        return
+      end
+
+      unless password_update_code.value == params[:code]
+        errors.add(:base, 'Il codice di verifica non risulta valido')
+        return
+      end
+
+      password_update_code.value = nil
+      
+      update(params.permit(:password, :password_confirmation))
     end
   end
 end
