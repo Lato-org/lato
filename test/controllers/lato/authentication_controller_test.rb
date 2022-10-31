@@ -140,6 +140,24 @@ module Lato
       assert_response :not_found
     end
 
+    test "verify_email_action should response with unprocessable_entity error if code is not valid" do
+      @user.email_verification_code.value = nil
+
+      patch lato.authentication_verify_email_action_url(id: @user.id, code: 'invalid_code')
+      assert_response :unprocessable_entity
+    end
+
+    test "verify_email_action should update email_verified_at" do
+      @user.update_columns(email_verified_at: nil)
+      @user.email_verification_code.value = 'valid_code'
+
+      patch lato.authentication_verify_email_action_url(id: @user.id, code: 'valid_code')
+      assert_redirected_to lato.authentication_verify_email_url(id: @user.id)
+
+      @user.reload
+      assert_not_nil @user.email_verified_at
+    end
+
     private
 
     def assert_lato_session_cookie
