@@ -149,5 +149,26 @@ module Lato
       @user.reload
       assert @user.authenticate('New password')
     end
+
+    # destroy_action
+    ##
+
+    test "destroy_action should response with redirect without session" do
+      delete lato.account_destroy_action_url
+      assert_redirected_to lato.root_path
+    end
+
+    test "destroy_action should destroy the user" do
+      authenticate_user
+
+      delete lato.account_destroy_action_url, params: {
+        user: {
+          email_confirmation: @user.email
+        }
+      }
+      assert_redirected_to lato.root_path
+
+      assert_nil Lato::User.find_by(id: @user.id)
+    end
   end
 end

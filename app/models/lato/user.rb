@@ -85,5 +85,14 @@ module Lato
       update_column(:email_verified_at, Time.now)
       true
     end
+
+    def destroy_with_confirmation(params)
+      unless params[:email_confirmation] == email
+        errors.add(:email, 'non corretto')
+        return
+      end
+
+      destroy
+    end
   end
 end

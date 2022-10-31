@@ -43,9 +43,20 @@
 
 <div class="card">
   <div class="card-header">
-    <h2 class="fs-3 mb-0">Cancellazione profilo</h2>
+    <h2 class="fs-3 mb-0">Cancellazione account</h2>
   </div>
   <div class="card-body">
+    <div class="alert alert-warning">
+      <h4 class="alert-heading">Attenzione</h4>
+      <p>
+        Cancellando il tuo account <b>saranno automaticamente eliminati definitivamente tutti i dati</b> ad esso associati.<br>
+        Confermando l'eliminazione non ci sarà più modo di recuperare le informazioni perse.
+      </p>
+      <p class="mb-0">
+        Digita il tuo indirizzo email di registrazione e premi "Elimina account" per procedere con l'operazione.
+      </p>
+    </div>
 
+    <%= render 'lato/account/form_destroy', user: @session.user %>
   </div>
 </div>

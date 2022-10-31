@@ -40,5 +40,19 @@ module Lato
         end
       end
     end
+
+    def destroy_action
+      respond_to do |format|
+        if @session.user.destroy_with_confirmation(params.require(:user).permit(:email_confirmation))
+          session_destroy
+
+          format.html { redirect_to lato.root_path }
+          format.json { render json: {} }
+        else
+          format.html { render :index, status: :unprocessable_entity }
+          format.json { render json: @session.user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
   end
 end
