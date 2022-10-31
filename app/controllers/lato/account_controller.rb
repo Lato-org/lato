@@ -8,7 +8,7 @@ module Lato
     def update_user_action
       respond_to do |format|
         if @session.user.update(params.require(:user).permit(:first_name, :last_name, :email))
-          format.html { redirect_to lato.account_path }
+          format.html { redirect_to lato.account_path, notice: 'Informazioni account aggiornate correttamente' }
           format.json { render json: @session.user }
         else
           format.html { render :index, status: :unprocessable_entity }
