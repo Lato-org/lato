@@ -1,6 +1,9 @@
 <%= lato_page_head 'Account' %>
 
-<div class="card mb-3">
+<%= render 'lato/account/alert-accepted-privacy-policy-version' %>
+<%= render 'lato/account/alert-accepted-terms-and-conditions-version' %>
+
+<div class="card mb-4">
   <div class="card-header">
     <h2 class="fs-4 mb-0">Informazioni account</h2>
   </div>
@@ -10,7 +13,7 @@
 </div>
 
 <% if false %>
-<div class="card mb-3">
+<div class="card mb-4">
   <div class="card-header">
     <h2 class="fs-4 mb-0">Dati di fatturazione</h2>
   </div>
@@ -20,7 +23,7 @@
 </div>
 <% end %>
 
-<div class="card mb-3">
+<div class="card mb-4">
   <div class="card-header">
     <h2 class="fs-4 mb-0">Aggiornamento password</h2>
   </div>
@@ -31,7 +34,7 @@
 
 
 <% if false %>
-<div class="card mb-3">
+<div class="card mb-4">
   <div class="card-header">
     <h2 class="fs-4 mb-0">Chiavi API</h2>
   </div>
@@ -41,7 +44,7 @@
 </div>
 <% end %>
 
-<div class="card">
+<div class="card mb-4">
   <div class="card-header">
     <h2 class="fs-4 mb-0">Cancellazione account</h2>
   </div>

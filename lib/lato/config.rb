@@ -12,6 +12,9 @@ module Lato
     # Email configs
     attr_accessor :email_from
 
+    # Legal settings
+    attr_accessor :legal_privacy_policy_url, :legal_privacy_policy_version, :legal_terms_and_conditions_url, :legal_terms_and_conditions_version
+
     def initialize
       @application_title = 'Lato'
       @application_company_name = 'Lato Team'
@@ -21,6 +24,11 @@ module Lato
       @session_root_path = nil # :dashboard_path
 
       @email_from = 'lato@example.com'
+
+      @legal_privacy_policy_url = '#'
+      @legal_privacy_policy_version = 4
+      @legal_terms_and_conditions_url = '#'
+      @legal_terms_and_conditions_version = 4
     end
   end
 end

@@ -1,0 +1,20 @@
+<%= turbo_frame_tag 'account_alert-accepted-privacy-policy-version' do %>
+  <% unless @session.user.valid_accepted_privacy_policy_version? %>
+    <div class="alert alert-info mb-4">
+      <h2 class="alert-heading">Aggiornamento privacy policy</h2>
+      <p>
+      Ciao <%= @session.user.first_name %>,<br>
+      Ti informiamo che è stato rilasciato un <b>aggiornamento della nostra privacy policy</b>.<br>
+      Per continuare a utilizzare <%= Lato.config.application_title %> è necessario prendere visione e accettare la nuova privacy policy.<br>
+      </p>
+      <%= form_with model: @session.user, url: lato.account_update_accepted_privacy_policy_version_action_path, data: { turbo_frame: '_self' } do |form| %>
+        <%= lato_form_errors @session.user, class: %w[mb-3] %>
+        <%= lato_form_item_input_check form, :accepted_privacy_policy_version, "Dichiaro di aver letto e accettato la <a href=#{Lato.config.legal_privacy_policy_url} target=_blank>privacy policy</a>.", checked: false, required: true %>
+
+        <div class="mt-3">
+          <%= lato_form_submit form, 'Conferma' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

@@ -30,7 +30,7 @@ module Lato
     end
 
     def signup_action
-      @user = Lato::User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation))
+      @user = Lato::User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :accepted_privacy_policy_version, :accepted_terms_and_conditions_version))
 
       respond_to do |format|
         if @user.save

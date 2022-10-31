@@ -98,6 +98,21 @@ module Lato
       form.password_field key, options
     end
 
+    def lato_form_item_input_check(form, key, label, options = {})
+      options[:class] ||= []
+      options[:class].push('form-check-input')
+
+      # TO-DO: Trovare il modo di calcolare l'id dato da rails a check_input_tag e metterlo nell'attributo :for di check_label_tag
+
+      check_label_tag = label_tag key, raw(label), class: 'form-check-label'
+      check_input_tag = form.check_box key, options
+
+      content_tag :div, class: 'form-check' do
+        concat check_input_tag
+        concat check_label_tag
+      end
+    end
+
     def lato_form_submit(form, label, options = {})
       options[:class] ||= []
       options[:class].push('btn')

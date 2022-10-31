@@ -54,5 +54,29 @@ module Lato
         end
       end
     end
+
+    def update_accepted_privacy_policy_version_action
+      respond_to do |format|
+        if @session.user.update(params.require(:user).permit(:accepted_privacy_policy_version))
+          format.html { redirect_to lato.account_path }
+          format.json { render json: @session.user }
+        else
+          format.html { render :index, status: :unprocessable_entity }
+          format.json { render json: @session.user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    def update_accepted_terms_and_conditions_version_action
+      respond_to do |format|
+        if @session.user.update(params.require(:user).permit(:accepted_terms_and_conditions_version))
+          format.html { redirect_to lato.account_path }
+          format.json { render json: @session.user }
+        else
+          format.html { render :index, status: :unprocessable_entity }
+          format.json { render json: @session.user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
   end
 end

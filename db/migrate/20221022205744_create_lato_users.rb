@@ -6,6 +6,8 @@ class CreateLatoUsers < ActiveRecord::Migration[7.0]
       t.string :email
       t.datetime :email_verified_at
       t.string :password_digest
+      t.integer :accepted_privacy_policy_version
+      t.integer :accepted_terms_and_conditions_version
       t.timestamps
     end
   end

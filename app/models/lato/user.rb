@@ -15,6 +15,8 @@ module Lato
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :email, presence: true, uniqueness: true
+    validates :accepted_privacy_policy_version, presence: true
+    validates :accepted_terms_and_conditions_version, presence: true
 
     # Hooks
     ##
@@ -25,6 +27,19 @@ module Lato
 
     before_save do
       self.email_verified_at = nil if email_changed?
+      self.accepted_privacy_policy_version = Lato.config.legal_privacy_policy_version if accepted_privacy_policy_version_changed?
+      self.accepted_terms_and_conditions_version = Lato.config.legal_terms_and_conditions_version if accepted_terms_and_conditions_version_changed?
+    end
+
+    # Questions
+    ##
+
+    def valid_accepted_privacy_policy_version?
+      @valid_accepted_privacy_policy_version ||= accepted_privacy_policy_version >= Lato.config.legal_privacy_policy_version
+    end
+
+    def valid_accepted_terms_and_conditions_version?
+      @valid_accepted_terms_and_conditions_version ||= accepted_terms_and_conditions_version >= Lato.config.legal_privacy_policy_version
     end
 
     # Operations

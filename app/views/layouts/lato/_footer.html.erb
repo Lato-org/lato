@@ -1,5 +1,11 @@
-<div class="footer <%= Lato.btstrap.footer %>">
+<div class="footer <%= Lato.btstrap.footer %>" style="font-size: 14px;">
   <div class="<%= Lato.btstrap.footer_container %>">
-    © <%= Date.today.year %> - <%= link_to  Lato.config.application_company_name,  Lato.config.application_company_url, target: '_blank' %>
+    <div>
+      © <%= Date.today.year %> - <%= link_to  Lato.config.application_company_name,  Lato.config.application_company_url, target: '_blank' %>
+    </div>
+    <div>
+      <%= link_to 'Privacy policy', Lato.config.legal_privacy_policy_url %> -
+      <%= link_to 'Termini e condizioni', Lato.config.legal_terms_and_conditions_url %>
+    </div>
   </div>
 </div>

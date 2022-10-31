@@ -4,6 +4,8 @@ it:
       lato/user:
         password_confirmation: Conferma password
         email: Indirizzo email
+        accepted_privacy_policy_version: Privacy policy
+        accepted_terms_and_conditions_version: Termini e condizioni
     errors:
       models:
         lato/user:
@@ -12,3 +14,7 @@ it:
               confirmation: non corrisponde alla password
             email:
               taken: già utilizzato da un altro account
+            accepted_privacy_policy_version:
+              inclusion: non accettata
+            accepted_terms_and_conditions_version:
+              inclusion: non accettati
