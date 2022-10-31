@@ -1,6 +1,6 @@
 module Lato
   class AuthenticationController < ApplicationController
-    before_action :not_authenticate_session, except: %i[signout signout_action]
+    before_action :not_authenticate_session, except: %i[signout signout_action verify_email verify_email_action]
     before_action :authenticate_session, only: %i[signout signout_action]
     before_action :hide_sidebar
 
@@ -52,6 +52,25 @@ module Lato
       respond_to do |format|
         format.html { redirect_to lato.root_path }
         format.json { render plain: '' }
+      end
+    end
+
+    def verify_email
+      @user = User.find(params[:id])
+      @code = params[:code]
+    end
+
+    def verify_email_action
+      @user = User.find(params[:id])
+
+      respond_to do |format|
+        if @user.verify_email(params.permit(:code))
+          format.html { redirect_to lato.authentication_verify_email_path(id: @user.id), notice: 'Indirizzo email verificato correttamente' }
+          format.json { render json: @user }
+        else
+          format.html { render :verify_email, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

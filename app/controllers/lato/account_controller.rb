@@ -17,9 +17,9 @@ module Lato
       end
     end
 
-    def request_email_verification_action
+    def request_verify_email_action
       respond_to do |format|
-        if @session.user.send_email_verification_mail
+        if @session.user.request_verify_email
           format.html { redirect_to lato.account_path, notice: 'Ti abbiamo inviato una email con i passaggi da seguire per completare la procedura' }
           format.json { render json: @session.user }
         else

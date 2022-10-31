@@ -1,3 +1,9 @@
+<%
+
+user ||= Lato::User.new
+
+%>
+
 <%= form_with model: user, url: lato.authentication_signup_action_path, class: 'row' do |form| %>
   <%= lato_form_errors user, class: %w[col col-12 mb-3] %>
   

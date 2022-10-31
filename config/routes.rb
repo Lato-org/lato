@@ -11,11 +11,13 @@ Lato::Engine.routes.draw do
     post :signup_action, to: 'authentication#signup_action', as: :authentication_signup_action
     get :signout, to: 'authentication#signout', as: :authentication_signout
     delete :signout_action, to: 'authentication#signout_action', as: :authentication_signout_action
+    get :verify_email, to: 'authentication#verify_email', as: :authentication_verify_email
+    patch :verify_email_action, to: 'authentication#verify_email_action', as: :authentication_verify_email_action
   end
 
   scope :account do
     get '', to: 'account#index', as: :account
     patch :update_user_action, to: 'account#update_user_action', as: :account_update_user_action
-    post :request_email_verification_action, to: 'account#request_email_verification_action', as: :account_request_email_verification_action
+    patch :request_verify_email_action, to: 'account#request_verify_email_action', as: :account_request_verify_email_action
   end
 end

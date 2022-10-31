@@ -49,7 +49,7 @@ module Lato
       true
     end
 
-    def send_email_verification_mail
+    def request_verify_email
       if email_verification_semaphore.value
         errors.add(:base, 'Attendi almeno 2 minuti per provare un nuovo tentativo di verifica email')
         return
@@ -68,5 +68,22 @@ module Lato
       true
     end
 
+    def verify_email(params)
+      unless email_verification_code.value
+        errors.add(:base, 'Il codice di verifica email risulta scaduto')
+        return
+      end
+
+      unless email_verification_code.value == params[:code]
+        errors.add(:base, 'Il codice di verifica email non risulta valido')
+        return
+      end
+
+      email_verification_code.value = nil
+      email_verification_semaphore.value = nil
+
+      update_column(:email_verified_at, Time.now)
+      true
+    end
   end
 end

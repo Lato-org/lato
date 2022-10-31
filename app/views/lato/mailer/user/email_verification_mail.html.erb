@@ -2,7 +2,7 @@ Per avere accesso a tutte le funzionalità di <%= Lato.config.application_title 
 <br><br>
 Clicca il seguente link per completare la procedura di configurazione:
 <br><br>
-<%= link_to @code, '#' %>
+<%= link_to lato.authentication_verify_email_url(id: @user.id, code: @code), lato.authentication_verify_email_url(id: @user.id, code: @code) %>
 <br><br>
 <small>
 Ti ricordiamo che il link è valido per 30 minuti. Se il link risulta scaduto puoi richiederne uno nuovo dalla pagina di gestione del tuo account <%= Lato.config.application_title %>.

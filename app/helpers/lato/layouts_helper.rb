@@ -35,13 +35,14 @@ module Lato
       return unless notice
 
       options[:class] ||= []
-      options[:class] += %w[alert alert-success alert-dismissible fade show]
+      options[:class] += %w[alert alert-success]
+      options[:class] += %w[alert-dismissible fade show] unless options[:fixed]
 
       close_button_tag = button_tag '', type: 'button', class: 'btn-close', data: { bs_dismiss: 'alert' }
 
       content_tag :div, options do
         concat notice
-        concat close_button_tag
+        concat close_button_tag unless options[:fixed]
       end
     end
 
@@ -49,7 +50,8 @@ module Lato
       return unless instance.errors.any?
 
       options[:class] ||= []
-      options[:class] += %w[alert alert-danger alert-dismissible fade show]
+      options[:class] += %w[alert alert-danger]
+      options[:class] += %w[alert-dismissible fade show] unless options[:fixed]
 
       close_button_tag = button_tag '', type: 'button', class: 'btn-close', data: { bs_dismiss: 'alert' }
 
@@ -64,7 +66,7 @@ module Lato
       content_tag :div, options do
         concat errors_title_tag
         concat errors_list_tag
-        concat close_button_tag
+        concat close_button_tag unless options[:fixed]
       end
     end
 

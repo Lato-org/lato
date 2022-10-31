@@ -1,3 +1,9 @@
+<%
+
+user ||= Lato::User.new
+
+%>
+
 <%= turbo_frame_tag 'account_form_user' do %>
   <%= form_with model: user, url: lato.account_update_user_action_path, data: { turbo_frame: '_self' } do |form| %>
     <%= lato_form_notices class: %w[col col-12 mb-3] %>
@@ -19,9 +25,9 @@
         <div class="input-group mb-3">
           <%= lato_form_item_input_email form, :email, required: true %>
           <% if user.email_verified_at %>
-
+            <button class="btn btn-outline-success" style="pointer-events: none"><i class="bi bi-check-circle"></i></span>
           <% else %>
-            <%= link_to 'Verifica email', account_request_email_verification_action_path, class: 'btn btn-warning', data: { turbo_method: :post, turbo_frame: '_self' } %>
+            <%= link_to 'Verifica email', account_request_verify_email_action_path, class: 'btn btn-warning', data: { turbo_method: :patch, turbo_frame: '_self' } %>
           <% end %>
         </div>
       </div>

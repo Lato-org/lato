@@ -29,3 +29,8 @@ gem "bootstrap"
 
 # Start debugger with binding.b [https://github.com/ruby/debug]
 # gem "debug", ">= 1.0.0"
+
+group :development do
+  # Preview email in browser [https://github.com/ryanb/letter_opener]
+  gem "letter_opener"
+end
