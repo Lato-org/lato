@@ -6,6 +6,9 @@ module Lato
       @user = lato_users(:user)
     end
 
+    # index
+    ##
+
     test "index should response with redirect without session" do
       get lato.account_url
       assert_redirected_to lato.root_path
@@ -17,6 +20,9 @@ module Lato
       get lato.account_url
       assert_response :success
     end
+
+    # update_user_action
+    ##
 
     test "update_user_action should response with redirect without session" do
       patch lato.account_update_user_action_url
@@ -71,6 +77,54 @@ module Lato
       @user.reload
       assert_equal @user.email, old_email
       assert_not_nil @user.email_verified_at
+    end
+
+    # request_verify_email_action
+    ##
+
+    test "request_verify_email_action should response with redirect without session" do
+      patch lato.account_request_verify_email_action_url
+      assert_redirected_to lato.root_path
+    end
+
+    test "request_verify_email_action should send an email to user and update temp data on redis" do
+      authenticate_user
+
+      patch lato.account_request_verify_email_action_url
+      assert_redirected_to lato.account_path
+
+      @user.reload
+      assert_not_nil @user.email_verification_code
+      assert_not_nil @user.email_verification_semaphore
+      assert_equal ActionMailer::Base.deliveries.count, 1
+    end
+
+    test "request_verify_email_action should response with unprocessable_entity error if user try multiple send in less than 2 minutes" do
+      authenticate_user
+
+      # first send
+      patch lato.account_request_verify_email_action_url
+      assert_redirected_to lato.account_path
+
+      # second send
+      patch lato.account_request_verify_email_action_url
+      assert_response :unprocessable_entity
+    end
+
+    test "request_verify_email_action should response with success if user try multiple send in more than 2 minutes" do
+      authenticate_user
+
+      # first send
+      patch lato.account_request_verify_email_action_url
+      assert_redirected_to lato.account_path
+
+      # NOTE: second send test not works because Timecop has no way to move time on redis
+
+      # # second send
+      # Timecop.freeze(3.minutes.from_now) do
+      #   patch lato.account_request_verify_email_action_url
+      #   assert_redirected_to lato.account_path
+      # end
     end
   end
 end

@@ -1,7 +1,8 @@
 module Lato
   class AuthenticationController < ApplicationController
-    before_action :not_authenticate_session, except: %i[signout signout_action verify_email verify_email_action]
+    before_action :not_authenticate_session, only: %i[signin signin_action signup signup_action]
     before_action :authenticate_session, only: %i[signout signout_action]
+    before_action :find_user, only: %i[verify_email verify_email_action]
     before_action :hide_sidebar
 
     def signin
@@ -56,13 +57,10 @@ module Lato
     end
 
     def verify_email
-      @user = User.find(params[:id])
       @code = params[:code]
     end
 
     def verify_email_action
-      @user = User.find(params[:id])
-
       respond_to do |format|
         if @user.verify_email(params.permit(:code))
           format.html { redirect_to lato.authentication_verify_email_path(id: @user.id), notice: 'Indirizzo email verificato correttamente' }
@@ -72,6 +70,13 @@ module Lato
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
+    end
+
+    private
+
+    def find_user
+      @user = User.find_by(id: params[:id])
+      respond_to_with_404 unless @user
     end
   end
 end

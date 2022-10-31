@@ -34,3 +34,8 @@ group :development do
   # Preview email in browser [https://github.com/ryanb/letter_opener]
   gem "letter_opener"
 end
+
+group :test do
+  # Move on time to make better tests [https://github.com/travisjeffery/timecop]
+  gem "timecop"
+end
