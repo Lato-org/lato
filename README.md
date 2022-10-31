@@ -15,6 +15,7 @@ gem "turbo-rails" # NOTE: Probably already installed in default rails 7 project
 gem "stimulus-rails" # NOTE: Probably already installed in default rails 7 project
 
 # Use Kredis as Redis interface [https://github.com/rails/kredis]
+# NOTE: Installation -> https://github.com/rails/kredis#installation
 gem "kredis"
 
 # Use Sass to process CSS
