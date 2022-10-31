@@ -1,5 +1,5 @@
 <%= form_with model: user, url: lato.authentication_signup_action_path, class: 'row' do |form| %>
-  <%= lato_form_errors user, class: %w[col col-12] %>
+  <%= lato_form_errors user, class: %w[col col-12 mb-3] %>
   
   <div class="col col-12 col-md-6 mb-3">
     <%= lato_form_item_label form, :first_name, 'Nome' %>

@@ -34,23 +34,34 @@ module Lato
     def lato_form_notices(options = {})
       return unless notice
 
-      content_tag :div, class: %w[alert alert-success alert-dismissible fade show mb-3] do
+      options[:class] ||= []
+      options[:class] += %w[alert alert-success alert-dismissible fade show]
+
+      close_button_tag = button_tag '', type: 'button', class: 'btn-close', data: { bs_dismiss: 'alert' }
+
+      content_tag :div, options do
         concat notice
-        concat button_tag '', type: 'button', class: 'btn-close', data: { bs_dismiss: 'alert' }
+        concat close_button_tag
       end
     end
 
     def lato_form_errors(instance, options = {})
       return unless instance.errors.any?
 
+      options[:class] ||= []
+      options[:class] += %w[alert alert-danger alert-dismissible fade show]
+
+      close_button_tag = button_tag '', type: 'button', class: 'btn-close', data: { bs_dismiss: 'alert' }
+
+      errors_list_tag = content_tag :ul, class: %w[mb-0 ps-2] do
+        instance.errors.collect do |error|
+          content_tag :li, error.full_message
+        end.join.html_safe
+      end
+
       content_tag :div, options do
-        content_tag :div, class: %w[alert alert-danger mb-3] do
-          content_tag :ul, class: %w[mb-0] do
-            instance.errors.collect do |error|
-              content_tag :li, error.full_message
-            end.join.html_safe
-          end
-        end
+        concat errors_list_tag
+        concat close_button_tag
       end
     end
 

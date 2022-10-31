@@ -1,15 +1,16 @@
 <div class="w-100 h-100 d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 54px - 2rem)">
-  <div class="card w-100" style="max-width: 350px">
+  <div class="card w-100" style="max-width: 450px">
     <div class="card-header">
       <h1 class="fs-3 mb-0 text-center">Esci</h1>
     </div>
     <div class="card-body">
-      <div class="alert alert-warning text-center mb-0">
-        <span>Sei sicuro di voler uscire dal tuo account?</span>
-        <div class="mt-3">
-          <%= link_to 'Annulla', lato.root_path, class: %w[btn btn-danger] %>
-          <%= link_to 'Conferma', lato.authentication_signout_action_path, class: %w[btn btn-success], data: { turbo_method: :delete } %>
-        </div>
+      <div class="alert alert-warning mb-0">
+        <h4 class="alert-heading">Attenzione</h4>
+        <p class="mb-0">Sei sicuro di voler uscire dal tuo account?</p>
+      </div>
+      <div class="mt-3 pt-3 border-top d-flex justify-content-between">
+        <%= link_to 'Annulla', lato.root_path, class: %w[btn btn-danger] %>
+        <%= link_to 'Conferma', lato.authentication_signout_action_path, class: %w[btn btn-success], data: { turbo_method: :delete } %>
       </div>
     </div>
   </div>
