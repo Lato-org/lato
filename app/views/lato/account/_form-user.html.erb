@@ -25,7 +25,7 @@ user ||= Lato::User.new
         <div class="input-group mb-3">
           <%= lato_form_item_input_email form, :email, required: true %>
           <% if user.email_verified_at %>
-            <button class="btn btn-outline-success" style="pointer-events: none"><i class="bi bi-check-circle"></i></span>
+            <button class="btn btn-outline-success" style="pointer-events: none">Verificato</span>
           <% else %>
             <%= link_to 'Verifica email', account_request_verify_email_action_path, class: 'btn btn-warning', data: { turbo_method: :patch, turbo_frame: '_self' } %>
           <% end %>

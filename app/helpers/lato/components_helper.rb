@@ -1,5 +1,5 @@
 module Lato
-  module LayoutsHelper
+  module ComponentsHelper
     # Navbar
     ##
 

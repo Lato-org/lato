@@ -1,5 +1,5 @@
 module Lato
   module ApplicationHelper
-    include Lato::LayoutsHelper
+    include Lato::ComponentsHelper
   end
 end

@@ -1,0 +1,29 @@
+<%= lato_page_head 'Componenti' %>
+
+<p>
+Lato dispone di una serie di componenti funzionali riutilizzabili.<br>
+Utilizzando le componenti di Lato è possibile risparmiare tempo di lavoro e facilitare le attività di manutenzione dell'applicazione.<br>
+Tutte le componenti sono disponibili tramite l'helper <code>Lato::ComponentsHelper</code>.
+</p>
+
+<p>
+<%= link_to 'Source code: Lato::ComponentsHelper', 'https://github.com/Lato-GAM/lato/blob/main/app/helpers/lato/components_helper.rb', target: '_blank' %>
+</p>
+
+<h2>Navbar</h2>
+
+<h3>Navbar nav item</h3>
+
+<p>
+Componente per renderizzare una voce di menu nella navbar.
+Parametri:<br>
+- <i>key</i>: chiave della voce di menu. Utilizzata per attivare la voce di menu se impostata attiva tramite la funzione <code>active_navbar</code> del concern <code>Lato::Layoutable</code>.<br>
+- <i>path</i>: path o url assoluto dove rimandare l'utente.<br>
+- <i>&block</i>: blocco di HTML da renderizzare all'interno della voce di menu.
+</p>
+
+<pre>
+&#60;%= lato_navbar_nav_item :account, lato.account_path do %&#62;
+  Account
+&#60;% end %&#62;
+</pre>

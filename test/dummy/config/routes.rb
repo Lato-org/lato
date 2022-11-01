@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index', as: :dashboard
   get 'configuration', to: 'dashboard#configuration', as: :configuration
-  get 'layout_customization', to: 'dashboard#layout_customization', as: :layout_customization
+  get 'customization', to: 'dashboard#customization', as: :customization
+  get 'components', to: 'dashboard#components', as: :components
 end

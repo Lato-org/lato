@@ -3,9 +3,13 @@
 <% end %>
 
 <%= lato_sidebar_nav_item :configuration, main_app.configuration_path do %>
-  <i class="bi bi-info-circle me-2"></i> Configurazione
+  <i class="bi bi-gear me-2"></i> Configurazione
 <% end %>
 
-<%= lato_sidebar_nav_item :layout_customization, main_app.layout_customization_path do %>
-  <i class="bi bi-info-circle me-2"></i> Personalizzazione layout
+<%= lato_sidebar_nav_item :customization, main_app.customization_path do %>
+  <i class="bi bi-brightness-high me-2"></i> Personalizzazione
+<% end %>
+
+<%= lato_sidebar_nav_item :components, main_app.components_path do %>
+  <i class="bi bi-columns me-2"></i> Componenti
 <% end %>
