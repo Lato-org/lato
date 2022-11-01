@@ -72,37 +72,18 @@ end
 
 ```
 
-## Customization
-Lato can be customized on every part. Customization can be done by N ways:
-- Customize the engine configuration;
-- Customize layout boostrap classes;
-- Customize view content partials;
+## Development
 
-### Customize the engine configuration
-Create a **config/initializers/lato_config.rb** file to edit the default configuration:
+Be sure to have Redis locally installed and running.
 
-```ruby
-Lato.configure do |config|
-  config.application_title = 'Demo app'
-end
-```
+Clone repository, install dependencies, run migrations and start:
 
-### Customize layout boostrap classes
-Create a **config/initializers/lato_boostrap.rb** file to edit the default classes:
-
-```ruby
-Lato.bootstrap do |btstrap|
-  btstrap.navbar = 'navbar-dark bg-primary'
-end
-```
-
-### Customize view content partials
-Override lato content partials on main application and edit it's HTML.
-Content partials are specific partial files with this format **partial-name_content** created to helps to override lato pages content without override a full page.
-For example, to customize the navbar brand, create a partial file in **app/views/layouts/lato/_navbar-brand_content.html.erb** and add your custom code:
-
-```html
-<img src="./logo.jpg" class="custom-logo" alt="My custom logo">
+```shell
+$ git clone https://github.com/Lato-GAM/lato
+$ cd lato
+$ bundle
+$ rails db:migrate
+$ rails start
 ```
 
 ## License
