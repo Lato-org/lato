@@ -1,3 +1,89 @@
 <%= lato_page_head 'Dashboard' do %>
-  <p class="lead">👋 <%= @session.user.first_name %>, benvenuto su Lato!</p>
+  <p class="lead">👋 <%= @session.user.first_name %>, benvenuto nella Dashboard!</p>
 <% end %>
+
+<h2>Come proteggere una pagina</h2>
+
+<p>
+Per autenticare una pagina in modo da non renderla pubblica per utenti non registrati puoi utilizzare uno dei metodi messi a dispozione dal concern <code>Lato::Sessionable</code> (già importato da <code>Lato::ApplicationController</code>):
+</p>
+
+<pre>
+class DashboardController < ApplicationController
+  def index
+    return unless authenticate_session
+  end
+end
+</pre>
+
+<p>
+Per applicare la regola su tutte le action del controller puoi utilizzare rapidamente il <code>before_action</code>:
+</p>
+
+<pre>
+class DashboardController < ApplicationController
+  before_action :authenticate_session
+
+  def index; end
+end
+</pre>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Note</h4>
+  <p>
+  Proprio come <code>authenticate_session</code> puoi anche utilizzare il contrario <code>not_authenticate_session</code> per nascondere una pagina agli utenti registrati.<br>
+  Esempio:
+  </p>
+  <pre>
+  class AuthenticationController < ApplicationController
+    before_action :not_authenticate_session, only: %i[signin]
+    before_action :authenticate_session, only: %i[signout]
+
+    def signin; end
+
+    def signout; end
+  end
+  </pre>
+</div>
+
+<p>
+<%= link_to 'Source code Lato::Sessionable', 'https://github.com/Lato-GAM/lato/blob/main/app/controllers/concerns/lato/sessionable.rb', target: '_blank' %>
+</p>
+
+<h2>Accedere all'utente loggato</h2>
+
+<p>
+L'utente che ha effettuato l'accesso a Lato è sempre disponibile in tutti i controller e tutte le view tramite l'istanza <code>@session</code> del modello <code>Lato::Session</code>:
+</p>
+
+<pre>
+class DashboardController < ApplicationController
+  # ...
+
+  def index
+    @user_id = @session.user_id
+    @user = @session.user.first_name
+  end
+
+  # ...
+end
+</pre>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Note</h4>
+  <p>
+  Utilizzando <code>@session.user_id</code> al posto di <code>@session.user.id</code> è possibile evitare di eseguire query nella tabella utenti ottimizzando i tempi di risposta!
+  </p>
+  <p>
+  <code>@session.valid?</code> permette di verificare se l'utente è loggato o meno.
+  </p>
+</div>
+
+<p>
+<%= link_to 'Source code Lato::Session', 'https://github.com/Lato-GAM/lato/blob/main/app/models/lato/session.rb', target: '_blank' %>
+</p>
+
+<div class="mt-5 mb-5 d-flex justify-content-between">
+<span></span>
+<%= link_to 'Next >', main_app.configuration_path, class: 'btn btn-primary btn-lg' %>
+</div>

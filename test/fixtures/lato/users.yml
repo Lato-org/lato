@@ -6,5 +6,5 @@ user:
   email: pippo.franco@mail.com
   email_verified_at: <%= Time.now %>
   password_digest: <%= BCrypt::Password.create('Password1!') %>
-  legal_privacy_policy_version: <%= Lato.config.legal_privacy_policy_version %>
-  legal_terms_and_conditions_version: <%= Lato.config.legal_terms_and_conditions_version %>
+  accepted_privacy_policy_version: <%= Lato.config.legal_privacy_policy_version %>
+  accepted_terms_and_conditions_version: <%= Lato.config.legal_terms_and_conditions_version %>

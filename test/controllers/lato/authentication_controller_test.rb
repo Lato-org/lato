@@ -80,7 +80,9 @@ module Lato
         last_name: 'Franco',
         email: 'gino.franco@mail.com',
         password: 'Password1!',
-        password_confirmation: 'Password1!'
+        password_confirmation: 'Password1!',
+        accepted_privacy_policy_version: true,
+        accepted_terms_and_conditions_version: true
       }}
       assert_redirected_to lato.root_path
 
