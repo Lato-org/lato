@@ -9,4 +9,8 @@ class DashboardController < ApplicationController
   def configuration
     active_sidebar(:configuration)
   end
+
+  def layout_customization
+    active_sidebar(:layout_customization)
+  end
 end

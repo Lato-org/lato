@@ -34,16 +34,16 @@ end
   Proprio come <code>authenticate_session</code> puoi anche utilizzare il contrario <code>not_authenticate_session</code> per nascondere una pagina agli utenti registrati.<br>
   Esempio:
   </p>
-  <pre>
-  class AuthenticationController < ApplicationController
-    before_action :not_authenticate_session, only: %i[signin]
-    before_action :authenticate_session, only: %i[signout]
+<pre>
+class AuthenticationController < ApplicationController
+  before_action :not_authenticate_session, only: %i[signin]
+  before_action :authenticate_session, only: %i[signout]
 
-    def signin; end
+  def signin; end
 
-    def signout; end
-  end
-  </pre>
+  def signout; end
+end
+</pre>
 </div>
 
 <p>
