@@ -28,6 +28,31 @@ module Lato
       end
     end
 
+    # Page head
+    ##
+
+    def lato_page_head(title, breadcrumbs = [], &block)
+      title_tag = content_tag :h1, title
+
+      if breadcrumbs.length.positive?
+        breadcrumbs_tag = content_tag :ol, class: %w[breadcrumb mb-1] do
+          breadcrumbs.collect do |breadcrumb|
+            content_tag :li, class: %w[breadcrumb-item] do
+              breadcrumb[:path] ? link_to(breadcrumb[:label], breadcrumb[:path]) : content_tag(:span, breadcrumb[:label])
+            end
+          end.join.html_safe
+        end
+      else
+        breadcrumbs_tag = nil
+      end
+
+      content_tag :div, class: %w[border-bottom mb-3] do
+        concat breadcrumbs_tag
+        concat title_tag
+        yield if block
+      end
+    end
+
     # Forms
     ##
 
@@ -119,31 +144,6 @@ module Lato
       options[:class].push('btn-primary')
 
       form.submit label, options
-    end
-
-    # Page head
-    ##
-
-    def lato_page_head(title, breadcrumbs = [], &block)
-      title_tag = content_tag :h1, title
-
-      if breadcrumbs.length.positive?
-        breadcrumbs_tag = content_tag :ol, class: %w[breadcrumb mb-0] do
-          breadcrumbs.collect do |breadcrumb|
-            content_tag :li, class: %w[breadcrumb-item] do
-              link_to breadcrumb[:label], breadcrumb[:path]
-            end
-          end.join.html_safe
-        end
-      else
-        breadcrumbs_tag = nil
-      end
-
-      content_tag :div, class: %w[border-bottom mb-3] do
-        concat breadcrumbs_tag
-        concat title_tag
-        yield if block
-      end
     end
   end
 end

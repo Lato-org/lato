@@ -27,3 +27,53 @@ Parametri:<br>
   Account
 &#60;% end %&#62;
 </pre>
+
+<h2>Sidebar</h2>
+
+<h3>Sidebar nav item</h3>
+
+<p>
+Componente per renderizzare una voce di menu nella sidebar.
+Parametri:<br>
+- <i>key</i>: chiave della voce di menu. Utilizzata per attivare la voce di menu se impostata attiva tramite la funzione <code>active_sidebar</code> del concern <code>Lato::Layoutable</code>.<br>
+- <i>path</i>: path o url assoluto dove rimandare l'utente.<br>
+- <i>&block</i>: blocco di HTML da renderizzare all'interno della voce di menu.
+</p>
+
+<pre>
+&#60;%= lato_sidebar_nav_item :account, lato.account_path do %&#62;
+  Account
+&#60;% end %&#62;
+</pre>
+
+<h2>Page</h2>
+
+<h3>Page head</h3>
+
+<pre>
+&#60;%= lato_page_head 'Titolo pagina' %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_page_head 'Titolo pagina' %>
+</div>
+
+<pre>
+&#60;%= lato_page_head 'Titolo pagina', [{ label: 'Titolo 1', path: main_app.page_path }, { label: 'Titolo 2' }] %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_page_head 'Titolo pagina', [{ label: 'Titolo 1', path: '#' }, { label: 'Titolo 2' }] %>
+</div>
+
+<pre>
+&#60;%= lato_page_head 'Titolo pagina' do %&#62;
+  &#60p class="lead"&#62;Benvenuto in questa pagina&#60/p&#62;
+&#60;% end %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_page_head 'Titolo pagina' do %>
+  <p class="lead">Benvenuto in questa pagina</p>
+<% end %>
+</div>
