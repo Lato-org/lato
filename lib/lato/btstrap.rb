@@ -30,7 +30,7 @@ module Lato
 
       # Footer defaults
       @footer = 'bg-light px-md-3 py-2'
-      @footer_container = 'container-fluid text-center text-muted d-flex justify-content-between p-3'
+      @footer_container = 'container-fluid text-center text-muted d-md-flex justify-content-between p-3'
     end
   end
 end
