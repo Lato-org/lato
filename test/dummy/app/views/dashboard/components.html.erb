@@ -1,5 +1,13 @@
 <%= lato_page_head 'Componenti' %>
 
+<%
+
+def component_code(file)
+  File.read(Rails.root.join('app', 'views', 'dashboard', 'components', "_#{file}.html.erb"))
+end
+
+%>
+
 <p>
 Lato dispone di una serie di componenti funzionali riutilizzabili.<br>
 Utilizzando le componenti di Lato è possibile risparmiare tempo di lavoro e facilitare le attività di manutenzione dell'applicazione.<br>
@@ -76,4 +84,25 @@ Parametri:<br>
 <%= lato_page_head 'Titolo pagina' do %>
   <p class="lead">Benvenuto in questa pagina</p>
 <% end %>
+</div>
+
+<h2>Form</h2>
+
+<p>
+I form possono essere generati utilizzando le componenti <code>lato_form</code>.
+<ul>
+  <li><code>lato_form_notices</code> visualizza il feedback positivo al salvataggio (notice impostati dalla action).</li>
+  <li><code>lato_form_errors</code> visualizza il feedback negativo al salvataggio (errori presenti nell'istanza del modello).</li>
+  <li><code>lato_form_item_label</code> visualizza la label dei campi.</li>
+  <li><code>lato_form_item_input_...</code> visualizza un input.</li>
+  <li><code>lato_form_submit</code> visualizza il pulsante di submit.</li>
+</ul>
+</p>
+
+<pre>
+<%= component_code('form-example') %>
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= render 'dashboard/components/form-example' %>
 </div>

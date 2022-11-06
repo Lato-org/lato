@@ -17,7 +17,7 @@ module Lato
 
     def initialize
       # Navbar defaults
-      @navbar = 'navbar-light navbar-expand-lg fixed-top bg-light shadow-sm px-3'
+      @navbar = 'navbar-light navbar-expand-lg fixed-top bg-light shadow-sm px-md-3'
       @navbar_container = 'container-fluid'
       @navbar_collapse = 'justify-content-end'
 
@@ -25,11 +25,11 @@ module Lato
       @sidebar = 'p-3 bg-light border-end'
 
       # Content defaults
-      @content = 'p-3'
+      @content = 'px-md-3 py-3'
       @content_container = 'container-fluid'
 
       # Footer defaults
-      @footer = 'bg-light px-3 py-2'
+      @footer = 'bg-light px-md-3 py-2'
       @footer_container = 'container-fluid text-center text-muted d-flex justify-content-between p-3'
     end
   end

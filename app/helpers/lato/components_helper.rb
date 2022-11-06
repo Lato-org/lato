@@ -56,6 +56,16 @@ module Lato
     # Forms
     ##
 
+    def _lato_form_input_options(options, action_change_event, classes = 'form-control')
+      options[:class] ||= []
+      options[:class].push(classes)
+
+      options[:data] ||= {}
+      options[:data][:action] ||= ''
+      options[:data][:action] += " #{action_change_event}->lato-form#onInputChange"
+      options[:data][:lato_form_target] = 'input'
+    end
+
     def lato_form_notices(options = {})
       return unless notice
 
@@ -103,29 +113,25 @@ module Lato
     end
 
     def lato_form_item_input_text(form, key, options = {})
-      options[:class] ||= []
-      options[:class].push('form-control')
+      _lato_form_input_options(options, :keyup)
 
       form.text_field key, options
     end
 
     def lato_form_item_input_email(form, key, options = {})
-      options[:class] ||= []
-      options[:class].push('form-control')
+      _lato_form_input_options(options, :keyup)
 
       form.email_field key, options
     end
 
     def lato_form_item_input_password(form, key, options = {})
-      options[:class] ||= []
-      options[:class].push('form-control')
+      _lato_form_input_options(options, :keyup)
 
       form.password_field key, options
     end
 
     def lato_form_item_input_check(form, key, label, options = {})
-      options[:class] ||= []
-      options[:class].push('form-check-input')
+      _lato_form_input_options(options, :change, 'form-check-input')
 
       # TO-DO: Trovare il modo di calcolare l'id dato da rails a check_input_tag e metterlo nell'attributo :for di check_label_tag
 
@@ -142,6 +148,9 @@ module Lato
       options[:class] ||= []
       options[:class].push('btn')
       options[:class].push('btn-primary')
+
+      options[:data] ||= {}
+      options[:data][:lato_form_target] = 'submit'
 
       form.submit label, options
     end
