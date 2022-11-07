@@ -36,6 +36,8 @@ export default class extends Controller {
   }
 
   onInputChange(e) {
+    e.target.classList.remove('is-invalid')
+
     const formData = this.loadFormData()
     if (JSON.stringify(formData) != JSON.stringify(this.originalFormData)) {
       this.enableSubmit()

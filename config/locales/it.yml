@@ -2,6 +2,8 @@ it:
   activerecord:
     attributes:
       lato/user:
+        first_name: Nome
+        last_name: Cognome
         password_confirmation: Conferma password
         email: Indirizzo email
         accepted_privacy_policy_version: Privacy policy
