@@ -89,12 +89,17 @@ Parametri:<br>
 <h2>Form</h2>
 
 <p>
-I form possono essere generati utilizzando le componenti <code>lato_form</code>.
+I form possono essere generati utilizzando le componenti <code>lato_form</code>.<br>
+Le componenti <code>lato_form</code> sono una serie di componenti diverse programmate per essere utilizzate con l'helper Rails <code>form_with</code> e il controller Stimulus <code>lato_form_controller</code>.<br>
+Di seguito la lista di componenti disponibili e un esempio di utilizzo:
 <ul>
   <li><code>lato_form_notices</code> visualizza il feedback positivo al salvataggio (notice impostati dalla action).</li>
   <li><code>lato_form_errors</code> visualizza il feedback negativo al salvataggio (errori presenti nell'istanza del modello).</li>
   <li><code>lato_form_item_label</code> visualizza la label dei campi.</li>
-  <li><code>lato_form_item_input_...</code> visualizza un input.</li>
+  <li><code>lato_form_item_input_text</code> visualizza un input di testo.</li>
+  <li><code>lato_form_item_input_email</code> visualizza un input email.</li>
+  <li><code>lato_form_item_input_password</code> visualizza un input password.</li>
+  <li><code>lato_form_item_input_check</code> visualizza un input checkbox.</li>
   <li><code>lato_form_submit</code> visualizza il pulsante di submit.</li>
 </ul>
 </p>
