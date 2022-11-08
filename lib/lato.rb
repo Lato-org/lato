@@ -1,3 +1,5 @@
+require "kaminari"
+
 require "lato/version"
 require "lato/engine"
 require "lato/config"

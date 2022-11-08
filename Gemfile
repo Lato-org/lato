@@ -8,6 +8,8 @@ gem "sqlite3"
 
 gem "sprockets-rails"
 
+# LATO DEPENDENCIES
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
@@ -27,12 +29,17 @@ gem "sassc-rails"
 # Use bootstrap as front-end framework
 gem "bootstrap"
 
-# Start debugger with binding.b [https://github.com/ruby/debug]
-# gem "debug", ">= 1.0.0"
+# / LATO DEPENDENCIES
 
 group :development do
+  # Start debugger with binding.b [https://github.com/ruby/debug]
+  gem "debug", ">= 1.0.0"
+
   # Preview email in browser [https://github.com/ryanb/letter_opener]
   gem "letter_opener"
+
+  # Generate random data [https://github.com/faker-ruby/faker]
+  gem "faker"
 end
 
 group :test do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_205744) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_08_194513) do
   create_table "lato_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -19,6 +19,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_205744) do
     t.string "password_digest"
     t.integer "accepted_privacy_policy_version"
     t.integer "accepted_terms_and_conditions_version"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "code"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

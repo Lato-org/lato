@@ -1,0 +1,7 @@
+it:
+  activerecord:
+    attributes:
+      product:
+        code: Codice
+        status: Stato
+        created_at: Data registrazione
