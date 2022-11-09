@@ -23,6 +23,9 @@ module Lato
         collection = collection.order("#{sort_by_column} #{sort_by_order}") if @_lato_index_sortable_columns.include?(sort_by_column.to_sym)
       end
 
+      # manage total (before pagination)
+      @_lato_index_total = collection.count
+
       # manage pagination
       if params[:page] || params[:per_page] || pagination
         page = params[:page]&.to_i || 1
