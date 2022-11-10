@@ -57,11 +57,16 @@ module Lato
     ##
 
     def lato_index(collection, options = {})
-      columns = options[:columns] || @_lato_index_columns || collection.column_names || []
-      sortable_columns = options[:sortable_columns] || @_lato_index_sortable_columns || []
+      key = options[:key] || 'default'
+
+      @_lato_index ||= {}
+      @_lato_index[key] ||= {}
+      columns = options[:columns] || @_lato_index[key][:columns] || collection.column_names || []
+      sortable_columns = options[:sortable_columns] || @_lato_index[key][:sortable_columns] || []
       model_name_underscore = collection.model.name.underscore
 
       render('lato/components/index',
+        key: key,
         collection: collection,
         columns: columns,
         sortable_columns: sortable_columns,

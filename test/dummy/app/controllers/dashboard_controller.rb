@@ -16,6 +16,10 @@ class DashboardController < ApplicationController
 
   def components
     active_sidebar(:components)
+
+    @products = lato_index_collection(Product.all, pagination: true, key: 'products')
+    @products_columns = lato_index_collection(Product.all, pagination: true, columns: %i[code status id], key: 'products_columns')
+    @products_sortable_columns = lato_index_collection(Product.all, pagination: true, columns: %i[code status lato_user_id], sortable_columns: %i[code status lato_user_id], key: 'products_sortable_columns')
   end
 
   def update_user_action

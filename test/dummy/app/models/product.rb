@@ -14,7 +14,7 @@ class Product < ApplicationRecord
   # Scopes
   ##
 
-  scope :lato_index_sort, ->(column, order) do
+  scope :lato_index_order, ->(column, order) do
     return joins(:lato_user).order("lato_users.last_name #{order}, lato_users.first_name #{order}") if column == :lato_user_id
 
     order("#{column} #{order}")

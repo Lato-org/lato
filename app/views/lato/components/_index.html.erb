@@ -1,6 +1,8 @@
-<%= turbo_frame_tag "lato_index_#{model_name_underscore}" do %>
+<%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}" do %>
 
 <%= form_tag '', method: :get, data: { turbo_frame: '_self' } do %>
+
+<%= hidden_field_tag :key, key %>
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered">

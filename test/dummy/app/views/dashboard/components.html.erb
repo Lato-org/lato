@@ -164,18 +164,86 @@ it:
 
 <h3>Index (back-end)</h3>
 
-...
-
-<h4>Rendere le colonne ordinabili</h4>
-
 <p>
-Le colonne possono essere rese ordinabili attraverso il parametro <code>:sortable_columns</code>:
+Per rendere l'index completamente interattivo è necessario utilizzare la funzione <code>lato_index_collection</code> del concern <code>Lato::Componentable</code> nel controller.
 </p>
 
 <pre>
-&#60;%= lato_index Product.all.limit(5), columns: %i[id code status], sortable_columns: %i[id code status] %&#62;
+def index
+  @products = lato_index_collection(Product.all, pagination: true)
+end
+</pre>
+
+<pre>
+&#60;%= lato_index @products %&#62;
 </pre>
 
 <div class="bg-light p-3 mb-3">
-<%= lato_index Product.all.limit(5), columns: %i[id code status], sortable_columns: %i[id code status] %>
+<%= lato_index @products, key: 'products' %>
+</div>
+
+<h4>Personalizzare le colonne</h4>
+
+<pre>
+def index
+  @products_columns = lato_index_collection(
+    Product.all,
+    pagination: true,
+    columns: %i[code status id]
+  )
+end
+</pre>
+
+<pre>
+&#60;%= lato_index @products_columns %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index @products_columns, key: 'products_columns' %>
+</div>
+
+<h4>Rendere le colonne ordinabili</h4>
+
+<pre>
+def index
+  @products_sortable_columns = lato_index_collection(
+    Product.all,
+    pagination: true,
+    columns: %i[code status lato_user_id],
+    sortable_columns: %i[code status lato_user_id]
+  )
+end
+</pre>
+
+<pre>
+&#60;%= lato_index @products_sortable_columns %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index @products_sortable_columns, key: 'products_sortable_columns' %>
+</div>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Note</h4>
+  <p>
+  Per personalizzare le regole di ordinamento è possibile definire lo scope <code>lato_index_order</code> all'interno del modello.<br>
+  Esempio
+  </p>
+<pre>
+class Product < ApplicationRecord
+  # Relations
+  ##
+
+  belongs_to :lato_user, class_name: 'Lato::User'
+
+  # Scopes
+  ##
+
+  scope :lato_index_order, ->(column, order) do
+    return joins(:lato_user).order("lato_users.last_name #{order}, lato_users.first_name #{order}") if column == :lato_user_id
+
+    order("#{column} #{order}")
+  end
+end
+</pre>
 </div>
