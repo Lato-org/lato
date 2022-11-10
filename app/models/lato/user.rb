@@ -42,6 +42,13 @@ module Lato
       @valid_accepted_terms_and_conditions_version ||= accepted_terms_and_conditions_version >= Lato.config.legal_privacy_policy_version
     end
 
+    # Helpers
+    ##
+
+    def full_name
+      "#{last_name} #{first_name}"
+    end
+
     # Operations
     ##
 
@@ -145,7 +152,7 @@ module Lato
       end
 
       password_update_code.value = nil
-      
+
       update(params.permit(:password, :password_confirmation))
     end
   end

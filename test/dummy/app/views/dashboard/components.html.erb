@@ -111,3 +111,71 @@ Di seguito la lista di componenti disponibili e un esempio di utilizzo:
 <div class="bg-light p-3 mb-3">
 <%= render 'dashboard/components/form-example' %>
 </div>
+
+<h2>Index</h2>
+
+<p>
+La componente <code>lato_index</code> permette di visualizzare facilmente i dati presenti in database.
+</p>
+
+<h3>Index (front-end)</h3>
+
+<p>
+Il modo più semplice per utilizzare la componente è quello di passargli una collezione di <code>ActiveRecord</code> come parametro:
+</p>
+
+<pre>
+&#60;%= lato_index Product.all.limit(5) %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5) %>
+</div>
+
+<h4>Personalizzare le colonne</h4>
+
+<p>
+Le colonne possono essere personalizzate attraverso il parametro <code>:columns</code>:
+</p>
+
+<pre>
+&#60;%= lato_index Product.all.limit(5), columns: %i[id code status] %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5), columns: %i[id code status] %>
+</div>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Note</h4>
+  <p>
+  I titoli delle colonne possono essere modificati attraverso i file di traduzione di Rails.<br>
+  Esempio:
+  </p>
+<pre>
+it:
+  activerecord:
+    attributes:
+      product:
+        code: Codice
+        status: Stato
+</pre>
+</div>
+
+<h3>Index (back-end)</h3>
+
+...
+
+<h4>Rendere le colonne ordinabili</h4>
+
+<p>
+Le colonne possono essere rese ordinabili attraverso il parametro <code>:sortable_columns</code>:
+</p>
+
+<pre>
+&#60;%= lato_index Product.all.limit(5), columns: %i[id code status], sortable_columns: %i[id code status] %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5), columns: %i[id code status], sortable_columns: %i[id code status] %>
+</div>

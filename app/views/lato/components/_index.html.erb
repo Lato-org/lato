@@ -44,8 +44,12 @@
       <tr>
         <td colspan="<%= columns.length %>">
           <div class="d-flex justify-content-between align-items-center">
-            <%= paginate collection %>
-            <span class="text-muted"><%= @_lato_index_total %> risultati totali
+            <% if collection.respond_to?(:total_pages) %>
+              <%= paginate collection %>
+            <% else %>
+              <span></span>
+            <% end %>
+            <span class="text-muted"><%= collection.count %> risultati visualizzati
           </div>
         </td>
       </tr>

@@ -4,9 +4,9 @@ class ProductsController < ApplicationController
 
   def index
     columns = %i[code status lato_user_id created_at]
-    sortable_columns = %i[code status]
+    sortable_columns = %i[code status lato_user_id]
 
-    @products = lato_index_collection(Product.all,
+    @products = lato_index_collection(Product.all.includes(:lato_user),
       columns: columns,
       sortable_columns: sortable_columns,
       pagination: true

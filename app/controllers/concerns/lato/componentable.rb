@@ -20,7 +20,14 @@ module Lato
         sort_by_splitted = params[:sort_by].split('|')
         sort_by_column = sort_by_splitted.first
         sort_by_order = sort_by_splitted.last
-        collection = collection.order("#{sort_by_column} #{sort_by_order}") if @_lato_index_sortable_columns.include?(sort_by_column.to_sym)
+
+        if @_lato_index_sortable_columns.include?(sort_by_column.to_sym)
+          if collection.respond_to?(:lato_index_sort)
+            collection = collection.lato_index_sort(sort_by_column.to_sym, sort_by_order.to_sym)
+          else
+            collection = collection.order("#{sort_by_column} #{sort_by_order}")
+          end
+        end
       end
 
       # manage total (before pagination)

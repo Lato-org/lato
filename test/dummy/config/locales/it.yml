@@ -4,5 +4,6 @@ it:
       product:
         code: Codice
         status: Stato
-        created_at: Data registrazione
+        created_at: Data creazione
         lato_user_id: Utente
+        updated_at: Data modifica

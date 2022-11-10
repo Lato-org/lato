@@ -7,7 +7,7 @@ module ProductsHelper
     product.created_at.strftime('%d/%m/%Y')
   end
 
-  def products_lato_user_id(product)
-    product.lato_user_id # TO-DO
+  def product_lato_user_id(product)
+    product.lato_user.full_name
   end
 end
