@@ -5,3 +5,4 @@ it:
         code: Codice
         status: Stato
         created_at: Data registrazione
+        lato_user_id: Utente

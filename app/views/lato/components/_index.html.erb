@@ -11,17 +11,17 @@
             <div class="d-flex align-items-center">
               <span><%= collection.model.human_attribute_name column %></span>
               <% if sortable_columns.include?(column) %>
-              <div class="btn-group ms-3">
-                <div class="position-relative btn btn-sm <%= params[:sort_by] == "#{column}|ASC" ? 'btn-primary' : 'btn-outline-primary' %>">
-                  <input type="submit" name="sort_by" value="<%= column %>|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
-                  <i class="bi bi-sort-up"></i>
-                </div>
+                <div class="btn-group ms-3">
+                  <div class="position-relative btn btn-sm <%= params[:sort_by] == "#{column}|ASC" ? 'btn-primary' : 'btn-outline-primary' %>">
+                    <input type="submit" name="sort_by" value="<%= column %>|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                    <i class="bi bi-sort-up"></i>
+                  </div>
 
-                <div class="position-relative btn btn-sm <%= params[:sort_by] == "#{column}|DESC" ? 'btn-primary' : 'btn-outline-primary' %>">
-                  <input type="submit" name="sort_by" value="<%= column %>|DESC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
-                  <i class="bi bi-sort-down"></i>
+                  <div class="position-relative btn btn-sm <%= params[:sort_by] == "#{column}|DESC" ? 'btn-primary' : 'btn-outline-primary' %>">
+                    <input type="submit" name="sort_by" value="<%= column %>|DESC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                    <i class="bi bi-sort-down"></i>
+                  </div>
                 </div>
-              </div>
               <% end %>
             </div>
           </th>

@@ -9,6 +9,8 @@ it:
         accepted_privacy_policy_version: Privacy policy
         accepted_terms_and_conditions_version: Termini e condizioni
     errors:
+      messages:
+        record_invalid: record non valido
       models:
         lato/user:
           attributes:
