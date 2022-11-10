@@ -10,4 +10,8 @@ module ProductsHelper
   def product_lato_user_id(product)
     product.lato_user.full_name
   end
+
+  def product_lifetime(product)
+    Time.at(product.lifetime).utc.strftime('%H h %M m')
+  end
 end

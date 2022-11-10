@@ -7,3 +7,4 @@ it:
         created_at: Data creazione
         lato_user_id: Utente
         updated_at: Data modifica
+        lifetime: Tempo di vita

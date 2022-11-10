@@ -1,0 +1,5 @@
+<li class="nav-item">
+  <%= link_to path, class: ['nav-link', ('active' if active)] do %>
+    <%= yield %>
+  <% end %>
+</li>

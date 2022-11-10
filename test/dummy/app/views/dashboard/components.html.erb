@@ -162,6 +162,69 @@ it:
 </pre>
 </div>
 
+<h4>Personalizzare il contenuto delle colonne</h4>
+
+<p>
+Il contenuto delle colonne può essere personalizzato creando degli appositi helper con la sintassi <code>model_column(member)</code>.<br>
+Per esempio, per personalizzare l'output della colonna :lato_user_id è stato creato il seguente helper in <code>ProductsHelper</code>:
+</p>
+
+<pre>
+class ProductsHelper
+  def product_lato_user_id(product)
+    product.lato_user.full_name
+  end
+end
+</pre>
+
+<h4>Aggiungere colonne custom</h4>
+
+<p>
+Per aggiungere colonne custom ad una tabella basta specificare il nome del metodo dichiarato nel modello per fornire il dato corrispondente.<br>
+Per esempio, dopo aver aggiunto il metodo <code>lifetime</code> al modello <code>Product</code>, è possibile utilizzare la colonna <code>:lifetime</code>:
+</p>
+
+<pre>
+class Product < ApplicationRecord
+  # Helpers
+  ##
+
+  def lifetime
+    Time.now - created_at
+  end
+end
+</pre>
+
+<pre>
+class ProductsHelper
+  def product_lifetime(product)
+    Time.at(product.lifetime).utc.strftime('%H h %M m')
+  end
+end
+</pre>
+
+<pre>
+&#60;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime] %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5), columns: %i[id code status lifetime] %>
+</div>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Note</h4>
+  <p>
+  Anche le colonne custom possono essere tradotte dai file di traduzione di Rails:
+  </p>
+<pre>
+it:
+  activerecord:
+    attributes:
+      product:
+        lifetime: Tempo di vita
+</pre>
+</div>
+
 <h3>Index (back-end)</h3>
 
 <p>

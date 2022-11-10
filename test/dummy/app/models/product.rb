@@ -19,4 +19,11 @@ class Product < ApplicationRecord
 
     order("#{column} #{order}")
   end
+
+  # Helpers
+  ##
+
+  def lifetime
+    Time.now - created_at
+  end
 end
