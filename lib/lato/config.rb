@@ -21,7 +21,7 @@ module Lato
       @application_company_url = 'https://github.com/Lato-GAM'
 
       @session_lifetime = 30.days
-      @session_root_path = nil # :dashboard_path
+      @session_root_path = nil # :tutorial_path
 
       @email_from = 'lato@example.com'
 

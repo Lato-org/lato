@@ -1,5 +1,5 @@
-<%= lato_page_head 'Dashboard' do %>
-  <p class="lead">👋 <%= @session.user.first_name %>, benvenuto nella Dashboard!</p>
+<%= lato_page_head 'Tutorial' do %>
+  <p class="lead">👋 <%= @session.user.first_name %>, benvenuto nel tutorial di Lato!</p>
 <% end %>
 
 <h2>Come proteggere una pagina</h2>
@@ -9,7 +9,7 @@ Per autenticare una pagina in modo da non renderla pubblica per utenti non regis
 </p>
 
 <pre>
-class DashboardController < ApplicationController
+class TutorialController < ApplicationController
   def index
     return unless authenticate_session
   end
@@ -21,7 +21,7 @@ Per applicare la regola su tutte le action del controller puoi utilizzare rapida
 </p>
 
 <pre>
-class DashboardController < ApplicationController
+class TutorialController < ApplicationController
   before_action :authenticate_session
 
   def index; end
@@ -57,7 +57,7 @@ L'utente che ha effettuato l'accesso a Lato è sempre disponibile in tutti i con
 </p>
 
 <pre>
-class DashboardController < ApplicationController
+class TutorialController < ApplicationController
   # ...
 
   def index

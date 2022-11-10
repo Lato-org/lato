@@ -3,7 +3,7 @@
 <%
 
 def component_code(file)
-  File.read(Rails.root.join('app', 'views', 'dashboard', 'components', "_#{file}.html.erb"))
+  File.read(Rails.root.join('app', 'views', 'tutorial', 'components', "_#{file}.html.erb"))
 end
 
 %>
@@ -109,7 +109,7 @@ Di seguito la lista di componenti disponibili e un esempio di utilizzo:
 </pre>
 
 <div class="bg-light p-3 mb-3">
-<%= render 'dashboard/components/form-example' %>
+<%= render 'tutorial/components/form-example' %>
 </div>
 
 <h2>Index</h2>

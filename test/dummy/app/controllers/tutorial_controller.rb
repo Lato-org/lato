@@ -1,9 +1,9 @@
-class DashboardController < ApplicationController
+class TutorialController < ApplicationController
   before_action :authenticate_session
-  before_action { active_sidebar(:dashboard) }
+  before_action { active_sidebar(:tutorial) }
 
   def index
-    active_sidebar(:dashboard)
+    active_sidebar(:tutorial)
   end
 
   def configuration

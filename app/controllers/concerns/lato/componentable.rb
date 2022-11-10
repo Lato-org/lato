@@ -2,12 +2,6 @@ module Lato
   module Componentable
     extend ActiveSupport::Concern
 
-    included do
-      before_action do
-        show_sidebar
-      end
-    end
-
     def lato_index_collection(collection, options = {})
       # load options
       # NOTE: instance variables are for options used by "lato_index" component helper

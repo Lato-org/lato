@@ -48,12 +48,12 @@ Il concern disponde di una serie di funzioni utili. Di seguito un esempio:
 </p>
 
 <pre>
-class DashboardController < ApplicationController
+class TutorialController < ApplicationController
   def index
     hide_sidebar # nasconde la sidebar
     show_sidebar # visualizza la sidebar
-    active_sidebar(:dashboard) # imposta l'active sulla voce della sidebar con chiave :dashboard
-    active_navbar(:dashboard) # imposta l'active sulla voce della navbar con chiave :dashboard
+    active_sidebar(:tutorial) # imposta l'active sulla voce della sidebar con chiave :tutorial
+    active_navbar(:tutorial) # imposta l'active sulla voce della navbar con chiave :tutorial
   end
 end
 </pre>

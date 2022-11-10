@@ -4,7 +4,7 @@ user ||= @session.user
 
 %>
 
-<%= turbo_frame_tag 'dashboard_form-example' do %>
+<%= turbo_frame_tag 'tutorial_form-example' do %>
   <%= form_with model: user, url: main_app.components_update_user_action_path, data: {
     turbo_frame: '_self',
     controller: 'lato-form'
