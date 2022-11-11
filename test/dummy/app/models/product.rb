@@ -6,6 +6,8 @@ class Product < ApplicationRecord
     cancelled: 3
   }, _suffix: true
 
+  attr_reader :actions
+
   # Relations
   ##
 
@@ -21,8 +23,6 @@ class Product < ApplicationRecord
   end
 
   scope :lato_index_search, ->(search) do
-
-    
     joins(:lato_user).where("lower(code) LIKE :search OR lower(lato_users.first_name) LIKE :search OR lower(lato_users.last_name) LIKE :search", search: "%#{search.downcase.strip}%")
   end
 

@@ -214,14 +214,15 @@ end
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Note</h4>
   <p>
-  Anche le colonne custom possono essere tradotte dai file di traduzione di Rails:
+  Anche le colonne custom possono essere tradotte dai file di traduzione di Rails proprio come le colonne realmente presenti in database.
+  </p>
+  <p>
+  Per aggiungere eventuali colonne che non corrispondo ad attributi reali del prodotto è possibile, invece di dichiarare una funzione nel modello, specificare la colonna con <code>attr_accessor :nome_colonna</code>:
   </p>
 <pre>
-it:
-  activerecord:
-    attributes:
-      product:
-        lifetime: Tempo di vita
+class Product < ApplicationRecord
+  attr_accessor :lifetime
+end
 </pre>
 </div>
 
