@@ -20,6 +20,12 @@ class Product < ApplicationRecord
     order("#{column} #{order}")
   end
 
+  scope :lato_index_search, ->(search) do
+
+    
+    joins(:lato_user).where("lower(code) LIKE :search OR lower(lato_users.first_name) LIKE :search OR lower(lato_users.last_name) LIKE :search", search: "%#{search.downcase.strip}%")
+  end
+
   # Helpers
   ##
 

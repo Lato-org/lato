@@ -3,10 +3,23 @@
 <%= form_tag '', method: :get, data: { turbo_frame: '_self' } do %>
 
 <%= hidden_field_tag :key, key %>
+<%= hidden_field_tag :sort_by, params[:sort_by] %>
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered">
     <thead>
+      <tr>
+        <td colspan="<%= columns.length %>">
+          <div class="d-flex justify-content-between">
+            <% if searchable_columns.any? %>
+              <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Ricerca per: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>">
+                <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+              </div>
+            <% end %>
+          </div>
+        </td>
+      </tr>
       <tr class="align-middle">
         <% columns.each do |column| %>
           <th scope="col">

@@ -43,6 +43,7 @@ module Lato
       @_lato_index[key] ||= {}
       columns = options[:columns] || @_lato_index[key][:columns] || collection.column_names || []
       sortable_columns = options[:sortable_columns] || @_lato_index[key][:sortable_columns] || []
+      searchable_columns = options[:searchable_columns] || @_lato_index[key][:searchable_columns] || []
       model_name_underscore = collection.model.name.underscore
 
       render(
@@ -51,6 +52,7 @@ module Lato
         collection: collection,
         columns: columns,
         sortable_columns: sortable_columns,
+        searchable_columns: searchable_columns,
         model_name_underscore: model_name_underscore
       )
     end
