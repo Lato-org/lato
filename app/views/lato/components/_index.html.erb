@@ -16,7 +16,17 @@
                 <input type="text" name="search" class="form-control" placeholder="Ricerca per: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>">
                 <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
               </div>
+            <% else %>
+              <div></div>
             <% end %>
+
+            <div class="btn-group ms-3">
+              <% if create_path %>
+                <%= link_to create_path, class: 'btn btn-primary' do %>
+                  <i class="bi bi-plus"></i>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </td>
       </tr>
@@ -60,9 +70,9 @@
         <td colspan="<%= columns.length %>">
           <div class="d-flex justify-content-between align-items-center">
             <% if collection.respond_to?(:total_pages) %>
-              <%= paginate collection %>
+              <div><%= paginate collection %></div>
             <% else %>
-              <span></span>
+              <div></div>
             <% end %>
             <span class="text-muted"><%= collection.count %> risultati visualizzati
           </div>

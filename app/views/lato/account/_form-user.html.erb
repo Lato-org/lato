@@ -11,17 +11,17 @@ user ||= Lato::User.new
 
     <div class="row">
       <div class="col col-12 col-lg-4 mb-3">
-        <%= lato_form_item_label form, :first_name, 'Nome' %>
+        <%= lato_form_item_label form, :first_name %>
         <%= lato_form_item_input_text form, :first_name, required: true %>
       </div>
 
       <div class="col col-12 col-lg-4 mb-3">
-        <%= lato_form_item_label form, :last_name, 'Cognome' %>
+        <%= lato_form_item_label form, :last_name %>
         <%= lato_form_item_input_text form, :last_name, required: true %>
       </div>
 
       <div class="col col-12 col-lg-4 mb-3">
-        <%= lato_form_item_label form, :email, 'Indirizzo email' %>
+        <%= lato_form_item_label form, :email %>
         <div class="input-group mb-3">
           <%= lato_form_item_input_email form, :email, required: true %>
           <% if user.email_verified_at %>

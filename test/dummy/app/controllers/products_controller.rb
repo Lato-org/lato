@@ -15,4 +15,8 @@ class ProductsController < ApplicationController
       pagination: true
     )
   end
+
+  def create
+    @product = Product.new
+  end
 end

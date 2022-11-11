@@ -11,5 +11,8 @@ Rails.application.routes.draw do
   patch 'components/update_user_action', to: 'tutorial#update_user_action', as: :components_update_user_action
 
   # Products controller (Complete CRUD example)
-  resources :products
+  scope :products do
+    get '', to: 'products#index', as: :products
+    get :create, to: 'products#create', as: :products_create
+  end
 end
