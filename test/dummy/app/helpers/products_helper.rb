@@ -16,9 +16,9 @@ module ProductsHelper
   end
 
   def product_actions(product)
-    # content_tag(:div, class: 'btn-group btn-group-sm') do
-    #   concat link_to('<i class="bi bi-pencil"></i>', '#', class: 'btn btn-primary')
-    #   concat link_to('<i class="bi bi-trash"></i>', '#', class: 'btn btn-danger')
-    # end
+    content_tag(:div, class: 'btn-group btn-group-sm') do
+      concat link_to('Modifica', products_update_path(product), class: 'btn btn-primary')
+      # concat link_to('<i class="bi bi-trash"></i>', '#', class: 'btn btn-danger')
+    end
   end
 end

@@ -1,4 +1,7 @@
-<%= lato_page_head 'Configurazione' %>
+<%= lato_page_head 'Configurazione', [
+  { label: 'Tutorial', path: tutorial_path },
+  { label: 'Configurazione' }
+] %>
 
 <p>
 La configurazione di Lato è gestita dalla classe <code>Lato::Config</code> e può essere modificata tramite un apposito initializer.<br>

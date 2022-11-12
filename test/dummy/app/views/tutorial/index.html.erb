@@ -1,4 +1,6 @@
-<%= lato_page_head 'Tutorial' do %>
+<%= lato_page_head 'Tutorial', [
+  { label: 'Tutorial' }
+] do %>
   <p class="lead">👋 <%= @session.user.first_name %>, benvenuto nel tutorial di Lato!</p>
 <% end %>
 

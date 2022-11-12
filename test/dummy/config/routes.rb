@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # Products controller (Complete CRUD example)
   scope :products do
     get '', to: 'products#index', as: :products
-    get :create, to: 'products#create', as: :products_create
+    get 'create', to: 'products#create', as: :products_create
+    get 'update/:id', to: 'products#update', as: :products_update
   end
 end

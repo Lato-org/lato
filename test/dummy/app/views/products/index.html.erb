@@ -1,3 +1,5 @@
-<%= lato_page_head 'Prodotti' %>
+<%= lato_page_head 'Prodotti', [
+  { label: 'Prodotti' }
+] %>
 
 <%= lato_index @products, create_path: products_create_path %>

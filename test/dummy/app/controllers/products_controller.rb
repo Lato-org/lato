@@ -19,4 +19,8 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new
   end
+
+  def update
+    @product = Product.find(params[:id])
+  end
 end
