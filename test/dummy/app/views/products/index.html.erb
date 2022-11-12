@@ -2,4 +2,7 @@
   { label: 'Prodotti' }
 ] %>
 
-<%= lato_index @products, create_path: products_create_path %>
+<%= lato_index @products,
+  create_path: products_create_path,
+  create_turbo_frame: dom_id(Product.new, 'form')
+%>

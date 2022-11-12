@@ -20,7 +20,27 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def create_action
+    @product = Product.new(product_params.merge(lato_user_id: @session.user_id))
+
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to main_app.products_path, notice: 'Prodotto aggiunto correttamente' }
+        format.json { render json: @product }
+      else
+        format.html { render :create, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def update
     @product = Product.find(params[:id])
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:code)
   end
 end

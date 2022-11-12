@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}" do %>
+<%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}", data: { controller: 'lato-index' } do %>
 
 <%= form_tag '', method: :get, data: { turbo_frame: '_self' } do %>
 
@@ -22,7 +22,7 @@
 
             <div class="btn-group ms-2">
               <% if create_path %>
-                <%= link_to create_path, class: 'btn btn-primary' do %>
+                <%= link_to create_path, class: 'btn btn-primary', data: { action: 'click->lato-index#onActionClick', turbo_frame: create_turbo_frame || '_top' } do %>
                   <i class="bi bi-plus"></i>
                 <% end %>
               <% end %>
@@ -83,5 +83,18 @@
 </div>
 
 <% end %>
+
+<div class="modal fade" data-lato-index-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-index-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
 
 <% end %>

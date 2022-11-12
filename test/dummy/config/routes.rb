@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   scope :products do
     get '', to: 'products#index', as: :products
     get 'create', to: 'products#create', as: :products_create
+    post 'create_action', to: 'products#create_action', as: :products_create_action
     get 'update/:id', to: 'products#update', as: :products_update
   end
 end

@@ -54,7 +54,8 @@ module Lato
         sortable_columns: sortable_columns,
         searchable_columns: searchable_columns,
         model_name_underscore: model_name_underscore,
-        create_path: options[:create_path]
+        create_path: options[:create_path],
+        create_turbo_frame: options[:create_turbo_frame]
       )
     end
 

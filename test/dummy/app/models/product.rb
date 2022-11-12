@@ -26,6 +26,13 @@ class Product < ApplicationRecord
     joins(:lato_user).where("lower(code) LIKE :search OR lower(lato_users.first_name) LIKE :search OR lower(lato_users.last_name) LIKE :search", search: "%#{search.downcase.strip}%")
   end
 
+  # Hooks
+  ##
+
+  before_create do
+    self.status = :created
+  end
+
   # Helpers
   ##
 
