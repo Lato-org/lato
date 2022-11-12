@@ -19,7 +19,7 @@ export default class extends Controller {
     console.log('lato_index.onActionClick')
 
     const targetTurboFrame = e.currentTarget.getAttribute('data-turbo-frame')
-    if (targetTurboFrame != '_top') {
+    if (targetTurboFrame && targetTurboFrame != '_top') {
       console.log('lato_index.onActionClick', 'manage internal')
       this.modalBodyTarget.innerHTML = `<turbo-frame id="${targetTurboFrame}"></turbo-frame>`
       this.bsModal.show()
