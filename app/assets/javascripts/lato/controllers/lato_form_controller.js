@@ -6,10 +6,18 @@ export default class extends Controller {
     'input'
   ]
 
+  /**
+   * Stimulus
+   */
+
   connect() {
     this.originalFormData = this.loadFormData()
     this.disableSubmit()
   }
+
+  /**
+   * Functions
+   */
 
   disableSubmit() {
     if (!this.hasSubmitTarget) return
@@ -34,6 +42,10 @@ export default class extends Controller {
 
     return formData
   }
+
+  /**
+   * Actions
+   */
 
   onInputChange(e) {
     e.target.classList.remove('is-invalid')

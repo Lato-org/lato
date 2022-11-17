@@ -229,6 +229,63 @@ end
 </pre>
 </div>
 
+<h4>Aggiungere azione di creazione</h4>
+
+<pre>
+&#60;%= lato_index Product.all.limit(5), create_path: products_create_path %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5), create_path: products_create_path %>
+</div>
+
+<h4>Aggiungere azione di creazione in-page</h4>
+
+<pre>
+&#60;%= lato_index Product.all.limit(5), create_path: products_create_path, create_turbo_frame: dom_id(Product.new, 'form') %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5), create_path: products_create_path, create_turbo_frame: dom_id(Product.new, 'form') %>
+</div>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Note</h4>
+  <p>
+  L'opzione <code>:create_turbo_frame</code> specifica l'ID del turbo-frame presente nella pagina <code>products_create_path</code> che deve essere inserito all'interno dell'overlay.
+  </p>
+</div>
+
+<h4>Aggiungere azioni alle singole righe</h4>
+
+<p>
+Le azioni sulle singole righe possono essere aggiunte attraverso l'aggiunta di colonne custom (come visto precedentemente).<br>
+Anche le azioni sulle righe possono essere aperte in-page tramite overlay specificando gli attributi <code>data-lato-index-target="action"</code> e <code>data-turbo-frame="ID-turbo-frame-da-caricare"</code>.
+</p>
+
+<pre>
+class ProductsHelper
+  def product_actions(product)
+    content_tag(:div, class: 'btn-group btn-group-sm') do
+      concat link_to(
+        'Modifica',
+        products_update_path(product),
+        class: 'btn btn-primary',
+        data: { lato_index_target: 'action', turbo_frame: dom_id(product, 'form') }
+      )
+    end
+  end
+end
+</pre>
+
+<pre>
+&#60;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %>
+</div>
+
 <h3>Index (back-end)</h3>
 
 <p>
@@ -310,6 +367,55 @@ class Product < ApplicationRecord
     return joins(:lato_user).order("lato_users.last_name #{order}, lato_users.first_name #{order}") if column == :lato_user_id
 
     order("#{column} #{order}")
+  end
+end
+</pre>
+</div>
+
+<h4>Rendere le colonne ricercabili</h4>
+
+<pre>
+def index
+  @products_searchable_columns = lato_index_collection(
+    Product.all,
+    pagination: true,
+    columns: %i[code status lato_user_id],
+    sortable_columns: %i[code status lato_user_id],
+    searchable_columns: %i[code lato_user_id]
+  )
+end
+</pre>
+
+<pre>
+&#60;%= lato_index @products_searchable_columns %&#62;
+</pre>
+
+<div class="bg-light p-3 mb-3">
+<%= lato_index @products_searchable_columns, key: 'products_searchable_columns' %>
+</div>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Note</h4>
+  <p>
+  Per personalizzare le regole di ricerca è possibile definire lo scope <code>lato_index_search</code> all'interno del modello.<br>
+  Esempio
+  </p>
+<pre>
+class Product < ApplicationRecord
+  # Relations
+  ##
+
+  belongs_to :lato_user, class_name: 'Lato::User'
+
+  # Scopes
+  ##
+
+  scope :lato_index_search, ->(search) do
+    joins(:lato_user).where("
+      lower(code) LIKE :search OR
+      lower(lato_users.first_name) LIKE :search OR
+      lower(lato_users.last_name) LIKE :search
+    ", search: "%#{search.downcase.strip}%")
   end
 end
 </pre>
