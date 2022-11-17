@@ -31,7 +31,6 @@ Lato::User.create!(
   accepted_terms_and_conditions_version: 1
 )
 
-
 # Product
 ##
 

@@ -9,3 +9,9 @@ it:
         updated_at: Data modifica
         lifetime: Tempo di vita
         actions: Azioni
+      product/status:
+        created: Creato
+        in_progress: In lavorazione
+        completed: Completato
+        cancelled: Cancellato
+

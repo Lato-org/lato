@@ -154,5 +154,21 @@ module Lato
 
       form.submit label, options
     end
+
+    # Data
+    ##
+
+    def lato_data_badge(label, color = 'primary')
+      content_tag :span, label, class: "badge rounded-pill bg-#{color}"
+    end
+
+    def lato_data_user(label, image_url = nil)
+      image_url ||= image_path('lato/user-150x150')
+
+      content_tag :div, class: 'd-flex align-items-center' do
+        concat content_tag :div, '', class: 'border border-2 rounded-circle me-2', style: "background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(#{image_url}); width: 30px; height: 30px;"
+        concat content_tag :small, label, class: 'text-black'
+      end
+    end
   end
 end

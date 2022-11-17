@@ -1,6 +1,6 @@
 module ProductsHelper
   def product_status(product)
-    product.status.humanize
+    lato_data_badge(Product.human_attribute_name("status.#{product.status}"), product.status_color)
   end
 
   def product_created_at(product)
@@ -8,7 +8,7 @@ module ProductsHelper
   end
 
   def product_lato_user_id(product)
-    product.lato_user.full_name
+    lato_data_user(product.lato_user.full_name)
   end
 
   def product_lifetime(product)

@@ -30,7 +30,7 @@ class Product < ApplicationRecord
   ##
 
   before_create do
-    self.status = :created
+    self.status ||= :created
   end
 
   # Helpers
@@ -38,5 +38,14 @@ class Product < ApplicationRecord
 
   def lifetime
     Time.now - created_at
+  end
+
+  def status_color
+    return 'warning' if created_status?
+    return 'primary' if in_progress_status?
+    return 'success' if completed_status?
+    return 'danger' if cancelled_status?
+
+    'secondary'
   end
 end
