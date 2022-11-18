@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_08_194513) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_18_072130) do
+  create_table "lato_jobs", force: :cascade do |t|
+    t.string "active_job_name"
+    t.integer "status"
+    t.integer "lato_user_id"
+    t.datetime "closed_at"
+    t.json "input"
+    t.json "output"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lato_user_id"], name: "index_lato_jobs_on_lato_user_id"
+  end
+
+  create_table "lato_operations", force: :cascade do |t|
+    t.string "active_job_name"
+    t.json "active_job_input"
+    t.json "active_job_output"
+    t.integer "status"
+    t.datetime "closed_at"
+    t.integer "lato_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lato_user_id"], name: "index_lato_operations_on_lato_user_id"
+  end
+
   create_table "lato_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -32,5 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_194513) do
     t.index ["lato_user_id"], name: "index_products_on_lato_user_id"
   end
 
+  add_foreign_key "lato_jobs", "lato_users"
+  add_foreign_key "lato_operations", "lato_users"
   add_foreign_key "products", "lato_users"
 end

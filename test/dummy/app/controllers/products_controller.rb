@@ -52,6 +52,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def export_action
+    # TO-DO
+  end
+
   private
 
   def product_params

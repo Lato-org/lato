@@ -10,7 +10,7 @@
 <div class="table-responsive">
   <table class="table table-striped table-bordered">
     <thead>
-      <% if create_path || searchable_columns.any? %>
+      <% if create_path || custom_actions.any? || searchable_columns.any? %>
         <tr>
           <td colspan="<%= columns.length %>">
             <div class="d-flex justify-content-between">
@@ -27,6 +27,13 @@
                 <% if create_path %>
                   <%= link_to create_path, class: 'btn btn-primary', data: { lato_index_target: 'action', turbo_frame: create_turbo_frame || '_top' } do %>
                     <i class="bi bi-plus"></i>
+                  <% end %>
+                <% end %>
+                <% if custom_actions.any? %>
+                  <% custom_actions.each do |action_key, action_params| %>
+                    <%= link_to action_params[:path], { class: 'btn btn-primary' }.merge(action_params) do %>
+                      <i class="<%= action_params[:icon] %>"></i>
+                    <% end %>
                   <% end %>
                 <% end %>
               </div>

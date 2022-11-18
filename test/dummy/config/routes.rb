@@ -17,5 +17,6 @@ Rails.application.routes.draw do
     post 'create_action', to: 'products#create_action', as: :products_create_action
     get 'update/:id', to: 'products#update', as: :products_update
     patch 'update_action/:id', to: 'products#update_action', as: :products_update_action
+    post 'export_action', to: 'products#export_action', as: :products_export_action
   end
 end
