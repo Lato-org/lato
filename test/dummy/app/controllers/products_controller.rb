@@ -56,8 +56,8 @@ class ProductsController < ApplicationController
     @operation = Lato::Operation.generate('ExportProductsJob', {}, @session.user_id)
 
     respond_to do |format|
-      if @operation.execute
-        format.html { redirect_to lato.operation_path(@operation), notice: 'Operazione in esecuzione' }
+      if @operation.run
+        format.html { redirect_to lato.operations_show_path(@operation) }
         format.json { render json: @operation }
       else
         format.html { render :index, status: :unprocessable_entity }

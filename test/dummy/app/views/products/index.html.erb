@@ -6,6 +6,6 @@
   create_path: products_create_path,
   create_turbo_frame: dom_id(Product.new, 'form'),
   custom_actions: {
-    export: { path: products_export_action_path, icon: 'bi bi-download', data: { turbo_method: :post, turbo_frame: '_top' } }
+    export: { path: products_export_action_path, icon: 'bi bi-download', data: { lato_index_target: 'action', turbo_method: :post, turbo_frame: 'lato_operation' } }
   }
 %>

@@ -60,6 +60,16 @@ module Lato
       )
     end
 
+    # Operation
+    ##
+
+    def lato_operation(operation)
+      render(
+        'lato/components/operation',
+        operation: operation
+      )
+    end
+
     # Forms
     ##
 

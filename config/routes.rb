@@ -28,4 +28,8 @@ Lato::Engine.routes.draw do
     patch 'update_accepted_privacy_policy_version_action', to: 'account#update_accepted_privacy_policy_version_action', as: :account_update_accepted_privacy_policy_version_action
     patch 'update_accepted_terms_and_conditions_version_action', to: 'account#update_accepted_terms_and_conditions_version_action', as: :account_update_accepted_terms_and_conditions_version_action
   end
+
+  scope :operations do
+    get 'show/:id', to: 'operations#show', as: :operations_show
+  end
 end

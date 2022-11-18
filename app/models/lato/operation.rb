@@ -16,13 +16,14 @@ module Lato
 
     # Operations
 
-    def execute
+    def run
       begin
         active_job_name.constantize.perform_later(active_job_input, id)
-      rescue StandardError => e
+      rescue StandardError
         errors.add(:base, 'Impossibile eseguire il job')
       end
 
+      update(status: :running)
       true
     end
 
@@ -31,6 +32,13 @@ module Lato
         status: :failed,
         closed_at: Time.now,
         active_job_output: { error: error }
+      )
+    end
+
+    def completed
+      update(
+        status: :completed,
+        closed_at: Time.now
       )
     end
 
