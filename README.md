@@ -91,4 +91,7 @@ $ rails start
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## To do
-- Account plans
+- Gestione abbonameni e acquisti singoli con integrazione Stripe
+- Gestione output risultato operazione (testuale e file)
+- Gestione input file operazione
+- Refactor gestione modali in page con turbo
