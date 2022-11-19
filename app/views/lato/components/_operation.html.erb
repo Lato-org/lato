@@ -4,7 +4,7 @@
       <div class="text-center">
         <h2>Operazione in corso</h2>
         <p>Si prega di attendere..</p>
-        <div class="progress" style="height: 25px;">
+        <div class="progress" style="height: 20px;">
           <div class="progress-bar progress-bar-animated progress-bar-striped bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
@@ -15,11 +15,11 @@
         <h2>Operazione in corso</h2>
         <p>Si prega di attendere..</p>
         <% if operation.percentage.nil? %>
-          <div class="progress" style="height: 25px;">
+          <div class="progress" style="height: 20px;">
             <div class="progress-bar progress-bar-animated progress-bar-striped bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         <% else %>
-          <div class="progress" style="height: 25px;">
+          <div class="progress" style="height: 20px;">
             <div class="progress-bar progress-bar-animated progress-bar-striped bg-primary" role="progressbar" style="width: <%= operation.percentage %>%;" aria-valuenow="<%= operation.percentage %>" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><%= operation.percentage %>%</div>
           </div>
         <% end %>

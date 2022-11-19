@@ -45,6 +45,10 @@ class TutorialController < ApplicationController
     )
   end
 
+  def operations
+    active_sidebar(:operations)
+  end
+
   def update_user_action
     respond_to do |format|
       if @session.user.update(params.require(:user).permit(:first_name, :last_name))

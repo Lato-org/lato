@@ -7,6 +7,9 @@ module Lato
       failed: 3
     }, _suffix: true
 
+    has_one_attached :input_file
+    has_one_attached :output_file
+
     # Hooks
     ##
 

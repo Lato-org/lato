@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'configuration', to: 'tutorial#configuration', as: :configuration
   get 'customization', to: 'tutorial#customization', as: :customization
   get 'components', to: 'tutorial#components', as: :components
+  get 'operations', to: 'tutorial#operations', as: :operations
   patch 'components/update_user_action', to: 'tutorial#update_user_action', as: :components_update_user_action
 
   # Products controller (Complete CRUD example)

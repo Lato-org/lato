@@ -29,6 +29,7 @@ Install gem and run required tasks:
 
 ```bash
 $ bundle
+$ rails active_storage:install
 $ rails lato:install:application
 $ rails lato:install:migrations
 $ rails db:migrate
