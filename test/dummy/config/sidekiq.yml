@@ -1,0 +1,19 @@
+verbose: false
+concurrency: 2
+max_retries: 3
+timeout: 10
+
+queues:
+  # The default queue for all application jobs that don't have a specific queue.
+  - default
+
+  # The default queue for ActionMailer classes.
+  - mailers
+
+  # ActionMailbox queues. See `ActionMailbox.queues`.
+  - action_mailbox_routing
+  - action_mailbox_incineration
+
+  # ActiveStorage queues. See `ActiveStorage.queues`.
+  - active_storage_analysis
+  - active_storage_purge

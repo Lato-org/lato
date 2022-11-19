@@ -4,10 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Specify your gem's dependencies in lato.gemspec.
 gemspec
 
-gem "sqlite3"
-
-gem "sprockets-rails"
-
 # LATO DEPENDENCIES
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -30,6 +26,10 @@ gem "sassc-rails"
 gem "bootstrap"
 
 # / LATO DEPENDENCIES
+
+gem "sqlite3"
+gem "sprockets-rails"
+gem "sidekiq"
 
 group :development do
   # Start debugger with binding.b [https://github.com/ruby/debug]

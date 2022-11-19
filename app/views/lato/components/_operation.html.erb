@@ -1,9 +1,58 @@
 <%= turbo_frame_tag 'lato_operation' do %>
-  <div class="text-center">
-    <h2>Operazione in corso</h2>
-    <p>Si prega di attendere..</p>
-    <div class="progress">
-      <div class="progress-bar progress-bar-animated progress-bar-striped bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
+  <div data-controller="lato-operation">
+    <% if operation.created_status? %>
+      <div class="text-center">
+        <h2>Operazione in corso</h2>
+        <p>Si prega di attendere..</p>
+        <div class="progress" style="height: 25px;">
+          <div class="progress-bar progress-bar-animated progress-bar-striped bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    <% end %>
+
+    <% if operation.running_status? %>
+      <div class="text-center">
+        <h2>Operazione in corso</h2>
+        <p>Si prega di attendere..</p>
+        <% if operation.percentage.nil? %>
+          <div class="progress" style="height: 25px;">
+            <div class="progress-bar progress-bar-animated progress-bar-striped bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        <% else %>
+          <div class="progress" style="height: 25px;">
+            <div class="progress-bar progress-bar-animated progress-bar-striped bg-primary" role="progressbar" style="width: <%= operation.percentage %>%;" aria-valuenow="<%= operation.percentage %>" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><%= operation.percentage %>%</div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if operation.completed_status? %>
+      <div class="text-center">
+        <div class="fs-1 text-success">
+          <i class="bi bi-check-circle"></i>
+        </div>
+        <h2>Operazione completata</h2>
+        <p>L'operazione è stata completata con successo</p>
+      </div>
+    <% end %>
+
+    <% if operation.failed_status? %>
+      <div class="text-center">
+        <div class="fs-1 text-danger">
+          <i class="bi bi-x-circle"></i>
+        </div>
+        <h2>Operazione fallita</h2>
+        <p>L'operazione è fallita a causa di un errore</p>
+        <% if operation.output_error? %>
+          <p class="text-danger fw-bold">
+            <%= operation.output_error %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% unless operation.finished? %>
+      <%= link_to '', lato.operations_show_path(operation), class: 'd-none', data: { lato_operation_target: 'update', turbo_frame: '_self' } %>
+    <% end %>
   </div>
 <% end %>

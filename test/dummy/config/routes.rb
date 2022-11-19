@@ -1,5 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   mount Lato::Engine => '/lato'
+  mount Sidekiq::Web => '/sidekiq'
 
   root 'application#index'
 

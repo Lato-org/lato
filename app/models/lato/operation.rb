@@ -12,6 +12,26 @@ module Lato
 
     before_create do
       self.status = :created
+      self.active_job_input ||= {}
+      self.active_job_output ||= {}
+    end
+
+    # Questions
+    ##
+
+    def finished?
+      completed_status? || failed_status?
+    end
+
+    def output_error?
+      active_job_output && !active_job_output['error'].blank?
+    end
+
+    # Helpers
+    ##
+
+    def output_error
+      active_job_output['error']
     end
 
     # Operations
@@ -25,6 +45,13 @@ module Lato
 
       update(status: :running)
       true
+    end
+
+    def update_percentage(value)
+      update(
+        status: :running,
+        percentage: value
+      )
     end
 
     def failed(error = nil)
