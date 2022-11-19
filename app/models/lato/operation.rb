@@ -41,20 +41,13 @@ module Lato
 
     def run
       begin
-        active_job_name.constantize.perform_later(active_job_input, id)
+        active_job_name.constantize.perform_later(active_job_input)
       rescue StandardError
         errors.add(:base, 'Impossibile eseguire il job')
+        return false
       end
 
-      update(status: :running)
       true
-    end
-
-    def update_percentage(value)
-      update(
-        status: :running,
-        percentage: value
-      )
     end
 
     def failed(error = nil)

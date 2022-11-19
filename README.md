@@ -84,14 +84,13 @@ $ git clone https://github.com/Lato-GAM/lato
 $ cd lato
 $ bundle
 $ rails db:migrate
-$ rails start
+$ foreman start -f Procfile.dev
 ```
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## To do
-- Gestione abbonameni e acquisti singoli con integrazione Stripe
+- Gestione abbonamenti e acquisti singoli con integrazione Stripe
 - Gestione output risultato operazione (testuale e file)
 - Gestione input file operazione
-- Refactor gestione modali in page con turbo

@@ -1,13 +1,5 @@
-class ExportProductsJob < ApplicationJob
-  def perform(params = {}, operation_id = nil)
-    operation = Lato::Operation.find(operation_id)
-    10.times do |index|
-      sleep(0.25)
-      operation.update_percentage((index + 1) * 10)
-      sleep(0.25)
-    end
-    operation.completed if operation_id
-  rescue StandardError => e
-    Lato::Operation.find(operation_id).failed(e.message) if operation_id
+class ExportProductsJob < Lato::OperationJob
+  def perform(params = {})
+    sleep(10) # Do something...
   end
 end

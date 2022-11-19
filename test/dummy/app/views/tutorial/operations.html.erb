@@ -2,3 +2,15 @@
   { label: 'Tutorial', path: tutorial_path },
   { label: 'Operazioni' }
 ] %>
+
+<p>
+Le operazioni sono un sistema di Lato per gestire visualmente l'esecuzione di Job in background.<br>
+Le operazioni sono gestite da diverse parti:
+</p>
+
+<ul>
+  <li>Il modello <code>Lato::Operation</code> inizializza tutte le operazioni e tiene traccia del loro stato di esecuzione.</li>
+  <li>La classe <code>Lato::OperationJob</code> permette di convertire facilmente un Job di <code>ActiveJob</code> in una operazione.</li>
+  <li>Il controller <code>Lato::OperationsController</code> gestisce l'accesso degli utenti ad una operazione in corso.</li>
+  <li>La componente <code>lato_operation</code> permette di visualizzare a front-end lo stato di una operazione.</li>
+</ul>
