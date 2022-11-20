@@ -229,24 +229,46 @@ end
 </pre>
 </div>
 
-<h4>Aggiungere azione di creazione</h4>
+<h4>Aggiungere azioni</h4>
 
 <pre>
-&#60;%= lato_index Product.all.limit(5), create_path: products_create_path %&#62;
+&#60;%= lato_index Product.all.limit(5), custom_actions: {
+    create: {
+      path: products_create_path,
+      icon: 'bi bi-plus'
+    }
+ } %&#62;
 </pre>
 
 <div class="bg-light p-3 mb-3">
-<%= lato_index Product.all.limit(5), create_path: products_create_path %>
+<%= lato_index Product.all.limit(5), custom_actions: {
+    create: {
+      path: products_create_path,
+      icon: 'bi bi-plus'
+    }
+ } %>
 </div>
 
-<h4>Aggiungere azione di creazione in-page</h4>
+<h4>Aggiungere azioni in-page</h4>
 
 <pre>
-&#60;%= lato_index Product.all.limit(5), create_path: products_create_path, create_turbo_frame: dom_id(Product.new, 'form') %&#62;
+&#60;%= lato_index Product.all.limit(5), custom_actions: {
+    create: {
+      path: products_create_path,
+      icon: 'bi bi-plus',
+      data: { lato_action_target: 'trigger', turbo_frame: dom_id(Product.new, 'form') }
+    }
+ } %&#62;
 </pre>
 
 <div class="bg-light p-3 mb-3">
-<%= lato_index Product.all.limit(5), create_path: products_create_path, create_turbo_frame: dom_id(Product.new, 'form') %>
+<%= lato_index Product.all.limit(5), custom_actions: {
+    create: {
+      path: products_create_path,
+      icon: 'bi bi-plus',
+      data: { lato_action_target: 'trigger', turbo_frame: dom_id(Product.new, 'form') }
+    }
+ } %>
 </div>
 
 <div class="alert alert-info mt-3">
@@ -271,7 +293,7 @@ class ProductsHelper
         'Modifica',
         products_update_path(product),
         class: 'btn btn-primary',
-        data: { lato_index_target: 'action', turbo_frame: dom_id(product, 'form') }
+        data: { lato_action_target: 'trigger', turbo_frame: dom_id(product, 'form') }
       )
     end
   end

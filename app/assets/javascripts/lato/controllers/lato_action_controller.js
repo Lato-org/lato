@@ -2,9 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [
+    'trigger',
     'modal',
-    'modalBody',
-    'action'
+    'modalBody'
   ]
 
   /**
@@ -17,10 +17,9 @@ export default class extends Controller {
 
   disconnect() {
     this.bsModal.dispose()
-    this.modalTarget.parentNode.removeChild(this.modalTarget)
   }
 
-  actionTargetConnected(element) {
+  triggerTargetConnected(element) {
     element.addEventListener('click', (e) => this.openAction(element.getAttribute('data-turbo-frame')))
   }
 
@@ -39,7 +38,7 @@ export default class extends Controller {
    * Actions
    */
 
-  onActionClick(e) {
+  onTriggerClick(e) {
     const targetTurboFrame = e.currentTarget.getAttribute('data-turbo-frame')
     this.openAction(targetTurboFrame)
   }
