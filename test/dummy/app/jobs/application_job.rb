@@ -1,4 +1,4 @@
-class ApplicationJob < ActiveJob::Base
+class ApplicationJob < Lato::ApplicationJob
   # Automatically retry jobs that encountered a deadlock
   # retry_on ActiveRecord::Deadlocked
 

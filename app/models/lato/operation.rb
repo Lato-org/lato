@@ -26,22 +26,34 @@ module Lato
       completed_status? || failed_status?
     end
 
+    def output_message?
+      active_job_output && !active_job_output['_message'].blank?
+    end
+
     def output_error?
-      active_job_output && !active_job_output['error'].blank?
+      active_job_output && !active_job_output['_error'].blank?
+    end
+
+    def output_file?
+      output_file.attached?
     end
 
     # Helpers
     ##
 
     def output_error
-      active_job_output['error']
+      active_job_output['_error']
+    end
+
+    def output_message
+      active_job_output['_message']
     end
 
     # Operations
 
-    def run
+    def start
       begin
-        active_job_name.constantize.perform_later(active_job_input)
+        active_job_name.constantize.perform_later(active_job_input.merge(_operation_id: id))
       rescue StandardError
         errors.add(:base, 'Impossibile eseguire il job')
         return false
@@ -50,11 +62,15 @@ module Lato
       true
     end
 
+    def running
+      update(status: :running)
+    end
+
     def failed(error = nil)
       update(
         status: :failed,
         closed_at: Time.now,
-        active_job_output: { error: error }
+        active_job_output: active_job_output.merge(_error: error)
       )
     end
 

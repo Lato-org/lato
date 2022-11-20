@@ -33,6 +33,16 @@
         </div>
         <h2>Operazione completata</h2>
         <p>L'operazione è stata completata con successo</p>
+
+        <% if operation.output_file? %>
+          <%= link_to '', main_app.url_for(operation.output_file), download: true, class: 'd-none', data: { lato_operation_target: 'outputFile' } %>
+        <% end %>
+
+        <% if operation.output_message? %>
+          <p class="text-success fw-bold">
+            <%= operation.output_message %>
+          </p>
+        <% end %>
       </div>
     <% end %>
 

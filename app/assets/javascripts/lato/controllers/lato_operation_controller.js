@@ -2,7 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [
-    'update'
+    'update',
+    'outputFile'
   ]
 
   /**
@@ -15,5 +16,9 @@ export default class extends Controller {
         this.updateTarget.click()
       }, 2000)
     }
+  }
+
+  outputFileTargetConnected(element) {
+    element.click()
   }
 }

@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
     @operation = Lato::Operation.generate('ExportProductsJob', {}, @session.user_id)
 
     respond_to do |format|
-      if @operation.run
+      if @operation.start
         format.html { redirect_to lato.operations_show_path(@operation) }
         format.json { render json: @operation }
       else
