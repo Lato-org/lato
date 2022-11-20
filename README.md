@@ -92,5 +92,6 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## To do
 - Gestione abbonamenti e acquisti singoli con integrazione Stripe
-- Gestione output risultato operazione (testuale e file)
 - Gestione input file operazione
+- Documentazione operazioni
+- Gestione modale interattivo in un unica modalita (estrarre da lato_index)
