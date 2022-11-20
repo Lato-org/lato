@@ -36,3 +36,75 @@ def MyJob < Lato::ApplicationJob
   end
 end
 </pre>
+
+<h3>Generare una operazione</h3>
+
+<p>
+Le operazioni possono essere generate tramite il metodo <code>generate</code> del modello <code>Lato::Operation</code>.<br>
+La generazione di un'operazione richiede tre parametri: nome del job da eseguire, Hash dei parametri da passare, id dell'utente che ha richiesto la generazione.
+</p>
+
+<pre>
+operation = Lato::Operation.generate('ExportProductsJob', { product_ids: [1, 2, 3] }, @session.user_id)
+</pre>
+
+<p>
+Una volta generata l'operazione deve essere eseguita attraverso il metodo <code>start</code>.<br>
+Di seguito un esempio di controller che avvia una operazione:
+</p>
+
+<pre>
+class CustomController < ApplicationController
+  def create_operation_action
+    @operation = Lato::Operation.generate('OperationExampleJob', {}, @session.user_id)
+
+    respond_to do |format|
+      if @operation.start
+        format.html { redirect_to lato.operations_show_path(@operation) }
+        format.json { render json: @operation }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @operation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+end
+</pre>
+
+<h3>Mostrare l'esito di una operazione</h3>
+
+<p>
+Ogni operazione può essere visualizzata nella route <code>lato.operations_show_path(operation_id)</code>.<br>
+Per garantire la sicurezza dei dati un'operazione è accessibile solo per l'utente che ne ha richiesto la generazione.
+</p>
+
+<p>
+Ogni operazione può avere 4 stati: <code>created</code>, <code>running</code>, <code>completed</code>, <code>failed</code>.<br>
+La visualizzazione di una operazione, gestita tramite la componente <code>lato_operation</code>, mostra in real-time lo stato in cui si trova l'operazione e il relativo output.<br>
+Utilizza il link di seguito per provare una operazione:
+</p>
+
+<pre>
+&#60;%= link_to 'Genera operazione',
+  main_app.custom_create_operation_action_path,
+  data: { turbo_method: :post }
+%&#62;
+</pre>
+
+<%= link_to 'Genera operazione con successo', main_app.operations_create_operation_action_path, class: 'text-success', data: { turbo_method: :post } %> |
+<%= link_to 'Genera operazione con fallimento', main_app.operations_create_operation_action_path(type: :failed), class: 'text-danger', data: { turbo_method: :post } %>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Note</h4>
+  <p>
+  Per visualizzare l'esito di una operazione direttamente in-page è possibile utilizzare le funzionalità di <code>lato_action_controller</code>.<br>
+  Esempio:
+  </p>
+<pre>
+&#60;%= link_to 'Genera operazione',
+  main_app.custom_create_operation_action_path,
+  data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }
+%&#62;
+</pre>
+<%= link_to 'Genera operazione con successo', main_app.operations_create_operation_action_path, data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+</div>

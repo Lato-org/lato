@@ -60,4 +60,18 @@ class TutorialController < ApplicationController
       end
     end
   end
+
+  def create_operation_action
+    @operation = Lato::Operation.generate('OperationExampleJob', params.permit(:type), @session.user_id)
+
+    respond_to do |format|
+      if @operation.start
+        format.html { redirect_to lato.operations_show_path(@operation) }
+        format.json { render json: @operation }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @operation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end
