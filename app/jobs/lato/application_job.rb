@@ -9,6 +9,12 @@ module Lato
       !!@operation
     end
 
+    def update_operation_percentage(percentage)
+      return false unless operation?
+
+      @operation.update(percentage: percentage)
+    end
+
     def save_operation_output_file(file_path)
       return false unless operation?
 

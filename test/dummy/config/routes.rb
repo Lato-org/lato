@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   get 'configuration', to: 'tutorial#configuration', as: :configuration
   get 'customization', to: 'tutorial#customization', as: :customization
   get 'components', to: 'tutorial#components', as: :components
+  patch 'components/update_user_action', to: 'tutorial#components_update_user_action', as: :components_update_user_action
   get 'operations', to: 'tutorial#operations', as: :operations
-  patch 'components/update_user_action', to: 'tutorial#update_user_action', as: :components_update_user_action
-  post 'components/create_operation_action', to: 'tutorial#create_operation_action', as: :operations_create_operation_action
+  post 'operations/create_operation_action', to: 'tutorial#operations_create_operation_action', as: :operations_create_operation_action
+  get 'actions', to: 'tutorial#actions', as: :actions
 
   # Products controller (Complete CRUD example)
   scope :products do

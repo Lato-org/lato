@@ -32,7 +32,7 @@ end
 # Dopo
 def MyJob < Lato::ApplicationJob
   def perform(params = {})
-    puts params[:hello]
+    puts params['hello']
   end
 end
 </pre>
@@ -91,8 +91,7 @@ Utilizza il link di seguito per provare una operazione:
 %&#62;
 </pre>
 
-<%= link_to 'Genera operazione con successo', main_app.operations_create_operation_action_path, class: 'text-success', data: { turbo_method: :post } %> |
-<%= link_to 'Genera operazione con fallimento', main_app.operations_create_operation_action_path(type: :failed), class: 'text-danger', data: { turbo_method: :post } %>
+<%= link_to 'Genera operazione', main_app.operations_create_operation_action_path, data: { turbo_method: :post } %>
 
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Note</h4>
@@ -107,4 +106,70 @@ Utilizza il link di seguito per provare una operazione:
 %&#62;
 </pre>
 <%= link_to 'Genera operazione con successo', main_app.operations_create_operation_action_path, data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+</div>
+
+<h3>Gestire gli output di una operazione</h3>
+
+<p>
+Gli output di una operazione possono essere gestiti direttamente all'interno del Job che la esegue tramite una serie di funzioni.<br>
+Tutte le funzioni per gestire l'output di una operazione possono essere chiamate anche se il Job viene eseguito normalmente (senza utilizzare il modello <code>Lato::Operation</code>).
+</p>
+
+<h4>Specificare un messaggio di output</h4>
+
+<%= link_to 'Genera operazione', main_app.operations_create_operation_action_path(type: 'success'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+
+<pre>
+class MyJob < Lato::ApplicationJob
+  def perform(params = {})
+    save_operation_output_message("Messaggio di successo dell'operazione")
+  end
+end
+</pre>
+
+<h4>Specificare un file di output</h4>
+
+<%= link_to 'Genera operazione', main_app.operations_create_operation_action_path(type: 'file'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+
+<pre>
+class MyJob < Lato::ApplicationJob
+  def perform(params = {})
+    file_path = Rails.root.join('tmp', 'myfile.csv')
+    save_operation_output_file(file_path)
+  end
+end
+</pre>
+
+<h4>Specificare un errore</h4>
+
+<%= link_to 'Genera operazione', main_app.operations_create_operation_action_path(type: 'failed'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+
+<pre>
+class MyJob < Lato::ApplicationJob
+  def perform(params = {})
+    raise "Messaggio di errore dell'operazione"
+  end
+end
+</pre>
+
+<h4>Aggiornare la percentuale di avanzamento</h4>
+
+<%= link_to 'Genera operazione', main_app.operations_create_operation_action_path(type: 'percentage'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+
+<pre>
+class MyJob < Lato::ApplicationJob
+  def perform(params = {})
+    10.times do |index|
+      sleep(1)
+      update_operation_percentage((index + 1) * 10)
+    end
+  end
+end
+</pre>
+
+<div class="alert alert-dark mt-3">
+  <h4 class="alert-heading">Nice to have</h4>
+  <p>
+  Specificare anche come gestire il passaggio di file di input ad una operazione.
+  </p>
 </div>

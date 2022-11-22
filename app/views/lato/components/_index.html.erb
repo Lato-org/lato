@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}" do %>
 
-  <%= form_tag '', method: :get, data: { turbo_frame: '_self' } do %>
+  <%= form_tag request.path, method: :get, data: { turbo_frame: '_self' } do %>
     <%= hidden_field_tag :key, key %>
     <%= hidden_field_tag :sort_by, params[:sort_by] %>
 

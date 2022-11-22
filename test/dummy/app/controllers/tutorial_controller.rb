@@ -6,13 +6,22 @@ class TutorialController < ApplicationController
     active_sidebar(:tutorial)
   end
 
+  # Configuration
+  ##
+
   def configuration
     active_sidebar(:configuration)
   end
 
+  # Customization
+  ##
+
   def customization
     active_sidebar(:customization)
   end
+
+  # Components
+  ##
 
   def components
     active_sidebar(:components)
@@ -45,11 +54,7 @@ class TutorialController < ApplicationController
     )
   end
 
-  def operations
-    active_sidebar(:operations)
-  end
-
-  def update_user_action
+  def components_update_user_action
     respond_to do |format|
       if @session.user.update(params.require(:user).permit(:first_name, :last_name))
         format.html { redirect_to main_app.components_path, notice: 'Informazioni account aggiornate correttamente' }
@@ -61,7 +66,14 @@ class TutorialController < ApplicationController
     end
   end
 
-  def create_operation_action
+  # Operations
+  ##
+
+  def operations
+    active_sidebar(:operations)
+  end
+
+  def operations_create_operation_action
     @operation = Lato::Operation.generate('OperationExampleJob', params.permit(:type), @session.user_id)
 
     respond_to do |format|
@@ -74,4 +86,12 @@ class TutorialController < ApplicationController
       end
     end
   end
+
+  # Actions
+  ##
+
+  def actions
+    active_sidebar(:actions)
+  end
+
 end
