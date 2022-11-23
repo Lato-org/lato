@@ -94,4 +94,3 @@ The gem is available as open source under the terms of the [MIT License](https:/
 - Gestione abbonamenti e acquisti singoli con integrazione Stripe
 - Gestione input file operazione
 - Gestione azioni innestate (lato_action con supporto di più modali)
-- Copia parziali content con task di installazione gemma
