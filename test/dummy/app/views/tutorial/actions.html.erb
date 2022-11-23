@@ -12,7 +12,9 @@ Le azioni sono gestite tramite il controller di Stimulus JS <code>lato_action_co
 Per avviare un azione basta impostare l'attributo <code>data-lato-action-target="trigger"</code> ad un link del DOM e definire tramite l'attributo <code>data-turbo-frame="id_frame"</code> l'ID del turbo-frame da caricare nella azione. 
 </p>
 
+<p>
 <%= link_to 'Esempio', main_app.products_path, data: { lato_action_target: 'trigger', turbo_frame: 'lato_index_default_product' } %>
+</p>
 
 <pre>
 &#60;%= link_to 'Esempio',
@@ -28,7 +30,9 @@ Per avviare un azione basta impostare l'attributo <code>data-lato-action-target=
 
 <h4>Specificare il titolo</h4>
 
+<p>
 <%= link_to 'Esempio', main_app.products_path, data: { lato_action_target: 'trigger', turbo_frame: 'lato_index_default_product', action_title: 'Titolo personalizzato' } %>
+</p>
 
 <pre>
 &#60;%= link_to 'Esempio',
@@ -43,7 +47,9 @@ Per avviare un azione basta impostare l'attributo <code>data-lato-action-target=
 
 <h4>Specificare la dimensione</h4>
 
+<p>
 <%= link_to 'Esempio', main_app.products_path, data: { lato_action_target: 'trigger', turbo_frame: 'lato_index_default_product', action_size: 'xl' } %>
+</p>
 
 <pre>
 &#60;%= link_to 'Esempio',

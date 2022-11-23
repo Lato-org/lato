@@ -14,11 +14,26 @@ export default class extends Controller {
    */
 
   connect() {
-    this.bsModal = new bootstrap.Modal(this.modalTarget)
+    this.bsModals = []
+    this.usedModals = []
+
+    this.modalTargets.forEach((modalTarget, index) => {
+      this.bsModals.push(new bootstrap.Modal(modalTarget))
+
+      modalTarget.addEventListener('show.bs.modal', () => {
+        this.usedModals.push(index)
+      })
+      modalTarget.addEventListener('hide.bs.modal', () => {
+        this.usedModals = this.usedModals.filter((i) => i != index)
+        this.modalBodyTargets[index].innerHTML = ''
+      })
+    })
   }
 
   disconnect() {
-    this.bsModal.dispose()
+    this.bsModals.forEach((bsModal) => {
+      bsModal.dispose()
+    })
   }
 
   triggerTargetConnected(element) {
@@ -30,24 +45,26 @@ export default class extends Controller {
    */
 
   openAction(options) {
+    const index = this.getFreeModalIndex()
+
     if (options.turboFrame && options.turboFrame != '_top') {
-      this.modalBodyTarget.innerHTML = `<turbo-frame id="${options.turboFrame}"></turbo-frame>`
+      this.modalBodyTargets[index].innerHTML = `<turbo-frame id="${options.turboFrame}"></turbo-frame>`
 
       if (options.actionTitle) {
-        this.modalTitleTarget.innerHTML = options.actionTitle
+        this.modalTitleTargets[index].innerHTML = options.actionTitle
       } else {
-        this.modalTitleTarget.innerHTML = ''
+        this.modalTitleTargets[index].innerHTML = ''
       }
 
       if (options.actionSize) {
-        this.modalDialogTarget.classList.add(`modal-${options.actionSize}`)
+        this.modalDialogTargets[index].classList.add(`modal-${options.actionSize}`)
       } else {
-        this.modalDialogTarget.classList.remove('modal-lg')
-        this.modalDialogTarget.classList.remove('modal-xl')
-        this.modalDialogTarget.classList.remove('modal-sm')
+        this.modalDialogTargets[index].classList.remove('modal-lg')
+        this.modalDialogTargets[index].classList.remove('modal-xl')
+        this.modalDialogTargets[index].classList.remove('modal-sm')
       }
 
-      this.bsModal.show()
+      this.bsModals[index].show()
     }
   }
 
@@ -57,6 +74,12 @@ export default class extends Controller {
     options.actionTitle = element.getAttribute('data-action-title')
     options.actionSize = element.getAttribute('data-action-size')
     return options
+  }
+
+  getFreeModalIndex() {
+    for (let i = 0; i < this.modalTargets.length; i++) {
+      if (!this.usedModals.includes(i)) return i
+    }
   }
 
   /**

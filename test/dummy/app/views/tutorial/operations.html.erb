@@ -117,7 +117,9 @@ Tutte le funzioni per gestire l'output di una operazione possono essere chiamate
 
 <h4>Specificare un messaggio di output</h4>
 
+<p>
 <%= link_to 'Genera operazione', main_app.operations_create_operation_action_path(type: 'success'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+</p>
 
 <pre>
 class MyJob < Lato::ApplicationJob
@@ -129,7 +131,9 @@ end
 
 <h4>Specificare un file di output</h4>
 
+<p>
 <%= link_to 'Genera operazione', main_app.operations_create_operation_action_path(type: 'file'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+</p>
 
 <pre>
 class MyJob < Lato::ApplicationJob
@@ -142,7 +146,9 @@ end
 
 <h4>Specificare un errore</h4>
 
+<p>
 <%= link_to 'Genera operazione', main_app.operations_create_operation_action_path(type: 'failed'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+</p>
 
 <pre>
 class MyJob < Lato::ApplicationJob
@@ -154,7 +160,9 @@ end
 
 <h4>Aggiornare la percentuale di avanzamento</h4>
 
+<p>
 <%= link_to 'Genera operazione', main_app.operations_create_operation_action_path(type: 'percentage'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+</p>
 
 <pre>
 class MyJob < Lato::ApplicationJob
