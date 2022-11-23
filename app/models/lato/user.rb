@@ -18,6 +18,11 @@ module Lato
     validates :accepted_privacy_policy_version, presence: true
     validates :accepted_terms_and_conditions_version, presence: true
 
+    # Relations
+    ##
+
+    has_many :lato_operations, class_name: 'Lato::Operation', dependent: :nullify
+
     # Hooks
     ##
 
