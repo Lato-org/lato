@@ -11,8 +11,8 @@ output = system("rm -rf #{files.first}")
 raise "Impossible to delete gem" unless output
 
 version = files.first.gsub('lato-', '').gsub('.gem', '')
-system("git tag v#{version}")
+system("git tag #{version}")
 system("git add -A")
 system("git commit -m \"Publish version #{version}\"")
-system("git push origin main")
+system("git push origin #{version}")
 
