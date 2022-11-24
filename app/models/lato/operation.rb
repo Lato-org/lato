@@ -70,14 +70,15 @@ module Lato
       update(
         status: :failed,
         closed_at: Time.now,
-        active_job_output: active_job_output.merge(_error: error)
+        active_job_output: error ? active_job_output.merge(_error: error) : active_job_output
       )
     end
 
-    def completed
+    def completed(message = nil)
       update(
         status: :completed,
-        closed_at: Time.now
+        closed_at: Time.now,
+        active_job_output: message ? active_job_output.merge(_message: message) : active_job_output
       )
     end
 

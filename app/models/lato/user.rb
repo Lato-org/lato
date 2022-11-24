@@ -21,7 +21,7 @@ module Lato
     # Relations
     ##
 
-    has_many :lato_operations, class_name: 'Lato::Operation', dependent: :nullify
+    has_many :lato_operations, class_name: 'Lato::Operation', foreign_key: :lato_user_id, dependent: :nullify
 
     # Hooks
     ##

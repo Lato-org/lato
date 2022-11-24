@@ -4,6 +4,7 @@ module Lato
     before_action :authenticate_session, only: %i[signout signout_action]
     before_action :find_user, only: %i[verify_email verify_email_action update_password update_password_action]
     before_action :hide_sidebar
+    before_action :lock_signup_if_disabled, only: %i[signup signup_action]
 
     def signin
       @user = Lato::User.new
@@ -109,6 +110,12 @@ module Lato
     def find_user
       @user = User.find_by(id: params[:id])
       respond_to_with_404 unless @user
+    end
+
+    def lock_signup_if_disabled
+      return unless Lato.config.auth_disable_signup
+
+      respond_to_with_404 
     end
   end
 end

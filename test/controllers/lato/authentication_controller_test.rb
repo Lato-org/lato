@@ -162,7 +162,7 @@ module Lato
           code: 'valid_code'
         }
       }
-      assert_redirected_to lato.authentication_verify_email_url(id: @user.id)
+      assert_redirected_to lato.root_path
 
       @user.reload
       assert_not_nil @user.email_verified_at

@@ -12,7 +12,11 @@ module Lato
     def update_operation_percentage(percentage)
       return false unless operation?
 
-      @operation.update(percentage: percentage)
+      @operation.update(
+        percentage: percentage
+      )
+
+      true
     end
 
     def save_operation_output_file(file_path)
@@ -20,7 +24,6 @@ module Lato
 
       file = File.open(file_path)
       file_name = File.basename(file_path)
-
       @operation.output_file.attach(
         io: file,
         filename: file_name
@@ -32,7 +35,9 @@ module Lato
     def save_operation_output_message(message)
       return false unless operation?
 
-      @operation.update(active_job_output: @operation.active_job_output.merge(_message: message))
+      @operation.update(
+        active_job_output: @operation.active_job_output.merge(_message: message)
+      )
 
       true
     end
