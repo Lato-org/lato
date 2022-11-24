@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email       = ["me@gregoriogalante.com"]
   spec.homepage    = "https://github.com/Lato-GAM/lato"
   spec.summary     = "Basic engine for all Lato projects"
-  spec.description = "Engine that includes users and plans management"
+  spec.description = "A Rails engine that includes what you need to build a new project!"
   spec.license     = "MIT"
   
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
