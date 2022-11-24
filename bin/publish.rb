@@ -15,4 +15,5 @@ system("git tag #{version}")
 system("git add -A")
 system("git commit -m \"Publish version #{version}\"")
 system("git push origin #{version}")
+system("git push origin main")
 
