@@ -22,8 +22,10 @@ user ||= Lato::User.new
     <div>
       <%= lato_form_submit form, 'Accedi', class: %w[d-block w-100] %>
     </div>
-    <div class="text-center mt-3 mb-3">
-      oppure <%= link_to 'crea un account gratuito', lato.authentication_signup_path %>
-    </div>
+    <% unless Lato.config.auth_disable_signup %>
+      <div class="text-center mt-3 mb-3">
+        oppure <%= link_to 'crea un account gratuito', lato.authentication_signup_path %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
