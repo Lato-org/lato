@@ -10,15 +10,6 @@ code ||= nil
   <%= form_with model: user, url: lato.authentication_verify_email_action_path(id: user.id), class: 'text-center', data: { turbo_frame: '_self' } do |form| %>
     <% if code %>
       <%= form.hidden_field :code, value: code %>
-
-      <div class="alert alert-info mb-0">
-        <h4 class="alert-heading">Attendi</h4>
-        <p>Stiamo verificando l'indirizzo email</p>
-        <div class="spinner-border text-info" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
-
       <button type="submit" style="display: none;"></button>
       <script>document.getElementById('authentication_form_verify_email').querySelector('button[type="submit"]').click()</script>
     <% else %>

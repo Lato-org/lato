@@ -63,7 +63,7 @@ module Lato
     def verify_email_action
       respond_to do |format|
         if @user.verify_email(params.require(:user).permit(:code))
-          format.html { redirect_to lato.authentication_verify_email_path(id: @user.id), notice: 'Indirizzo email verificato correttamente' }
+          format.html { redirect_to lato.root_path, notice: 'Indirizzo email verificato correttamente' }
           format.json { render json: @user }
         else
           format.html { render :verify_email, status: :unprocessable_entity }
