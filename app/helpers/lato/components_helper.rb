@@ -160,13 +160,13 @@ module Lato
     end
 
     def lato_form_item_input_select(form, key, select_options = [], options = {})
-      _lato_form_input_options(form, key, options, :keyup, 'form-control')
+      _lato_form_input_options(form, key, options, :change, 'form-control')
 
       form.select key, select_options, {}, options
     end
 
     def lato_form_item_input_file(form, key, options = {})
-      _lato_form_input_options(form, key, options, :keyup, 'form-control')
+      _lato_form_input_options(form, key, options, :change, 'form-control')
 
       form.file_field key, options
     end
