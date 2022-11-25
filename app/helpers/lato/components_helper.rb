@@ -130,6 +130,12 @@ module Lato
       form.text_field key, options
     end
 
+    def lato_form_item_input_number(form, key, options = {})
+      _lato_form_input_options(form, key, options, :keyup, 'form-control')
+
+      form.number_field key, options
+    end
+
     def lato_form_item_input_email(form, key, options = {})
       _lato_form_input_options(form, key, options, :keyup, 'form-control')
 
