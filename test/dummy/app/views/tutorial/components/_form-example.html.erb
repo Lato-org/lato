@@ -24,6 +24,18 @@ user ||= @session.user
       </div>
     </div>
 
+    <div class="row">
+      <div class="col col-12 col-lg-6 mb-3">
+        <%= lato_form_item_label form, :select, 'Select' %>
+        <%= lato_form_item_input_select form, :select, [['Type 1', '1'], ['Type 2', '2']], required: true %>
+      </div>
+
+      <div class="col col-12 col-lg-6 mb-3">
+        <%= lato_form_item_label form, :file, 'File' %>
+        <%= lato_form_item_input_file form, :file, required: true %>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-end">
       <%= lato_form_submit form, 'Aggiorna', class: %w[btn-success] %>
     </div>

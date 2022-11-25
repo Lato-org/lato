@@ -153,6 +153,18 @@ module Lato
       end
     end
 
+    def lato_form_item_input_select(form, key, select_options = [], options = {})
+      _lato_form_input_options(form, key, options, :keyup, 'form-control')
+
+      form.select key, select_options, {}, options
+    end
+
+    def lato_form_item_input_file(form, key, options = {})
+      _lato_form_input_options(form, key, options, :keyup, 'form-control')
+
+      form.file_field key, options
+    end
+
     def lato_form_submit(form, label, options = {})
       options[:class] ||= []
       options[:class].push('btn')
