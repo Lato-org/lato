@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}" do %>
+<%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}", class: 'lato-index' do %>
 
   <%= form_tag request.path, method: :get, data: { turbo_frame: '_self' } do %>
     <%= hidden_field_tag :key, key %>
