@@ -22,17 +22,45 @@ export default class extends Controller {
 
       modalTarget.addEventListener('show.bs.modal', () => {
         this.usedModals.push(index)
+
+        // update backdrop z-index in case of multiple opened modals
+        setTimeout(() => { // use setTimeout because bsModalBackdropElement is not always ready after 'show.bs.modal' event
+          if (this.usedModals.length > 1) {
+            for (let i = 0; i < this.usedModals.length; i++) {
+              const bsModal = this.bsModals[this.usedModals[i]]
+  
+              const bsModalElement = bsModal._element
+              if (bsModalElement) bsModalElement.style.zIndex = 1055 + i + 1
+  
+              const bsModalBackdropElement = bsModal._backdrop._element
+              if (bsModalBackdropElement) bsModalBackdropElement.style.zIndex = 1055 + i
+            }
+          }
+        }, 1)
       })
       modalTarget.addEventListener('hide.bs.modal', () => {
-        this.usedModals = this.usedModals.filter((i) => i != index)
-        this.modalBodyTargets[index].innerHTML = ''
+        setTimeout(() => {
+          this.usedModals = this.usedModals.filter((i) => i != index)
+          this.modalBodyTargets[index].innerHTML = ''
+        }, 500)
       })
     })
   }
 
   disconnect() {
+    // call dispose to all bootstrap modals (clear bootstrap modal)
     this.bsModals.forEach((bsModal) => {
       bsModal.dispose()
+    })
+
+    // clean modalTitle content
+    this.modalTitleTargets.forEach((modalTitleTarget) => {
+      modalTitleTarget.innerHTML = ''
+    })
+
+    // clean modalBody content
+    this.modalBodyTargets.forEach((modalBodyTarget) => {
+      modalBodyTarget.innerHTML = ''
     })
   }
 

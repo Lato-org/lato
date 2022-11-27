@@ -12,10 +12,14 @@ export default class extends Controller {
 
   connect() {
     if (this.hasUpdateTarget) {
-      setTimeout(() => {
+      this._timeout = setTimeout(() => {
         this.updateTarget.click()
       }, 2000)
     }
+  }
+
+  disconnect() {
+    if (this._timeout) clearTimeout(this._timeout)
   }
 
   outputFileTargetConnected(element) {
