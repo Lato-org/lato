@@ -12,6 +12,9 @@ module Lato
     # Authentication configs
     attr_accessor :auth_disable_signup
 
+    # Assets configs
+    attr_accessor :assets_stylesheet_entry
+
     # Email configs
     attr_accessor :email_from
 
@@ -24,6 +27,8 @@ module Lato
       @application_company_url = 'https://github.com/Lato-GAM'
 
       @auth_disable_signup = false
+
+      @assets_stylesheet_entry = 'application'
 
       @session_lifetime = 30.days
       @session_root_path = nil # :tutorial_path
