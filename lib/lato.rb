@@ -1,5 +1,6 @@
 require "kaminari"
 require "bootstrap"
+require "browser"
 
 require "lato/version"
 require "lato/engine"
