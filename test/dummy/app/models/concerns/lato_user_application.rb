@@ -1,0 +1,2 @@
+module LatoUserApplication
+end

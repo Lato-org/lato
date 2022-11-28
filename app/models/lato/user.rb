@@ -1,5 +1,7 @@
 module Lato
   class User < ApplicationRecord
+    include LatoUserApplication
+
     has_secure_password
 
     # Kredis
