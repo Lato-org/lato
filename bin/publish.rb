@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 output = system("gem build lato.gemspec")
 raise "Impossible to build gem" unless output
 
