@@ -90,7 +90,7 @@ $ foreman start -f Procfile.dev
 ## Publish
 
 ```shell
-$ ruby bin/publish.rb
+$ ./bin/publish.rb
 ```
 
 ## License
