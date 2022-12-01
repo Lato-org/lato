@@ -75,7 +75,7 @@ module Lato
       # setup classes
       options[:class] ||= []
       options[:class].push(classes)
-      options[:class].push('is-invalid') unless form.object.errors[key].blank?
+      options[:class].push('is-invalid') if form.object&.errors[key]&.any?
 
       # setup stimulus
       options[:data] ||= {}
