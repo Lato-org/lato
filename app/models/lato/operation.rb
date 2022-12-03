@@ -85,12 +85,15 @@ module Lato
     # Class
     ##
 
-    def self.generate(active_job_name, active_job_input = {}, user_id = nil)
-      Operation.create(
+    def self.generate(active_job_name, active_job_input = {}, user_id = nil, file = nil)
+      operation_params = {
         active_job_name: active_job_name,
         active_job_input: active_job_input,
         lato_user_id: user_id
-      )
+      }
+      operation_params[:input_file] = file unless file.nil?
+
+      Operation.create(operation_params)
     end
   end
 end

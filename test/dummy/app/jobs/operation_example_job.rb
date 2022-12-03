@@ -26,6 +26,12 @@ class OperationExampleJob < ApplicationJob
       return
     end
 
+    if params['type'] == 'file_input'
+      5.times { sleep(1) }
+      save_operation_output_message("Hai caricato il file #{operation_input_file_attachment.filename}")
+      return
+    end
+
     5.times { sleep(1) }
   end
 end

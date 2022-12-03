@@ -3,6 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [
     'trigger',
+    'triggerSubmit',
     'modal',
     'modalBody',
     'modalTitle',
@@ -68,6 +69,10 @@ export default class extends Controller {
     element.addEventListener('click', (e) => this.openAction(this.loadOptionsFromTriggerElement(element)))
   }
 
+  triggerSubmitTargetConnected(element) {
+    element.addEventListener('submit', (e) => this.openAction(this.loadOptionsFromTriggerElement(element)))
+  }
+
   /**
    * Functions
    */
@@ -114,7 +119,7 @@ export default class extends Controller {
    * Actions
    */
 
-  onTriggerClick(e) {
+  onTriggerRun(e) {
     this.openAction(this.loadOptionsFromTriggerElement(e.currentTarget))
   }
 }

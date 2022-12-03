@@ -9,6 +9,10 @@ module Lato
       !!@operation
     end
 
+    def operation_input_file_attachment
+      @operation.input_file.attached? ? @operation.input_file : nil
+    end
+
     def update_operation_percentage(percentage)
       return false unless operation?
 

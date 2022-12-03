@@ -74,7 +74,7 @@ class TutorialController < ApplicationController
   end
 
   def operations_create_operation_action
-    @operation = Lato::Operation.generate('OperationExampleJob', params.permit(:type), @session.user_id)
+    @operation = Lato::Operation.generate('OperationExampleJob', params.permit(:type), @session.user_id, params[:file])
 
     respond_to do |format|
       if @operation.start
