@@ -1,8 +1,10 @@
 <%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}", class: 'lato-index' do %>
 
-  <%= form_tag request.url, method: :get, data: { turbo_frame: '_self' } do %>
+  <%= form_tag request.path, method: :get, data: { turbo_frame: '_self' } do %>
     <%= hidden_field_tag :key, key %>
-    <%= hidden_field_tag :sort_by, params[:sort_by] %>
+    <% params.each do |k, v| %>
+      <%= hidden_field_tag k, v %>
+    <% end %>
 
     <% if false && browser.device.mobile? %>
 
