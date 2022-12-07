@@ -57,7 +57,7 @@ module Lato
 
     def update_accepted_privacy_policy_version_action
       respond_to do |format|
-        if @session.user.update(params.require(:user).permit(:accepted_privacy_policy_version))
+        if @session.user.update_accepted_privacy_policy_version(params.require(:user).permit(:confirm))
           format.html { redirect_to lato.account_path }
           format.json { render json: @session.user }
         else
@@ -69,7 +69,7 @@ module Lato
 
     def update_accepted_terms_and_conditions_version_action
       respond_to do |format|
-        if @session.user.update(params.require(:user).permit(:accepted_terms_and_conditions_version))
+        if @session.user.update_accepted_terms_and_conditions_version(params.require(:user).permit(:confirm))
           format.html { redirect_to lato.account_path }
           format.json { render json: @session.user }
         else

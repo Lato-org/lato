@@ -46,7 +46,7 @@ module Lato
     end
 
     def valid_accepted_terms_and_conditions_version?
-      @valid_accepted_terms_and_conditions_version ||= accepted_terms_and_conditions_version >= Lato.config.legal_privacy_policy_version
+      @valid_accepted_terms_and_conditions_version ||= accepted_terms_and_conditions_version >= Lato.config.legal_terms_and_conditions_version
     end
 
     # Helpers
@@ -161,6 +161,24 @@ module Lato
       password_update_code.value = nil
 
       update(params.permit(:password, :password_confirmation))
+    end
+
+    def update_accepted_privacy_policy_version(params)
+      unless params[:confirm]
+        errors.add(:base, 'Per accettare la privacy policy devi selezionare la checkbox di conferma')
+        return
+      end
+
+      update(accepted_privacy_policy_version: Lato.config.legal_privacy_policy_version)
+    end
+
+    def update_accepted_terms_and_conditions_version(params)
+      unless params[:confirm]
+        errors.add(:base, 'Per accettare i termini e condizioni devi selezionare la checkbox di conferma')
+        return
+      end
+
+      update(accepted_terms_and_conditions_version: Lato.config.legal_terms_and_conditions_version)
     end
   end
 end
