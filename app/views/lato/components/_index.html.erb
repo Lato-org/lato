@@ -43,7 +43,7 @@
             <% end %>
             <tr class="align-middle">
               <% columns.each do |column| %>
-                <th scope="col">
+                <th scope="col" class="lato-index-col-<%= column %>">
                   <div class="d-flex align-items-center">
                     <span><%= collection.model.human_attribute_name column %></span>
                     <% if sortable_columns.include?(column) %>
@@ -68,7 +68,7 @@
             <% collection.each do |member| %>
               <tr>
                 <% columns.each do |column| %>
-                  <td>
+                  <td class="lato-index-col-<%= column %>">
                     <% viewer_function_name = "#{model_name_underscore}_#{column}" %>
                     <%= respond_to?(viewer_function_name) ? send(viewer_function_name, member) : member.send(column) %>
                   </td>

@@ -36,6 +36,25 @@ user ||= @session.user
       </div>
     </div>
 
+    <div class="row">
+      <div class="col col-12 mb-3">
+        <%= lato_form_item_label form, :textarea, 'Textarea' %>
+        <%= lato_form_item_input_textarea form, :textarea, required: true %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-12 col-lg-6 mb-3">
+        <%= lato_form_item_label form, :date, 'Date' %>
+        <%= lato_form_item_input_date form, :date, required: true %>
+      </div>
+
+      <div class="col col-12 col-lg-6 mb-3">
+        <%= lato_form_item_label form, :datetime, 'Datetime' %>
+        <%= lato_form_item_input_datetime form, :datetime, required: true %>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-end">
       <%= lato_form_submit form, 'Aggiorna', class: %w[btn-success] %>
     </div>

@@ -171,6 +171,24 @@ module Lato
       form.file_field key, options
     end
 
+    def lato_form_item_input_textarea(form, key, options = {})
+      _lato_form_input_options(form, key, options, :keyup, 'form-control')
+
+      form.text_area key, options
+    end
+
+    def lato_form_item_input_date(form, key, options = {})
+      _lato_form_input_options(form, key, options, :change, 'form-control')
+
+      form.date_field key, options
+    end
+
+    def lato_form_item_input_datetime(form, key, options = {})
+      _lato_form_input_options(form, key, options, :change, 'form-control')
+
+      form.datetime_field key, options
+    end
+
     def lato_form_submit(form, label, options = {})
       options[:class] ||= []
       options[:class].push('btn')
