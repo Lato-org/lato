@@ -7,40 +7,35 @@
     <% end %>
 
     <% if false && browser.device.mobile? %>
-
-      <p>Work in progress</p>
-
+      <!-- Free for custom mobile version -->
     <% else %>
+
+      <% if custom_actions.any? || searchable_columns.any? %>
+        <div class="d-flex justify-content-between mb-3">
+          <% if searchable_columns.any? %>
+            <div class="input-group">
+              <input type="text" name="search" class="form-control" placeholder="Ricerca per: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>">
+              <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+            </div>
+          <% else %>
+            <div></div>
+          <% end %>
+
+          <div class="btn-group ms-2">
+            <% if custom_actions.any? %>
+              <% custom_actions.each do |action_key, action_params| %>
+                <%= link_to action_params[:path], { class: 'btn btn-primary' }.merge(action_params) do %>
+                  <i class="<%= action_params[:icon] %>"></i>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
 
       <div class="table-responsive">
         <table class="table table-striped table-bordered">
           <thead>
-            <% if custom_actions.any? || searchable_columns.any? %>
-              <tr>
-                <td colspan="<%= columns.length %>">
-                  <div class="d-flex justify-content-between">
-                    <% if searchable_columns.any? %>
-                      <div class="input-group">
-                        <input type="text" name="search" class="form-control" placeholder="Ricerca per: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>">
-                        <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
-                      </div>
-                    <% else %>
-                      <div></div>
-                    <% end %>
-
-                    <div class="btn-group ms-2">
-                      <% if custom_actions.any? %>
-                        <% custom_actions.each do |action_key, action_params| %>
-                          <%= link_to action_params[:path], { class: 'btn btn-primary' }.merge(action_params) do %>
-                            <i class="<%= action_params[:icon] %>"></i>
-                          <% end %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            <% end %>
             <tr class="align-middle">
               <% columns.each do |column| %>
                 <th scope="col" class="lato-index-col-<%= column %>">
