@@ -21,6 +21,7 @@ it:
     update_password: Aggiornamento password
     confirm: Conferma
     search_for: Ricerca per
+    viewed_results: Risultati visualizzati
   activerecord:
     attributes:
       lato/user:

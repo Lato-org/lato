@@ -19,6 +19,7 @@ en:
     update_password: Update password
     confirm: Confirm
     search_for: Search for
+    viewed_results: Results viewed
   activerecord:
     attributes:
       lato/user:
