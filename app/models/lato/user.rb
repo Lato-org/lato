@@ -118,7 +118,7 @@ module Lato
 
     def destroy_with_confirmation(params)
       unless params[:email_confirmation] == email
-        errors.add(:email, 'non corretto')
+        errors.add(:email, :not_correct)
         return
       end
 
@@ -128,7 +128,7 @@ module Lato
     def request_recover_password(params)
       user = Lato::User.find_by(email: params[:email])
       unless user
-        errors.add(:email, 'non registrato')
+        errors.add(:email, :not_registered)
         return
       end
 

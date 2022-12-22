@@ -10,21 +10,21 @@ user ||= Lato::User.new
     <%= lato_form_errors user, class: %w[mb-3] %>
     
     <div class="mb-3">
-      <%= lato_form_item_label form, :email, 'Email' %>
+      <%= lato_form_item_label form, :email %>
       <%= lato_form_item_input_email form, :email, required: true %>
     </div>
 
     <div class="mb-3">
-      <%= lato_form_item_label form, :password, 'Password' %>
+      <%= lato_form_item_label form, :password %>
       <%= lato_form_item_input_password form, :password, required: true %>
     </div>
 
     <div>
-      <%= lato_form_submit form, 'Accedi', class: %w[d-block w-100] %>
+      <%= lato_form_submit form, I18n.t('labels.signin'), class: %w[d-block w-100] %>
     </div>
     <% unless Lato.config.auth_disable_signup %>
       <div class="text-center mt-3 mb-3">
-        oppure <%= link_to 'crea un account gratuito', lato.authentication_signup_path %>
+        <%= I18n.t('labels.or').downcase %> <%= link_to I18n.t('labels.create_free_account').downcase, lato.authentication_signup_path %>
       </div>
     <% end %>
   <% end %>

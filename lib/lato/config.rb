@@ -10,7 +10,7 @@ module Lato
     attr_accessor :session_lifetime, :session_root_path
 
     # Authentication configs
-    attr_accessor :auth_disable_signup
+    attr_accessor :auth_disable_signup, :auth_disable_recover_password
 
     # Assets configs
     attr_accessor :assets_stylesheet_entry
@@ -27,6 +27,7 @@ module Lato
       @application_company_url = 'https://github.com/Lato-GAM'
 
       @auth_disable_signup = false
+      @auth_disable_recover_password = false
 
       @assets_stylesheet_entry = 'application'
 

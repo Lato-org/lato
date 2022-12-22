@@ -1,15 +1,15 @@
 <% if @session.valid? %>
   <%= lato_navbar_nav_item :account, lato.account_path do %>
-    Account
+    <%= I18n.t('labels.account') %>
   <% end %>
   <%= lato_navbar_nav_item :authentication_logout, lato.authentication_signout_path do %>
-    Esci
+    <%= I18n.t('labels.signout') %>
   <% end %>
 <% else %>
   <%= lato_navbar_nav_item :authentication_signin, lato.authentication_signin_path do %>
-    Accedi
+    <%= I18n.t('labels.signin') %>
   <% end %>
   <%= lato_navbar_nav_item :authentication_signup, lato.authentication_signup_path do %>
-    Registrati
+    <%= I18n.t('labels.signup') %>
   <% end %>
 <% end %>

@@ -1,4 +1,23 @@
 en:
+  labels:
+    account: Account
+    signout: Logout
+    signin: Login
+    signup: Signup
+    forgot_your_password?: Forgot your password?
+    already_have_an_account?: Already have an account?
+    or: Or
+    create_free_account: Create free account
+    privacy_policy: Privacy policy
+    privacy_policy_checkbox: I accept the %{link}
+    terms_and_conditions: Terms and conditions
+    terms_and_conditions_checkbox: I accept the %{link}
+    recover_password: Recover password
+    next: Next
+    back_to_login: Back to login
+    there_are_some_errors: There are some errors
+    update_password: Update password
+    confirm: Confirm
   activerecord:
     attributes:
       lato/user:
@@ -8,9 +27,14 @@ en:
         email: Email
         accepted_privacy_policy_version: Privacy policy
         accepted_terms_and_conditions_version: Terms and conditions
+    errors:
       models:
         lato/user:
           attributes:
+            email:
+              taken: already used with another account
+              not_registered: not registered
+              not_correct: not correct
             accepted_privacy_policy_version:
               inclusion: not accepted
             accepted_terms_and_conditions_version:

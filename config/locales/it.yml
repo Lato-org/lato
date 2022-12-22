@@ -1,6 +1,25 @@
 # Start from: https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/it.yml
 
 it:
+  labels:
+    account: Account
+    signout: Esci
+    signin: Accedi
+    signup: Registrati
+    forgot_your_password?: Hai dimenticato la password?
+    already_have_an_account?: Hai già un account?
+    or: Oppure
+    create_free_account: Crea un account gratuito
+    privacy_policy: Privacy policy
+    privacy_policy_checkbox: Dichiaro di aver letto e accettato la %{link}
+    terms_and_conditions: Termini e condizioni
+    terms_and_conditions_checkbox: Dichiaro di aver letto e accettato i %{link} di utilizzo
+    recover_password: Recupero password
+    next: Prosegui
+    back_to_login: Torna al login
+    there_are_some_errors: Si sono verificati i seguenti errori
+    update_password: Aggiornamento password
+    confirm: Conferma
   activerecord:
     attributes:
       lato/user:
@@ -23,6 +42,8 @@ it:
               confirmation: non corrisponde alla password
             email:
               taken: già utilizzato da un altro account
+              not_registered: non registrata
+              not_correct: non corretta
             accepted_privacy_policy_version:
               inclusion: non accettata
             accepted_terms_and_conditions_version:
