@@ -14,7 +14,7 @@
         <div class="d-flex justify-content-between mb-3">
           <% if searchable_columns.any? %>
             <div class="input-group">
-              <input type="text" name="search" class="form-control" placeholder="Ricerca per: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>">
+              <input type="text" name="search" class="form-control" placeholder="<%= I18n.t('labels.search_for') %>: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>">
               <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
             </div>
           <% else %>

@@ -20,6 +20,7 @@ it:
     there_are_some_errors: Si sono verificati i seguenti errori
     update_password: Aggiornamento password
     confirm: Conferma
+    search_for: Ricerca per
   activerecord:
     attributes:
       lato/user:

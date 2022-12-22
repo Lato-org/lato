@@ -18,6 +18,7 @@ en:
     there_are_some_errors: There are some errors
     update_password: Update password
     confirm: Confirm
+    search_for: Search for
   activerecord:
     attributes:
       lato/user:
