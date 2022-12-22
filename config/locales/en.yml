@@ -1,0 +1,17 @@
+en:
+  activerecord:
+    attributes:
+      lato/user:
+        first_name: First name
+        last_name: Last name
+        password_confirmation: Confirm password
+        email: Email
+        accepted_privacy_policy_version: Privacy policy
+        accepted_terms_and_conditions_version: Terms and conditions
+      models:
+        lato/user:
+          attributes:
+            accepted_privacy_policy_version:
+              inclusion: not accepted
+            accepted_terms_and_conditions_version:
+              inclusion: not accepted
