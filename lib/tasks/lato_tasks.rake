@@ -27,7 +27,9 @@ namespace :lato do
         FileUtils.copy(src_file_path, dest_file_path) unless File.exist? dest_file_path
       end
 
-      # Copy "lato_user_application.rb" model concern from ghem to main application
+      # Copy "lato_user_application.rb" model concern from gem to main application
+      ##
+
       gem_concern_path = Lato::Engine.root.join('app', 'models', 'concerns', 'lato_user_application.rb').to_s
       app_concern_path = Rails.root.join('app', 'models', 'concerns', 'lato_user_application.rb').to_s
       FileUtils.copy(gem_concern_path, app_concern_path) unless File.exist? app_concern_path
