@@ -35,10 +35,16 @@ it:
     account_delete_guide: Digita il tuo indirizzo email di registrazione e premi "Elimina account" per procedere con l'operazione.
     account_delete_confirm: Elimina account
     signup_email: Indirizzo email di registrazione
+    signout_confirmation_request: "%{user}, Sei sicuro di voler uscire dal tuo account?"
+    recover_password_code: Codice ricevuto via email
+
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente
       request_verify_email_action_notice: Ti abbiamo inviato una email con i passaggi da seguire per completare la procedura
       update_password_action_notice: Password aggiornate correttamente
+    authentication_controller:
+      verify_email_action_notice: Indirizzo email verificato correttamente
+      update_password_action_notice: La tua password è stata aggiornata correttamente
 
   activerecord:
     attributes:

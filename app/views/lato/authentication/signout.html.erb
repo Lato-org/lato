@@ -1,7 +1,7 @@
 <div class="w-100 h-100 d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 54px - 2rem)">
   <div class="card w-100" style="max-width: 350px">
     <div class="card-body text-center">
-      <p><%= @session.user.first_name %>, Sei sicuro di voler uscire dal tuo account?</p>
+      <p><%= I18n.t 'lato.signout_confirmation_request', user: @session.user.first_name %></p>
       <div>
         <%= link_to I18n.t('lato.cancel'), lato.root_path, class: %w[btn btn-primary me-2] %>
         <%= link_to I18n.t('lato.confirm'), lato.authentication_signout_action_path, class: %w[btn btn-danger ms-2], data: { turbo_method: :delete } %>

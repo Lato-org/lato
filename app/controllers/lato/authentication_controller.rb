@@ -65,7 +65,7 @@ module Lato
     def verify_email_action
       respond_to do |format|
         if @user.verify_email(params.require(:user).permit(:code))
-          format.html { redirect_to lato.root_path, notice: 'Indirizzo email verificato correttamente' }
+          format.html { redirect_to lato.root_path, notice: I18n.t('lato.authentication_controller.verify_email_action_notice') }
           format.json { render json: @user }
         else
           format.html { render :verify_email, status: :unprocessable_entity }
@@ -97,7 +97,7 @@ module Lato
     def update_password_action
       respond_to do |format|
         if @user.update_password(params.require(:user).permit(:code, :password, :password_confirmation))
-          format.html { redirect_to lato.authentication_signin_path, notice: 'La tua password è stata aggiornata correttamente' }
+          format.html { redirect_to lato.authentication_signin_path, notice: I18n.t('lato.authentication_controller.update_password_action_notice') }
           format.json { render json: @user }
         else
           format.html { render :update_password, status: :unprocessable_entity }

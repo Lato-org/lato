@@ -33,10 +33,16 @@ en:
     account_delete_guide: Type in your registration email address and press "Delete Account" to proceed with the operation.
     account_delete_confirm: Delete account
     signup_email:  Account email address
+    signout_confirmation_request: "%{user}, Are you sure to leave?"
+    recover_password_code: Code received by email
+
     account_controller:
       update_user_action_notice: Account information properly updated
       request_verify_email_action_notice: We have sent you an email with the steps to follow to complete the procedure
       update_password_action_notice: Passwords updated successfully
+    authentication_controller:
+      verify_email_action_notice: Successfully verified email address
+      update_password_action_notice: Your password has been successfully updated
 
   activerecord:
     attributes:
