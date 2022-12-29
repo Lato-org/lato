@@ -1,5 +1,5 @@
 en:
-  labels:
+  lato:
     account: Account
     signout: Logout
     signin: Login
@@ -14,12 +14,30 @@ en:
     terms_and_conditions_checkbox: I accept the %{link}
     recover_password: Recover password
     next: Next
+    cancel: Cancel
     back_to_login: Back to login
     there_are_some_errors: There are some errors
     update_password: Update password
     confirm: Confirm
     search_for: Search for
     viewed_results: Results viewed
+    account_informations: Account informations
+    verify_email: Verify email
+    email_verified: Verified
+    update: Update
+    new_password: New password
+    confirm_new_password: Confirm new password
+    account_delete: Delete account
+    warning: Warning
+    account_delete_details: Deleting your account will automatically delete all data associated with it. By confirming the deletion there will be no way to recover the lost information.
+    account_delete_guide: Type in your registration email address and press "Delete Account" to proceed with the operation.
+    account_delete_confirm: Delete account
+    signup_email:  Account email address
+    account_controller:
+      update_user_action_notice: Account information properly updated
+      request_verify_email_action_notice: We have sent you an email with the steps to follow to complete the procedure
+      update_password_action_notice: Passwords updated successfully
+
   activerecord:
     attributes:
       lato/user:

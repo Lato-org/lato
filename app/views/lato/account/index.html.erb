@@ -1,11 +1,11 @@
-<%= lato_page_head 'Account' %>
+<%= lato_page_head I18n.t('lato.account') %>
 
 <%= render 'lato/account/alert-accepted-privacy-policy-version' %>
 <%= render 'lato/account/alert-accepted-terms-and-conditions-version' %>
 
 <div class="card mb-4">
   <div class="card-header">
-    <h2 class="fs-4 mb-0">Informazioni account</h2>
+    <h2 class="fs-4 mb-0"><%= I18n.t('lato.account_informations') %></h2>
   </div>
   <div class="card-body">
     <%= render 'lato/account/form-user', user: @session.user %>
@@ -25,7 +25,7 @@
 
 <div class="card mb-4">
   <div class="card-header">
-    <h2 class="fs-4 mb-0">Aggiornamento password</h2>
+    <h2 class="fs-4 mb-0"><%= I18n.t('lato.update_password') %></h2>
   </div>
   <div class="card-body">
     <%= render 'lato/account/form-password', user: @session.user %>
@@ -46,17 +46,16 @@
 
 <div class="card mb-4">
   <div class="card-header">
-    <h2 class="fs-4 mb-0">Cancellazione account</h2>
+    <h2 class="fs-4 mb-0"><%= I18n.t('lato.account_delete') %></h2>
   </div>
   <div class="card-body">
     <div class="alert alert-warning">
-      <h4 class="alert-heading">Attenzione</h4>
+      <h4 class="alert-heading"><%= I18n.t('lato.warning') %></h4>
       <p>
-        Cancellando il tuo account <b>saranno automaticamente eliminati definitivamente tutti i dati</b> ad esso associati.<br>
-        Confermando l'eliminazione non ci sarà più modo di recuperare le informazioni perse.
+        <%= raw I18n.t('lato.account_delete_details') %>
       </p>
       <p class="mb-0">
-        Digita il tuo indirizzo email di registrazione e premi "Elimina account" per procedere con l'operazione.
+        <%= raw I18n.t('lato.account_delete_guide') %>
       </p>
     </div>
 

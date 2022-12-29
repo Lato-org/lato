@@ -17,7 +17,7 @@ module Lato
 
     def initialize
       # Navbar defaults
-      @navbar = 'navbar-light navbar-expand-lg fixed-top bg-light shadow-sm px-md-3'
+      @navbar = 'navbar-dark navbar-expand-lg fixed-top bg-primary shadow-sm px-md-3'
       @navbar_container = 'container-fluid'
       @navbar_collapse = 'justify-content-end'
 

@@ -3,8 +3,8 @@
     <div class="card-body text-center">
       <p><%= @session.user.first_name %>, Sei sicuro di voler uscire dal tuo account?</p>
       <div>
-        <%= link_to 'Annulla', lato.root_path, class: %w[btn btn-primary me-2] %>
-        <%= link_to 'Si, Esci', lato.authentication_signout_action_path, class: %w[btn btn-danger ms-2], data: { turbo_method: :delete } %>
+        <%= link_to I18n.t('lato.cancel'), lato.root_path, class: %w[btn btn-primary me-2] %>
+        <%= link_to I18n.t('lato.confirm'), lato.authentication_signout_action_path, class: %w[btn btn-danger ms-2], data: { turbo_method: :delete } %>
       </div>
     </div>
   </div>

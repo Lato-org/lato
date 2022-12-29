@@ -25,16 +25,16 @@ user ||= Lato::User.new
         <div class="input-group mb-3">
           <%= lato_form_item_input_email form, :email, required: true %>
           <% if user.email_verified_at %>
-            <button class="btn btn-outline-success" style="pointer-events: none">Verificato</span>
+            <button class="btn btn-outline-success" style="pointer-events: none"><%= I18n.t('lato.email_verified') %></span>
           <% else %>
-            <%= link_to 'Verifica email', account_request_verify_email_action_path, class: 'btn btn-warning', data: { turbo_method: :patch, turbo_frame: '_self' } %>
+            <%= link_to I18n.t('lato.verify_email'), account_request_verify_email_action_path, class: 'btn btn-warning', data: { turbo_method: :patch, turbo_frame: '_self' } %>
           <% end %>
         </div>
       </div>
     </div>
 
     <div class="d-flex justify-content-end">
-      <%= lato_form_submit form, 'Aggiorna', class: %w[btn-success] %>
+      <%= lato_form_submit form, I18n.t('lato.update'), class: %w[btn-success] %>
     </div>
   <% end %>
 <% end %>

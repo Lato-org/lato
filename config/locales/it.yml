@@ -1,7 +1,7 @@
 # Start from: https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/it.yml
 
 it:
-  labels:
+  lato:
     account: Account
     signout: Esci
     signin: Accedi
@@ -16,12 +16,30 @@ it:
     terms_and_conditions_checkbox: Dichiaro di aver letto e accettato i %{link} di utilizzo
     recover_password: Recupero password
     next: Prosegui
+    cancel: Annulla
     back_to_login: Torna al login
     there_are_some_errors: Si sono verificati i seguenti errori
     update_password: Aggiornamento password
     confirm: Conferma
     search_for: Ricerca per
     viewed_results: Risultati visualizzati
+    account_informations: Informazioni account
+    verify_email: Verifica email
+    email_verified: Verificato
+    update: Aggiorna
+    new_password: Nuova password
+    confirm_new_password: Conferma nuova password
+    account_delete: Cancellazione account
+    warning: Attenzione
+    account_delete_details: Cancellando il tuo account <b>saranno automaticamente eliminati definitivamente tutti i dati</b> ad esso associati.<br>Confermando l'eliminazione non ci sarà più modo di recuperare le informazioni perse.
+    account_delete_guide: Digita il tuo indirizzo email di registrazione e premi "Elimina account" per procedere con l'operazione.
+    account_delete_confirm: Elimina account
+    signup_email: Indirizzo email di registrazione
+    account_controller:
+      update_user_action_notice: Informazioni account aggiornate correttamente
+      request_verify_email_action_notice: Ti abbiamo inviato una email con i passaggi da seguire per completare la procedura
+      update_password_action_notice: Password aggiornate correttamente
+
   activerecord:
     attributes:
       lato/user:

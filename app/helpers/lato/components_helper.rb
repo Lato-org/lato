@@ -111,7 +111,7 @@ module Lato
       end
 
       content_tag :div, options do
-        concat content_tag(:span, "#{I18n.t('labels.there_are_some_errors')}:")
+        concat content_tag(:span, "#{I18n.t('lato.there_are_some_errors')}:")
         concat errors_list
         concat button_tag('', type: 'button', class: 'btn-close', data: { bs_dismiss: 'alert' }) unless options[:fixed]
       end

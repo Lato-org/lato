@@ -1,15 +1,15 @@
 <% if @session.valid? %>
   <%= lato_navbar_nav_item :account, lato.account_path do %>
-    <%= I18n.t('labels.account') %>
+    <%= I18n.t('lato.account') %>
   <% end %>
   <%= lato_navbar_nav_item :authentication_logout, lato.authentication_signout_path do %>
-    <%= I18n.t('labels.signout') %>
+    <%= I18n.t('lato.signout') %>
   <% end %>
 <% else %>
   <%= lato_navbar_nav_item :authentication_signin, lato.authentication_signin_path do %>
-    <%= I18n.t('labels.signin') %>
+    <%= I18n.t('lato.signin') %>
   <% end %>
   <%= lato_navbar_nav_item :authentication_signup, lato.authentication_signup_path do %>
-    <%= I18n.t('labels.signup') %>
+    <%= I18n.t('lato.signup') %>
   <% end %>
 <% end %>

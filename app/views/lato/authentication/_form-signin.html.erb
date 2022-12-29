@@ -20,11 +20,11 @@ user ||= Lato::User.new
     </div>
 
     <div>
-      <%= lato_form_submit form, I18n.t('labels.signin'), class: %w[d-block w-100] %>
+      <%= lato_form_submit form, I18n.t('lato.signin'), class: %w[d-block w-100] %>
     </div>
     <% unless Lato.config.auth_disable_signup %>
       <div class="text-center mt-3 mb-3">
-        <%= I18n.t('labels.or').downcase %> <%= link_to I18n.t('labels.create_free_account').downcase, lato.authentication_signup_path %>
+        <%= I18n.t('lato.or').downcase %> <%= link_to I18n.t('lato.create_free_account').downcase, lato.authentication_signup_path %>
       </div>
     <% end %>
   <% end %>
