@@ -64,12 +64,12 @@ module Lato
 
       user = Lato::User.find_by(email: params[:email])
       unless user
-        errors.add(:email, 'non valido')
+        errors.add(:email, :not_correct)
         return
       end
 
       unless user.authenticate(params[:password])
-        errors.add(:password, 'non valida')
+        errors.add(:password, :not_correct)
         return
       end
 

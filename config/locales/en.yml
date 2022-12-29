@@ -57,6 +57,8 @@ en:
       models:
         lato/user:
           attributes:
+            password:
+              not_correct: not correct
             email:
               taken: already used with another account
               not_registered: not registered

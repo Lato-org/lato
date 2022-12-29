@@ -64,6 +64,8 @@ it:
       models:
         lato/user:
           attributes:
+            password:
+              not_correct: non corretta
             password_confirmation:
               confirmation: non corrisponde alla password
             email:
