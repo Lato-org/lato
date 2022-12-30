@@ -1,0 +1,8 @@
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= flag ? locale_to_flag(I18n.locale) : I18n.locale.upcase %></a>
+  <ul class="dropdown-menu dropdown-menu-lg-end" style="min-width: auto;">
+    <% I18n.available_locales.each do |locale| %>
+      <li><%= link_to (flag ? locale_to_flag(locale) : locale.upcase), lato.switch_locale_path(locale: locale), class: 'dropdown-item', data: { turbo_method: :post } %></li>
+    <% end %>
+  </ul>
+</li>

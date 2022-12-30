@@ -32,6 +32,10 @@ module Lato
       self.email = email&.downcase&.strip
     end
 
+    before_create do
+      self.locale ||= I18n.default_locale
+    end
+
     before_save do
       self.email_verified_at = nil if email_changed?
       self.accepted_privacy_policy_version = Lato.config.legal_privacy_policy_version if accepted_privacy_policy_version_changed?

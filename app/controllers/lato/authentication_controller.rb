@@ -54,7 +54,7 @@ module Lato
 
       respond_to do |format|
         format.html { redirect_to lato.root_path }
-        format.json { render plain: '' }
+        format.json { render json: {} }
       end
     end
 
@@ -110,19 +110,19 @@ module Lato
 
     def find_user
       @user = User.find_by(id: params[:id])
-      respond_to_with_404 unless @user
+      respond_to_with_not_found unless @user
     end
 
     def lock_signup_if_disabled
       return unless Lato.config.auth_disable_signup
 
-      respond_to_with_404 
+      respond_to_with_not_found 
     end
 
     def lock_recover_password_if_disabled
       return unless Lato.config.auth_disable_recover_password
 
-      respond_to_with_404 
+      respond_to_with_not_found 
     end
   end
 end

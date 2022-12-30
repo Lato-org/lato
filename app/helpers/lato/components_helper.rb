@@ -12,6 +12,12 @@ module Lato
       end
     end
 
+    def lato_navbar_nav_locales_item(options = {})
+      flag = options[:flag] || false
+
+      render 'lato/components/navbar_nav_locales_item', flag: flag
+    end
+
     # Sidebar
     ##
 

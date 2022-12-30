@@ -1,6 +1,8 @@
 Lato::Engine.routes.draw do
   root 'application#index'
 
+  post '/switch_locale/:locale', to: 'application#switch_locale', as: 'switch_locale'
+
   # Authentication
   ##
 
