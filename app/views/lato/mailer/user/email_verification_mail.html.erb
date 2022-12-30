@@ -1,3 +1,17 @@
+<% if @user.locale == 'en' %>
+
+To have access to all the features of <%= Lato.config.application_title %> you must confirm your email address.
+<br><br>
+Click the following link to confirm your email address:
+<br><br>
+<%= link_to lato.authentication_verify_email_url(id: @user.id, code: @code), lato.authentication_verify_email_url(id: @user.id, code: @code) %>
+<br><br>
+<small>
+We remind you that the link is valid for 30 minutes. If the link is expired you can request a new one from the management page of your <%= Lato.config.application_title %> account.
+</small>
+
+<% else %>
+
 Per avere accesso a tutte le funzionalità di <%= Lato.config.application_title %> devi confermare il tuo indirizzo email.
 <br><br>
 Clicca il seguente link per completare la procedura di configurazione:
@@ -7,3 +21,5 @@ Clicca il seguente link per completare la procedura di configurazione:
 <small>
 Ti ricordiamo che il link è valido per 30 minuti. Se il link risulta scaduto puoi richiederne uno nuovo dalla pagina di gestione del tuo account <%= Lato.config.application_title %>.
 </small>
+
+<% end %>

@@ -1,2 +1,7 @@
-Salve <%= @user.first_name %>,
-<br><br>
+<% if @user.locale == 'en' %>
+  Hello <%= @user.first_name %>,
+  <br><br>
+<% else %>
+  Salve <%= @user.first_name %>,
+  <br><br>
+<%end %>

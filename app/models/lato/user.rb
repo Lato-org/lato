@@ -85,14 +85,14 @@ module Lato
 
     def request_verify_email
       if email_verification_semaphore.value
-        errors.add(:base, 'Attendi almeno 2 minuti per provare un nuovo tentativo di verifica email')
+        errors.add(:base, :email_verification_limit)
         return
       end
 
       code = SecureRandom.hex.upcase
       delivery = Lato::UserMailer.email_verification_mail(id, code).deliver_now
       unless delivery
-        errors.add(:base, 'Impossibile inviare mail')
+        errors.add(:base, :email_sending_error)
         return
       end
 
@@ -104,12 +104,12 @@ module Lato
 
     def verify_email(params)
       unless email_verification_code.value
-        errors.add(:base, 'Il codice di verifica email risulta scaduto')
+        errors.add(:base, :email_verification_code_expired)
         return
       end
 
       unless email_verification_code.value == params[:code]
-        errors.add(:base, 'Il codice di verifica email non risulta valido')
+        errors.add(:base, :email_verification_code_invalid)
         return
       end
 
@@ -139,7 +139,7 @@ module Lato
       code = SecureRandom.hex.upcase
       delivery = Lato::UserMailer.password_update_mail(user.id, code).deliver_now
       unless delivery
-        errors.add(:base, 'Impossibile inviare mail')
+        errors.add(:base, :email_sending_error)
         return
       end
 
@@ -153,12 +153,12 @@ module Lato
 
     def update_password(params)
       unless password_update_code.value
-        errors.add(:base, 'Il codice di verifica risulta scaduto')
+        errors.add(:base, :password_update_code_expired)
         return
       end
 
       unless password_update_code.value == params[:code]
-        errors.add(:base, 'Il codice di verifica non risulta valido')
+        errors.add(:base, :password_update_code_invalid)
         return
       end
 
@@ -169,7 +169,7 @@ module Lato
 
     def update_accepted_privacy_policy_version(params)
       unless params[:confirm]
-        errors.add(:base, 'Per accettare la privacy policy devi selezionare la checkbox di conferma')
+        errors.add(:base, :privacy_policy_invalid)
         return
       end
 
@@ -178,7 +178,7 @@ module Lato
 
     def update_accepted_terms_and_conditions_version(params)
       unless params[:confirm]
-        errors.add(:base, 'Per accettare i termini e condizioni devi selezionare la checkbox di conferma')
+        errors.add(:base, :terms_and_conditions_invalid)
         return
       end
 

@@ -37,9 +37,9 @@ module Lato
       @email_from = 'lato@example.com'
 
       @legal_privacy_policy_url = '#'
-      @legal_privacy_policy_version = 3
+      @legal_privacy_policy_version = 1
       @legal_terms_and_conditions_url = '#'
-      @legal_terms_and_conditions_version = 2
+      @legal_terms_and_conditions_version = 1
     end
   end
 end

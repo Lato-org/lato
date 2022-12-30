@@ -29,12 +29,15 @@ en:
     confirm_new_password: Confirm new password
     account_delete: Delete account
     warning: Warning
-    account_delete_details: Deleting your account will automatically delete all data associated with it. By confirming the deletion there will be no way to recover the lost information.
+    account_delete_details: Deleting your account <b>will automatically delete all data associated</b> with it. By confirming the deletion there will be no way to recover the lost information.
     account_delete_guide: Type in your registration email address and press "Delete Account" to proceed with the operation.
     account_delete_confirm: Delete account
     signup_email:  Account email address
     signout_confirmation_request: "%{user}, Are you sure to leave?"
     recover_password_code: Code received by email
+    operation_completed: Operation completed
+    privacy_policy_update_title: Privacy policy update
+    terms_and_conditions_update_title: Terms and conditions update
 
     account_controller:
       update_user_action_notice: Account information properly updated
@@ -57,6 +60,15 @@ en:
       models:
         lato/user:
           attributes:
+            base:
+              email_sending_error: Unable to send mail
+              email_verification_limit: Wait at least 2 minutes to try a new email verification attempt
+              email_verification_code_expired: Email verification code has expired
+              email_verification_code_invalid: Email verification code is invalid
+              password_update_code_expired: Verification code has expired
+              password_update_code_invalid: Verification code is invalid
+              privacy_policy_invalid: To accept the privacy policy you must select the confirmation checkbox
+              terms_and_conditions_invalid: To accept the terms and conditions you must select the confirmation checkbox
             password:
               not_correct: not correct
             email:

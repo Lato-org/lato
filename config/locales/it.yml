@@ -37,6 +37,9 @@ it:
     signup_email: Indirizzo email di registrazione
     signout_confirmation_request: "%{user}, Sei sicuro di voler uscire dal tuo account?"
     recover_password_code: Codice ricevuto via email
+    operation_completed: Operazione completata
+    privacy_policy_update_title: Aggiornamento privacy policy
+    terms_and_conditions_update_title: Aggiornamento termini e condizioni
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente
@@ -64,6 +67,15 @@ it:
       models:
         lato/user:
           attributes:
+            base:
+              email_sending_error: Impossibile inviare mail
+              email_verification_limit: Attendi almeno 2 minuti per provare un nuovo tentativo di verifica email
+              email_verification_code_expired: Il codice di verifica email risulta scaduto
+              email_verification_code_invalid: Il codice di verifica email non risulta valido
+              password_update_code_expired: Il codice di verifica risulta scaduto
+              password_update_code_invalid: Il codice di verifica non risulta valido
+              privacy_policy_invalid: Per accettare la privacy policy devi selezionare la checkbox di conferma
+              terms_and_conditions_invalid: Per accettare i termini e condizioni devi selezionare la checkbox di conferma
             password:
               not_correct: non corretta
             password_confirmation:
