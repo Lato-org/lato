@@ -50,6 +50,7 @@ module Lato
     end
 
     # Operations
+    ##
 
     def start
       begin
@@ -93,7 +94,7 @@ module Lato
       }
       operation_params[:input_file] = file unless file.nil?
 
-      Operation.create(operation_params)
+      Lato::Operation.create(operation_params)
     end
   end
 end
