@@ -98,3 +98,15 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## To do
 - Gestione abbonamenti e acquisti singoli con integrazione Stripe
+
+
+t.string :ip_address
+t.string :user_agent
+t.references :lato_user, index: true, foreign_key: true
+
+
+
+t.string :referral_code
+t.datetime :completed_at
+t.integer :lato_user_from_id 
+t.references :lato_user, index: true, foreign_key: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_29_233844) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_09_054412) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_29_233844) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "lato_log_user_signins", force: :cascade do |t|
+    t.string "ip_address"
+    t.string "user_agent"
+    t.integer "lato_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lato_user_id"], name: "index_lato_log_user_signins_on_lato_user_id"
   end
 
   create_table "lato_operations", force: :cascade do |t|
@@ -76,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_29_233844) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "lato_log_user_signins", "lato_users"
   add_foreign_key "lato_operations", "lato_users"
   add_foreign_key "products", "lato_users"
 end

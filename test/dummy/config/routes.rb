@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'operations', to: 'tutorial#operations', as: :operations
   post 'operations/create_operation_action', to: 'tutorial#operations_create_operation_action', as: :operations_create_operation_action
   get 'actions', to: 'tutorial#actions', as: :actions
+  get 'invitations', to: 'tutorial#invitations', as: :invitations
+  post 'invitations/create_invite_action', to: 'tutorial#invitations_create_invite_action', as: :invitations_create_invite_action
 
   # Products controller (Complete CRUD example)
   scope :products do

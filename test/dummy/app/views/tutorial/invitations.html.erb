@@ -1,0 +1,18 @@
+<%= lato_page_head 'Inviti', [
+  { label: 'Tutorial', path: tutorial_path },
+  { label: 'Inviti' }
+] %>
+
+<p>
+Gli inviti possono essere utilizzati per le applicazioni che non prevedono la registrazione ma permettono agli utenti di invitare nella piattaforma altri utenti.<br>
+Attraverso un invito è possibile:
+</p>
+
+<ul>
+  <li>Inviare una mail di invito all'utente con cui impostare le proprie credenziali</li>
+  <li>Tenere traccia delle registrazione avvenute per invito e gli eventuali referral</li>
+</ul>
+
+<div class="bg-light p-3 mb-3">
+<%= render 'tutorial/components/form-user-invite' %>
+</div>

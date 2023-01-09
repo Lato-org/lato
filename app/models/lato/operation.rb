@@ -10,6 +10,11 @@ module Lato
     has_one_attached :input_file
     has_one_attached :output_file
 
+    # Relations
+    ##
+
+    belongs_to :lato_user, class_name: 'Lato::User', foreign_key: :lato_user_id, optional: true
+
     # Hooks
     ##
 

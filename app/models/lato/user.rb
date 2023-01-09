@@ -25,6 +25,8 @@ module Lato
 
     has_many :lato_operations, class_name: 'Lato::Operation', foreign_key: :lato_user_id, dependent: :nullify
 
+    has_many :lato_log_user_signins, class_name: 'Lato::Log::UserSignin', foreign_key: :lato_user_id, dependent: :nullify
+
     # Hooks
     ##
 
@@ -80,6 +82,15 @@ module Lato
       self.id = user.id
       reload
 
+      begin
+        lato_log_user_signins.create(
+          ip_address: params[:ip_address],
+          user_agent: params[:user_agent]
+        )
+      rescue StandardError => e
+        Rails.logger.error(e)
+      end
+
       true
     end
 
@@ -118,15 +129,6 @@ module Lato
 
       update_column(:email_verified_at, Time.now)
       true
-    end
-
-    def destroy_with_confirmation(params)
-      unless params[:email_confirmation] == email
-        errors.add(:email, :not_correct)
-        return
-      end
-
-      destroy
     end
 
     def request_recover_password(params)
@@ -183,6 +185,15 @@ module Lato
       end
 
       update(accepted_terms_and_conditions_version: Lato.config.legal_terms_and_conditions_version)
+    end
+
+    def destroy_with_confirmation(params)
+      unless params[:email_confirmation] == email
+        errors.add(:email, :not_correct)
+        return
+      end
+
+      destroy
     end
   end
 end

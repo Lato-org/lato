@@ -15,7 +15,10 @@ module Lato
       @user = Lato::User.new
 
       respond_to do |format|
-        if @user.signin(params.require(:user).permit(:email, :password))
+        if @user.signin(params.require(:user).permit(:email, :password).merge(
+          ip_address: request.remote_ip,
+          user_agent: request.user_agent
+        ))
           session_create(@user.id)
 
           format.html { redirect_to lato.root_path }

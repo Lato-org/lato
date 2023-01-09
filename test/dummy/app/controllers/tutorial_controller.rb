@@ -94,4 +94,23 @@ class TutorialController < ApplicationController
     active_sidebar(:actions)
   end
 
+  # Invitations
+  ##
+
+  def invitations
+    active_sidebar(:invitations)
+  end
+
+  def invitations_create_invite_action
+    respond_to do |format|
+      if true
+        format.html { redirect_to main_app.invitations_path, notice: 'Invito creato correttamente' }
+        format.json { render json: @user }
+      else
+        format.html { render :invitations, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 end
