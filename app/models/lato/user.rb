@@ -24,6 +24,7 @@ module Lato
     ##
 
     has_many :lato_operations, class_name: 'Lato::Operation', foreign_key: :lato_user_id, dependent: :nullify
+    has_many :lato_invitations, class_name: 'Lato::Invitation', foreign_key: :lato_user_id, dependent: :nullify
 
     has_many :lato_log_user_signins, class_name: 'Lato::Log::UserSignin', foreign_key: :lato_user_id, dependent: :nullify
 
