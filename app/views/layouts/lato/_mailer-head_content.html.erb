@@ -1,10 +1,7 @@
-<% if @user&.locale == 'it' %>
-  Salve <%= @user.first_name %>,
-  <br><br>
-<% elsif @user %>
-  Hello <%= @user.first_name %>,
+<% if I18n.locale == 'en' %>
+  Hello,
   <br><br>
 <% else %>
-  Hello,
+  Salve,
   <br><br>
 <% end %>

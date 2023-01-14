@@ -19,6 +19,8 @@ Lato::Engine.routes.draw do
     post 'recover_password_action', to: 'authentication#recover_password_action', as: :authentication_recover_password_action
     get 'update_password', to: 'authentication#update_password', as: :authentication_update_password
     patch 'update_password_action', to: 'authentication#update_password_action', as: :authentication_update_password_action
+    get 'accept_invitation', to: 'authentication#accept_invitation', as: :authentication_accept_invitation
+    post 'accept_invitation_action', to: 'authentication#accept_invitation_action', as: :authentication_accept_invitation_action
   end
 
   scope :account do

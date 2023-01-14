@@ -7,6 +7,9 @@ module Lato
     before_action :lock_signup_if_disabled, only: %i[signup signup_action]
     before_action :lock_recover_password_if_disabled, only: %i[recover_password recover_password_action update_password update_password_action]
 
+    # Signin
+    ##
+
     def signin
       @user = Lato::User.new
     end
@@ -30,6 +33,9 @@ module Lato
       end
     end
 
+    # Signup
+    ##
+
     def signup
       @user = Lato::User.new
     end
@@ -50,6 +56,9 @@ module Lato
       end
     end
 
+    # Signout
+    ##
+
     def signout; end
 
     def signout_action
@@ -60,6 +69,9 @@ module Lato
         format.json { render json: {} }
       end
     end
+
+    # Verify email
+    ##
 
     def verify_email
       @code = params[:code]
@@ -76,6 +88,9 @@ module Lato
         end
       end
     end
+
+    # Recover password
+    ##
 
     def recover_password
       @user = Lato::User.new
@@ -95,6 +110,9 @@ module Lato
       end
     end
 
+    # Update password
+    ##
+
     def update_password; end
 
     def update_password_action
@@ -109,6 +127,15 @@ module Lato
       end
     end
 
+    # Accept invitation
+    ##
+
+    def accept_invitation; end
+
+    def accept_invitation_action
+
+    end
+
     private
 
     def find_user
@@ -119,13 +146,13 @@ module Lato
     def lock_signup_if_disabled
       return unless Lato.config.auth_disable_signup
 
-      respond_to_with_not_found 
+      respond_to_with_not_found
     end
 
     def lock_recover_password_if_disabled
       return unless Lato.config.auth_disable_recover_password
 
-      respond_to_with_not_found 
+      respond_to_with_not_found
     end
   end
 end
