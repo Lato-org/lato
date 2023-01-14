@@ -39,7 +39,7 @@ module Lato
     ##
 
     def accepted?
-      !!acepted_at
+      !!accepted_at
     end
   end
 end

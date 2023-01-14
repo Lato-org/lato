@@ -4,7 +4,7 @@ You have received an invitation to use <%= Lato.config.application_title %>.
 <br><br>
 Click the following link to accept the invitation and complete the registration:
 <br><br>
-<%= link_to lato.authentication_accept_invitation_url(id: @invitation.id, code: @invitation.accepted_code), lato.authentication_accept_invitation_url(id: @invitation.id, code: @invitation.accepted_code) %>
+<%= link_to lato.authentication_accept_invitation_url(id: @invitation.id, accepted_code: @invitation.accepted_code), lato.authentication_accept_invitation_url(id: @invitation.id, accepted_code: @invitation.accepted_code) %>
 
 <% else %>
 
@@ -12,6 +12,6 @@ Hai ricevuto un invito per utilizzare <%= Lato.config.application_title %>.
 <br><br>
 Clicca il seguente link per accettare l'invito e completare la registrazione:
 <br><br>
-<%= link_to lato.authentication_accept_invitation_url(id: @invitation.id, code: @invitation.accepted_code), lato.authentication_accept_invitation_url(id: @invitation.id, code: @invitation.accepted_code) %>
+<%= link_to lato.authentication_accept_invitation_url(id: @invitation.id, accepted_code: @invitation.accepted_code), lato.authentication_accept_invitation_url(id: @invitation.id, accepted_code: @invitation.accepted_code) %>
 
 <% end %>

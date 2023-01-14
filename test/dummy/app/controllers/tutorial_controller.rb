@@ -111,7 +111,7 @@ class TutorialController < ApplicationController
     respond_to do |format|
       if @invitation.save
         format.html { redirect_to main_app.invitations_path, notice: 'Invito creato correttamente' }
-        format.json { render json: @user }
+        format.json { render json: @invitation }
       else
         format.html { render :invitations, status: :unprocessable_entity }
         format.json { render json: @invitation.errors, status: :unprocessable_entity }

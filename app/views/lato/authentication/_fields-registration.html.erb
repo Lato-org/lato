@@ -1,0 +1,37 @@
+<%
+
+email_readonly ||= false
+
+%>
+
+<div class="row">
+  <div class="col col-12 col-md-6 mb-3">
+    <%= lato_form_item_label form, :first_name %>
+    <%= lato_form_item_input_text form, :first_name, required: true %>
+  </div>
+
+  <div class="col col-12 col-md-6 mb-3">
+    <%= lato_form_item_label form, :last_name %>
+    <%= lato_form_item_input_text form, :last_name, required: true %>
+  </div>
+
+  <div class="col col-12 mb-3">
+    <%= lato_form_item_label form, :email %>
+    <%= lato_form_item_input_email form, :email, required: true, readonly: email_readonly %>
+  </div>
+
+  <div class="col col-12 col-md-6 mb-3">
+    <%= lato_form_item_label form, :password %>
+    <%= lato_form_item_input_password form, :password, required: true %>
+  </div>
+
+  <div class="col col-12 col-md-6 mb-3">
+    <%= lato_form_item_label form, :password_confirmation %>
+    <%= lato_form_item_input_password form, :password_confirmation, required: true %>
+  </div>
+</div>
+
+<div class="mb-3 text-muted" style="font-size: 14px;">
+  <%= lato_form_item_input_check form, :accepted_privacy_policy_version, I18n.t('lato.privacy_policy_checkbox', link: link_to(I18n.t('lato.privacy_policy'), Lato.config.legal_privacy_policy_url)), required: true %>
+  <%= lato_form_item_input_check form, :accepted_terms_and_conditions_version, I18n.t('lato.terms_and_conditions_checkbox', link: link_to(I18n.t('lato.terms_and_conditions'), Lato.config.legal_terms_and_conditions_url)), required: true %>
+</div>

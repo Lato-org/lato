@@ -1,0 +1,18 @@
+<%
+
+user ||= Lato::User.new
+invitation ||= Lato::Invitation.new
+
+%>
+
+<%= turbo_frame_tag 'authentication_form-signup' do %>
+  <%= form_with model: user, url: lato.authentication_accept_invitation_action_path(id: invitation.id, accepted_code: invitation.accepted_code), data: { turbo_frame: '_self', controller: 'lato-form' } do |form| %>
+    <%= lato_form_errors user, class: %w[mb-3] %>
+
+    <%= render 'lato/authentication/fields-registration', form: form, email_readonly: true %>
+
+    <div class="d-flex justify-content-end">
+      <%= lato_form_submit form, I18n.t('lato.confirm') %>
+    </div>
+  <% end %>
+<% end %>

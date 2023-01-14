@@ -1,11 +1,15 @@
 module Lato
   class AuthenticationController < ApplicationController
-    before_action :not_authenticate_session, only: %i[signin signin_action signup signup_action]
+    before_action :not_authenticate_session, only: %i[signin signin_action signup signup_action accept_invitation accept_invitation_action]
     before_action :authenticate_session, only: %i[signout signout_action]
+  
     before_action :find_user, only: %i[verify_email verify_email_action update_password update_password_action]
-    before_action :hide_sidebar
+    before_action :find_invitation, only: %i[accept_invitation accept_invitation_action]
+
     before_action :lock_signup_if_disabled, only: %i[signup signup_action]
     before_action :lock_recover_password_if_disabled, only: %i[recover_password recover_password_action update_password update_password_action]
+
+    before_action :hide_sidebar
 
     # Signin
     ##
@@ -41,7 +45,7 @@ module Lato
     end
 
     def signup_action
-      @user = Lato::User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :accepted_privacy_policy_version, :accepted_terms_and_conditions_version))
+      @user = Lato::User.new(registration_params)
 
       respond_to do |format|
         if @user.save
@@ -130,17 +134,40 @@ module Lato
     # Accept invitation
     ##
 
-    def accept_invitation; end
+    def accept_invitation
+      @user = Lato::User.new(email: @invitation.email)
+    end
 
     def accept_invitation_action
+      @user = Lato::User.new(registration_params)
 
+      respond_to do |format|
+        if @user.accept_invitation(params.permit(:id, :accepted_code))
+          session_create(@user.id)
+
+          format.html { redirect_to lato.root_path }
+          format.json { render json: @user }
+        else
+          format.html { render :accept_invitation, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
     end
 
     private
 
+    def registration_params
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :accepted_privacy_policy_version, :accepted_terms_and_conditions_version)
+    end
+
     def find_user
       @user = User.find_by(id: params[:id])
       respond_to_with_not_found unless @user
+    end
+
+    def find_invitation
+      @invitation = Lato::Invitation.find_by(id: params[:id], accepted_code: params[:accepted_code])
+      respond_to_with_not_found unless @invitation
     end
 
     def lock_signup_if_disabled

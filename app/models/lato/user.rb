@@ -196,5 +196,22 @@ module Lato
 
       destroy
     end
+
+    def accept_invitation(params)
+      invitation = Lato::Invitation.find_by(id: params[:id], accepted_code: params[:accepted_code])
+      if !invitation || invitation.accepted? || invitation.email != email
+        errors.add(:base, :invitation_invalid)
+        return
+      end
+
+      ActiveRecord::Base.transaction do
+        raise ActiveRecord::Rollback unless save && invitation.update(
+          accepted_at: Time.now,
+          lato_user_id: id
+        ) 
+
+        true
+      end
+    end
   end
 end

@@ -38,6 +38,7 @@ en:
     operation_completed: Operation completed
     privacy_policy_update_title: Privacy policy update
     terms_and_conditions_update_title: Terms and conditions update
+    accept_invitation: Accept invitation
 
     account_controller:
       update_user_action_notice: Account information properly updated

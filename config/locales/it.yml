@@ -40,6 +40,7 @@ it:
     operation_completed: Operazione completata
     privacy_policy_update_title: Aggiornamento privacy policy
     terms_and_conditions_update_title: Aggiornamento termini e condizioni
+    accept_invitation: Accetta invito
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente
@@ -76,6 +77,7 @@ it:
               password_update_code_invalid: Il codice di verifica non risulta valido
               privacy_policy_invalid: Per accettare la privacy policy devi selezionare la checkbox di conferma
               terms_and_conditions_invalid: Per accettare i termini e condizioni devi selezionare la checkbox di conferma
+              invitation_invalid: Invito non valido
             password:
               not_correct: non corretta
             password_confirmation:
