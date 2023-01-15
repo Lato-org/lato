@@ -56,7 +56,9 @@ module Lato
         yield
         @operation&.completed
       rescue StandardError => e
-        @operation&.failed(e.message)
+        return @operation.failed(e.message) if @operation
+
+        raise e
       end
     end
   end
