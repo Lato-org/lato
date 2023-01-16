@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'actions', to: 'tutorial#actions', as: :actions
   get 'invitations', to: 'tutorial#invitations', as: :invitations
   post 'invitations/create_invite_action', to: 'tutorial#invitations_create_invite_action', as: :invitations_create_invite_action
+  patch 'invitations/send_invite_action', to: 'tutorial#invitations_send_invite_action', as: :invitations_send_invite_action
+  delete 'invitations/destroy_invite_action', to: 'tutorial#invitations_destroy_invite_action', as: :invitations_destroy_invite_action
 
   # Products controller (Complete CRUD example)
   scope :products do

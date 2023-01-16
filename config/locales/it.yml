@@ -38,6 +38,7 @@ it:
     signout_confirmation_request: "%{user}, Sei sicuro di voler uscire dal tuo account?"
     recover_password_code: Codice ricevuto via email
     operation_completed: Operazione completata
+    operation_failed: Operazione fallita
     privacy_policy_update_title: Aggiornamento privacy policy
     terms_and_conditions_update_title: Aggiornamento termini e condizioni
     accept_invitation: Accetta invito
@@ -90,6 +91,14 @@ it:
               inclusion: non accettata
             accepted_terms_and_conditions_version:
               inclusion: non accettati
+        lato/invitation:
+          attributes:
+            base:
+              already_accepted: Invito già accettato dall'utente
+              email_sending_error: Impossibile inviare mail
+              email_sending_limit: Attendi almeno 2 minuti per provare un nuovo tentativo di invito email
+
+
   date:
     abbr_day_names:
     - dom

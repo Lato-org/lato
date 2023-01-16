@@ -50,7 +50,7 @@ module Lato
       columns = options[:columns] || @_lato_index[key][:columns] || collection.column_names || []
       sortable_columns = @_lato_index[key][:sortable_columns] || []
       searchable_columns = @_lato_index[key][:searchable_columns] || []
-      model_name_underscore = options[:model_name] || collection.model.name.gsub('/', '_').underscore
+      model_name_underscore = options[:model_name] || collection.model.name.underscore.gsub('/', '_')
 
       render(
         'lato/components/index',

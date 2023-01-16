@@ -1,3 +1,12 @@
 module ApplicationHelper
   include ProductsHelper
+
+  def lato_invitation_actions(invitation)
+    content_tag(:div, class: 'btn-group btn-group-sm') do
+      unless invitation.accepted?
+        concat link_to('Invia', main_app.invitations_send_invite_action_path(id: invitation.id), class: 'btn btn-info', data: { turbo_method: :patch })
+        concat link_to('Elimina', main_app.invitations_destroy_invite_action_path(id: invitation.id), class: 'btn btn-danger', data: { turbo_method: :delete })
+      end
+    end
+  end
 end

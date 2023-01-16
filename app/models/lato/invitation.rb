@@ -1,5 +1,12 @@
 module Lato
   class Invitation < ApplicationRecord
+    attr_accessor :actions
+
+    # Kredis
+    ##
+
+    kredis_boolean :email_invite_semaphore, expires_in: 2.minutes
+
     # Validations
     ##
 
@@ -32,7 +39,12 @@ module Lato
 
     # send an email to the invited user
     after_create do
-      Lato::InvitationMailer.invite_mail(id).deliver_now
+      send_invite
+    end
+
+    # be sure accepted invitations can not be deleted
+    before_destroy do
+      throw :abort if accepted?
     end
 
     # Helpers
@@ -40,6 +52,31 @@ module Lato
 
     def accepted?
       !!accepted_at
+    end
+
+    # Operations
+    ##
+
+    def send_invite
+      if accepted?
+        errors.add(:base, :already_accepted)
+        return false
+      end
+
+      if email_invite_semaphore.value
+        errors.add(:base, :email_sending_limit)
+        return false
+      end
+
+      delivery = Lato::InvitationMailer.invite_mail(id).deliver_now
+      unless delivery
+        errors.add(:base, :email_sending_error)
+        return false
+      end
+
+      email_invite_semaphore.value = true
+
+      true
     end
   end
 end

@@ -36,6 +36,7 @@ en:
     signout_confirmation_request: "%{user}, Are you sure to leave?"
     recover_password_code: Code received by email
     operation_completed: Operation completed
+    operation_failed: Operation failed
     privacy_policy_update_title: Privacy policy update
     terms_and_conditions_update_title: Terms and conditions update
     accept_invitation: Accept invitation
@@ -80,3 +81,9 @@ en:
               inclusion: not accepted
             accepted_terms_and_conditions_version:
               inclusion: not accepted
+        lato/invitation:
+          attributes:
+            base:
+              already_accepted: Invitation already accepted
+              email_sending_error:  Unable to send mail
+              email_sending_limit: Wait at least 2 minutes to try a new invite attempt

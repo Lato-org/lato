@@ -10,7 +10,7 @@ Attraverso un invito è possibile:
 
 <ul>
   <li>Inviare una mail di invito all'utente con cui impostare le proprie credenziali</li>
-  <li>Tenere traccia delle registrazione avvenute per invito e gli eventuali referral</li>
+  <li>Tenere traccia delle registrazione avvenute</li>
 </ul>
 
 <div class="bg-light p-3 mb-3">
@@ -18,5 +18,20 @@ Attraverso un invito è possibile:
 </div>
 
 <div class="bg-light p-3 mb-3">
-<%= lato_index @invitations %>
+<%= lato_index @invitations, columns: %i[email accepted_at lato_user_id actions] %>
 </div>
+
+<p>
+Di seguito esempi delle operazioni che è possibile eseguire con gli inviti:
+</p>
+
+<pre>
+# creazione di un invito (e invio automatico della mail)
+@invitation = Lato::Invitation.create(params.require(:invitation).permit(:email))
+
+# re-invio della mail di invito (max 1 ogni 2 minuti)
+@invitation.send_invite
+
+# eliminazione dell'invito
+@invitation.destroy
+</pre>

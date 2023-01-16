@@ -113,7 +113,35 @@ class TutorialController < ApplicationController
         format.html { redirect_to main_app.invitations_path, notice: 'Invito creato correttamente' }
         format.json { render json: @invitation }
       else
-        format.html { render :invitations, status: :unprocessable_entity }
+        format.html { redirect_to main_app.invitations_path, alert: @invitation.errors.full_messages.join(', ') }
+        format.json { render json: @invitation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def invitations_send_invite_action
+    @invitation = Lato::Invitation.find(params[:id])
+
+    respond_to do |format|
+      if @invitation.send_invite
+        format.html { redirect_to main_app.invitations_path, notice: 'Invito inviato correttamente' }
+        format.json { render json: @invitation }
+      else
+        format.html { redirect_to main_app.invitations_path, alert: @invitation.errors.full_messages.join(', ') }
+        format.json { render json: @invitation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def invitations_destroy_invite_action
+    @invitation = Lato::Invitation.find(params[:id])
+
+    respond_to do |format|
+      if @invitation.destroy
+        format.html { redirect_to main_app.invitations_path, notice: 'Invito eliminato correttamente' }
+        format.json { render json: @invitation }
+      else
+        format.html { redirect_to main_app.invitations_path, alert: 'Invito non eliminato' }
         format.json { render json: @invitation.errors, status: :unprocessable_entity }
       end
     end

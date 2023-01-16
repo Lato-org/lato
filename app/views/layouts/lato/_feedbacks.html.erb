@@ -13,4 +13,19 @@
       </div>
     </div>
   <% end %>
+
+  <% if alert %>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div data-controller="lato-feedback" id="feedbackAlert" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <i class="bi bi-check-circle-fill text-danger me-2"></i>
+          <strong class="me-auto"><%= I18n.t('lato.operation_failed') %></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          <%= alert %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
