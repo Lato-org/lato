@@ -251,6 +251,8 @@ module Lato
       assert @user.authenticate('New password')
     end
 
+    # TO-DO: Write tests about invitations!
+
     private
 
     def assert_lato_session_cookie
