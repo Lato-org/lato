@@ -1,3 +1,9 @@
+<%
+
+collection_test_istance = collection.model.new
+
+%>
+
 <%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}", class: 'lato-index' do %>
 
   <%= form_tag request.path, method: :get, data: { turbo_frame: '_self' } do %>
@@ -38,10 +44,19 @@
               <tbody>
                 <% columns.each do |column| %>
                   <tr>
-                    <th><%= collection.model.human_attribute_name column %></th>
+                    <th><%= collection_test_istance.respond_to?(column) ? collection.model.human_attribute_name(column) : lato_index_dynamic_label({
+                      key: key,
+                      model_name: model_name,
+                      column: column
+                    }) %></th>
                     <td class="lato-index-col-<%= column %>">
                       <% viewer_function_name = "#{model_name_underscore}_#{column}" %>
-                      <%= respond_to?(viewer_function_name) ? send(viewer_function_name, member) : member.send(column) %>
+                      <%= respond_to?(viewer_function_name) ? send(viewer_function_name, member) : (collection_test_istance.respond_to?(column) ? member.send(column) : lato_index_dynamic_value({
+                        key: key,
+                        model_name: model_name,
+                        column: column,
+                        member: member
+                      })) %>
                     </td>
                   </tr>
                 <% end %>
@@ -67,7 +82,11 @@
               <% columns.each do |column| %>
                 <th scope="col" class="lato-index-col-<%= column %>">
                   <div class="d-flex align-items-center">
-                    <span><%= collection.model.human_attribute_name column %></span>
+                    <span><%= collection_test_istance.respond_to?(column) ? collection.model.human_attribute_name(column) : lato_index_dynamic_label({
+                      key: key,
+                      model_name: model_name,
+                      column: column
+                    }) %></span>
                     <% if sortable_columns.include?(column) %>
                       <div class="btn-group ms-3">
                         <div class="position-relative btn btn-sm <%= params[:sort_by] == "#{column}|ASC" ? 'btn-primary' : 'btn-outline-primary' %>">
@@ -92,7 +111,12 @@
                 <% columns.each do |column| %>
                   <td class="lato-index-col-<%= column %>">
                     <% viewer_function_name = "#{model_name_underscore}_#{column}" %>
-                    <%= respond_to?(viewer_function_name) ? send(viewer_function_name, member) : member.send(column) %>
+                    <%= respond_to?(viewer_function_name) ? send(viewer_function_name, member) : (collection_test_istance.respond_to?(column) ? member.send(column) : lato_index_dynamic_value({
+                      key: key,
+                      model_name: model_name,
+                      column: column,
+                      member: member
+                    })) %>
                   </td>
                 <% end %>
               </tr>

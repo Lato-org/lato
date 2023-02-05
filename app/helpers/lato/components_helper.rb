@@ -50,7 +50,8 @@ module Lato
       columns = options[:columns] || @_lato_index[key][:columns] || collection.column_names || []
       sortable_columns = @_lato_index[key][:sortable_columns] || []
       searchable_columns = @_lato_index[key][:searchable_columns] || []
-      model_name_underscore = options[:model_name] || collection.model.name.underscore.gsub('/', '_')
+      model_name = options[:model_name] || collection.model.name
+      model_name_underscore = options[:model_name] || model_name.underscore.gsub('/', '_')
 
       render(
         'lato/components/index',
@@ -59,9 +60,18 @@ module Lato
         columns: columns,
         sortable_columns: sortable_columns,
         searchable_columns: searchable_columns,
+        model_name: model_name,
         model_name_underscore: model_name_underscore,
         custom_actions: options[:custom_actions] || {}
       )
+    end
+
+    def lato_index_dynamic_label(params = {})
+      'Please override the method lato_index_dynamic_label in your application_helper.rb'
+    end
+
+    def lato_index_dynamic_value(params = {})
+      'Please override the method lato_index_dynamic_value in your application_helper.rb'
     end
 
     # Operation
