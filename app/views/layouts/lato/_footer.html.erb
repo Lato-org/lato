@@ -1,7 +1,7 @@
 <div class="footer <%= Lato.btstrap.footer %>" style="font-size: 14px;">
   <div class="<%= Lato.btstrap.footer_container %>">
     <div>
-      © <%= Date.today.year %> - <%= link_to  Lato.config.application_company_name,  Lato.config.application_company_url, target: '_blank' %>
+      v<%= Lato.config.application_version %> - © <%= Date.today.year %> - <%= link_to  Lato.config.application_company_name,  Lato.config.application_company_url, target: '_blank' %>
     </div>
     <div class="mt-2 mt-md-0">
       <%= link_to I18n.t('lato.privacy_policy'), Lato.config.legal_privacy_policy_url %> -

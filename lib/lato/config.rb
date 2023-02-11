@@ -4,7 +4,7 @@ module Lato
   ##
   class Config
     # Applicaction configs
-    attr_accessor :application_title, :application_company_name, :application_company_url
+    attr_accessor :application_title, :application_version, :application_company_name, :application_company_url
 
     # Session configs
     attr_accessor :session_lifetime, :session_root_path
@@ -23,6 +23,7 @@ module Lato
 
     def initialize
       @application_title = 'Lato'
+      @application_version = '1.0.0'
       @application_company_name = 'Lato Team'
       @application_company_url = 'https://github.com/Lato-GAM'
 
