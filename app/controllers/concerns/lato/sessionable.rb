@@ -32,6 +32,7 @@ module Lato
 
     def session_create(user_id)
       cookies.encrypted[:lato_session] = { value: Lato::Session.generate_session_per_user(user_id), expires: Lato.config.session_lifetime.from_now }
+      @session = Lato::Session.new(cookies.encrypted[:lato_session])
 
       true
     end
