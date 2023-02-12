@@ -60,7 +60,7 @@ class CustomController < ApplicationController
 
     respond_to do |format|
       if @operation.start
-        format.html { redirect_to lato.operations_show_path(@operation) }
+        format.html { redirect_to lato.operation_path(@operation) }
         format.json { render json: @operation }
       else
         format.html { render :index, status: :unprocessable_entity }
@@ -74,7 +74,7 @@ end
 <h3>Mostrare l'esito di una operazione</h3>
 
 <p>
-Ogni operazione può essere visualizzata nella route <code>lato.operations_show_path(operation_id)</code>.<br>
+Ogni operazione può essere visualizzata nella route <code>lato.operation_path(operation_id)</code>.<br>
 Per garantire la sicurezza dei dati un'operazione è accessibile solo per l'utente che ne ha richiesto la generazione.
 </p>
 

@@ -23,6 +23,9 @@ Lato::Engine.routes.draw do
     post 'accept_invitation_action', to: 'authentication#accept_invitation_action', as: :authentication_accept_invitation_action
   end
 
+  # Account
+  ##
+
   scope :account do
     get '', to: 'account#index', as: :account
     patch 'update_user_action', to: 'account#update_user_action', as: :account_update_user_action
@@ -33,7 +36,11 @@ Lato::Engine.routes.draw do
     patch 'update_accepted_terms_and_conditions_version_action', to: 'account#update_accepted_terms_and_conditions_version_action', as: :account_update_accepted_terms_and_conditions_version_action
   end
 
-  scope :operations do
-    get 'show/:id', to: 'operations#show', as: :operations_show
-  end
+  # Operations
+  ##
+
+  get 'operation/:id', to: 'operations#show', as: :operation
+
+  # NOTE: Legacy route
+  get 'operations/show/:id', to: 'operations#show_legacy', as: :operations_show
 end

@@ -62,7 +62,7 @@
     <% end %>
 
     <% unless operation.finished? %>
-      <%= link_to '', lato.operations_show_path(operation), class: 'd-none', data: { lato_operation_target: 'update', turbo_frame: '_self' } %>
+      <%= link_to '', lato.operation_path(operation), class: 'd-none', data: { lato_operation_target: 'update', turbo_frame: '_self' } %>
     <% end %>
   </div>
 <% end %>

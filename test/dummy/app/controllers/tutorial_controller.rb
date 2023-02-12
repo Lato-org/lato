@@ -78,7 +78,7 @@ class TutorialController < ApplicationController
 
     respond_to do |format|
       if @operation.start
-        format.html { redirect_to lato.operations_show_path(@operation) }
+        format.html { redirect_to lato.operation_path(@operation) }
         format.json { render json: @operation }
       else
         format.html { render :index, status: :unprocessable_entity }

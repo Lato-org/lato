@@ -7,6 +7,12 @@ module Lato
       return unless validate_user_access_to_operation
     end
 
+    def show_legacy
+      Rails.logger.warn('🚨 Legacy route used: operations/show/:id. Please replace operation_show_path with operation_path.')
+
+      redirect_to lato.operation_path(params[:id])
+    end
+
     private
 
     def validate_user_access_to_operation
