@@ -27,7 +27,7 @@ Di seguito esempi delle operazioni che è possibile eseguire con gli inviti:
 
 <pre>
 # creazione di un invito (e invio automatico della mail)
-@invitation = Lato::Invitation.create(params.require(:invitation).permit(:email))
+@invitation = Lato::Invitation.create(params.require(:invitation).permit(:email).merge(inviter_lato_user_id: @session.user_id))
 
 # re-invio della mail di invito (max 1 ogni 2 minuti)
 @invitation.send_invite

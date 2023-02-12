@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_09_061533) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_12_211748) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -46,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_061533) do
     t.integer "lato_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "inviter_lato_user_id"
+    t.index ["inviter_lato_user_id"], name: "index_lato_invitations_on_inviter_lato_user_id"
     t.index ["lato_user_id"], name: "index_lato_invitations_on_lato_user_id"
   end
 
@@ -96,6 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_061533) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "lato_invitations", "lato_users"
+  add_foreign_key "lato_invitations", "lato_users", column: "inviter_lato_user_id"
   add_foreign_key "lato_log_user_signins", "lato_users"
   add_foreign_key "lato_operations", "lato_users"
   add_foreign_key "products", "lato_users"

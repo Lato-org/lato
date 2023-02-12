@@ -106,7 +106,7 @@ class TutorialController < ApplicationController
   end
 
   def invitations_create_invite_action
-    @invitation = Lato::Invitation.new(params.require(:invitation).permit(:email))
+    @invitation = Lato::Invitation.new(params.require(:invitation).permit(:email).merge(inviter_lato_user_id: @session.user_id))
 
     respond_to do |format|
       if @invitation.save

@@ -16,6 +16,7 @@ module Lato
     ##
 
     belongs_to :lato_user, class_name: 'Lato::User', foreign_key: :lato_user_id, optional: true
+    belongs_to :inviter_lato_user, class_name: 'Lato::User', foreign_key: :inviter_lato_user_id, optional: true
 
     # Hooks
     ##
