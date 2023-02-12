@@ -251,7 +251,53 @@ module Lato
       assert @user.authenticate('New password')
     end
 
-    # TO-DO: Write tests about invitations!
+    # accept_invitation
+    ##
+
+    test "accept_invitation should response with not_found error if user not exists" do
+      get lato.authentication_accept_invitation_url(id: 9999999)
+      assert_response :not_found
+    end
+
+    test "accept_invitation should response with success" do
+      invitation = lato_invitations(:invitation)
+
+      get lato.authentication_accept_invitation_url(id: invitation.id, accepted_code: invitation.accepted_code)
+      assert_response :success
+    end
+
+    # accept_invitation_action
+    ##
+
+    test "accept_invitation_action should not create a new user without required params" do
+      invitation = lato_invitations(:invitation)
+
+      post lato.authentication_accept_invitation_action_url(id: invitation.id, accepted_code: invitation.accepted_code), params: {
+        user: {
+          email: ''
+        }
+      }
+      assert_response :unprocessable_entity
+    end
+
+    test "accept_invitation_action should create a new user" do
+      invitation = lato_invitations(:invitation)
+
+      post lato.authentication_accept_invitation_action_url(id: invitation.id, accepted_code: invitation.accepted_code), params: {
+        user: {
+          first_name: 'Gino',
+          last_name: 'Franco',
+          email: invitation.email,
+          password: 'Password1!',
+          password_confirmation: 'Password1!',
+          accepted_privacy_policy_version: true,
+          accepted_terms_and_conditions_version: true
+        }
+      }
+      assert_redirected_to lato.root_path
+
+      assert_lato_session_cookie
+    end
 
     private
 

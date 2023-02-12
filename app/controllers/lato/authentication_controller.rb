@@ -2,7 +2,7 @@ module Lato
   class AuthenticationController < ApplicationController
     before_action :not_authenticate_session, only: %i[signin signin_action signup signup_action accept_invitation accept_invitation_action]
     before_action :authenticate_session, only: %i[signout signout_action]
-  
+
     before_action :find_user, only: %i[verify_email verify_email_action update_password update_password_action]
     before_action :find_invitation, only: %i[accept_invitation accept_invitation_action]
 
