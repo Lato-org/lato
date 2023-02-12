@@ -95,6 +95,3 @@ $ ruby ./bin/publish.rb
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## To do
-- Gestione abbonamenti e acquisti singoli con integrazione Stripe

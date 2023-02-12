@@ -208,7 +208,7 @@ module Lato
         raise ActiveRecord::Rollback unless save && invitation.update(
           accepted_at: Time.now,
           lato_user_id: id
-        ) 
+        )
 
         true
       end
