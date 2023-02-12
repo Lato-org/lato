@@ -9,4 +9,12 @@ module ApplicationHelper
       end
     end
   end
+
+  def lato_index_dynamic_label(params)
+    'Custom column'
+  end
+
+  def lato_index_dynamic_value(params)
+    'Custom value'
+  end
 end

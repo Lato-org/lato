@@ -35,26 +35,4 @@ namespace :lato do
       FileUtils.copy(gem_concern_path, app_concern_path) unless File.exist? app_concern_path
     end
   end
-
-  namespace :bootstrap do
-    desc 'Generate SCSS variables for grays starting from a light color'
-    # Usage: rails lato:bootstrap:grays light=ffffff
-    task :grays do
-      light = ENV['light']
-      raise 'Light color not set' if light.blank?
-
-      rgb = light.match(/(..)(..)(..)$/).captures.map(&:hex)
-      r_range = rgb[0] / 9
-      g_range = rgb[1] / 9
-      b_range = rgb[2] / 9
-
-      puts rgb
-      (1..9).each do |level|
-        r_value = rgb[0] - r_range * (level - 1)
-        g_value = rgb[1] - g_range * (level - 1)
-        b_value = rgb[2] - b_range * (level - 1)
-        puts "$gray-#{level}00: rgb(#{r_value}, #{g_value}, #{b_value});"
-      end
-    end
-  end
 end
