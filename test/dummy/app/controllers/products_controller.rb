@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
       columns: columns,
       sortable_columns: sortable_columns,
       searchable_columns: searchable_columns,
+      default_sort_by: 'code|ASC',
       pagination: true
     )
   end
