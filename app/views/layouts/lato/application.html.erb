@@ -10,6 +10,8 @@
   <!-- TEMPORARY FIX: Popper js not working using bootstrap-gem -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 
+  <%= render 'layouts/lato/head_content' %>
+
   <%= stylesheet_link_tag Lato.config.assets_stylesheet_entry, media: "all" %>
   <%= javascript_importmap_tags %>
 </head>
@@ -43,5 +45,7 @@
   <%= render 'layouts/lato/aside-opener' %>
   <%= render 'layouts/lato/feedbacks' %>
   <%= render 'layouts/lato/action' %>
+
+  <%= render 'layouts/lato/foot_content' %>
 </body>
 </html>
