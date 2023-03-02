@@ -42,7 +42,9 @@
     <%= render 'layouts/lato/footer' %>
   </footer>
 
-  <%= render 'layouts/lato/aside-opener' %>
+  <% if @layout_sidebar %>
+    <%= render 'layouts/lato/aside-opener' %>
+  <% end %>
   <%= render 'layouts/lato/feedbacks' %>
   <%= render 'layouts/lato/action' %>
 
