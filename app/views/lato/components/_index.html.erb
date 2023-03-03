@@ -1,6 +1,7 @@
 <%
 
 collection_test_istance = collection.model.new
+collection_total = collection.respond_to?(:total_count) ? collection.total_count : collection.count
 
 %>
 
@@ -39,8 +40,8 @@ collection_test_istance = collection.model.new
 
       <ul class="list-group list-group-flush">
         <% collection.each do |member| %>
-          <li class="list-group-item p-0 border-0">
-            <table class="table table-bordered">
+          <li class="list-group-item p-2 border-0 bg-light mb-3 rounded">
+            <table class="table">
               <tbody>
                 <% columns.each do |column| %>
                   <tr>
@@ -67,7 +68,7 @@ collection_test_istance = collection.model.new
       </ul>
 
       <div class="d-flex flex-column align-items-center">
-        <span class="text-muted"><%= collection.count %> <%= I18n.t('lato.viewed_results').downcase %>
+        <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
         <% if collection.respond_to?(:total_pages) %>
           <div class="mt-3"><%= paginate collection %></div>
         <% end %>
@@ -131,7 +132,7 @@ collection_test_istance = collection.model.new
                   <% else %>
                     <div></div>
                   <% end %>
-                  <span class="text-muted"><%= collection.count %> <%= I18n.t('lato.viewed_results').downcase %>
+                  <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
                 </div>
               </td>
             </tr>

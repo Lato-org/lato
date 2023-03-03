@@ -20,7 +20,7 @@ en:
     update_password: Update password
     confirm: Confirm
     search_for: Search for
-    viewed_results: Results viewed
+    total_results: Total results
     account_informations: Account informations
     verify_email: Verify email
     email_verified: Verified

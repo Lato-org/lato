@@ -22,7 +22,7 @@ it:
     update_password: Aggiornamento password
     confirm: Conferma
     search_for: Ricerca per
-    viewed_results: Risultati visualizzati
+    total_results: Risultati totali
     account_informations: Informazioni account
     verify_email: Verifica email
     email_verified: Verificato
