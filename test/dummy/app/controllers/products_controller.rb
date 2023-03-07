@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to main_app.products_path, notice: 'Prodotto aggiunto correttamente' }
+        format.html { redirect_to main_app.products_update_path(@product), notice: 'Prodotto aggiunto correttamente' }
         format.json { render json: @product }
       else
         format.html { render :create, status: :unprocessable_entity }

@@ -6,6 +6,13 @@ import "bootstrap"
 import "controllers"
 
 // Close sidebar before page change with turbo
-document.addEventListener("turbo:before-visit", () => {
+document.addEventListener("turbo:before-visit", (e) => {
   document.body.classList.remove('aside-open')
+})
+
+// Close all boostrap modals before page change with turbo
+document.addEventListener("turbo:before-visit", (e) => {
+  document.querySelectorAll('.modal').forEach((modal) => {
+    modal.classList.remove('show')
+  })
 })
