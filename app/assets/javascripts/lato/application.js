@@ -11,6 +11,7 @@ document.addEventListener("turbo:before-visit", (e) => {
 })
 
 // Close all boostrap modals before page change with turbo
+// NOTE: This is not a good solution, but it seems to work
 document.addEventListener("turbo:before-visit", (e) => {
   document.querySelectorAll('.modal').forEach((modal) => {
     modal.classList.remove('show')
