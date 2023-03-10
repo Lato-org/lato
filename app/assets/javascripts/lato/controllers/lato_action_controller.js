@@ -81,7 +81,16 @@ export default class extends Controller {
     const index = this.getFreeModalIndex()
 
     if (options.turboFrame && options.turboFrame != '_top') {
-      this.modalBodyTargets[index].innerHTML = `<turbo-frame id="${options.turboFrame}"></turbo-frame>`
+      this.modalBodyTargets[index].innerHTML = `
+      <turbo-frame id="${options.turboFrame}">
+      <div class="placeholder-glow">
+        <span class="placeholder placeholder-lg col-12"></span>
+        <span class="placeholder placeholder-lg col-12"></span>
+        <span class="placeholder placeholder-lg col-12"></span>
+        <span class="placeholder placeholder-lg col-12"></span>
+      </div>
+      </turbo-frame>
+      `
 
       if (options.actionTitle) {
         this.modalTitleTargets[index].innerHTML = options.actionTitle
