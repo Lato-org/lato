@@ -84,10 +84,7 @@ export default class extends Controller {
       this.modalBodyTargets[index].innerHTML = `
       <turbo-frame id="${options.turboFrame}">
       <div class="placeholder-glow">
-        <span class="placeholder placeholder-lg col-12"></span>
-        <span class="placeholder placeholder-lg col-12"></span>
-        <span class="placeholder placeholder-lg col-12"></span>
-        <span class="placeholder placeholder-lg col-12"></span>
+        ${Array(options.actionRows).fill().map(() => `<span class="placeholder placeholder-lg col-12"></span>`).join('')}
       </div>
       </turbo-frame>
       `
@@ -115,6 +112,8 @@ export default class extends Controller {
     options.turboFrame = element.getAttribute('data-turbo-frame')
     options.actionTitle = element.getAttribute('data-action-title')
     options.actionSize = element.getAttribute('data-action-size')
+    options.actionRows = element.getAttribute('data-action-rows')
+    options.actionRows = options.actionRows ? parseInt(options.actionRows) : 4
     return options
   }
 
