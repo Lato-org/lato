@@ -24,8 +24,18 @@
 
 /** Custom style */
 
+body {
+  &.is-loaded {
+    main {
+      opacity: 1;
+    }
+  }
+}
+
 main {
   width: 100%;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
 }
 
 main, aside {
