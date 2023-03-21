@@ -18,7 +18,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    sleep(5)
     @product = Product.new
   end
 
