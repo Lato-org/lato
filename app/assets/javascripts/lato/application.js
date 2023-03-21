@@ -4,3 +4,50 @@ import "@hotwired/turbo-rails"
 import "bootstrap"
 // Import controllers (stimulus rails)
 import "controllers"
+
+/**
+ * Manage page transitions
+ */
+
+const PAGE_TRANSITION_TIME = 150
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded')
+
+  // add is-loaded class
+  document.body.classList.add('is-loaded')
+})
+
+document.addEventListener('turbo:load', () => {
+  console.log('turbo:load')
+
+  setTimeout(() => {
+    // add is-loaded class
+    document.body.classList.add('is-loaded')
+  }, PAGE_TRANSITION_TIME)
+})
+
+document.addEventListener('turbo:before-render', (e) => {
+  console.log('turbo:before-render')
+
+  e.preventDefault()
+
+  // remove is-loaded class
+  document.body.classList.remove('is-loaded')
+
+  // hide modals and make body scrollable
+  document.querySelectorAll('.modal.show').forEach((el) => {
+    el.classList.remove('show')
+    el.style.display = 'none'
+  })
+  document.querySelectorAll('.modal-backdrop').forEach((el) => {
+    el.remove()
+  })
+  document.body.classList.remove('modal-open')
+  document.body.style.paddingRight = ''
+  document.body.style.overflow = ''
+
+  setTimeout(() => {
+    e.detail.resume()
+  }, PAGE_TRANSITION_TIME)
+})
