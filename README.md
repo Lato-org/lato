@@ -84,6 +84,7 @@ $ git clone https://github.com/Lato-GAM/lato
 $ cd lato
 $ bundle
 $ rails db:migrate
+$ rails db:seed
 $ foreman start -f Procfile.dev
 ```
 
