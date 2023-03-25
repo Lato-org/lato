@@ -18,7 +18,8 @@ class ProductsController < ApplicationController
   end
 
   def index_autocomplete
-    
+    @products = Product.where('code ILIKE ?', "#{params[:search]}%").limit(10)
+    render json: @products.map { |product| { label: product.code, value: product.code } }
   end
 
   def create

@@ -11,7 +11,7 @@ product ||= Product.new
 
     <div class="mb-3">
       <%= lato_form_item_label form, :code %>
-      <%= lato_form_item_input_text form, :code, required: true, data: { controller: 'lato-input-autocomplete', lato_input_autocomplete_path_value: '' } %>
+      <%= lato_form_item_input_text form, :code, required: true, data: { controller: 'lato-input-autocomplete', lato_input_autocomplete_path_value: products_autocomplete_path } %>
     </div>
 
     <div class="d-flex justify-content-end">
