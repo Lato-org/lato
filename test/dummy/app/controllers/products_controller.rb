@@ -17,6 +17,10 @@ class ProductsController < ApplicationController
     )
   end
 
+  def index_autocomplete
+    
+  end
+
   def create
     @product = Product.new
   end
