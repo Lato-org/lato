@@ -9,7 +9,7 @@ Add required dependencies to your application's Gemfile:
 gem "importmap-rails" # NOTE: Probably already installed in default rails 7 project
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails" # NOTE: Probably already installed in default rails 7 project
+gem "turbo-rails", "1.3.3" # NOTE: Probably already installed in default rails 7 project | lock it to 1.3.3
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails" # NOTE: Probably already installed in default rails 7 project
