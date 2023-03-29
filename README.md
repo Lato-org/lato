@@ -96,3 +96,10 @@ $ ruby ./bin/publish.rb
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Problems with turbo-rails 1.4.0
+
+There is an issue with turbo-rails >= 1.4.0 related to the usage of redirects from a request with a turbo_frame not present on the redirect page.
+
+Problem: https://github.com/hotwired/turbo-rails/issues/440
+Possible solution: https://github.com/hotwired/turbo-rails/pull/367
