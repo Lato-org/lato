@@ -33,9 +33,17 @@ body {
 }
 
 main {
-  width: 100%;
+  width: calc(100% - 280px);
   opacity: 0;
   transition: opacity 0.15s ease-in-out;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+aside {
+  width: 280px;
 }
 
 main, aside {
