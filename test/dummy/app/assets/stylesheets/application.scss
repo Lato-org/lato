@@ -1,11 +1,36 @@
 // Override bootstrap variables
-$primary: #03256C;
-$secondary: #1768AC;
+$primary: #03256c;
+$secondary: #1768ac;
+$success: #007a34;
+$danger: #f50032;
+$warning: #ffcc00;
+$info: #0017ed;
+
+$gray-100: #ebeff4;
+$gray-200: #dde3e9;
+$gray-300: #d3dae1;
+$gray-400: #c3ccd5;
+$gray-500: #a4afba;
+$gray-600: #66727d;
+$gray-700: #454f58;
+$gray-800: #313a42;
+$gray-900: #1f262c;
 
 // Import lato css
 @import 'lato/application';
 
-// Add custom css
+// Make authentication pages with primary color
+.controller-authentication {
+  background-color: $primary;
+
+  header {
+    .navbar {
+      box-shadow: none !important;
+    }
+  }
+}
+
+// Add custom css for internal pages
 pre {
   border-radius: 15px;
   padding: 10px;
