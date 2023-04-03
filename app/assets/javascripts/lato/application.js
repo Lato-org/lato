@@ -35,6 +35,9 @@ document.addEventListener('turbo:before-render', (e) => {
   // remove is-loaded class
   document.body.classList.remove('is-loaded')
 
+  // hide aside menu (for mobile)
+  document.body.classList.remove('aside-open')
+
   // hide modals and make body scrollable
   document.querySelectorAll('.modal.show').forEach((el) => {
     el.classList.remove('show')
