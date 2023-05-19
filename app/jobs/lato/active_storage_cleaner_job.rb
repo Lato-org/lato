@@ -7,7 +7,7 @@ module Lato
       end
 
       # delete all empty folders in active storage local service (if exists)
-      if ActiveStorage::Blob.service.is_a?(ActiveStorage::Service::DiskService)
+      if ActiveStorage::Blob.service.class.to_s == 'ActiveStorage::Service::DiskService'
         storage_folder = ActiveStorage::Blob.service.root
         return unless File.directory?(storage_folder)
 
