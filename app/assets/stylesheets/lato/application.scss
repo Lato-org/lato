@@ -36,7 +36,7 @@ main {
   width: 100%;
   
   opacity: 0;
-  transition: opacity 0.15s ease-in-out;
+  transition: opacity 0.05s ease-in-out;
 
   &.layout_sidebar {
     width: calc(100% - 280px);

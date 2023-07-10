@@ -9,7 +9,7 @@ import "controllers"
  * Manage page transitions
  */
 
-const PAGE_TRANSITION_TIME = 150
+const PAGE_TRANSITION_TIME = 50
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded')
