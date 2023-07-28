@@ -1,5 +1,22 @@
 /** Import dependencies */
 
+$primary: #03256c !default;
+$secondary: #1768ac !default;
+$success: #007a34 !default;
+$danger: #f50032 !default;
+$warning: #ffcc00 !default;
+$info: #0017ed !default;
+
+$gray-100: #ebeff4 !default;
+$gray-200: #dde3e9 !default;
+$gray-300: #d3dae1 !default;
+$gray-400: #c3ccd5 !default;
+$gray-500: #a4afba !default;
+$gray-600: #66727d !default;
+$gray-700: #454f58 !default;
+$gray-800: #313a42 !default;
+$gray-900: #1f262c !default;
+
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 @import "bootstrap";
 
