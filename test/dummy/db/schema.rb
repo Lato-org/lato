@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_12_211748) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_23_165716) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -60,6 +60,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_211748) do
     t.index ["lato_user_id"], name: "index_lato_log_user_signins_on_lato_user_id"
   end
 
+  create_table "lato_log_user_signups", force: :cascade do |t|
+    t.string "ip_address"
+    t.string "user_agent"
+    t.integer "lato_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lato_user_id"], name: "index_lato_log_user_signups_on_lato_user_id"
+  end
+
   create_table "lato_operations", force: :cascade do |t|
     t.string "active_job_name"
     t.json "active_job_input"
@@ -100,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_211748) do
   add_foreign_key "lato_invitations", "lato_users"
   add_foreign_key "lato_invitations", "lato_users", column: "inviter_lato_user_id"
   add_foreign_key "lato_log_user_signins", "lato_users"
+  add_foreign_key "lato_log_user_signups", "lato_users"
   add_foreign_key "lato_operations", "lato_users"
   add_foreign_key "products", "lato_users"
 end

@@ -28,6 +28,7 @@ module Lato
     has_many :lato_invitations_as_inviter, class_name: 'Lato::Invitation', foreign_key: :inviter_lato_user_id, dependent: :nullify
 
     has_many :lato_log_user_signins, class_name: 'Lato::Log::UserSignin', foreign_key: :lato_user_id, dependent: :nullify
+    has_many :lato_log_user_signups, class_name: 'Lato::Log::UserSignup', foreign_key: :lato_user_id, dependent: :nullify
 
     # Hooks
     ##
@@ -66,6 +67,21 @@ module Lato
 
     # Operations
     ##
+
+    def signup(params = {})
+      return unless save
+
+      begin
+        lato_log_user_signups.create(
+          ip_address: params[:ip_address],
+          user_agent: params[:user_agent]
+        )
+      rescue StandardError => e
+        Rails.logger.error(e)
+      end
+
+      true
+    end
 
     def signin(params)
       self.email = params[:email]

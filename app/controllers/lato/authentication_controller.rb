@@ -48,7 +48,7 @@ module Lato
       @user = Lato::User.new(registration_params)
 
       respond_to do |format|
-        if @user.save
+        if @user.signup(ip_address: request.remote_ip, user_agent: request.user_agent)
           session_create(@user.id)
 
           format.html { redirect_to lato.root_path }
