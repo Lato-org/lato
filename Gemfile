@@ -30,6 +30,7 @@ gem "bootstrap"
 gem "sqlite3"
 gem "sprockets-rails"
 gem "sidekiq"
+gem "rails-erd"
 
 group :development do
   # Start debugger with binding.b [https://github.com/ruby/debug]
