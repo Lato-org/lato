@@ -1,5 +1,6 @@
 module Lato
   class AuthenticationController < ApplicationController
+    before_action :limit_requests, only: %i[signin_action signup_action accept_invitation_action recover_password_action update_password_action]
     before_action :not_authenticate_session, only: %i[signin signin_action signup signup_action accept_invitation accept_invitation_action]
     before_action :authenticate_session, only: %i[signout signout_action]
 
