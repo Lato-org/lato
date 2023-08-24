@@ -35,22 +35,6 @@ module Lato
       I18n.locale = @session.user.locale || I18n.default_locale
     end
 
-    # This method limit the number of requests for a specific action.
-    # Usage: before_action :limit_requests, only: %i[:action_name]
-    def limit_requests(limit = 10, time_window = 10.minutes)
-      cache_key = "Lato::ApplicationController.limit_requests/#{controller_name}/#{action_name}/#{request.remote_ip}"
-      attempts = Rails.cache.read(cache_key) || 0
-      
-      attempts += 1
-      Rails.cache.write(cache_key, attempts, expires_in: time_window)
-      return unless attempts >= limit
-
-      respond_to do |format|
-        format.html { render plain: "Too many requests, please wait #{time_window.to_i / 60} minutes to retry.", status: :too_many_requests }
-        format.json { render json: {}, status: :too_many_requests }
-      end
-    end
-
     def respond_to_with_not_found
       respond_to do |format|
         format.html { render plain: '', status: :not_found }

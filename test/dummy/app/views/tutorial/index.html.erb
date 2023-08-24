@@ -48,6 +48,26 @@ end
 </pre>
 </div>
 
+<h3>Limitare il numero di richieste</h3>
+
+<p>
+Per limitare il numero di richieste di una pagina puoi utilizzare il metodo <code>limit_request</code>:
+</p>
+
+<pre>
+class TutorialController < ApplicationController
+  before_action :authenticate_session
+  before_action :limit_request, only: %i[index]
+
+  def index; end
+end
+</pre>
+
+<p>
+Il metodo <code>limit_request</code> accetta due parametri: <code>limit</code> (default: 10) e <code>time_window</code> (default: 10.minutes).<br>
+I due parametri specificano il numero di richieste massime che un utente può effettuare in un determinato lasso di tempo.<br>
+</p>
+
 <p>
 <%= link_to 'Source code Lato::Sessionable', 'https://github.com/Lato-GAM/lato/blob/main/app/controllers/concerns/lato/sessionable.rb', target: '_blank' %>
 </p>
