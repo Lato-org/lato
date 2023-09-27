@@ -6,42 +6,13 @@ export default class extends Controller {
     'input'
   ]
 
+  // NOTE: This controller is free for be used in future form improvements.
+
   /**
    * Stimulus
    */
 
-  connect() {
-    this.originalFormData = this.loadFormData()
-    this.disableSubmit()
-  }
-
-  /**
-   * Functions
-   */
-
-  disableSubmit() {
-    // if (!this.hasSubmitTarget) return
-    // this.submitTarget.setAttribute('disabled', true)
-  }
-
-  enableSubmit() {
-    // if (!this.hasSubmitTarget) return
-    // this.submitTarget.removeAttribute('disabled')
-  }
-
-  loadFormData() {
-    const formData = {}
-
-    this.inputTargets.forEach((input) => {
-      if (input.type == 'checkbox') {
-        formData[input.name] = input.checked
-      } else {
-        formData[input.name] = input.value
-      }
-    })
-
-    return formData
-  }
+  connect() {}
 
   /**
    * Actions
@@ -49,12 +20,5 @@ export default class extends Controller {
 
   onInputChange(e) {
     e.target.classList.remove('is-invalid')
-
-    const formData = this.loadFormData()
-    if (JSON.stringify(formData) != JSON.stringify(this.originalFormData)) {
-      this.enableSubmit()
-    } else {
-      this.disableSubmit()
-    }
   }
 }
