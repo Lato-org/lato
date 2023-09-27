@@ -27,6 +27,7 @@ gem "bootstrap"
 
 # / LATO DEPENDENCIES
 
+gem "puma"
 gem "sqlite3"
 gem "sprockets-rails"
 gem "sidekiq"

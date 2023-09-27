@@ -20,13 +20,13 @@ export default class extends Controller {
    */
 
   disableSubmit() {
-    if (!this.hasSubmitTarget) return
-    this.submitTarget.setAttribute('disabled', true)
+    // if (!this.hasSubmitTarget) return
+    // this.submitTarget.setAttribute('disabled', true)
   }
 
   enableSubmit() {
-    if (!this.hasSubmitTarget) return
-    this.submitTarget.removeAttribute('disabled')
+    // if (!this.hasSubmitTarget) return
+    // this.submitTarget.removeAttribute('disabled')
   }
 
   loadFormData() {

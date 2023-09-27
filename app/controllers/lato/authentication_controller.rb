@@ -6,7 +6,7 @@ module Lato
 
     before_action :find_user, only: %i[verify_email verify_email_action update_password update_password_action]
     before_action :find_invitation, only: %i[accept_invitation accept_invitation_action]
-
+    
     before_action :lock_signup_if_disabled, only: %i[signup signup_action]
     before_action :lock_recover_password_if_disabled, only: %i[recover_password recover_password_action update_password update_password_action]
 
