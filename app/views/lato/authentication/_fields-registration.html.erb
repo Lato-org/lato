@@ -32,6 +32,6 @@ email_readonly ||= false
 </div>
 
 <div class="mb-3 text-muted" style="font-size: 14px;">
-  <%= lato_form_item_input_check form, :accepted_privacy_policy_version, I18n.t('lato.privacy_policy_checkbox', link: link_to(I18n.t('lato.privacy_policy'), Lato.config.legal_privacy_policy_url)), required: true %>
-  <%= lato_form_item_input_check form, :accepted_terms_and_conditions_version, I18n.t('lato.terms_and_conditions_checkbox', link: link_to(I18n.t('lato.terms_and_conditions'), Lato.config.legal_terms_and_conditions_url)), required: true %>
+  <%= lato_form_item_input_check form, :accepted_privacy_policy_version, I18n.t('lato.privacy_policy_checkbox', link: link_to(I18n.t('lato.privacy_policy'), Lato.config.legal_privacy_policy_url), target: '_blank'), required: true %>
+  <%= lato_form_item_input_check form, :accepted_terms_and_conditions_version, I18n.t('lato.terms_and_conditions_checkbox', link: link_to(I18n.t('lato.terms_and_conditions'), Lato.config.legal_terms_and_conditions_url), target: '_blank'), required: true %>
 </div>
