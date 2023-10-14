@@ -29,6 +29,15 @@
       box-shadow: none !important;
     }
   }
+
+  .footer {
+    background-color: transparent !important;
+    border-width: 0 !important;
+
+    a {
+      color: $white !important;
+    }
+  }
 }
 
 // Add custom css for internal pages
