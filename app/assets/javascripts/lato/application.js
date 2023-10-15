@@ -6,6 +6,16 @@ import "bootstrap"
 import "controllers"
 
 /**
+ * Fix form inside turbo-frame tag with redirect
+ * https://github.com/hotwired/turbo-rails/issues/440
+ */
+
+document.addEventListener("turbo:frame-missing", event => {
+  event.preventDefault()
+  event.detail.visit(event.detail.response)
+})
+
+/**
  * Manage page transitions
  */
 

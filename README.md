@@ -9,7 +9,7 @@ Add required dependencies to your application's Gemfile:
 gem "importmap-rails" # NOTE: Probably already installed in default rails 7 project
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails", "1.3.3" # NOTE: Probably already installed in default rails 7 project | lock it to 1.3.3
+gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails" # NOTE: Probably already installed in default rails 7 project
@@ -97,9 +97,3 @@ $ ruby ./bin/publish.rb
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-## Problems with turbo-rails 1.4.0
-
-There is an issue with turbo-rails >= 1.4.0 related to the usage of redirects from a request with a turbo_frame not present on the redirect page.
-
-Problem: https://github.com/hotwired/turbo-rails/issues/440
-Possible solution: https://github.com/hotwired/turbo-rails/pull/367
