@@ -3,6 +3,7 @@ require "test_helper"
 module Lato
   class AccountControllerTest < ActionDispatch::IntegrationTest
     setup do
+      Rails.cache.clear
       @user = lato_users(:user)
     end
 
@@ -87,15 +88,15 @@ module Lato
       assert_redirected_to lato.root_path
     end
 
-    test "request_verify_email_action should send an email to user and update temp data on redis" do
+    test "request_verify_email_action should send an email to user and update temp data on cache" do
       authenticate_user
 
       patch lato.account_request_verify_email_action_url
       assert_redirected_to lato.account_path
 
       @user.reload
-      assert_not_nil @user.email_verification_code
-      assert_not_nil @user.email_verification_semaphore
+      assert_not_nil @user.c_email_verification_code
+      assert_not_nil @user.c_email_verification_semaphore
       assert_equal ActionMailer::Base.deliveries.count, 1
     end
 

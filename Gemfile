@@ -15,10 +15,6 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
-# Use Kredis as Redis interface [https://github.com/rails/kredis]
-# NOTE: Installation -> https://github.com/rails/kredis#installation
-gem "kredis"
-
 # Use Sass to process CSS
 gem "sassc-rails"
 

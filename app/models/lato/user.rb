@@ -4,13 +4,6 @@ module Lato
 
     has_secure_password
 
-    # Kredis
-    ##
-
-    kredis_boolean :email_verification_semaphore, expires_in: 2.minutes
-    kredis_string :email_verification_code, expires_in: 30.minutes
-    kredis_string :password_update_code, expires_in: 30.minutes
-
     # Validations
     ##
 
@@ -113,7 +106,7 @@ module Lato
     end
 
     def request_verify_email
-      if email_verification_semaphore.value
+      if c_email_verification_semaphore
         errors.add(:base, :email_verification_limit)
         return
       end
@@ -125,25 +118,27 @@ module Lato
         return
       end
 
-      email_verification_code.value = code
-      email_verification_semaphore.value = true
+      c_email_verification_code(code)
+      c_email_verification_semaphore(true)
 
       true
     end
 
     def verify_email(params)
-      unless email_verification_code.value
+      email_verification_code = c_email_verification_code
+
+      if email_verification_code.blank?
         errors.add(:base, :email_verification_code_expired)
         return
       end
 
-      unless email_verification_code.value == params[:code]
+      unless email_verification_code == params[:code]
         errors.add(:base, :email_verification_code_invalid)
         return
       end
 
-      email_verification_code.value = nil
-      email_verification_semaphore.value = nil
+      c_email_verification_code('')
+      c_email_verification_semaphore(false)
 
       update_column(:email_verified_at, Time.now)
       true
@@ -166,23 +161,25 @@ module Lato
       self.id = user.id
       reload
 
-      password_update_code.value = code
+      c_password_update_code(code)
 
       true
     end
 
     def update_password(params)
-      unless password_update_code.value
+      password_update_code = c_password_update_code
+
+      if password_update_code.blank?
         errors.add(:base, :password_update_code_expired)
         return
       end
 
-      unless password_update_code.value == params[:code]
+      unless password_update_code == params[:code]
         errors.add(:base, :password_update_code_invalid)
         return
       end
 
-      password_update_code.value = nil
+      c_password_update_code('')
 
       update(params.permit(:password, :password_confirmation))
     end
@@ -229,6 +226,33 @@ module Lato
 
         true
       end
+    end
+
+    # Cache
+    ##
+
+    def c_email_verification_semaphore(value = nil)
+      cache_key = "Lato::User/c_email_verification_semaphore/#{id}"
+      return Rails.cache.read(cache_key) if value.nil?
+
+      Rails.cache.write(cache_key, value, expires_in: 2.minutes)
+      value
+    end
+
+    def c_email_verification_code(value = nil)
+      cache_key = "Lato::User/c_email_verification_code/#{id}"
+      return Rails.cache.read(cache_key) if value.nil?
+
+      Rails.cache.write(cache_key, value, expires_in: 30.minutes)
+      value
+    end
+
+    def c_password_update_code(value = nil)
+      cache_key = "Lato::User/c_password_update_code/#{id}"
+      return Rails.cache.read(cache_key) if value.nil?
+
+      Rails.cache.write(cache_key, value, expires_in: 30.minutes)
+      value
     end
   end
 end
