@@ -94,8 +94,8 @@ module Lato
       assert_redirected_to lato.account_path
 
       @user.reload
-      assert_not_nil @user.email_verification_code
-      assert_not_nil @user.email_verification_semaphore
+      assert_not_nil @user.c_email_verification_code
+      assert_not_nil @user.c_email_verification_semaphore
       assert_equal ActionMailer::Base.deliveries.count, 1
     end
 

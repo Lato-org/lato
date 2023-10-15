@@ -143,7 +143,7 @@ module Lato
     end
 
     test "verify_email_action should response with unprocessable_entity error if code is not valid" do
-      @user.email_verification_code.value = nil
+      @user.c_email_verification_code('')
 
       patch lato.authentication_verify_email_action_url(id: @user.id), params: {
         user: {
@@ -155,7 +155,7 @@ module Lato
 
     test "verify_email_action should update email_verified_at" do
       @user.update_columns(email_verified_at: nil)
-      @user.email_verification_code.value = 'valid_code'
+      @user.c_email_verification_code('valid_code')
 
       patch lato.authentication_verify_email_action_url(id: @user.id), params: {
         user: {
@@ -189,7 +189,7 @@ module Lato
     end
 
     test "recover_password_action should generate an password_update_code and send it via email to user" do
-      @user.password_update_code.value = nil
+      @user.c_password_update_code('')
 
       post lato.authentication_recover_password_action_url, params: {
         user: {
@@ -199,7 +199,7 @@ module Lato
       assert_redirected_to lato.authentication_update_password_url(id: @user.id)
 
       @user.reload
-      assert_not_nil @user.password_update_code.value
+      assert_not_nil @user.c_password_update_code
       assert_equal ActionMailer::Base.deliveries.count, 1
     end
 
@@ -225,7 +225,7 @@ module Lato
     end
 
     test "update_password_action should response with unprocessable_entity error if code is not valid" do
-      @user.password_update_code.value = nil
+      @user.c_password_update_code('')
 
       patch lato.authentication_update_password_action_url(id: @user.id), params: {
         user: {
@@ -236,7 +236,7 @@ module Lato
     end
 
     test "update_password_action should update user password" do
-      @user.password_update_code.value = 'valid_code'
+      @user.c_password_update_code('valid_code')
 
       patch lato.authentication_update_password_action_url(id: @user.id), params: {
         user: {

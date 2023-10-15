@@ -2,11 +2,6 @@ module Lato
   class Invitation < ApplicationRecord
     attr_accessor :actions
 
-    # Kredis
-    ##
-
-    kredis_boolean :email_invite_semaphore, expires_in: 2.minutes
-
     # Validations
     ##
 
@@ -64,7 +59,7 @@ module Lato
         return false
       end
 
-      if email_invite_semaphore.value
+      if c_email_invite_semaphore
         errors.add(:base, :email_sending_limit)
         return false
       end
@@ -75,9 +70,21 @@ module Lato
         return false
       end
 
-      email_invite_semaphore.value = true
+      c_email_invite_semaphore(true)
 
       true
+    end
+
+
+    # Cache
+    ##
+
+    def c_email_invite_semaphore(value = nil)
+      cache_key = "Lato::Invitation/c_email_invite_semaphore/#{id}"
+      return Rails.cache.read(cache_key) if value.nil?
+
+      Rails.cache.write(cache_key, value, expires_in: 2.minutes)
+      value
     end
   end
 end
