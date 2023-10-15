@@ -71,8 +71,6 @@ end
 
 ## Development
 
-Be sure to have Redis locally installed and running.
-
 Clone repository, install dependencies, run migrations and start:
 
 ```shell

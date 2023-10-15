@@ -119,7 +119,7 @@ module Lato
       patch lato.account_request_verify_email_action_url
       assert_redirected_to lato.account_path
 
-      # NOTE: second send test not works because Timecop has no way to move time on redis
+      # NOTE: second send test not works because Timecop has no way to move time on cache
 
       # # second send
       # Timecop.freeze(3.minutes.from_now) do
