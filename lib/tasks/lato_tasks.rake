@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'json'
 
 namespace :lato do
   namespace :install do
@@ -50,7 +51,7 @@ namespace :lato do
           background_color: "#000000",
           icons: []
         }
-        File.open(manifest_path, 'w') { |f| f.write(manifest.to_json) }
+        File.open(manifest_path, 'w') { |f| f.write(JSON.pretty_generate(manifest)) }
       end
 
       # Generate sample service-worker.js file in public folder
@@ -59,18 +60,18 @@ namespace :lato do
       service_worker_path = Rails.root.join('public', 'service-worker.js')
       unless File.exist? service_worker_path
         service_worker = <<-JS
-        function onInstall(event) {
-          console.log('[Serviceworker]', "Installing!", event);
-        }
-        function onActivate(event) {
-          console.log('[Serviceworker]', "Activating!", event);
-        }
-        function onFetch(event) {
-          console.log('[Serviceworker]', "Fetching!", event);
-        }
-        self.addEventListener('install', onInstall);
-        self.addEventListener('activate', onActivate);
-        self.addEventListener('fetch', onFetch);
+function onInstall(event) {
+  console.log('[Serviceworker]', "Installing!", event);
+}
+function onActivate(event) {
+  console.log('[Serviceworker]', "Activating!", event);
+}
+function onFetch(event) {
+  console.log('[Serviceworker]', "Fetching!", event);
+}
+self.addEventListener('install', onInstall);
+self.addEventListener('activate', onActivate);
+self.addEventListener('fetch', onFetch);
         JS
         File.open(service_worker_path, 'w') { |f| f.write(service_worker) }
       end
@@ -138,7 +139,7 @@ namespace :lato do
         }
       end
       FileUtils.rm(manifest_path) if File.exist? manifest_path
-      File.open(manifest_path, 'w') { |f| f.write(manifest.to_json) }
+      File.open(manifest_path, 'w') { |f| f.write(JSON.pretty_generate(manifest)) }
     end
 
     desc "Generate favicon.ico from a single icon.png file (512x512) that should be placed inside 'public' folder"
