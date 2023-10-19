@@ -6,6 +6,20 @@ import "bootstrap"
 import "controllers"
 
 /**
+ * Include service worker
+ */
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register("/service-worker.js", { scope: "/" })
+  .then(() => navigator.serviceWorker.ready)
+  .then((registration) => {
+    const event = new CustomEvent("service-worker:ready", { detail: registration })
+    document.dispatchEvent(event)
+  })
+  .then(() => console.log("[App]", "Service worker registered! -> listen to 'service-worker:ready' document event to get the registration object"))
+}
+
+/**
  * Fix form inside turbo-frame tag with redirect
  * https://github.com/hotwired/turbo-rails/issues/440
  */
@@ -22,15 +36,11 @@ document.addEventListener("turbo:frame-missing", event => {
 const PAGE_TRANSITION_TIME = 50
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOMContentLoaded')
-
   // add is-loaded class
   document.body.classList.add('is-loaded')
 })
 
 document.addEventListener('turbo:load', () => {
-  console.log('turbo:load')
-
   setTimeout(() => {
     // add is-loaded class
     document.body.classList.add('is-loaded')

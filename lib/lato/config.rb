@@ -4,7 +4,7 @@ module Lato
   ##
   class Config
     # Applicaction configs
-    attr_accessor :application_title, :application_version, :application_company_name, :application_company_url
+    attr_accessor :application_title, :application_version, :application_company_name, :application_company_url, :application_brand_color
 
     # Session configs
     attr_accessor :session_lifetime, :session_root_path
@@ -26,6 +26,7 @@ module Lato
       @application_version = '1.0.0'
       @application_company_name = 'Lato Team'
       @application_company_url = 'https://github.com/Lato-GAM'
+      @application_brand_color = '#03256c'
 
       @auth_disable_signup = false
       @auth_disable_recover_password = false

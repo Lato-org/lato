@@ -4,4 +4,4 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "lato/application"
 
-console.log('Application JS!')
+console.log('Main application JS!')
