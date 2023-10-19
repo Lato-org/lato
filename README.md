@@ -72,7 +72,7 @@ end
 ### Extra tasks
 Lato integrates by default a basic PWAs manifest and service worker. To re-generate them with all required assets follow these steps:
 
-1. Complete the configuration of lato on a custom initializer (see [Configuration](https://github.com/lato-gam/lato/blob/main/lib/lato/config.rb) options for more details)
+1. Complete the configuration of lato on a custom initializer (see [configuration](https://github.com/lato-gam/lato/blob/main/lib/lato/config.rb) options for more details)
 2. Add an icon.png file on **public/icon.png** with minimum size of 512x512px
 3. Run the following commands:
 
