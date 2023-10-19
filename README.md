@@ -9,7 +9,7 @@ Add required dependencies to your application's Gemfile:
 gem "importmap-rails" # NOTE: Probably already installed in default rails 7 project
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem "turbo-rails" # NOTE: Probably already installed in default rails 7 project
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails" # NOTE: Probably already installed in default rails 7 project
@@ -67,6 +67,18 @@ module MyApplication
   end
 end
 
+```
+
+### Extra tasks
+Lato integrates by default a basic PWAs manifest and service worker. To re-generate them with all required assets follow these steps:
+
+1. Complete the configuration of lato on a custom initializer (see [Configuration](https://github.com/lato-gam/lato/blob/main/lib/lato/config.rb) options for more details)
+2. Add an icon.png file on **public/icon.png** with minimum size of 512x512px
+3. Run the following commands:
+
+```bash
+$ rails lato:generate:favicon
+$ rails lato:generate:pwa
 ```
 
 ## Development

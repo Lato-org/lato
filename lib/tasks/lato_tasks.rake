@@ -88,11 +88,11 @@ namespace :lato do
         return
       end
 
-      # install gem mini_magick
-      system('gem install mini_magick')
-      # check if gem mini_magick is installed
-      unless Gem::Specification.find_by_name('mini_magick')
-        puts 'ERROR: mini_magick gem not found, please install it manually with "gem install mini_magick"'
+      # check MiniMagick is installed
+      begin
+        require 'mini_magick'
+      rescue LoadError
+        puts 'ERROR: mini_magick gem not found, please add it to your Gemfile'
         return
       end
 
@@ -111,9 +111,10 @@ namespace :lato do
       sizes = [16, 32, 48, 72, 96, 144, 152, 192, 384, 512]
       sizes.each do |size|
         file_path = "#{icons_path}/icon_#{size}x#{size}.png"
+        file_image = MiniMagick::Image.open(icon_path)
         FileUtils.rm(file_path) if File.exist? file_path
-        image.resize "#{size}x#{size}"
-        image.write file_path
+        file_image.resize "#{size}x#{size}"
+        file_image.write file_path
       end
 
       # create manifest.json
@@ -126,7 +127,7 @@ namespace :lato do
         display: 'standalone',
         orientation: 'portrait',
         theme_color: Lato.config.application_brand_color,
-        background_color: Lato.config.application_background_color,
+        background_color: Lato.config.application_brand_color,
         icons: []
       }
       sizes.each do |size|
@@ -138,6 +139,39 @@ namespace :lato do
       end
       FileUtils.rm(manifest_path) if File.exist? manifest_path
       File.open(manifest_path, 'w') { |f| f.write(manifest.to_json) }
+    end
+
+    desc "Generate favicon.ico from a single icon.png file (512x512) that should be placed inside 'public' folder"
+    # Usage: rails lato:generate:favicon
+    task :favicon do
+      # check if icon.png exists
+      icon_path = Rails.root.join('public', 'icon.png')
+      unless File.exist? icon_path
+        puts 'ERROR: icon.png file not found inside public folder'
+        return
+      end
+
+      # check MiniMagick is installed
+      begin
+        require 'mini_magick'
+      rescue LoadError
+        puts 'ERROR: mini_magick gem not found, please add it to your Gemfile'
+        return
+      end
+
+      # be sure icon.png is min 512x512
+      image = MiniMagick::Image.open(icon_path)
+      if image.width < 512 || image.height < 512 || image.width != image.height
+        puts 'ERROR: icon.png image size is not valid, it should be square and min 512x512'
+        return
+      end
+
+      # create favicon.ico
+      file_path = Rails.root.join('public', 'favicon.ico')
+      file_image = MiniMagick::Image.open(icon_path)
+      FileUtils.rm(file_path) if File.exist? file_path
+      file_image.resize '48x48'
+      file_image.write file_path
     end
   end
 end
