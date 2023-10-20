@@ -81,7 +81,7 @@ self.addEventListener('fetch', onFetch);
   namespace :generate do
     desc "Generate PWA icons from a single icon.png file (512x512) that should be placed inside 'public' folder"
     # Usage: rails lato:generate:pwa
-    task :pwa do
+    task pwa: :environment do
       # check if icon.png exists
       icon_path = Rails.root.join('public', 'icon.png')
       unless File.exist? icon_path
