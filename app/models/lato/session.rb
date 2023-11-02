@@ -26,6 +26,10 @@ module Lato
       @session&.dig(:user_id)
     end
 
+    def get(key)
+      @session&.dig(key)
+    end
+
     # Class
     ##
 
