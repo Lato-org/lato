@@ -19,7 +19,7 @@ module Lato
     ##
 
     def user
-      @user ||= Lato::User.find_by(id: @session[:user_id])
+      @user ||= Lato::User.find_by(id: user_id)
     end
 
     def user_id
