@@ -1,0 +1,16 @@
+<div class="w-100 h-100 d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 54px - 2rem)">
+  <div class="card w-100" style="max-width: 600px">
+    <div class="card-header">
+      <h1 class="fs-3 mb-0 text-center">Internal server error</h1>
+    </div>
+    <div class="card-body text-center">
+      <p class="lead">Please try again later or contact the administrator.</p>
+      <a href="<%= lato.root_path %>" class="btn btn-primary">Go to homepage</a>
+    </div>
+    <% if @exception %>
+      <div class="card-body bg-light text-center">
+        <%= @exception.message %>
+      </div>
+    <% end %>
+  </div>
+</div>

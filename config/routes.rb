@@ -1,5 +1,7 @@
 Lato::Engine.routes.draw do
   root 'application#index'
+  get 'not_found', to: 'application#not_found', as: :not_found
+  get 'error', to: 'application#error', as: :error
 
   post '/switch_locale/:locale', to: 'application#switch_locale', as: 'switch_locale'
 
