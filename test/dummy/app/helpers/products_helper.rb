@@ -8,7 +8,7 @@ module ProductsHelper
   end
 
   def product_lato_user_id(product)
-    lato_data_user(product.lato_user.full_name)
+    lato_data_user(product.lato_user.full_name, product.lato_user.gravatar_image_url(50))
   end
 
   def product_lifetime(product)

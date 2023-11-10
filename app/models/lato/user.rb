@@ -58,6 +58,10 @@ module Lato
       "#{last_name} #{first_name}"
     end
 
+    def gravatar_image_url(size = 200)
+      @gravatar_image_url ||= "https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=#{size}"
+    end
+
     # Operations
     ##
 
