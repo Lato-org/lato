@@ -1,5 +1,6 @@
 Lato::Engine.routes.draw do
   root 'application#index'
+  get 'offline', to: 'application#offline', as: :offline
   get 'not_found', to: 'application#not_found', as: :not_found
   get 'error', to: 'application#error', as: :error
 

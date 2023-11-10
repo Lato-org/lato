@@ -14,6 +14,10 @@ module Lato
       redirect_to @session.valid? ? session_root_path : lato.authentication_signin_path
     end
 
+    def offline
+      respond_to_with_offline
+    end
+
     def not_found
       respond_to_with_not_found
     end
@@ -52,11 +56,19 @@ module Lato
       end
     end
 
+    def respond_to_with_offline
+      hide_sidebar
+      respond_to do |format|
+        format.html { render 'lato/errors/offline', status: :service_unavailable }
+        format.json { render json: { error: 'Network not available' }, status: :service_unavailable }
+      end
+    end
+
     def respond_to_with_not_found
       hide_sidebar
       respond_to do |format|
         format.html { render 'lato/errors/not_found', status: :not_found }
-        format.json { render json: {}, status: :not_found }
+        format.json { render json: { error: 'Resource not found' }, status: :not_found }
       end
     end
 
