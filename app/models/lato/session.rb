@@ -43,6 +43,9 @@ module Lato
       return nil if session.blank?
 
       (session.is_a?(String) ? JSON.parse(session) : session).with_indifferent_access
+    rescue StandardError => e
+      Rails.logger.error "Lato::Session.parse_session: #{e.message}"
+      nil
     end
   end
 end
