@@ -15,10 +15,15 @@ export default class extends Controller {
   connect() {}
 
   /**
-   * Actions
+   * Events
    */
 
   onInputChange(e) {
     e.target.classList.remove('is-invalid')
+  }
+
+  // NOTE: You can use this method to submit the form from outside the form or from custom DOM actions.
+  submit() {
+    this.element.submit()
   }
 }
