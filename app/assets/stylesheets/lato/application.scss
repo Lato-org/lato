@@ -69,8 +69,8 @@ aside {
 }
 
 main, aside {
-  margin-top: 54px;
-  min-height: calc(100vh - 54px);
+  padding-top: 54px;
+  min-height: 100vh;
 }
 
 .aside-opener {
@@ -83,8 +83,8 @@ main, aside {
     bottom: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     min-height: 0;
-    height: calc(100% - 54px);
     z-index: 99;
     transform: translateX(-100%);
     transition: transform 0.35s ease-in-out;
