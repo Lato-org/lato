@@ -57,6 +57,8 @@ class TutorialController < ApplicationController
     show_sidebar # visualizza la sidebar
     active_sidebar(:tutorial) # imposta l'active sulla voce della sidebar con chiave :tutorial
     active_navbar(:tutorial) # imposta l'active sulla voce della navbar con chiave :tutorial
+    page_title('Custom title') # imposta il titolo della pagina
+    page_class('custom-class') # aggiunge una classe nel body della pagina
   end
 end
 </pre>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no">
-  <title><%= Lato.config.application_title %></title>
+  <title><%= @layout_page_title %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -16,7 +16,7 @@
   <%= javascript_importmap_tags %>
 </head>
 <body
-  class="controller-<%= controller_name %> action-<%= action_name %>"
+  class="controller-<%= controller_name %> action-<%= action_name %> <%= @layout_body_classes.join(' ') %>"
   data-controller="lato-action"
 >
   <header>

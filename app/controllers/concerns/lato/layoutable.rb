@@ -5,6 +5,9 @@ module Lato
     included do
       before_action do
         show_sidebar
+
+        @layout_page_title = Lato.config.application_title
+        @layout_body_classes = []
       end
     end
 
@@ -22,6 +25,18 @@ module Lato
 
     def active_navbar(key)
       @navbar_key = key
+    end
+
+    def page_title(title)
+      @layout_page_title = title
+    end
+
+    def page_class(class_name)
+      @layout_body_classes << class_name
+    end
+
+    def page_classes(classes)
+      @layout_body_classes = classes
     end
   end
 end
