@@ -7,11 +7,15 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <% # TEMPORARY FIX: Popper js not working using bootstrap-gem %>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <% if response.status >= 400 %>
+    <meta name="turbo-visit-control" content="reload">
+  <% end %>
 
   <%= render 'layouts/lato/head_content' %>
 
+  <% # TEMPORARY FIX: Popper js not working using bootstrap-gem %>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  
   <%= stylesheet_link_tag Lato.config.assets_stylesheet_entry, media: "all" %>
   <%= javascript_importmap_tags %>
 </head>
