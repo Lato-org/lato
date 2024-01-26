@@ -1,5 +1,10 @@
 # Lato
-Basic engine for all Lato projects.
+Lato is a Rails Engine for developing web applications.
+
+This gem includes:
+- User management with full authentication (signin, signup, recover password);
+- Web panel UI (Navbar, Sidebar, Body) with Bootstrap;
+- Some UI components ready to use integrated with Rails.
 
 ## Installation
 Add required dependencies to your application's Gemfile:
