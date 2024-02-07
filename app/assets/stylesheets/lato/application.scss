@@ -91,6 +91,7 @@ main, aside {
 
     > div {
       width: 280px;
+      overflow-y: auto;
     }
 
     .aside-open & {

@@ -29,3 +29,11 @@
 <%= lato_sidebar_nav_item :products, main_app.products_path do %>
   <i class="bi bi-list me-2"></i> Prodotti (esempio CRUD)
 <% end %>
+
+<% 20.times do |index| %>
+
+<%= lato_sidebar_nav_item :example, '#' do %>
+  <i class="bi bi-list me-2"></i> Esempio <%= index + 1 %>
+<% end %>
+
+<% end %>
