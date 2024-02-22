@@ -10,14 +10,13 @@ user ||= Lato::User.new
     <%= lato_form_errors user, class: %w[mb-3] %>
 
     <% if user.web3_connection_completed? %>
-      <div class="alert alert-light mb-0">
-        <h4 class="alert-heading">Connection completed</h4>
-        <p>
-          Your are connected with the following address:
-        </p>
-        <div class="input-group">
-          <input type="text" class="form-control" value="<%= user.web3_address %>" readonly>
-          <%= lato_form_submit form, 'Disconnect', class: %w[btn-danger] %>
+      <div class="row">
+        <div class="col col-12">
+          <%= lato_form_item_label form, :web3_address, 'You are connected to the following address' %>
+          <div class="input-group">
+            <%= lato_form_item_input_text form, :web3_address, required: true, readonly: true %>
+            <%= lato_form_submit form, 'Disconnect', class: %w[btn-danger] %>
+          </div>
         </div>
       </div>
     <% elsif user.web3_connection_started? %>
