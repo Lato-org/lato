@@ -21,6 +21,9 @@ module Lato
     # Legal settings
     attr_accessor :legal_privacy_policy_url, :legal_privacy_policy_version, :legal_terms_and_conditions_url, :legal_terms_and_conditions_version
 
+    # Web3 connection
+    attr_accessor :web3_connection
+
     def initialize
       @application_title = 'Lato'
       @application_version = '1.0.0'
@@ -42,6 +45,8 @@ module Lato
       @legal_privacy_policy_version = 1
       @legal_terms_and_conditions_url = '#'
       @legal_terms_and_conditions_version = 1
+
+      @web3_connection = false
     end
   end
 end

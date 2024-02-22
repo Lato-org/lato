@@ -17,6 +17,10 @@ module Lato
       end
     end
 
+    def update_web3_action
+      # TODO...
+    end
+
     def request_verify_email_action
       respond_to do |format|
         if @session.user.request_verify_email

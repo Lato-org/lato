@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "bootstrap"
   spec.add_dependency "kaminari"
   spec.add_dependency "browser"
+  spec.add_dependency "eth"
 end

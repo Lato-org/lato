@@ -1,0 +1,41 @@
+<%
+
+user ||= Lato::User.new
+
+%>
+
+<%= turbo_frame_tag 'account_form-web3' do %>
+  <%= form_with model: user, url: '#', id: 'account_form-web3__form', data: { turbo_frame: '_self', controller: 'lato-form' } do |form| %>
+    <%= lato_form_notices class: %w[mb-3] %>
+    <%= lato_form_errors user, class: %w[mb-3] %>
+
+    <div class="row">
+      <div class="col col-12 mb-3">
+        <%= lato_form_item_label form, :web3_address %>
+
+        <div class="input-group mb-3">
+          <%= lato_form_item_input_text form, :web3_address, required: true, disabled: true, placeholder: 'Press the button to connect your wallet', id: 'account_form-web3__input' %>
+          <button class="btn" style="background-color: #F5841F; color: #fff;" type="button" id="account_form-web3__button">Connect wallet</button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <script>
+    const form = document.getElementById('account_form-web3__form');
+    const input = document.getElementById('account_form-web3__input');
+    const button = document.getElementById('account_form-web3__button');
+
+    if (typeof window.ethereum !== 'undefined') {
+      button.addEventListener('click', async () => {
+        // request accounts from ethereum provider
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+        // populate and submit form
+        input.value = accounts[0]
+        form.submit()
+      })
+    } else {
+      button.setAttribute('disabled', true)
+    }
+  </script>
+<% end %>

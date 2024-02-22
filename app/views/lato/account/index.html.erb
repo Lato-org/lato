@@ -12,13 +12,13 @@
   </div>
 </div>
 
-<% if false %>
+<% if Lato.config.web3_connection %>
 <div class="card mb-4">
   <div class="card-header">
-    <h2 class="fs-4 mb-0">Dati di fatturazione</h2>
+    <h2 class="fs-4 mb-0">Web3 connection</h2>
   </div>
   <div class="card-body">
-
+    <%= render 'lato/account/form-web3', user: @session.user %>
   </div>
 </div>
 <% end %>
