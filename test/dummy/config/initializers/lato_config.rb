@@ -7,5 +7,5 @@ Lato.configure do |config|
   # config.legal_terms_and_conditions_version = 4
   # config.legal_privacy_policy_version = 4
 
-  config.web3_connection = true
+  # config.web3_connection = true
 end

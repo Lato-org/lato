@@ -18,6 +18,8 @@ module Lato
     end
 
     def update_web3_action
+      return respond_to_with_not_found unless Lato.config.web3_connection
+
       if @session.user.web3_connection_completed?
         respond_to do |format|
           if @session.user.remove_web3_connection
