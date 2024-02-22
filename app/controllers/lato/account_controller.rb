@@ -18,7 +18,37 @@ module Lato
     end
 
     def update_web3_action
-      # TODO...
+      if @session.user.web3_connection_completed?
+        respond_to do |format|
+          if @session.user.remove_web3_connection
+            format.html { redirect_to lato.account_path }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        end
+      elsif @session.user.web3_connection_started?
+        respond_to do |format|
+          if @session.user.complete_web3_connection(params.require(:user).permit(:web3_address, :web3_signed_nonce))
+            format.html { redirect_to lato.account_path }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        respond_to do |format|
+          if @session.user.start_web3_connection
+            format.html { redirect_to lato.account_path }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        end
+      end
     end
 
     def request_verify_email_action

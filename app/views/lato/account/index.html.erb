@@ -15,7 +15,7 @@
 <% if Lato.config.web3_connection %>
 <div class="card mb-4">
   <div class="card-header">
-    <h2 class="fs-4 mb-0">Web3 connection</h2>
+    <h2 class="fs-4 mb-0"><%= I18n.t('lato.account_web3') %></h2>
   </div>
   <div class="card-body">
     <%= render 'lato/account/form-web3', user: @session.user %>
@@ -31,18 +31,6 @@
     <%= render 'lato/account/form-password', user: @session.user %>
   </div>
 </div>
-
-
-<% if false %>
-<div class="card mb-4">
-  <div class="card-header">
-    <h2 class="fs-4 mb-0">Chiavi API</h2>
-  </div>
-  <div class="card-body">
-    
-  </div>
-</div>
-<% end %>
 
 <div class="card mb-4">
   <div class="card-header">

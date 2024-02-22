@@ -32,6 +32,7 @@ Lato::Engine.routes.draw do
   scope :account do
     get '', to: 'account#index', as: :account
     patch 'update_user_action', to: 'account#update_user_action', as: :account_update_user_action
+    patch 'update_web3_action', to: 'account#update_web3_action', as: :account_update_web3_action
     patch 'request_verify_email_action', to: 'account#request_verify_email_action', as: :account_request_verify_email_action
     patch 'update_password_action', to: 'account#update_password_action', as: :account_update_password_action
     delete 'destroy_action', to: 'account#destroy_action', as: :account_destroy_action

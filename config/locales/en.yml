@@ -40,6 +40,7 @@ en:
     privacy_policy_update_title: Privacy policy update
     terms_and_conditions_update_title: Terms and conditions update
     accept_invitation: Accept invitation
+    account_web3: Web3 connection
 
     account_controller:
       update_user_action_notice: Account information properly updated
@@ -71,6 +72,9 @@ en:
               password_update_code_invalid: Verification code is invalid
               privacy_policy_invalid: To accept the privacy policy you must select the confirmation checkbox
               terms_and_conditions_invalid: To accept the terms and conditions you must select the confirmation checkbox
+              web3_address_invalid: The address you send is not corretly signed
+              web3_nonce_expired: The nonce used to sign the address is expired
+              web3_connection_error: Impossible to connect the wallet
             password:
               not_correct: not correct
             email:

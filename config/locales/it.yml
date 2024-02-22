@@ -42,6 +42,7 @@ it:
     privacy_policy_update_title: Aggiornamento privacy policy
     terms_and_conditions_update_title: Aggiornamento termini e condizioni
     accept_invitation: Accetta invito
+    account_web3: Connessione Web3
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente
@@ -79,6 +80,9 @@ it:
               privacy_policy_invalid: Per accettare la privacy policy devi selezionare la checkbox di conferma
               terms_and_conditions_invalid: Per accettare i termini e condizioni devi selezionare la checkbox di conferma
               invitation_invalid: Invito non valido
+              web3_address_invalid: L'inidirizzo inviato non è correttamente firmato
+              web3_nonce_expired: Il nonce utilizzato per firmare l'indirizzo è scaduto
+              web3_connection_error: Impossibile connettere il wallet
             password:
               not_correct: non corretta
             password_confirmation:

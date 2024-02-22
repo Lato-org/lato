@@ -38,6 +38,7 @@ module Lato
       self.email_verified_at = nil if email_changed?
       self.accepted_privacy_policy_version = Lato.config.legal_privacy_policy_version if accepted_privacy_policy_version_changed?
       self.accepted_terms_and_conditions_version = Lato.config.legal_terms_and_conditions_version if accepted_terms_and_conditions_version_changed?
+      self.web3_address = web3_address&.downcase&.strip if web3_address_changed?
     end
 
     # Questions
@@ -49,6 +50,14 @@ module Lato
 
     def valid_accepted_terms_and_conditions_version?
       @valid_accepted_terms_and_conditions_version ||= accepted_terms_and_conditions_version >= Lato.config.legal_terms_and_conditions_version
+    end
+
+    def web3_connection_completed?
+      @web3_connection_completed ||= !web3_address.blank?
+    end
+
+    def web3_connection_started?
+      @web3_connection_started ||= !c_web3_nonce.blank?
     end
 
     # Helpers
@@ -232,6 +241,42 @@ module Lato
       end
     end
 
+    def start_web3_connection
+      update(web3_address: nil)
+      c_web3_nonce(SecureRandom.hex(32))
+
+      true
+    end
+
+    def complete_web3_connection(params)
+      nonce = c_web3_nonce
+      c_web3_nonce__clear # Important to rollback to status 0 of web3 connection
+
+      unless nonce
+        errors.add(:base, :web3_nonce_expired)
+        return
+      end
+
+      signature_pubkey = Eth::Signature.personal_recover(nonce, params[:web3_signed_nonce])
+      signature_address = Eth::Util.public_key_to_address signature_pubkey
+      unless signature_address.to_s.downcase == params[:web3_address].downcase
+        errors.add(:base, :web3_address_invalid)
+        return
+      end
+
+      update(web3_address: params[:web3_address])
+    rescue StandardError => e
+      c_web3_nonce__clear # Important to rollback to status 0 of web3 connection
+      errors.add(:base, :web3_connection_error)
+      false
+    end
+
+    def remove_web3_connection
+      update(web3_address: nil)
+      c_web3_nonce__clear
+      true
+    end
+
     # Cache
     ##
 
@@ -257,6 +302,22 @@ module Lato
 
       Rails.cache.write(cache_key, value, expires_in: 30.minutes)
       value
+    end
+
+    def c_web3_nonce(value = nil)
+      cache_key = "Lato::User/c_web3_nonce/#{id}"
+      return Rails.cache.read(cache_key) if value.nil?
+
+      Rails.cache.write(cache_key, value, expires_in: 1.minutes)
+      @web3_connection_started = nil # HARD FIX: reset web3 connection status
+      value
+    end
+
+    def c_web3_nonce__clear
+      cache_key = "Lato::User/c_web3_nonce/#{id}"
+      Rails.cache.delete(cache_key)
+      @web3_connection_started = nil # HARD FIX: reset web3 connection status
+      true
     end
   end
 end
