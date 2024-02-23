@@ -47,6 +47,8 @@ en:
     disconnect_wallet: Disconnect
     connected_wallet: Connected
     web3_signin: Web3 Login
+    retry: Retry
+    back: Go back
 
     account_controller:
       update_user_action_notice: Account information properly updated
@@ -79,7 +81,6 @@ en:
               privacy_policy_invalid: To accept the privacy policy you must select the confirmation checkbox
               terms_and_conditions_invalid: To accept the terms and conditions you must select the confirmation checkbox
               web3_address_invalid: The address you send is not corretly signed
-              web3_nonce_expired: The nonce used to sign the address is expired
               web3_connection_error: Impossible to connect the wallet
             password:
               not_correct: not correct

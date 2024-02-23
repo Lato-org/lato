@@ -53,14 +53,6 @@ module Lato
       @valid_accepted_terms_and_conditions_version ||= accepted_terms_and_conditions_version >= Lato.config.legal_terms_and_conditions_version
     end
 
-    def web3_connection_completed?
-      @web3_connection_completed ||= !web3_address.blank?
-    end
-
-    def web3_connection_started?
-      @web3_connection_started ||= !c_web3_nonce.blank?
-    end
-
     # Helpers
     ##
 
@@ -119,10 +111,6 @@ module Lato
       true
     end
 
-    def start_web3_signin
-      c_web3_nonce(SecureRandom.hex(32))
-    end
-
     def web3_signin(params)
       self.web3_address = params[:web3_address]
 
@@ -132,7 +120,7 @@ module Lato
         return
       end
 
-      signature_pubkey = Eth::Signature.personal_recover(c_web3_nonce, params[:web3_signed_nonce])
+      signature_pubkey = Eth::Signature.personal_recover(params[:web3_nonce], params[:web3_signed_nonce])
       signature_address = Eth::Util.public_key_to_address signature_pubkey
       unless signature_address.to_s.downcase == params[:web3_address].downcase
         errors.add(:web3_signed_nonce, :not_correct)
@@ -151,8 +139,10 @@ module Lato
         Rails.logger.error(e)
       end
 
-      c_web3_nonce__clear
       true
+    rescue StandardError => e
+      errors.add(:base, :web3_connection_error)
+      false
     end
 
     def request_verify_email
@@ -278,45 +268,22 @@ module Lato
       end
     end
 
-    def start_web3_connection
-      update(web3_address: nil)
-      c_web3_nonce(SecureRandom.hex(32))
-
-      true
-    end
-
-    def complete_web3_connection(params)
-      nonce = c_web3_nonce
-      c_web3_nonce__clear # Important to rollback to status 0 of web3 connection
-
-      unless nonce
-        errors.add(:base, :web3_nonce_expired)
-        return
-      end
-
-      signature_pubkey = Eth::Signature.personal_recover(nonce, params[:web3_signed_nonce])
+    def add_web3_connection(params)
+      signature_pubkey = Eth::Signature.personal_recover(params[:web3_nonce], params[:web3_signed_nonce])
       signature_address = Eth::Util.public_key_to_address signature_pubkey
       unless signature_address.to_s.downcase == params[:web3_address].downcase
         errors.add(:base, :web3_address_invalid)
         return
       end
 
-      result = update(web3_address: params[:web3_address])
-      return true if result
-
-      web3_address = nil # Important to rollback to status 0 of web3 connection
-      reload
-
-      false
+      update(web3_address: params[:web3_address])
     rescue StandardError => e
-      c_web3_nonce__clear # Important to rollback to status 0 of web3 connection
       errors.add(:base, :web3_connection_error)
       false
     end
 
     def remove_web3_connection
       update(web3_address: nil)
-      c_web3_nonce__clear
       true
     end
 
@@ -345,22 +312,6 @@ module Lato
 
       Rails.cache.write(cache_key, value, expires_in: 30.minutes)
       value
-    end
-
-    def c_web3_nonce(value = nil)
-      cache_key = "Lato::User/c_web3_nonce/#{id}"
-      return Rails.cache.read(cache_key) if value.nil?
-
-      Rails.cache.write(cache_key, value, expires_in: 1.minutes)
-      @web3_connection_started = nil # HARD FIX: reset web3 connection status
-      value
-    end
-
-    def c_web3_nonce__clear
-      cache_key = "Lato::User/c_web3_nonce/#{id}"
-      Rails.cache.delete(cache_key)
-      @web3_connection_started = nil # HARD FIX: reset web3 connection status
-      true
     end
   end
 end

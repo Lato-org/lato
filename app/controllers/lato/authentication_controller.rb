@@ -40,27 +40,26 @@ module Lato
     end
 
     def web3_signin
-      session[:web3_signin_id] = SecureRandom.hex
-
       @user = Lato::User.new
-      @user.id = session[:web3_signin_id] # This is a temporary id to identify the user
-      @user.start_web3_signin
+      session[:web3_nonce] = SecureRandom.hex(32)
     end
 
     def web3_signin_action
       @user = Lato::User.new
-      @user.id = session[:web3_signin_id] # This is a temporary id to identify the user
 
       respond_to do |format|
         if @user.web3_signin(params.require(:user).permit(:web3_address, :web3_signed_nonce).merge(
           ip_address: request.remote_ip,
-          user_agent: request.user_agent
+          user_agent: request.user_agent,
+          web3_nonce: session[:web3_nonce]
         ))
+          session[:web3_nonce] = nil
           session_create(@user.id)
 
           format.html { redirect_to lato.root_path }
           format.json { render json: @user }
         else
+          session[:web3_nonce] = nil
           format.html { render :web3_signin, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end

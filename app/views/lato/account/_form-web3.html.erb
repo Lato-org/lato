@@ -9,7 +9,7 @@ user ||= Lato::User.new
     <%= lato_form_notices class: %w[mb-3] %>
     <%= lato_form_errors user, class: %w[mb-3] %>
 
-    <% if user.web3_connection_completed? %>
+    <% if user.web3_address %>
       <div class="row">
         <div class="col col-12 mb-3">
           <%= lato_form_item_label form, :web3_address %>
@@ -23,7 +23,7 @@ user ||= Lato::User.new
       <div class="d-flex justify-content-end">
         <%= lato_form_submit form, I18n.t('lato.disconnect_wallet'), class: %w[btn-danger] %>
       </div>
-    <% elsif user.web3_connection_started? %>
+    <% elsif session[:web3_nonce] %>
       <div class="alert alert-light mb-0">
         <h4 class="alert-heading">Connecting..</h4>
         <div class="progress" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
@@ -31,7 +31,7 @@ user ||= Lato::User.new
         </div>
       </div>
       
-      <span id="account_form-web3__nonce" style="display: none;"><%= user.c_web3_nonce %></span>
+      <span id="account_form-web3__nonce" style="display: none;"><%= session[:web3_nonce] %></span>
       <%= form.hidden_field :web3_address, id: 'account_form-web3__input-web3_address'  %>
       <%= form.hidden_field :web3_signed_nonce, id: 'account_form-web3__input-web3_signed_nonce' %>
       <%= lato_form_submit form, 'Confirm', class: %w[btn-primary d-none], id: 'account_form-web3__submit' %>
@@ -48,12 +48,16 @@ user ||= Lato::User.new
           let address = ''
           let signedNonce = ''
 
-          if (window.ethereum) {
-            const provider = new ethers.ethers.providers.Web3Provider(window.ethereum)
-            await provider.send('eth_requestAccounts', [])
-            const signer = provider.getSigner()
-            address = await signer.getAddress()
-            signedNonce = await signer.signMessage(nonce)
+          try {
+            if (window.ethereum) {
+              const provider = new ethers.ethers.providers.Web3Provider(window.ethereum)
+              await provider.send('eth_requestAccounts', [])
+              const signer = provider.getSigner()
+              address = await signer.getAddress()
+              signedNonce = await signer.signMessage(nonce)
+            }
+          } catch (error) {
+            console.error(error)
           }
 
           inputAddress.value = address

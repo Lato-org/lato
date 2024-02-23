@@ -49,6 +49,8 @@ it:
     disconnect_wallet: Disconnetti
     connected_wallet: Connesso
     web3_signin: Accedi con Web3
+    retry: Riprova
+    back: Torna indietro
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente
@@ -87,7 +89,6 @@ it:
               terms_and_conditions_invalid: Per accettare i termini e condizioni devi selezionare la checkbox di conferma
               invitation_invalid: Invito non valido
               web3_address_invalid: L'inidirizzo inviato non è correttamente firmato
-              web3_nonce_expired: Il nonce utilizzato per firmare l'indirizzo è scaduto
               web3_connection_error: Impossibile connettere il wallet
             password:
               not_correct: non corretta

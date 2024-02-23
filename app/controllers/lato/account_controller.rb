@@ -20,7 +20,7 @@ module Lato
     def update_web3_action
       return respond_to_with_not_found unless Lato.config.web3_connection
 
-      if @session.user.web3_connection_completed?
+      if @session.user.web3_address
         respond_to do |format|
           if @session.user.remove_web3_connection
             format.html { redirect_to lato.account_path }
@@ -30,19 +30,21 @@ module Lato
             format.json { render json: @session.user.errors, status: :unprocessable_entity }
           end
         end
-      elsif @session.user.web3_connection_started?
+      elsif session[:web3_nonce]
         respond_to do |format|
-          if @session.user.complete_web3_connection(params.require(:user).permit(:web3_address, :web3_signed_nonce))
+          if @session.user.add_web3_connection(params.require(:user).permit(:web3_address, :web3_signed_nonce).merge(web3_nonce: session[:web3_nonce]))
+            session[:web3_nonce] = nil
             format.html { redirect_to lato.account_path }
             format.json { render json: @session.user }
           else
+            session[:web3_nonce] = nil
             format.html { render :index, status: :unprocessable_entity }
             format.json { render json: @session.user.errors, status: :unprocessable_entity }
           end
         end
       else
         respond_to do |format|
-          if @session.user.start_web3_connection
+          if session[:web3_nonce] = SecureRandom.hex(32)
             format.html { redirect_to lato.account_path }
             format.json { render json: @session.user }
           else

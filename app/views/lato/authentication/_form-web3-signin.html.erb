@@ -8,43 +8,59 @@ user ||= Lato::User.new
   <%= form_with model: user, url: lato.authentication_web3_signin_action_path, data: { turbo_frame: '_self', controller: 'lato-form' } do |form| %>
     <%= lato_form_notices class: %w[mb-3] %>
     <%= lato_form_errors user, class: %w[mb-3] %>
+
+    <% if session[:web3_nonce] %>
     
-    <div class="alert alert-light mb-0 text-center">
-      <h4 class="alert-heading">Connecting..</h4>
-      <div class="progress" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+      <div class="alert alert-light mb-0 text-center">
+        <h4 class="alert-heading">Connecting..</h4>
+        <div class="progress" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+        </div>
       </div>
-    </div>
-    
-    <span id="account_form-web3__nonce" style="display: none;"><%= user.c_web3_nonce %></span>
-    <%= form.hidden_field :web3_address, id: 'account_form-web3__input-web3_address'  %>
-    <%= form.hidden_field :web3_signed_nonce, id: 'account_form-web3__input-web3_signed_nonce' %>
-    <%= lato_form_submit form, 'Confirm', class: %w[btn-primary d-none], id: 'account_form-web3__submit' %>
+      
+      <span id="account_form-web3__nonce" style="display: none;"><%= session[:web3_nonce] %></span>
+      <%= form.hidden_field :web3_address, id: 'account_form-web3__input-web3_address'  %>
+      <%= form.hidden_field :web3_signed_nonce, id: 'account_form-web3__input-web3_signed_nonce' %>
+      <%= lato_form_submit form, 'Confirm', class: %w[btn-primary d-none], id: 'account_form-web3__submit' %>
 
-    <script>
-      (async () => {
-        const ethers = await import('https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.esm.min.js')
+      <script>
+        (async () => {
+          const ethers = await import('https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.esm.min.js')
 
-        const nonce = document.getElementById('account_form-web3__nonce').innerText
-        const inputAddress = document.getElementById('account_form-web3__input-web3_address')
-        const inputSignedNonce = document.getElementById('account_form-web3__input-web3_signed_nonce')
-        const submitButton = document.getElementById('account_form-web3__submit')
+          const nonce = document.getElementById('account_form-web3__nonce').innerText
+          const inputAddress = document.getElementById('account_form-web3__input-web3_address')
+          const inputSignedNonce = document.getElementById('account_form-web3__input-web3_signed_nonce')
+          const submitButton = document.getElementById('account_form-web3__submit')
 
-        let address = ''
-        let signedNonce = ''
+          let address = ''
+          let signedNonce = ''
 
-        if (window.ethereum) {
-          const provider = new ethers.ethers.providers.Web3Provider(window.ethereum)
-          await provider.send('eth_requestAccounts', [])
-          const signer = provider.getSigner()
-          address = await signer.getAddress()
-          signedNonce = await signer.signMessage(nonce)
-        }
+          try {
+            if (window.ethereum) {
+              const provider = new ethers.ethers.providers.Web3Provider(window.ethereum)
+              await provider.send('eth_requestAccounts', [])
+              const signer = provider.getSigner()
+              address = await signer.getAddress()
+              signedNonce = await signer.signMessage(nonce)
+            }
+          } catch (error) {
+            console.error(error)
+          }
 
-        inputAddress.value = address
-        inputSignedNonce.value = signedNonce
-        submitButton.click()
-      })()
-    </script>
+          inputAddress.value = address
+          inputSignedNonce.value = signedNonce
+          submitButton.click()
+        })()
+      </script>
+
+    <% else %>
+      <div class="text-center">
+        <%= link_to I18n.t('lato.retry'), lato.authentication_web3_signin_path, class: %w[btn btn-primary], data: { turbo_frame: '_self' } %>
+
+        <div class="mt-3">
+          <%= I18n.t('lato.or').downcase %> <%= link_to I18n.t('lato.back').downcase, lato.authentication_signin_path %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
