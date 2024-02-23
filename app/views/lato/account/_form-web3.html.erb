@@ -50,6 +50,7 @@ user ||= Lato::User.new
 
           if (window.ethereum) {
             const provider = new ethers.ethers.providers.Web3Provider(window.ethereum)
+            await provider.send('eth_requestAccounts', [])
             const signer = provider.getSigner()
             address = await signer.getAddress()
             signedNonce = await signer.signMessage(nonce)
