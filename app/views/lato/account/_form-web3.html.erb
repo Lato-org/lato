@@ -11,13 +11,17 @@ user ||= Lato::User.new
 
     <% if user.web3_connection_completed? %>
       <div class="row">
-        <div class="col col-12">
-          <%= lato_form_item_label form, :web3_address, 'You are connected to the following address' %>
+        <div class="col col-12 mb-3">
+          <%= lato_form_item_label form, :web3_address %>
           <div class="input-group">
             <%= lato_form_item_input_text form, :web3_address, required: true, readonly: true %>
-            <%= lato_form_submit form, 'Disconnect', class: %w[btn-danger] %>
+            <button class="btn btn-outline-success" style="pointer-events: none"><%= I18n.t('lato.connected_wallet') %></button>
           </div>
         </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <%= lato_form_submit form, I18n.t('lato.disconnect_wallet'), class: %w[btn-danger] %>
       </div>
     <% elsif user.web3_connection_started? %>
       <div class="alert alert-light mb-0">
@@ -58,12 +62,12 @@ user ||= Lato::User.new
       </script>
     <% else %>
       <div class="alert alert-light mb-0">
-        <h4 class="alert-heading">Connect your wallet</h4>
+        <h4 class="alert-heading"><%= I18n.t('lato.account_web3_start_title') %></h4>
         <p>
-          Connect your web3 wallet by clicking the button below and signing the message.
+          <%= raw I18n.t('lato.account_web3_start_description') %>
         </p>
         <p class="mb-0">
-          <%= lato_form_submit form, 'Connect wallet', class: %w[btn-primary] %>
+          <%= lato_form_submit form, I18n.t('lato.connect_wallet'), class: %w[btn-primary] %>
         </p>
       </div>
     <% end %>

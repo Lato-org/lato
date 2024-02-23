@@ -12,6 +12,15 @@
   </div>
 </div>
 
+<div class="card mb-4">
+  <div class="card-header">
+    <h2 class="fs-4 mb-0"><%= I18n.t('lato.update_password') %></h2>
+  </div>
+  <div class="card-body">
+    <%= render 'lato/account/form-password', user: @session.user %>
+  </div>
+</div>
+
 <% if Lato.config.web3_connection %>
 <div class="card mb-4">
   <div class="card-header">
@@ -22,15 +31,6 @@
   </div>
 </div>
 <% end %>
-
-<div class="card mb-4">
-  <div class="card-header">
-    <h2 class="fs-4 mb-0"><%= I18n.t('lato.update_password') %></h2>
-  </div>
-  <div class="card-body">
-    <%= render 'lato/account/form-password', user: @session.user %>
-  </div>
-</div>
 
 <div class="card mb-4">
   <div class="card-header">

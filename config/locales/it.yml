@@ -43,6 +43,11 @@ it:
     terms_and_conditions_update_title: Aggiornamento termini e condizioni
     accept_invitation: Accetta invito
     account_web3: Connessione Web3
+    account_web3_start_title: Connetti il tuo wallet
+    account_web3_start_description: Connetti il tuo wallet web3 cliccando il pulsante sottostante e firmando il messaggio.<br>Questo ti permetterà di utilizzare la piattaforma senza dover inserire la tua password.
+    connect_wallet: Connetti wallet
+    disconnect_wallet: Disconnetti
+    connected_wallet: Connesso
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente

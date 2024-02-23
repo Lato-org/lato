@@ -41,6 +41,11 @@ en:
     terms_and_conditions_update_title: Terms and conditions update
     accept_invitation: Accept invitation
     account_web3: Web3 connection
+    account_web3_start_title: Connect your wallet
+    account_web3_start_description: Connect your web3 wallet by clicking the button below and signing the message.<br> This will allow you to use the platform without having to enter your password.
+    connect_wallet: Connect wallet
+    disconnect_wallet: Disconnect
+    connected_wallet: Connected
 
     account_controller:
       update_user_action_notice: Account information properly updated

@@ -12,6 +12,7 @@ module Lato
     validates :email, presence: true, uniqueness: true
     validates :accepted_privacy_policy_version, presence: true
     validates :accepted_terms_and_conditions_version, presence: true
+    validates :web3_address, uniqueness: true, allow_blank: true
 
     # Relations
     ##
