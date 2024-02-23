@@ -6,9 +6,10 @@ module Lato
 
     before_action :find_user, only: %i[verify_email verify_email_action update_password update_password_action]
     before_action :find_invitation, only: %i[accept_invitation accept_invitation_action]
-    
+
     before_action :lock_signup_if_disabled, only: %i[signup signup_action]
     before_action :lock_recover_password_if_disabled, only: %i[recover_password recover_password_action update_password update_password_action]
+    before_action :lock_web3_if_disabled, only: %i[web3_signin web3_signin_action]
 
     before_action :hide_sidebar
 
@@ -33,6 +34,34 @@ module Lato
           format.json { render json: @user }
         else
           format.html { render :signin, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    def web3_signin
+      session[:web3_signin_id] = SecureRandom.hex
+
+      @user = Lato::User.new
+      @user.id = session[:web3_signin_id] # This is a temporary id to identify the user
+      @user.start_web3_signin
+    end
+
+    def web3_signin_action
+      @user = Lato::User.new
+      @user.id = session[:web3_signin_id] # This is a temporary id to identify the user
+
+      respond_to do |format|
+        if @user.web3_signin(params.require(:user).permit(:web3_address, :web3_signed_nonce).merge(
+          ip_address: request.remote_ip,
+          user_agent: request.user_agent
+        ))
+          session_create(@user.id)
+
+          format.html { redirect_to lato.root_path }
+          format.json { render json: @user }
+        else
+          format.html { render :web3_signin, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
@@ -179,6 +208,13 @@ module Lato
 
     def lock_recover_password_if_disabled
       return unless Lato.config.auth_disable_recover_password
+
+      respond_to_with_not_found
+    end
+
+    def lock_web3_if_disabled
+      return if Lato.config.web3_connection && !Lato.config.auth_disable_web3
+
 
       respond_to_with_not_found
     end

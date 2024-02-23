@@ -119,6 +119,42 @@ module Lato
       true
     end
 
+    def start_web3_signin
+      c_web3_nonce(SecureRandom.hex(32))
+    end
+
+    def web3_signin(params)
+      self.web3_address = params[:web3_address]
+
+      user = Lato::User.find_by(web3_address: params[:web3_address].downcase)
+      unless user
+        errors.add(:web3_address, :not_correct)
+        return
+      end
+
+      signature_pubkey = Eth::Signature.personal_recover(c_web3_nonce, params[:web3_signed_nonce])
+      signature_address = Eth::Util.public_key_to_address signature_pubkey
+      unless signature_address.to_s.downcase == params[:web3_address].downcase
+        errors.add(:web3_signed_nonce, :not_correct)
+        return
+      end
+
+      self.id = user.id
+      reload
+
+      begin
+        lato_log_user_signins.create(
+          ip_address: params[:ip_address],
+          user_agent: params[:user_agent]
+        )
+      rescue StandardError => e
+        Rails.logger.error(e)
+      end
+
+      c_web3_nonce__clear
+      true
+    end
+
     def request_verify_email
       if c_email_verification_semaphore
         errors.add(:base, :email_verification_limit)

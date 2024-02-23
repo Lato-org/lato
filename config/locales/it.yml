@@ -48,6 +48,7 @@ it:
     connect_wallet: Connetti wallet
     disconnect_wallet: Disconnetti
     connected_wallet: Connesso
+    web3_signin: Accedi con Web3
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente
@@ -100,6 +101,8 @@ it:
               inclusion: non accettata
             accepted_terms_and_conditions_version:
               inclusion: non accettati
+            web3_address:
+              not_correct: non corretto
         lato/invitation:
           attributes:
             base:

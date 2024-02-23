@@ -12,6 +12,8 @@ Lato::Engine.routes.draw do
   scope :authentication do
     get 'signin', to: 'authentication#signin', as: :authentication_signin
     post 'signin_action', to: 'authentication#signin_action', as: :authentication_signin_action
+    get 'web3_signin', to: 'authentication#web3_signin', as: :authentication_web3_signin
+    post 'web3_signin_action', to: 'authentication#web3_signin_action', as: :authentication_web3_signin_action
     get 'signup', to: 'authentication#signup', as: :authentication_signup
     post 'signup_action', to: 'authentication#signup_action', as: :authentication_signup_action
     get 'signout', to: 'authentication#signout', as: :authentication_signout

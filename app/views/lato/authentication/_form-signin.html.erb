@@ -22,6 +22,11 @@ user ||= Lato::User.new
     <div>
       <%= lato_form_submit form, I18n.t('lato.signin'), class: %w[d-block w-100] %>
     </div>
+    <% if Lato.config.web3_connection && !Lato.config.auth_disable_web3 %>
+      <div class="mt-2">
+        <%= link_to I18n.t('lato.web3_signin'), lato.authentication_web3_signin_path, class: 'btn btn-info w-100' %>
+      </div>
+    <% end %>
     <% unless Lato.config.auth_disable_signup %>
       <div class="text-center mt-3 mb-3">
         <%= I18n.t('lato.or').downcase %> <%= link_to I18n.t('lato.create_free_account').downcase, lato.authentication_signup_path %>
