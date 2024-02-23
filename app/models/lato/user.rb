@@ -29,6 +29,7 @@ module Lato
 
     before_validation do
       self.email = email&.downcase&.strip
+      self.web3_address = web3_address&.downcase&.strip
     end
 
     before_create do
@@ -39,7 +40,6 @@ module Lato
       self.email_verified_at = nil if email_changed?
       self.accepted_privacy_policy_version = Lato.config.legal_privacy_policy_version if accepted_privacy_policy_version_changed?
       self.accepted_terms_and_conditions_version = Lato.config.legal_terms_and_conditions_version if accepted_terms_and_conditions_version_changed?
-      self.web3_address = web3_address&.downcase&.strip if web3_address_changed?
     end
 
     # Questions
@@ -301,7 +301,13 @@ module Lato
         return
       end
 
-      update(web3_address: params[:web3_address])
+      result = update(web3_address: params[:web3_address])
+      return true if result
+
+      web3_address = nil # Important to rollback to status 0 of web3 connection
+      reload
+
+      false
     rescue StandardError => e
       c_web3_nonce__clear # Important to rollback to status 0 of web3 connection
       errors.add(:base, :web3_connection_error)
