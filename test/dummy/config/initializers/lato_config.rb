@@ -8,4 +8,5 @@ Lato.configure do |config|
   # config.legal_privacy_policy_version = 4
 
   config.web3_connection = true
+  config.authenticator_connection = true
 end
