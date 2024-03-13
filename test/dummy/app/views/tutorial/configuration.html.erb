@@ -35,6 +35,8 @@ end
 <pre>
 Lato.configure do |config|
   config.auth_disable_signup = true # Disabilita la possibilità di registrarsi autonomamente
+  config.auth_disable_recover_password = true # Disabilita la possibilità di recuperare la password autonomamente
+  config.auth_disable_web3 = true # Disabilita la possibilità di autenticarsi utilizzando un wallet web3
 end
 </pre>
 
@@ -103,6 +105,14 @@ throw "Privacy policy non valida" unless user.valid_accepted_privacy_policy_vers
 throw "Termini e condizioni non validi" unless user.valid_accepted_terms_and_conditions_version?
 </pre>
 </div>
+
+<h2>Configurazione connessioni account</h2>
+
+<pre>
+Lato.configure do |config|
+  config.web3_connection = true # Permette all'utente di collegare un wallet web3 al proprio account
+end
+</pre>
 
 <p>
 <%= link_to 'Source code: Lato::User', 'https://github.com/Lato-GAM/lato/blob/main/app/models/lato/user.rb', target: '_blank' %>
