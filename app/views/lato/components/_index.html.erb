@@ -82,7 +82,7 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
             <tr class="align-middle">
               <% columns.each do |column| %>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-<%= column %>">
-                  <div class="d-flex align-items-center">
+                  <div class="d-flex align-items-center justify-content-between">
                     <span><%= collection_test_istance.respond_to?(column) ? collection.model.human_attribute_name(column) : lato_index_dynamic_label({
                       key: key,
                       model_name: model_name,
