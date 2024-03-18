@@ -51,6 +51,7 @@ it:
     web3_signin: Accedi con Web3
     retry: Riprova
     back: Torna indietro
+    account_authenticator: Google Authenticator
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente

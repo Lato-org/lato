@@ -49,6 +49,7 @@ en:
     web3_signin: Web3 Login
     retry: Retry
     back: Go back
+    account_authenticator: Google Authenticator
 
     account_controller:
       update_user_action_notice: Account information properly updated
