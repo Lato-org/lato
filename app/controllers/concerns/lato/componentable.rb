@@ -37,7 +37,7 @@ module Lato
         if collection.respond_to?(:lato_index_search)
           collection = collection.lato_index_search(search)
         else
-          query = @_lato_index[key][:searchable_columns].map { |k| "lower(#{k}) LIKE :search" }
+          query = @_lato_index[key][:searchable_columns].map { |k| "#{k.to_s == 'id' ? k : "lower(#{k})"} LIKE :search" }
           collection = collection.where(query.join(' OR '), search: "%#{search.downcase.strip}%")
         end
       end
