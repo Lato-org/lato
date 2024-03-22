@@ -1,5 +1,6 @@
 module Lato
   class User < ApplicationRecord
+    include Lato::DependencyHelper
     include LatoUserApplication
 
     has_secure_password
@@ -112,6 +113,8 @@ module Lato
     end
 
     def web3_signin(params)
+      depends_on('eth')
+
       self.web3_address = params[:web3_address]
 
       user = Lato::User.find_by(web3_address: params[:web3_address].downcase)
@@ -269,6 +272,8 @@ module Lato
     end
 
     def add_web3_connection(params)
+      depends_on('eth')
+
       signature_pubkey = Eth::Signature.personal_recover(params[:web3_nonce], params[:web3_signed_nonce])
       signature_address = Eth::Util.public_key_to_address signature_pubkey
       unless signature_address.to_s.downcase == params[:web3_address].downcase
