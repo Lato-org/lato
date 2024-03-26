@@ -22,7 +22,11 @@ module Lato
     attr_accessor :legal_privacy_policy_url, :legal_privacy_policy_version, :legal_terms_and_conditions_url, :legal_terms_and_conditions_version
 
     # Web3 connection
-    attr_accessor :web3_connection, :authenticator_connection
+    # NOTE: It requires the gem 'eth' to be installed in the application Gemfile
+    attr_accessor :web3_connection
+
+    # Authenticator connection
+    attr_accessor :authenticator_connection
 
     def initialize
       @application_title = 'Lato'
