@@ -50,6 +50,9 @@ en:
     retry: Retry
     back: Go back
     account_authenticator: Google Authenticator
+    account_authenticator_start_title: Enable Google Authenticator
+    account_authenticator_start_description: Generate a QR code by clicking the button below and scan it with the Google Authenticator app on your phone.<br>This will allow you to use the protect your account with a second factor authentication.
+    generate_qr_code: Generate QR code
 
     account_controller:
       update_user_action_notice: Account information properly updated

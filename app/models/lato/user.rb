@@ -292,6 +292,10 @@ module Lato
       true
     end
 
+    def generate_authenticator_secret
+      update(authenticator_secret: SecureRandom.hex(32))
+    end
+
     # Cache
     ##
 

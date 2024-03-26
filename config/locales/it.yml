@@ -52,6 +52,9 @@ it:
     retry: Riprova
     back: Torna indietro
     account_authenticator: Google Authenticator
+    account_authenticator_start_title: Abilita Google Authenticator
+    account_authenticator_start_description: Genera un codice QR cliccando il pulsante sottostante e scansionalo con l'app Google Authenticator sul tuo telefono.<br>Questo ti permetterà di proteggere il tuo account con un'autenticazione a due fattori.
+    generate_qr_code: Genera codice QR
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente
