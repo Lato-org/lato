@@ -66,6 +66,9 @@ main {
 
 aside {
   width: 280px;
+  max-height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 main, aside {
