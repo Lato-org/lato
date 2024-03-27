@@ -55,6 +55,8 @@ it:
     account_authenticator_start_title: Abilita Google Authenticator
     account_authenticator_start_description: Genera un codice QR cliccando il pulsante sottostante e scansionalo con l'app Google Authenticator sul tuo telefono.<br>Questo ti permetterà di proteggere il tuo account con un'autenticazione a due fattori.
     generate_qr_code: Genera codice QR
+    authenticator: Autenticazione a due fattori
+    authenticator_code_help: Inserisci il codice generato dall'app Google Authenticator per l'account <b>%{email}</b>
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente
@@ -94,6 +96,7 @@ it:
               invitation_invalid: Invito non valido
               web3_address_invalid: L'inidirizzo inviato non è correttamente firmato
               web3_connection_error: Impossibile connettere il wallet
+              authenticator_code_invalid: Il codice inserito non è corretto
             password:
               not_correct: non corretta
             password_confirmation:

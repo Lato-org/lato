@@ -54,6 +54,10 @@ module Lato
       @valid_accepted_terms_and_conditions_version ||= accepted_terms_and_conditions_version >= Lato.config.legal_terms_and_conditions_version
     end
 
+    def authenticator_enabled?
+      !authenticator_secret.blank?
+    end
+
     # Helpers
     ##
 
@@ -298,6 +302,19 @@ module Lato
 
     def generate_authenticator_secret
       update(authenticator_secret: ROTP::Base32.random)
+    end
+
+    def authenticator(params)
+      return false unless authenticator_enabled?
+
+      totp = ROTP::TOTP.new(authenticator_secret)
+      result = totp.verify(params[:authenticator_code])
+      unless result
+        errors.add(:base, :authenticator_code_invalid)
+        return
+      end
+
+      true
     end
 
     # Cache

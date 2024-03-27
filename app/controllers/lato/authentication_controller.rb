@@ -29,10 +29,13 @@ module Lato
           ip_address: request.remote_ip,
           user_agent: request.user_agent
         ))
-          session_create(@user.id)
-
-          format.html { redirect_to lato.root_path }
-          format.json { render json: @user }
+          if create_session_or_start_authenticator(@user)
+            format.html { redirect_to lato.root_path }
+            format.json { render json: @user }
+          else
+            format.html { redirect_to lato.authentication_authenticator_path }
+            format.json { render json: @user }
+          end
         else
           format.html { render :signin, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -55,10 +58,13 @@ module Lato
           web3_nonce: session[:web3_nonce]
         ))
           session[:web3_nonce] = nil
-          session_create(@user.id)
-
-          format.html { redirect_to lato.root_path }
-          format.json { render json: @user }
+          if create_session_or_start_authenticator(@user)
+            format.html { redirect_to lato.root_path }
+            format.json { render json: @user }
+          else
+            format.html { redirect_to lato.authentication_authenticator_path }
+            format.json { render json: @user }
+          end
         else
           session[:web3_nonce] = nil
           format.html { render :web3_signin, status: :unprocessable_entity }
@@ -188,11 +194,25 @@ module Lato
     ##
 
     def authenticator
-      # TODO
+      @user = Lato::User.find_by_id(session[:authenticator_user_id])
+      return respond_to_with_not_found unless @user
     end
 
     def authenticator_action
-      # TODO
+      @user = Lato::User.find_by_id(session[:authenticator_user_id])
+
+      respond_to do |format|
+        if @user.authenticator(params.require(:user).permit(:authenticator_code))
+          session[:authenticator_user_id] = nil
+          session_create(@user.id)
+
+          format.html { redirect_to lato.root_path }
+          format.json { render json: @user }
+        else
+          format.html { render :authenticator, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
     end
 
     private
@@ -211,8 +231,14 @@ module Lato
       respond_to_with_not_found unless @invitation
     end
 
-    def create_session_or_pass_to_authenticator(user)
-      # TODO: Check if we need authenticator and redirect to it or create a session and return true.
+    def create_session_or_start_authenticator(user)
+      if !Lato.config.authenticator_connection || Lato.config.auth_disable_authenticator || !user.authenticator_enabled?
+        session_create(user.id)
+        return true
+      end
+
+      session[:authenticator_user_id] = user.id
+      false
     end
 
     def lock_signup_if_disabled
