@@ -107,9 +107,3 @@ $ ruby ./bin/publish.rb
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## TODO feat/2factorauth
-
-- [ ] sistemazione UI pagina account.
-- [ ] gestire accesso con codice inviato via email se utente perde accesso a Google Authenticator (esempio: rigenera QR code e non lo salva su Authenticator).
-- [ ] testing.

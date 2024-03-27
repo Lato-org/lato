@@ -70,7 +70,7 @@ module Lato
     end
 
     def authenticator_qr_code_base64(size = 200)
-      "data:image/png;base64,#{Base64.strict_encode64(RQRCode::QRCode.new(ROTP::TOTP.new(authenticator_secret, :issuer => Lato.config.application_title).provisioning_uri(email).to_s).as_png(size: size).to_s)}"
+      "data:image/png;base64,#{Base64.strict_encode64(RQRCode::QRCode.new(ROTP::TOTP.new(authenticator_secret, :issuer => Lato.config.application_title).provisioning_uri(email).to_s).as_png(size: size, border_modules: 0).to_s)}"
     end
 
     # Operations
@@ -232,7 +232,9 @@ module Lato
 
       c_password_update_code('')
 
-      update(params.permit(:password, :password_confirmation))
+      update(params.permit(:password, :password_confirmation).merge(
+        authenticator_secret: nil # Reset authenticator secret when password is updated
+      ))
     end
 
     def update_accepted_privacy_policy_version(params)

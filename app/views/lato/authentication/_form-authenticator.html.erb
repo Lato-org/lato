@@ -20,5 +20,9 @@ user ||= Lato::User.new
     <div>
       <%= lato_form_submit form, I18n.t('lato.confirm'), class: %w[d-block w-100] %>
     </div>
+
+    <div class="text-center mt-3 mb-3">
+      <%= I18n.t('lato.or').downcase %> <%= link_to I18n.t('lato.reset_password').downcase, lato.authentication_recover_password_path %>
+    </div>
   <% end %>
 <% end %>

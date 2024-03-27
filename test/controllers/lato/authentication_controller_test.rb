@@ -299,6 +299,14 @@ module Lato
       assert_lato_session_cookie
     end
 
+    # authenticator
+    ##
+
+    test "authenticator should response with not_found error if user not exists" do
+      get lato.authentication_authenticator_url
+      assert_response :not_found
+    end
+
     private
 
     def assert_lato_session_cookie
