@@ -10,7 +10,7 @@ module Lato
     attr_accessor :session_lifetime, :session_root_path
 
     # Authentication configs
-    attr_accessor :auth_disable_signup, :auth_disable_recover_password, :auth_disable_web3
+    attr_accessor :auth_disable_signup, :auth_disable_recover_password, :auth_disable_web3, :auth_disable_authenticator
 
     # Assets configs
     attr_accessor :assets_stylesheet_entry
@@ -38,6 +38,7 @@ module Lato
       @auth_disable_signup = false
       @auth_disable_recover_password = false
       @auth_disable_web3 = false
+      @auth_disable_authenticator = false
 
       @assets_stylesheet_entry = 'application'
 

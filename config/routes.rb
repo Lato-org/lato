@@ -26,6 +26,8 @@ Lato::Engine.routes.draw do
     patch 'update_password_action', to: 'authentication#update_password_action', as: :authentication_update_password_action
     get 'accept_invitation', to: 'authentication#accept_invitation', as: :authentication_accept_invitation
     post 'accept_invitation_action', to: 'authentication#accept_invitation_action', as: :authentication_accept_invitation_action
+    get 'authenticator', to: 'authentication#authenticator', as: :authentication_authenticator
+    post 'authenticator_action', to: 'authentication#authenticator_action', as: :authentication_authenticator_action
   end
 
   # Account

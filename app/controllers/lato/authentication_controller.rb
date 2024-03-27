@@ -10,6 +10,7 @@ module Lato
     before_action :lock_signup_if_disabled, only: %i[signup signup_action]
     before_action :lock_recover_password_if_disabled, only: %i[recover_password recover_password_action update_password update_password_action]
     before_action :lock_web3_if_disabled, only: %i[web3_signin web3_signin_action]
+    before_action :lock_authenticator_if_disabled, only: %i[authenticator authenticator_action]
 
     before_action :hide_sidebar
 
@@ -183,6 +184,17 @@ module Lato
       end
     end
 
+    # Authenticator
+    ##
+
+    def authenticator
+      # TODO
+    end
+
+    def authenticator_action
+      # TODO
+    end
+
     private
 
     def registration_params
@@ -197,6 +209,10 @@ module Lato
     def find_invitation
       @invitation = Lato::Invitation.find_by(id: params[:id], accepted_code: params[:accepted_code])
       respond_to_with_not_found unless @invitation
+    end
+
+    def create_session_or_pass_to_authenticator(user)
+      # TODO: Check if we need authenticator and redirect to it or create a session and return true.
     end
 
     def lock_signup_if_disabled
@@ -214,6 +230,12 @@ module Lato
     def lock_web3_if_disabled
       return if Lato.config.web3_connection && !Lato.config.auth_disable_web3
 
+
+      respond_to_with_not_found
+    end
+
+    def lock_authenticator_if_disabled
+      return if Lato.config.authenticator_connection && !Lato.config.auth_disable_authenticator
 
       respond_to_with_not_found
     end
