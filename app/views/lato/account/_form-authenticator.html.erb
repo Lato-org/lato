@@ -14,7 +14,7 @@ user ||= Lato::User.new
         <div class="text-center mb-3 mb-md-0 me-md-3">
           <img class="shadow-sm rounded" src="<%= user.authenticator_qr_code_base64 %>" />
         </div>
-        <div class="d-flex flex-column justify-content-between">
+        <div class="d-flex flex-column justify-content-between w-100">
           <div class="alert alert-light">
             <p class="mb-0">
               <%= raw I18n.t('lato.account_authenticator_ready_qr') %>
