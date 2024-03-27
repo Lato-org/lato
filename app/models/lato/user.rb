@@ -65,6 +65,10 @@ module Lato
       @gravatar_image_url ||= "https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=#{size}"
     end
 
+    def authenticator_qr_code_base64(size = 200)
+      "data:image/png;base64,#{Base64.strict_encode64(RQRCode::QRCode.new(ROTP::TOTP.new(authenticator_secret, :issuer => Lato.config.application_title).provisioning_uri(email).to_s).as_png(size: size).to_s)}"
+    end
+
     # Operations
     ##
 
@@ -293,7 +297,7 @@ module Lato
     end
 
     def generate_authenticator_secret
-      update(authenticator_secret: SecureRandom.hex(32))
+      update(authenticator_secret: ROTP::Base32.random)
     end
 
     # Cache

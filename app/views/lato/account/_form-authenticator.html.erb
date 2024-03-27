@@ -10,7 +10,7 @@ user ||= Lato::User.new
     <%= lato_form_errors user, class: %w[mb-3] %>
 
     <% if user.authenticator_secret %>
-      TODO: Show QR code<br>
+      <img src="<%= user.authenticator_qr_code_base64 %>" />
       <%= lato_form_submit form, I18n.t('lato.generate_qr_code'), class: %w[btn-primary] %>
     <% else %>
       <div class="alert alert-light mb-0">

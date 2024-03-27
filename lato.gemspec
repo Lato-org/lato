@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "kaminari"
   spec.add_dependency "browser"
   spec.add_dependency "rqrcode"
+  spec.add_dependency "rotp"
 
   spec.add_development_dependency "eth"
 end

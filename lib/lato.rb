@@ -1,6 +1,8 @@
 require "kaminari"
 require "bootstrap"
 require "browser"
+require "rotp"
+require "rqrcode"
 
 require "lato/version"
 require "lato/engine"
