@@ -58,13 +58,25 @@ module Lato
     def update_authenticator_action
       return respond_to_with_not_found unless Lato.config.authenticator_connection
 
-      respond_to do |format|
-        if @session.user.generate_authenticator_secret
-          format.html { redirect_to lato.account_path }
-          format.json { render json: @session.user }
-        else
-          format.html { render :index, status: :unprocessable_entity }
-          format.json { render json: @session.user.errors, status: :unprocessable_entity }
+      if @session.user.authenticator_secret
+        respond_to do |format|
+          if @session.user.remove_authenticator_secret
+            format.html { redirect_to lato.account_path }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        respond_to do |format|
+          if @session.user.generate_authenticator_secret
+            format.html { redirect_to lato.account_path }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
         end
       end
     end

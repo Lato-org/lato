@@ -12,17 +12,17 @@ user ||= Lato::User.new
     <% if user.authenticator_secret %>
       <div class="d-block d-md-flex align-items-stretch">
         <div class="text-center mb-3 mb-md-0 me-md-3">
-          <img src="<%= user.authenticator_qr_code_base64 %>" />
+          <img class="shadow-sm rounded" src="<%= user.authenticator_qr_code_base64 %>" />
         </div>
         <div class="d-flex flex-column justify-content-between">
           <div class="alert alert-light">
-            <p>
+            <p class="mb-0">
               <%= raw I18n.t('lato.account_authenticator_ready_qr') %>
             </p>
           </div>
 
           <div class="d-flex justify-content-end">
-            <%= lato_form_submit form, I18n.t('lato.reset_qr_code'), class: %w[btn-danger] %>
+            <%= lato_form_submit form, I18n.t('lato.cancel_authenticator'), class: %w[btn-danger] %>
           </div>
         </div>
       </div>

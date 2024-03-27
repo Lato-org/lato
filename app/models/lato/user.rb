@@ -306,6 +306,10 @@ module Lato
       update(authenticator_secret: ROTP::Base32.random)
     end
 
+    def remove_authenticator_secret
+      update(authenticator_secret: nil)
+    end
+
     def authenticator(params)
       return false unless authenticator_enabled?
 
