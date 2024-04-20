@@ -9,7 +9,7 @@
 
   <meta name="turbo-refresh-method" content="morph">
   <meta name="turbo-refresh-scroll" content="preserve">
-  <% if response.status >= 400 %>
+  <% if response.status >= 500 %>
     <meta name="turbo-visit-control" content="reload">
   <% end %>
 
