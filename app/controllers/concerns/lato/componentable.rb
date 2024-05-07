@@ -6,8 +6,8 @@ module Lato
       # load options
       # NOTE: instance variables are for options used by "lato_index" component helper
       key = options[:key] || 'default'
-      pagination = options[:pagination] || false
       default_sort_by = options[:default_sort_by] || nil
+      pagination = options[:pagination] || false
       @_lato_index ||= {}
       @_lato_index[key] = {
         columns: options[:columns] || collection.column_names || [],
@@ -45,7 +45,7 @@ module Lato
       # manage pagination
       if pagination || params[:page] || params[:per_page]
         page = params[:page]&.to_i || 1
-        per_page = params[:per_page]&.to_i || 25
+        per_page = params[:per_page]&.to_i || (pagination.is_a?(Integer) ? pagination : 25)
         per_page = 100 if per_page > 100
         collection = collection.page(page).per(per_page)
       end

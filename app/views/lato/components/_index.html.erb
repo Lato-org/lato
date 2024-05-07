@@ -7,7 +7,7 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
 
 <%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}", class: "lato-index #{browser.device.mobile? ? 'lato-index-mob' : 'lato-index-desk'}" do %>
 
-  <%= form_tag request.path, method: :get, data: { turbo_frame: '_self' } do %>
+  <%= form_tag request.path, method: :get, data: { controller: 'lato_form', turbo_frame: '_self' } do %>
     <%= hidden_field_tag :key, key %>
     <% params.each do |k, v| %>
       <%= hidden_field_tag k, v %>
@@ -132,7 +132,18 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
                   <% else %>
                     <div></div>
                   <% end %>
-                  <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
+                  <div class="d-flex justify-content-end align-items-center">
+                    <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
+                    <% if pagination_options %>
+                      <select name="per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change->lato_form#submit">
+                        <% pagination_options.each do |option| %>
+                          <option value="<%= option %>" <%= option == params[:per_page].to_i ? 'selected' : '' %>>
+                            <%= option %> <%= I18n.t('lato.per_page').downcase %>
+                          </option>
+                        <% end %>
+                      </select>
+                    <% end %>
+                  </div>
                 </div>
               </td>
             </tr>

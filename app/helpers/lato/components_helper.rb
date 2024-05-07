@@ -52,6 +52,7 @@ module Lato
       searchable_columns = @_lato_index[key][:searchable_columns] || []
       model_name = options[:model_name] || collection.model.name
       model_name_underscore = options[:model_name] || model_name.underscore.gsub('/', '_')
+      pagination_options = options[:pagination_options] || nil
 
       render(
         'lato/components/index',
@@ -62,6 +63,7 @@ module Lato
         searchable_columns: searchable_columns,
         model_name: model_name,
         model_name_underscore: model_name_underscore,
+        pagination_options: pagination_options,
         custom_actions: options[:custom_actions] || {}
       )
     end

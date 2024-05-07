@@ -60,6 +60,7 @@ it:
     authenticator: Autenticazione a due fattori
     authenticator_code_help: Inserisci il codice generato dall'app Google Authenticator per l'account <b>%{email}</b>
     reset_password: Reimposta la tua password
+    per_page: Per pagina
 
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente

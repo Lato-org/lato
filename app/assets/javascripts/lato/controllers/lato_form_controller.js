@@ -12,7 +12,16 @@ export default class extends Controller {
    * Stimulus
    */
 
-  connect() {}
+  connect() {
+    this.hiddenSubmit = document.createElement('input')
+    this.hiddenSubmit.type = 'submit'
+    this.hiddenSubmit.style.display = 'none'
+    this.element.appendChild(this.hiddenSubmit)
+  }
+
+  disconnect() {
+    this.hiddenSubmit.remove()
+  }
 
   /**
    * Events
@@ -24,6 +33,6 @@ export default class extends Controller {
 
   // NOTE: You can use this method to submit the form from outside the form or from custom DOM actions.
   submit() {
-    this.element.submit()
+    this.hiddenSubmit.click()
   }
 }
