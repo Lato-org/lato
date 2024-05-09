@@ -47,8 +47,8 @@ document.addEventListener('turbo:load', () => {
   }, PAGE_TRANSITION_TIME)
 })
 
-document.addEventListener('turbo:before-render', (e) => {
-  console.log('turbo:before-render')
+document.addEventListener('turbo:before-cache', (e) => {
+  console.log('turbo:before-cache')
 
   e.preventDefault()
 
