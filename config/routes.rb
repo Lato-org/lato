@@ -5,6 +5,7 @@ Lato::Engine.routes.draw do
   get 'error', to: 'application#error', as: :error
 
   post '/switch_locale/:locale', to: 'application#switch_locale', as: 'switch_locale'
+  get '/switch_locale/:locale', to: 'application#switch_locale', as: 'switch_locale_get'
 
   # Authentication
   ##
