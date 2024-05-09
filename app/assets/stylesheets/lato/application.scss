@@ -41,20 +41,9 @@ $gray-900: #1f262c !default;
 
 /** Custom style */
 
-body {
-  &.is-loaded {
-    main {
-      opacity: 1;
-    }
-  }
-}
-
 main {
   width: 100%;
   
-  opacity: 0;
-  transition: opacity 0.05s ease-in-out;
-
   &.layout_sidebar {
     width: calc(100% - 280px);
 
