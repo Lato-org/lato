@@ -30,30 +30,11 @@ document.addEventListener("turbo:frame-missing", event => {
 })
 
 /**
- * Manage page transitions
+ * Manage page caching
  */
 
-const PAGE_TRANSITION_TIME = 50
-
-document.addEventListener('DOMContentLoaded', () => {
-  // add is-loaded class
-  document.body.classList.add('is-loaded')
-})
-
-document.addEventListener('turbo:load', () => {
-  setTimeout(() => {
-    // add is-loaded class
-    document.body.classList.add('is-loaded')
-  }, PAGE_TRANSITION_TIME)
-})
-
 document.addEventListener('turbo:before-cache', (e) => {
-  console.log('turbo:before-cache')
-
   e.preventDefault()
-
-  // remove is-loaded class
-  document.body.classList.remove('is-loaded')
 
   // hide aside menu (for mobile)
   document.body.classList.remove('aside-open')
@@ -70,7 +51,9 @@ document.addEventListener('turbo:before-cache', (e) => {
   document.body.style.paddingRight = ''
   document.body.style.overflow = ''
 
-  setTimeout(() => {
-    e.detail.resume()
-  }, PAGE_TRANSITION_TIME)
+  // close mobile menu
+  document.querySelector('.navbar-toggler').classList.add('collapsed')
+  document.querySelector('.navbar-collapse').classList.remove('show')
+
+  e.detail.resume()
 })
