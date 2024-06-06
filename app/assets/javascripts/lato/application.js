@@ -30,7 +30,7 @@ document.addEventListener("turbo:frame-missing", event => {
 })
 
 /**
- * Manage page caching
+ * Manage page caching clean
  */
 
 document.addEventListener('turbo:before-cache', (e) => {
@@ -51,7 +51,7 @@ document.addEventListener('turbo:before-cache', (e) => {
   document.body.style.paddingRight = ''
   document.body.style.overflow = ''
 
-  // close mobile menu
+  // close nav menu (for mobile)
   document.querySelector('.navbar-toggler').classList.add('collapsed')
   document.querySelector('.navbar-collapse').classList.remove('show')
 
