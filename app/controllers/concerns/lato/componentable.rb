@@ -3,10 +3,6 @@ module Lato
     extend ActiveSupport::Concern
 
     def lato_index_collection(collection, options = {})
-      puts "*" * 100
-      puts params.to_unsafe_h
-      puts "*" * 100
-
       # load options
       # NOTE: instance variables are for options used by "lato_index" component helper
       key = options[:key] || 'default'
