@@ -39,7 +39,7 @@
       </aside>
     <% end %>
 
-    <main class="<%= @layout_sidebar && 'layout_sidebar' %>">
+    <main class="<%= @layout_sidebar ? 'layout_sidebar' : '' %>">
       <%= render 'layouts/lato/content' %>
     </main>
   </div>
