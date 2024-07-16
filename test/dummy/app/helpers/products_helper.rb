@@ -11,6 +11,12 @@ module ProductsHelper
     lato_data_user(product.lato_user.full_name, product.lato_user.gravatar_image_url(50))
   end
 
+  def product_product_parent_id(product)
+    return ' - ' if product.product_parent.nil?
+
+    product.product_parent.code
+  end
+
   def product_lifetime(product)
     Time.at(product.lifetime).utc.strftime('%H h %M m')
   end

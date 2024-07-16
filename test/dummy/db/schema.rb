@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_18_074025) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_16_044354) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -104,7 +104,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_074025) do
     t.integer "lato_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_parent_id"
     t.index ["lato_user_id"], name: "index_products_on_lato_user_id"
+    t.index ["product_parent_id"], name: "index_products_on_product_parent_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -115,4 +117,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_074025) do
   add_foreign_key "lato_log_user_signups", "lato_users"
   add_foreign_key "lato_operations", "lato_users"
   add_foreign_key "products", "lato_users"
+  add_foreign_key "products", "products", column: "product_parent_id"
 end

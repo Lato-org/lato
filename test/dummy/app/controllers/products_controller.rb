@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action { active_sidebar(:products) }
 
   def index
-    columns = %i[id code status lato_user_id custom_dynamic_column created_at actions]
+    columns = %i[id code status product_parent_id lato_user_id custom_dynamic_column created_at actions]
     sortable_columns = %i[id code status lato_user_id]
     searchable_columns = %i[id code lato_user_id]
 
@@ -18,8 +18,13 @@ class ProductsController < ApplicationController
   end
 
   def index_autocomplete
+    unless params[:value].blank?
+      @product = Product.find_by(id: params[:value])
+      return render json: @product ? { label: @product.code, value: @product.id } : nil
+    end
+
     @products = Product.where('code LIKE ?', "#{params[:q]}%").limit(10)
-    render json: @products.map(&:code)
+    render json: @products.map { |product| { label: product.code, value: product.id } }
   end
 
   def create
@@ -75,6 +80,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:code)
+    params.require(:product).permit(:code, :product_parent_id)
   end
 end

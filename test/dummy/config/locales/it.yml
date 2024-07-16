@@ -6,6 +6,7 @@ it:
         status: Stato
         created_at: Data creazione
         lato_user_id: Utente
+        product_parent_id: Prodotto padre
         updated_at: Data modifica
         lifetime: Tempo di vita
         actions: Azioni

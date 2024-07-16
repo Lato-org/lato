@@ -40,7 +40,7 @@ export default class extends Controller {
 
     data.forEach((item) => {
       const option = document.createElement('option')
-      option.value = item
+      option.value = typeof item === 'string' ? item : item.label
       this.datalist.appendChild(option)
     })
   }
