@@ -73,10 +73,10 @@ export default class extends Controller {
       li.classList.add('list-group-item')
       li.classList.add('list-group-item-action')
       li.style.cursor = 'pointer'
-      li.innerText = option.label
+      li.innerText = typeof option == 'string' ? option : option.label
       li.addEventListener('click', () => {
-        this.element.value = option.label
-        this.realInput.value = option.value
+        this.element.value = typeof option == 'string' ? option : option.label
+        this.realInput.value = typeof option == 'string' ? option : option.value
         this.suggestHide()
       })
       this.optionsList.appendChild(li)
@@ -93,7 +93,7 @@ export default class extends Controller {
     try {
       const response = await fetch(this.pathValue + '?value=' + this.element.value)
       const data = await response.json()
-      this.element.value = data?.label
+      this.element.value = data?.label || this.element.value
     } catch (err) {
       console.error(err)
     }
