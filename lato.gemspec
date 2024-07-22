@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version     = Lato::VERSION
   spec.authors     = ["Gregorio Galante"]
   spec.email       = ["me@gregoriogalante.com"]
-  spec.homepage    = "https://github.com/GAMS-Software/lato"
+  spec.homepage    = "https://github.com/Lato-org/lato"
   spec.summary     = "Basic engine for all Lato projects"
   spec.description = "A Rails engine that includes what you need to build a new project!"
   spec.license     = "MIT"
@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/GAMS-Software/lato"
+  spec.metadata["source_code_uri"] = "https://github.com/Lato-org/lato"
   # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
