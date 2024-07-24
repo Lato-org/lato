@@ -8,7 +8,7 @@ module Lato
 
       mail(
         to: @user.email,
-        subject: 'Conferma il tuo indirizzo email',
+        subject: I18n.t('lato.user_mailer.email_verification_mail_subject'),
         template_path: 'lato/mailer/user'
       )
     end
@@ -21,7 +21,20 @@ module Lato
 
       mail(
         to: @user.email,
-        subject: 'Imposta una nuova password',
+        subject: I18n.t('lato.user_mailer.password_update_mail_subject'),
+        template_path: 'lato/mailer/user'
+      )
+    end
+
+    def signin_success_mail(user_id, ip_address)
+      @user = Lato::User.find(user_id)
+      @ip_address = ip_address
+
+      set_user_locale
+
+      mail(
+        to: @user.email,
+        subject: I18n.t('lato.user_mailer.signin_success_mail_subject'),
         template_path: 'lato/mailer/user'
       )
     end

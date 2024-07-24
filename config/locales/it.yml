@@ -62,6 +62,13 @@ it:
     reset_password: Reimposta la tua password
     per_page: Per pagina
 
+    invitation_mailer:
+      invite_mail_subject: Hai ricevuto un invito
+    user_mailer:
+      email_verification_mail_subject: Conferma il tuo indirizzo email
+      password_update_mail_subject: Imposta una nuova password
+      signin_success_mail_subject: Nuovo accesso al tuo account
+
     account_controller:
       update_user_action_notice: Informazioni account aggiornate correttamente
       request_verify_email_action_notice: Ti abbiamo inviato una email con i passaggi da seguire per completare la procedura

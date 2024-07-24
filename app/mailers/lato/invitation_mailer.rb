@@ -7,7 +7,7 @@ module Lato
 
       mail(
         to: @invitation.email,
-        subject: 'Hai ricevuto un invito',
+        subject: I18n.t('lato.invitation_mailer.invite_mail_subject'),
         template_path: 'lato/mailer/invitation'
       )
     end

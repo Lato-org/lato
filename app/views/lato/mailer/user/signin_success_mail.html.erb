@@ -1,0 +1,15 @@
+<% if I18n.locale == 'en' %>
+
+An access to your <b><%= Lato.config.application_title %></b> account has been made with the IP address <b><%= @ip_address %></b>.
+<br><br>
+If you have not made this access, we recommend you to change the password of your account and to contact the support.<br>
+Otherwise, ignore this email.
+
+<% else %>
+
+E' stato effettuato un accesso al tuo account di <b><%= Lato.config.application_title %></b> con l'indirizzo IP <b><%= @ip_address %></b>.
+<br><br>
+Se non sei stato tu a effettuare l'accesso, ti consigliamo di cambiare la password del tuo account e di contattare il supporto.<br>
+Altrimenti, ignora questa email.
+
+<% end %>

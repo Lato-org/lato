@@ -60,6 +60,13 @@ en:
     reset_password: Reset your password
     per_page: Per page
 
+    invitation_mailer:
+      invite_mail_subject: You received an invitation
+    user_mailer:
+      email_verification_mail_subject: Confirm your email address
+      password_update_mail_subject: Set a new password
+      signin_success_mail_subject: New access to your account
+
     account_controller:
       update_user_action_notice: Account information properly updated
       request_verify_email_action_notice: We have sent you an email with the steps to follow to complete the procedure

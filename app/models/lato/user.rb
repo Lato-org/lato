@@ -117,6 +117,8 @@ module Lato
         Rails.logger.error(e)
       end
 
+      Lato::UserMailer.signin_success_mail(id, params[:ip_address]).deliver_later
+
       true
     end
 
