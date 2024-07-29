@@ -55,5 +55,5 @@ document.addEventListener('turbo:before-cache', (e) => {
   document.querySelector('.navbar-toggler').classList.add('collapsed')
   document.querySelector('.navbar-collapse').classList.remove('show')
 
-  e.detail.resume()
+  e.detail?.resume()
 })
