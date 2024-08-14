@@ -13,8 +13,8 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
       <%= hidden_field_tag k, v %>
     <% end %>
 
-    <% if custom_actions.any? || searchable_columns.any? %>
-      <div class="d-flex justify-content-between mb-3">
+    <% if custom_actions.any? || searchable_columns.any? || dropdown_actions %>
+      <div class="d-flex mb-3">
         <% if searchable_columns.any? %>
           <div class="input-group">
             <input type="text" name="search" class="form-control" placeholder="<%= I18n.t('lato.search_for') %>: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>">
@@ -23,16 +23,36 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
         <% else %>
           <div></div>
         <% end %>
-
-        <div class="btn-group ms-2">
-          <% if custom_actions.any? %>
+        
+        <% if custom_actions.any? %>
+          <div class="btn-group ms-2">
             <% custom_actions.each do |action_key, action_params| %>
               <%= link_to action_params[:path], { class: 'btn btn-primary' }.merge(action_params) do %>
                 <i class="<%= action_params[:icon] %>"></i>
               <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
+
+        <% if dropdown_actions %>
+          <div class="dropdown ms-2">
+            <%= content_tag :button, { class: 'btn btn-primary dropdown-toggle', 'data-bs-toggle': 'dropdown' }.merge(dropdown_actions) do %>
+              <i class="<%= dropdown_actions[:icon] %>"></i>
+            <% end %>
+            <ul class="dropdown-menu">
+              <% dropdown_actions[:actions].each do |action| %>
+                <li>
+                  <%= link_to action[:path], { class: 'dropdown-item' }.merge(action) do %>
+                    <% if action[:icon] %>
+                      <i class="<%= action[:icon] %> me-1"></i>
+                    <% end %>
+                    <%= action[:title] %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
       </div>
     <% end %>
 

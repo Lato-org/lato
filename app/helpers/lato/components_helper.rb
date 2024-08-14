@@ -64,7 +64,8 @@ module Lato
         model_name: model_name,
         model_name_underscore: model_name_underscore,
         pagination_options: pagination_options,
-        custom_actions: options[:custom_actions] || {}
+        custom_actions: options[:custom_actions] || {},
+        dropdown_actions: options[:dropdown_actions] || nil
       )
     end
 

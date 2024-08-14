@@ -25,7 +25,32 @@
         turbo_method: :post,
         turbo_frame: 'lato_operation'
       }
-    }
+    },
+  },
+  dropdown_actions: {
+    icon: 'bi bi-three-dots',
+    title: 'More actions',
+    data: {
+      controller: 'lato-tooltip',
+    },
+    actions: [
+      {
+        path: '#',
+        icon: 'bi bi-trash',
+        title: 'Example 1',
+        data: {
+          custom: 'value',
+        }
+      },
+      {
+        path: '#',
+        icon: 'bi bi-download',
+        title: 'Example 2',
+        data: {
+          custom: 'value',
+        }
+      }
+    ]
   },
   pagination_options: [10,20,50,100]
 %>
