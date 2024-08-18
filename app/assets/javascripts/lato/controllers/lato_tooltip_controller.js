@@ -7,6 +7,17 @@ export default class extends Controller {
 
   connect() {
     this.tooltip = new bootstrap.Tooltip(this.element)
+
+    // HACK: Force tooltip to be closed when a boostrap modal is opened/closed
+    const modals = document.querySelectorAll('.modal')
+    modals.forEach((modal) => {
+      modal.addEventListener('show.bs.modal', () => {
+        setTimeout(() => this.tooltip.hide(), 0)
+      })
+      modal.addEventListener('hide.bs.modal', () => {
+        setTimeout(() => this.tooltip.hide(), 0)
+      })
+    })
   }
 
   disconnect() {
