@@ -43,15 +43,42 @@ export default class extends Controller {
 
   async search(value) {
     this.realInput.value = ''
-    if (!value || value.length < 3) return
+    if (!value) return
 
     try {
-      const response = await fetch(this.pathValue + '?q=' + value)
-      const data = await response.json()
-      this.suggestShow(data)
+      this.suggestShowLoading()
+      setTimeout(async () => {
+        const response = await fetch(this.pathValue + '?q=' + value)
+        const data = await response.json()
+        this.suggestShow(data)
+      }, 500)
     } catch (err) {
       console.error(err)
     }
+  }
+
+  suggestShowLoading() {
+    if (this.optionsList) this.optionsList.remove()
+    this.optionsList = document.createElement('ul')
+    this.optionsList.classList.add('list-group')
+    this.optionsList.style.position = 'fixed'
+    this.optionsList.style.width = this.element.offsetWidth + 'px'
+    this.optionsList.style.maxHeight = '200px'
+    this.optionsList.style.overflowY = 'auto'
+    this.optionsList.style.zIndex = 9999
+
+    const elementRect = this.element.getBoundingClientRect()
+    this.optionsList.style.top = elementRect.bottom + 'px'
+    this.optionsList.style.left = elementRect.left + 'px'
+
+    const li = document.createElement('li')
+    li.classList.add('list-group-item')
+    li.classList.add('text-muted')
+    li.classList.add('text-center')
+    li.innerHTML = '<span class="lato-spin d-inline-block"><i class="bi bi-arrow-clockwise"></i></span>'
+    this.optionsList.appendChild(li)
+
+    document.body.appendChild(this.optionsList)
   }
 
   suggestShow(data = []) {
@@ -67,20 +94,29 @@ export default class extends Controller {
     const elementRect = this.element.getBoundingClientRect()
     this.optionsList.style.top = elementRect.bottom + 'px'
     this.optionsList.style.left = elementRect.left + 'px'
-    
-    data.forEach((option) => {
+
+    if (data.length > 0) {
+      data.forEach((option) => {
+        const li = document.createElement('li')
+        li.classList.add('list-group-item')
+        li.classList.add('list-group-item-action')
+        li.style.cursor = 'pointer'
+        li.innerText = typeof option == 'string' ? option : option.label
+        li.addEventListener('click', () => {
+          this.element.value = typeof option == 'string' ? option : option.label
+          this.realInput.value = typeof option == 'string' ? option : option.value
+          this.suggestHide()
+        })
+        this.optionsList.appendChild(li)
+      })
+    } else {
       const li = document.createElement('li')
       li.classList.add('list-group-item')
-      li.classList.add('list-group-item-action')
-      li.style.cursor = 'pointer'
-      li.innerText = typeof option == 'string' ? option : option.label
-      li.addEventListener('click', () => {
-        this.element.value = typeof option == 'string' ? option : option.label
-        this.realInput.value = typeof option == 'string' ? option : option.value
-        this.suggestHide()
-      })
+      li.classList.add('text-muted')
+      li.classList.add('text-center')
+      li.innerText = 'No results found'
       this.optionsList.appendChild(li)
-    })
+    }
 
     document.body.appendChild(this.optionsList)
   }
