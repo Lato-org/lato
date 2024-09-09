@@ -67,6 +67,20 @@ main, aside {
 
 .aside-opener {
   display: none;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  background-color: $primary;
+  color: $white;
+  border: none;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 768px) {
@@ -93,20 +107,6 @@ main, aside {
 
   .aside-opener {
     display: flex;
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    z-index: 100;
-    background-color: $primary;
-    color: $white;
-    border: none;
-    padding: 0;
-    width: 60px;
-    height: 60px;
-    font-size: 20px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
   }
 }
 
