@@ -61,6 +61,9 @@ it:
     authenticator_code_help: Inserisci il codice generato dall'app Google Authenticator per l'account <b>%{email}</b>
     reset_password: Reimposta la tua password
     per_page: Per pagina
+    confirm_title: Conferma
+    confirm_yes: Sì, procedi
+    confirm_no: No, annulla
 
     invitation_mailer:
       invite_mail_subject: Hai ricevuto un invito

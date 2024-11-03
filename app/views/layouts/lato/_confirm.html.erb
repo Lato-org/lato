@@ -1,0 +1,16 @@
+<div class="modal fade" data-controller="lato-confirm" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4"><%= I18n.t('lato.confirm_title') %></h2>
+        <button type="button" class="btn-close" data-action="click->lato-confirm#confirmCancel" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-confirm-target="modalBody">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-action="click->lato-confirm#confirmCancel"><%= I18n.t('lato.confirm_no') %></button>
+        <button type="button" class="btn btn-success" data-action="click->lato-confirm#confirmSuccess"><%= I18n.t('lato.confirm_yes') %></button>
+      </div>
+    </div>
+  </div>
+</div>
