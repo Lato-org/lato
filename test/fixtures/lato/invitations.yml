@@ -1,5 +1,1 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-invitation:
-  email: pippo.franco.invitation@mail.com
-  accepted_code: '1234'

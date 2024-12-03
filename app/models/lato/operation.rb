@@ -1,11 +1,11 @@
 module Lato
   class Operation < ApplicationRecord
-    enum status: {
+    enum :status, {
       created: 0,
       running: 1,
       completed: 2,
       failed: 3
-    }, _suffix: true
+    }, suffix: true
 
     has_one_attached :input_file
     has_one_attached :output_file

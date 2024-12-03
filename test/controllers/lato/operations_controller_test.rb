@@ -3,8 +3,8 @@ require "test_helper"
 module Lato
   class OperationsControllerTest < ActionDispatch::IntegrationTest
     setup do
-      @user = lato_users(:user)
-      @operation = lato_operations(:operation)
+      @user = setup_lato_user
+      @operation = setup_lato_operation(@user.id)
     end
 
     # show

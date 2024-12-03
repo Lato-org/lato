@@ -1,8 +1,1 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-operation:
-  active_job_name: TestJob
-  active_job_input: {}
-  status: created
-  percentage: 0
-  lato_user_id: user

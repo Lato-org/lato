@@ -4,7 +4,7 @@ module Lato
   class AccountControllerTest < ActionDispatch::IntegrationTest
     setup do
       Rails.cache.clear
-      @user = lato_users(:user)
+      @user = setup_lato_user
     end
 
     # index
@@ -67,6 +67,7 @@ module Lato
     test "update_user_action should not reset email_verified_at if email is not changed" do
       authenticate_user
 
+      @user.update_columns(email_verified_at: Time.now)
       old_email = @user.email
       patch lato.account_update_user_action_url, params: {
         user: {

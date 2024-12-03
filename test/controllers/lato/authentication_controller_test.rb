@@ -3,7 +3,7 @@ require "test_helper"
 module Lato
   class AuthenticationControllerTest < ActionDispatch::IntegrationTest
     setup do
-      @user = lato_users(:user)
+      @user = setup_lato_user
     end
 
     # signin
@@ -260,7 +260,7 @@ module Lato
     end
 
     test "accept_invitation should response with success" do
-      invitation = lato_invitations(:invitation)
+      invitation = setup_lato_invitation
 
       get lato.authentication_accept_invitation_url(id: invitation.id, accepted_code: invitation.accepted_code)
       assert_response :success
@@ -270,7 +270,7 @@ module Lato
     ##
 
     test "accept_invitation_action should not create a new user without required params" do
-      invitation = lato_invitations(:invitation)
+      invitation = setup_lato_invitation
 
       post lato.authentication_accept_invitation_action_url(id: invitation.id, accepted_code: invitation.accepted_code), params: {
         user: {
@@ -281,7 +281,7 @@ module Lato
     end
 
     test "accept_invitation_action should create a new user" do
-      invitation = lato_invitations(:invitation)
+      invitation = setup_lato_invitation
 
       post lato.authentication_accept_invitation_action_url(id: invitation.id, accepted_code: invitation.accepted_code), params: {
         user: {
