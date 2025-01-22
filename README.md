@@ -1,5 +1,6 @@
 # Lato
-Lato is a Rails Engine for developing web applications.
+
+Lato is a Rails Engine to deliver a full featured web panel for your Rails application.
 
 This gem includes:
 - User management with full authentication (signin, signup, recover password);
