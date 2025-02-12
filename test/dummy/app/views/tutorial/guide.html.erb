@@ -1,0 +1,52 @@
+<%= lato_page_head 'Guida', [
+  { label: 'Tutorial', path: tutorial_path },
+  { label: 'Guida' }
+] %>
+
+<p
+  data-lato-guide-target="item"
+  data-guide-key="intro"
+  data-guide-index="1"
+  data-guide-content="Questo è un esempio di una guida."
+>
+La guida può essere utilizzata per costruire dei tutorial passo a passo di utilizzo della piattaforma.<br>
+Le guide sono gestite tramite il controller di Stimulus JS <code>lato_guide_controller</code>.
+</p>
+
+<p
+  data-lato-guide-target="item"
+  data-guide-key="add"
+  data-guide-index="2"
+  data-guide-content="Qui è spiegato come aggiungere una guida."
+>
+  Per aggiungere una guida impostare l'attributo <code>data-lato-guide-target="item"</code> ad un elemento del DOM e definire tramite l'attributo <code>data-guide-key</code> una chiave univoca per la guida, <code>data-guide-index</code> l'indice di visualizzazione e <code>data-guide-content</code> il contenuto della guida.
+</p>
+
+<pre
+  data-lato-guide-target="item"
+  data-guide-key="code"
+  data-guide-index="3"
+  data-guide-content="Questo è un esempio di codice."
+>
+&#60;p
+  data-lato-guide-target="item"
+  data-guide-key="intro"
+  data-guide-index="1"
+  data-guide-content="Questo è un esempio di una guida."
+&#62;
+</pre>
+
+<h3>Reset delle guide</h3>
+
+<p>
+  Una volta che una guida è stata visualizzata, questa viene memorizzata nel local storage del browser.<br>
+  Per resettare le guide basta utilizzare il metodo <code>resetStatus</code> del controller <code>lato_guide_controller</code>.
+</p>
+
+<p>
+  <%= link_to 'Reset', '#', data: { action: 'click->lato-guide#resetStatus' } %>
+</p>
+
+<pre>
+&#60;%= link_to 'Reset', '#', data: { action: 'click->lato-guide#resetStatus' } %&#62;
+</pre>

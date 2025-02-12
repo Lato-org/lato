@@ -147,4 +147,10 @@ class TutorialController < ApplicationController
     end
   end
 
+  # Guide
+  
+  def guide
+    active_sidebar(:guide)
+  end
+
 end

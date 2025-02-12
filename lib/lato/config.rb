@@ -32,7 +32,7 @@ module Lato
       @application_title = 'Lato'
       @application_version = '1.0.0'
       @application_company_name = 'Lato Team'
-      @application_company_url = 'https://github.com/Lato-GAM'
+      @application_company_url = 'https://github.com/lato-org'
       @application_brand_color = '#03256c'
 
       @auth_disable_signup = false
