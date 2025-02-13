@@ -55,5 +55,10 @@ document.addEventListener('turbo:before-cache', (e) => {
   document.querySelector('.navbar-toggler').classList.add('collapsed')
   document.querySelector('.navbar-collapse').classList.remove('show')
 
+  // remove all tooltips
+  document.querySelectorAll('.tooltip').forEach((el) => {
+    el.remove()
+  })
+
   e.detail?.resume()
 })

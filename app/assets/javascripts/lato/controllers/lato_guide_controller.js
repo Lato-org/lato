@@ -10,48 +10,65 @@ export default class extends Controller {
   connect() {
     const localStorageStatus = localStorage.getItem('lato_guide')
     this.status = localStorageStatus ? JSON.parse(localStorageStatus) : {}
+    this.items = null
+    this.showing = false
+    
     this.storeStatus()
-
-    this.start()
+    this.setupItems()
+    this.showGuide()
   }
 
-  start(e = null) {
+  itemTargetConnected(e) {
+    this.setupItems()
+    this.showGuide()
+  }
+
+  itemTargetDisconnected(e) {
+    this.setupItems()
+  }
+
+  setupItems(e = null) {
     if (e) e.preventDefault()
 
-    const targets = this.itemTargets.map(item => ({ element: item, key: item.dataset.guideKey, content: item.dataset.guideContent, index: parseInt(item.dataset.guideIndex) })).map(item => {
+    this.items = this.itemTargets.map(item => ({ element: item, key: item.dataset.guideKey, content: item.dataset.guideContent, index: parseInt(item.dataset.guideIndex) })).map(item => {
       item.index = isNaN(item.index) ? 999 : item.index
       return item
     }).sort((a, b) => a.index - b.index)
-
-    this.showGuide(targets)
   }
 
-  async showGuide(targets) {
-    for (let i = 0; i < targets.length; i++) {
-      const item = targets[i]
-      if (this.status[item.key]) continue
+  async showGuide() {
+    if (this.showing) return
+    if (!this.status) return
+    if (!this.items) return
 
-      await this.showGuideItem(item, i === targets.length - 1)
+    for (const item of this.items) {
+      if (this.status[item.key]) continue
+      await this.showGuideItem(item)
     }
   }
 
-  async showGuideItem(item, isLast = false) {
+  async showGuideItem(item) {
+    if (this.showing) return
+    if (!this.status) return
     if (this.status[item.key]) return
 
+    this.showing = true
     return new Promise((resolve) => {
-      const tooltipCloseId = `guide-close-${Math.random().toString(36).substring(7)}`
+      const tooltipIsLast = this.items.filter(target => !this.status[target.key]).length === 1
+      const tooltipCloseId = `lato-guide-close-${Math.random().toString(36).substring(7)}`
       const tooltipTitle = `
-        <div class="px-3 py-3">
-          <p class="mb-1">${item.content}</p>
-          <a id="${tooltipCloseId}" class="btn btn-light btn-sm mt-2">${isLast ? 'Close' : 'Next'}</a>
+        <div class="px-2 py-2 d-flex align-items-center justify-content-between">
+          <p class="me-2 mb-0 text-start">${item.content}</p>
+          <a id="${tooltipCloseId}" class="btn btn-light btn-sm">${tooltipIsLast ? 'Close' : 'Next'}</a>
         </div>
       `
 
-      const tooltip = new bootstrap.Tooltip(item.element, { title: tooltipTitle, trigger: 'manual', html: true })
+      const tooltip = new bootstrap.Tooltip(item.element, { title: tooltipTitle, trigger: 'manual', html: true, customClass: 'lato-guide-tooltip' })
       item.element.addEventListener('shown.bs.tooltip', () => {
         setTimeout(() => {
           document.getElementById(tooltipCloseId).addEventListener('click', () => {
             tooltip.hide()
+            this.showing = false
             this.status[item.key] = true
             this.storeStatus()
             resolve()
@@ -71,6 +88,6 @@ export default class extends Controller {
     if (e) e.preventDefault()
     this.status = {}
     this.storeStatus()
-    this.start()
+    this.showGuide()
   }
 }

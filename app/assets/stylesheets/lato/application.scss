@@ -17,6 +17,9 @@ $gray-700: #454f58 !default;
 $gray-800: #313a42 !default;
 $gray-900: #1f262c !default;
 
+$tooltip-opacity: 1;
+$tooltip-max-width: 300px;
+
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css");
 @import "bootstrap";
 
@@ -127,4 +130,8 @@ main, aside {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.lato-guide-tooltip {
+
 }
