@@ -16,21 +16,24 @@ export default class extends Controller {
     this.tooltip = null
     this.run()
 
-    window.addEventListener('resize', this.onWindowResize.bind(this))
+    window.addEventListener('resize', this.onDomChange.bind(this))
+    document.addEventListener('turbo:load', this.onDomChange.bind(this))
+    document.addEventListener('turbo:frame-load', this.onDomChange.bind(this))
   }
 
   disconnect() {
     this.storeStatus()
 
     if (this.tooltip) {
-      this.tooltip.hide()
       this.tooltip.dispose()
       this.tooltip = null
     }
 
     this.connected = false
 
-    window.removeEventListener('resize', this.onWindowResize.bind(this))
+    window.removeEventListener('resize', this.onDomChange.bind(this))
+    window.removeEventListener('turbo:load', this.onDomChange.bind(this))
+    window.removeEventListener('turbo:frame-load', this.onDomChange.bind(this))
   }
 
   itemTargetConnected(e) {
@@ -39,7 +42,6 @@ export default class extends Controller {
 
   itemTargetDisconnected(e) {
     if (this.tooltip && this.tooltip.itemKey === e.target.dataset.guideKey) {
-      this.tooltip.hide()
       this.tooltip.dispose()
       this.tooltip = null
     }
@@ -98,7 +100,6 @@ export default class extends Controller {
     item.element.addEventListener('shown.bs.tooltip', () => {
       setTimeout(() => {
         document.getElementById(tooltipCloseId).addEventListener('click', () => {
-          this.tooltip.hide()
           this.tooltip.dispose()
           this.tooltip = null
           this.status[item.key] = true
@@ -129,10 +130,9 @@ export default class extends Controller {
    * Events
    */
 
-  onWindowResize(e) { // on window resize, repostion tooltip
+  onDomChange(e) { // when page size changes (change of length of the document), we need to reposition the tooltip
     if (this.tooltip) {
-      this.tooltip.hide()
-      this.tooltip.show()
+      this.tooltip.update()
     }
   }
 }
