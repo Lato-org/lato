@@ -40,13 +40,13 @@ Le guide sono gestite tramite il controller di Stimulus JS <code>lato_guide_cont
 
 <p>
   Una volta che una guida è stata visualizzata, questa viene memorizzata nel local storage del browser.<br>
-  Per resettare le guide basta utilizzare il metodo <code>resetStatus</code> del controller <code>lato_guide_controller</code>.
+  Per resettare le guide basta utilizzare il metodo <code>rerun</code> del controller <code>lato_guide_controller</code>.
 </p>
 
 <p>
-  <%= link_to 'Reset', '#', data: { action: 'click->lato-guide#resetStatus' } %>
+  <%= link_to 'Reset', '#', data: { action: 'click->lato-guide#rerun' } %>
 </p>
 
 <pre>
-&#60;%= link_to 'Reset', '#', data: { action: 'click->lato-guide#resetStatus' } %&#62;
+&#60;%= link_to 'Reset', '#', data: { action: 'click->lato-guide#rerun' } %&#62;
 </pre>
