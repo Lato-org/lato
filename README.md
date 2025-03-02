@@ -9,6 +9,12 @@ This gem includes:
 - Web panel UI (Navbar, Sidebar, Body) with Bootstrap;
 - Some UI components ready to use integrated with Rails.
 
+The gem is designed to be easily customizable and extendable. You can fully customize the UI and the functionalities of the panel. You can also add new functionalities and components to the panel on the main application or develop new engines to extend the panel.
+
+The gem is ready to be used with the latest Rails 7+ features like ESM import maps, Turbo and Stimulus.
+
+The front-end is designed to be responsive, mobile friendly and accessible.
+
 <img src="./preview.gif" alt="Lato preview" width="100%">
 
 ## Installation
