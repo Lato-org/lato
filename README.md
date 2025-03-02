@@ -1,11 +1,15 @@
 # Lato
 
+[![Gem Version](https://badge.fury.io/rb/lato.svg)](https://badge.fury.io/rb/lato)
+
 Lato is a Rails Engine to deliver a full featured web panel for your Rails application.
 
 This gem includes:
 - User management with full authentication (signin, signup, recover password);
 - Web panel UI (Navbar, Sidebar, Body) with Bootstrap;
 - Some UI components ready to use integrated with Rails.
+
+<img src="./preview.gif" alt="Lato preview" width="100%">
 
 ## Installation
 Add required dependencies to your application's Gemfile:
