@@ -8,8 +8,18 @@
       <div class="modal-body" data-lato-confirm-target="modalBody">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-action="click->lato-confirm#confirmCancel"><%= I18n.t('lato.confirm_no') %></button>
-        <button type="button" class="btn btn-success" data-action="click->lato-confirm#confirmSuccess"><%= I18n.t('lato.confirm_yes') %></button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-action="click->lato-confirm#confirmCancel"
+          aria-label="<%= I18n.t('lato.confirm_no') %>"
+        ><%= I18n.t('lato.confirm_no') %></button>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-action="click->lato-confirm#confirmSuccess"
+          aria-label="<%= I18n.t('lato.confirm_yes') %>"
+        ><%= I18n.t('lato.confirm_yes') %></button>
       </div>
     </div>
   </div>

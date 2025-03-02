@@ -15,7 +15,11 @@ user ||= Lato::User.new
           <%= lato_form_item_label form, :web3_address %>
           <div class="input-group">
             <input value="<%= user.web3_address %>" class="form-control" readonly>
-            <button class="btn btn-outline-success" style="pointer-events: none"><%= I18n.t('lato.connected_wallet') %></button>
+            <button
+              class="btn btn-outline-success"
+              style="pointer-events: none"
+              aria-label="<%= I18n.t('lato.connected_wallet') %>"
+            ><%= I18n.t('lato.connected_wallet') %></button>
           </div>
         </div>
       </div>

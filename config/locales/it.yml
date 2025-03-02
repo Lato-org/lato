@@ -21,6 +21,7 @@ it:
     there_are_some_errors: Si sono verificati i seguenti errori
     update_password: Aggiornamento password
     confirm: Conferma
+    search: Cerca
     search_for: Ricerca per
     total_results: Risultati totali
     account_informations: Informazioni account
