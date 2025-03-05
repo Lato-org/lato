@@ -5,17 +5,22 @@
 Lato is a Rails Engine to deliver a full featured web panel for your Rails application.
 
 This gem includes:
-- User management with full authentication (signin, signup, recover password);
+- User management with full authentication (signin, signup, recover password, email validation, Google Authenticator multi-factor authentication, ETH wallet connection);
 - Web panel UI (Navbar, Sidebar, Body) with Bootstrap;
-- Some UI components ready to use integrated with Rails.
+- Some UI components ready to use integrated with Rails (data tables, forms, modals, async job executions);
 
-The gem is designed to be easily customizable and extendable. You can fully customize the UI and the functionalities of the panel. You can also add new functionalities and components to the panel on the main application or develop new engines to extend the panel.
+The gem is designed to be easily **customizable and extendable**. You can fully customize the UI and the functionalities of the panel. You can also add new functionalities and components to the panel on the main application or develop new engines to extend the panel.
 
-The gem is ready to be used with the latest Rails 7+ features like ESM import maps, Turbo and Stimulus.
+The gem is ready to be used with the **latest Rails 7+** features like **ESM import maps**, **Turbo** and **Stimulus**.
 
 The front-end is designed to be responsive, mobile friendly and accessible.
 
 <img src="./preview.gif" alt="Lato preview" width="100%">
+
+## Eco-system
+The idea behind Lato is to create an eco-system of engines that can improve the functionalities of the panel. The following engines are already available:
+
+- [LatoSpaces](https://github.com/Lato-org/lato_spaces): A simple engine to manage multiple workspaces in the panel with user invitation and workspace roles;
 
 ## Installation
 Add required dependencies to your application's Gemfile:
