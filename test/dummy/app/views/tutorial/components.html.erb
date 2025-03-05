@@ -236,7 +236,9 @@ end
 &#60;%= lato_index Product.all.limit(5), custom_actions: {
     create: {
       path: products_create_path,
-      icon: 'bi bi-plus'
+      icon: 'bi bi-plus',
+      aria_label: 'Crea prodotto',
+      title: 'Crea prodotto'
     }
  } %&#62;
 </pre>
@@ -245,7 +247,9 @@ end
 <%= lato_index Product.all.limit(5), custom_actions: {
     create: {
       path: products_create_path,
-      icon: 'bi bi-plus'
+      icon: 'bi bi-plus',
+      arial_label: 'Crea prodotto',
+      title: 'Crea prodotto'
     }
  } %>
 </div>
@@ -257,7 +261,9 @@ end
     create: {
       path: products_create_path,
       icon: 'bi bi-plus',
-      data: { lato_action_target: 'trigger', turbo_frame: dom_id(Product.new, 'form') }
+      data: { lato_action_target: 'trigger', turbo_frame: dom_id(Product.new, 'form') },
+      aria_label: 'Crea prodotto',
+      title: 'Crea prodotto'
     }
  } %&#62;
 </pre>
@@ -267,7 +273,9 @@ end
     create: {
       path: products_create_path,
       icon: 'bi bi-plus',
-      data: { lato_action_target: 'trigger', turbo_frame: dom_id(Product.new, 'form') }
+      data: { lato_action_target: 'trigger', turbo_frame: dom_id(Product.new, 'form') },
+      arial_label: 'Crea prodotto',
+      title: 'Crea prodotto'
     }
  } %>
 </div>

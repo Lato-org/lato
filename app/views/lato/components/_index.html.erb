@@ -159,7 +159,7 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
                   <div class="d-flex justify-content-end align-items-center">
                     <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
                     <% if pagination_options %>
-                      <select name="per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change->lato_form#submit">
+                      <select name="per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change->lato_form#submit" aria-label="<%= I18n.t('lato.per_page_description') %>">
                         <% pagination_options.each do |option| %>
                           <option value="<%= option %>" <%= option == params[:per_page].to_i ? 'selected' : '' %>>
                             <%= option %> <%= I18n.t('lato.per_page').downcase %>
