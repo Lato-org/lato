@@ -21,6 +21,7 @@ The front-end is designed to be responsive, mobile friendly and accessible.
 The idea behind Lato is to create an eco-system of engines that can improve the functionalities of the panel. The following engines are already available:
 
 - [LatoSpaces](https://github.com/Lato-org/lato_spaces): A simple engine to manage multiple workspaces in the panel with user invitation and workspace roles;
+- [LatoSettings](https://github.com/Lato-org/lato_settings): A simple engine to manage application settings from the UI panel;
 
 ## Installation
 Add required dependencies to your application's Gemfile:
