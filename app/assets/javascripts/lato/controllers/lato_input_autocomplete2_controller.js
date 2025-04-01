@@ -48,7 +48,9 @@ export default class extends Controller {
     try {
       this.suggestShowLoading()
       setTimeout(async () => {
-        const response = await fetch(this.pathValue + '?q=' + value)
+        const url = new URL(this.pathValue, window.location.origin)
+        url.searchParams.append('q', value)
+        const response = await fetch(url)
         const data = await response.json()
         this.suggestShow(data)
       }, 500)
@@ -127,7 +129,9 @@ export default class extends Controller {
 
   async setDefaultElementValue() {
     try {
-      const response = await fetch(this.pathValue + '?value=' + this.element.value)
+      const url = new URL(this.pathValue, window.location.origin)
+      url.searchParams.append('value', this.element.value)
+      const response = await fetch(url)
       const data = await response.json()
       this.element.value = data?.label || this.element.value
     } catch (err) {
