@@ -208,6 +208,20 @@ module Lato
       form.datetime_field key, options
     end
 
+    def lato_form_item_input_time(form, key, options = {})
+      _lato_form_input_options(form, key, options, :change, 'form-control')
+
+      form.time_field key, options
+    end
+
+    def lato_form_item_input_color(form, key, options = {})
+      _lato_form_input_options(form, key, options, :change, 'form-control')
+      options[:class] ||= []
+      options[:class].push('lato-form-item-input-color')
+      
+      form.color_field key, options
+    end
+
     def lato_form_submit(form, label, options = {})
       options[:class] ||= []
       options[:class].push('btn')

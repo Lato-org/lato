@@ -44,14 +44,26 @@ user ||= @session.user
     </div>
 
     <div class="row">
-      <div class="col col-12 col-lg-6 mb-3">
+      <div class="col col-12 col-lg-4 mb-3">
         <%= lato_form_item_label form, :date, 'Date' %>
         <%= lato_form_item_input_date form, :date, required: true %>
       </div>
 
-      <div class="col col-12 col-lg-6 mb-3">
+      <div class="col col-12 col-lg-4 mb-3">
         <%= lato_form_item_label form, :datetime, 'Datetime' %>
         <%= lato_form_item_input_datetime form, :datetime, required: true %>
+      </div>
+
+      <div class="col col-12 col-lg-4 mb-3">
+        <%= lato_form_item_label form, :time, 'Time' %>
+        <%= lato_form_item_input_time form, :time, required: true %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-12 mb-3">
+        <%= lato_form_item_label form, :color, 'Colore' %>
+        <%= lato_form_item_input_color form, :color, required: true %>
       </div>
     </div>
 
