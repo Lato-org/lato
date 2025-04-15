@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebLLM Chat</title>
+  <script type="module">
+    import * as webllm from "https://mlc.ai/web-llm/dist/index.js";
+
+    let chat = null;
+
+    async function initChat() {
+      const chatElem = document.getElementById("chat");
+      chatElem.innerHTML += "<div><em>Loading model...</em></div>";
+
+      // Carica il modello (modello disponibile nella CDN di MLC)
+      chat = await webllm.CreateChatModule({
+        model: "Llama-2-7b-chat-hf-q4f16_1",  // Uno dei modelli supportati
+      });
+
+      chatElem.innerHTML += "<div><em>Model ready!</em></div>";
+    }
+
+    async function handleSend() {
+      const input = document.getElementById("userInput");
+      const chatElem = document.getElementById("chat");
+
+      const prompt = input.value.trim();
+      if (!prompt || !chat) return;
+
+      // Mostra l'input utente
+      chatElem.innerHTML += `<div><strong>You:</strong> ${prompt}</div>`;
+      input.value = "";
+
+      // Ottieni risposta dal modello
+      const replyElem = document.createElement("div");
+      replyElem.innerHTML = "<em>LLM is thinking...</em>";
+      chatElem.appendChild(replyElem);
+
+      for await (const chunk of chat.chat({ role: "user", content: prompt })) {
+        replyElem.innerHTML = `<strong>LLM:</strong> ${chunk}`;
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", initChat);
+    window.handleSend = handleSend;
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      background: #f4f4f4;
+    }
+    #chat {
+      background: white;
+      padding: 1em;
+      height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chat con WebLLM</h1>
+  <div id="chat"></div>
+  <input type="text" id="userInput" placeholder="Scrivi un messaggio..." onkeydown="if(event.key==='Enter') handleSend()"/>
+  <button onclick="handleSend()">Invia</button>
+</body>
+</html>

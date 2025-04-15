@@ -8,6 +8,7 @@ require 'json'
 PORT = 3000
 BASE_URL = "http://localhost:#{PORT}"
 OUTPUT_DIR = "./docs"
+LLM_DIR = "./docs/llm.txt"
 AUTH_EMAIL = 'admin@mail.com'
 AUTH_PASSWORD = 'Password1!'
 AUTH_GET_URL = "#{BASE_URL}/lato/authentication/signin"
@@ -38,7 +39,8 @@ PAGES = [
 FileUtils.mkdir_p(OUTPUT_DIR) if !Dir.exist?(OUTPUT_DIR)
 
 # Svuota la directory di output da tutti i file e cartelle escluso CNAME (generato da github pages per collegamento dominio)
-FileUtils.rm_rf(Dir.glob("#{OUTPUT_DIR}/*").reject { |f| f == "#{OUTPUT_DIR}/CNAME" })
+exceptions = ['CNAME', '__ai__.html']
+FileUtils.rm_rf(Dir.glob("#{OUTPUT_DIR}/*").reject { |f| exceptions.include?(File.basename(f)) })
 
 def download_page(page, http = nil, cookies = {})
   url = BASE_URL + page[:path]
@@ -252,7 +254,7 @@ def process_html(html_content, http, cookies)
   return doc.to_html
 end
 
-# Main execution
+# Export pages
 http = nil
 cookies = {}
 PAGES.each do |page|
@@ -261,4 +263,18 @@ PAGES.each do |page|
 
   processed_html = process_html(html_content, http, cookies)
   save_file(page[:name], processed_html)
+end
+
+# Read all .html file on OUTPUT_DIR, for each file export the body content and append on a txt file used to train LLMs
+File.open(LLM_DIR, 'w') do |llm_file|
+  Dir.glob("#{OUTPUT_DIR}/*.html").each do |file_path|
+    doc = Nokogiri::HTML(File.read(file_path))
+    body_content = doc.at('body').inner_html
+    main_content = doc.at('main').inner_html
+    file_name = File.basename(file_path, '.html')
+    file_title = file_name.split('.html').first.capitalize
+    llm_file.puts "TITOLO: #{file_title}"
+    llm_file.puts "CONTENUTO: #{main_content}"
+    llm_file.puts "----------------------------------------"
+  end
 end
