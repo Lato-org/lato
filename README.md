@@ -17,6 +17,10 @@ The front-end is designed to be responsive, mobile friendly and accessible.
 
 <img src="./preview.gif" alt="Lato preview" width="100%">
 
+## Full documentation
+
+The full documentation (🇮🇹 Italian only) is available at 👉 [THIS LINK](http://lato.gregoriogalante.com/) 👈
+
 ## Eco-system
 The idea behind Lato is to create an eco-system of engines that can improve the functionalities of the panel. The following engines are already available:
 
