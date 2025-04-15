@@ -122,7 +122,7 @@ $ rails db:seed
 $ foreman start -f Procfile.dev
 ```
 
-## Publish
+### Publish
 
 This script will publish the gem to rubygems.org. Make sure you have the correct permissions and that you are logged in to your rubygems account.
 
@@ -130,7 +130,7 @@ This script will publish the gem to rubygems.org. Make sure you have the correct
 $ ruby ./bin/publish.rb
 ```
 
-## Generate documentation
+### Generate documentation
 
 This script will generate the documentation for the gem by exporting the Rails rendered views to HTML files. The documentation will be generated in the **docs** folder.
 
