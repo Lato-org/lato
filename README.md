@@ -17,9 +17,11 @@ The front-end is designed to be responsive, mobile friendly and accessible.
 
 <img src="./preview.gif" alt="Lato preview" width="100%">
 
-## Full documentation
+## Full documentation (🇮🇹 Italian only)
 
-The full documentation (🇮🇹 Italian only) is available at 👉 [THIS LINK](http://lato.gregoriogalante.com/) 👈
+The full documentation is available at 👉 [THIS LINK](http://lato.gregoriogalante.com/) 👈
+
+You can also use the [Lato AI Agent](http://lato.gregoriogalante.com/__ai__.html) directly on your browser to generate code and get helps with the gem.
 
 ## Eco-system
 The idea behind Lato is to create an eco-system of engines that can improve the functionalities of the panel. The following engines are already available:
