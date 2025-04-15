@@ -8,6 +8,7 @@ require 'json'
 PORT = 3000
 BASE_URL = "http://localhost:#{PORT}"
 OUTPUT_DIR = "./docs"
+OUTPUT_ASSETS_DIR = "#{OUTPUT_DIR}/lato"
 AUTH_EMAIL = 'admin@mail.com'
 AUTH_PASSWORD = 'Password1!'
 AUTH_GET_URL = "#{BASE_URL}/lato/authentication/signin"
@@ -133,8 +134,8 @@ def perform_login(http)
   end
 end
 
-def save_file(path, content)
-  full_path = File.join(OUTPUT_DIR, path)
+def save_file(path, content, is_asset = false)
+  full_path = File.join(is_asset ? OUTPUT_ASSETS_DIR : OUTPUT_DIR, path)
   
   # Assicurati che la directory esista
   FileUtils.mkdir_p(File.dirname(full_path))
@@ -166,10 +167,9 @@ def download_asset(url, http, cookies)
     if response.code == "200"
       # Determina il percorso locale per il file
       local_path = uri.path
-      local_path = "index.html" if local_path == "/"
-      
+
       # Salva il file
-      save_file(local_path, response.body)
+      save_file(local_path, response.body, true)
       
       return true
     else
