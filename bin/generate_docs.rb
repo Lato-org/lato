@@ -34,11 +34,11 @@ PAGES = [
   { path: '/products', name: 'products.html', auth: true },
 ]
 
-# Rimuovi la directory di output se esiste già
-FileUtils.rm_rf(OUTPUT_DIR) if Dir.exist?(OUTPUT_DIR)
-
 # Assicurati che la directory di output esista
-FileUtils.mkdir_p(OUTPUT_DIR)
+FileUtils.mkdir_p(OUTPUT_DIR) if !Dir.exist?(OUTPUT_DIR)
+
+# Svuota la directory di output da tutti i file e cartelle escluso CNAME (generato da github pages per collegamento dominio)
+FileUtils.rm_rf(Dir.glob("#{OUTPUT_DIR}/*").reject { |f| f == "#{OUTPUT_DIR}/CNAME" })
 
 def download_page(page, http = nil, cookies = {})
   url = BASE_URL + page[:path]
