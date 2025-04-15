@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <title>Lato example app</title>
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="3isWCb2XYXHWCVoxhCOTsDGfX1gpUrTtz87EZ7I8cYseLs1Ws_E3WkbeIi7QXVP4sSvRpEYYS--cDovbDQQwvg">
+  
+
+  <meta name="turbo-refresh-method" content="morph">
+  <meta name="turbo-refresh-scroll" content="preserve">
+  <meta name="view-transition" content="same-origin">
+
+
+  <meta name="application-name" content="Lato example app">
+<meta name="theme-color" content="#03256c">
+<meta name="full-screen" content="yes">
+<meta name="browsermode" content="application">
+<meta name="screen-orientation" content="portrait">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lato example app">
+
+<link rel="icon" href="/favicon.ico">
+<link rel="manifest" href="/manifest.json">
+
+<!-- Free for head tags -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="/assets/application-d66bb3be3be5fb497d04555600f93ca9580c4004c34cc334c19daa73cf2dd202.css" media="all">
+  <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "lato/application": "/assets/lato/application-3f9dd0b1a606481fa30a5b9839f4db6da7c17bb25970869850d2ffb552d1898c.js",
+    "bootstrap": "/assets/bootstrap-c14e434a20d9175cd6359621bd2d8ab8cf5941eff339a0f355130be24528237d.js",
+    "lodash": "https://ga.jspm.io/npm:lodash@4.17.21/lodash.js",
+    "application": "/assets/application-8af143a2d03f7b88ea77e93e0373226f1e959e43ed6d2e85b05f9d5df015f0e8.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-4cfe7c6aaeb9120821760aa53763dff54fbc561e500da6482fc43c54c7384929.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "controllers/application": "/assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js",
+    "controllers": "/assets/controllers/index-78fbd01474398c3ea1bffd81ebe0dc0af5146c64dfdcbe64a0f4763f9840df28.js",
+    "controllers/lato_action_controller": "/assets/lato/controllers/lato_action_controller-2f0185f8a7644d9fba72a0a9944fe4be49b5f2a1a1a8cb3bb19ebefb54647a8b.js",
+    "controllers/lato_aside_opener_controller": "/assets/lato/controllers/lato_aside_opener_controller-4d1ed9086fcd01e9c001ee51c11094aab1e99712f0c61cd7ae8e43cc3ce44a83.js",
+    "controllers/lato_confirm_controller": "/assets/lato/controllers/lato_confirm_controller-24efdab3df5dbff7b6dffdbadaeb2b7580f5a13ef17a7865c6863d33cd7f9883.js",
+    "controllers/lato_feedback_controller": "/assets/lato/controllers/lato_feedback_controller-dc584e2a718b86203162e6819eca39fe0f5d7768a07c7e23d0e2374030536b1d.js",
+    "controllers/lato_form_controller": "/assets/lato/controllers/lato_form_controller-766d106b88cc5f34fdcd3265cae33044dafcf7e71180206116f065f0714aeac2.js",
+    "controllers/lato_guide_controller": "/assets/lato/controllers/lato_guide_controller-acb7f481815870d8697dcdb5f57c520de761c0d0d881cfad75a39d57ad4cacbc.js",
+    "controllers/lato_hello_controller": "/assets/lato/controllers/lato_hello_controller-4f022ac0c6badd72dc8dbb9bc0242e533a1b54c86421c1c3efd8a24c7e8a8d41.js",
+    "controllers/lato_index_controller": "/assets/lato/controllers/lato_index_controller-00367d705597f3a5530b9906ecf62bc4800a161780b8b7bfbc7342b32dad54ff.js",
+    "controllers/lato_input_autocomplete2_controller": "/assets/lato/controllers/lato_input_autocomplete2_controller-5b960b6d6405767942aff4f5aa69964e635b3ed4cb68c406427c0c90b48c353e.js",
+    "controllers/lato_input_autocomplete_controller": "/assets/lato/controllers/lato_input_autocomplete_controller-4a8564ebb3256646f9baec549ed61c5389b278d5267470de231e05baa1d076ff.js",
+    "controllers/lato_network_controller": "/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js",
+    "controllers/lato_operation_controller": "/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js",
+    "controllers/lato_tooltip_controller": "/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js"
+  }
+}</script>
+<link rel="modulepreload" href="/assets/lato/application-3f9dd0b1a606481fa30a5b9839f4db6da7c17bb25970869850d2ffb552d1898c.js">
+<link rel="modulepreload" href="/assets/bootstrap-c14e434a20d9175cd6359621bd2d8ab8cf5941eff339a0f355130be24528237d.js">
+<link rel="modulepreload" href="https://ga.jspm.io/npm:lodash@4.17.21/lodash.js">
+<link rel="modulepreload" href="/assets/application-8af143a2d03f7b88ea77e93e0373226f1e959e43ed6d2e85b05f9d5df015f0e8.js">
+<link rel="modulepreload" href="/assets/turbo.min-4cfe7c6aaeb9120821760aa53763dff54fbc561e500da6482fc43c54c7384929.js">
+<link rel="modulepreload" href="/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<link rel="modulepreload" href="/assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js">
+<link rel="modulepreload" href="/assets/controllers/index-78fbd01474398c3ea1bffd81ebe0dc0af5146c64dfdcbe64a0f4763f9840df28.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_action_controller-2f0185f8a7644d9fba72a0a9944fe4be49b5f2a1a1a8cb3bb19ebefb54647a8b.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_aside_opener_controller-4d1ed9086fcd01e9c001ee51c11094aab1e99712f0c61cd7ae8e43cc3ce44a83.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_confirm_controller-24efdab3df5dbff7b6dffdbadaeb2b7580f5a13ef17a7865c6863d33cd7f9883.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_feedback_controller-dc584e2a718b86203162e6819eca39fe0f5d7768a07c7e23d0e2374030536b1d.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_form_controller-766d106b88cc5f34fdcd3265cae33044dafcf7e71180206116f065f0714aeac2.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_guide_controller-acb7f481815870d8697dcdb5f57c520de761c0d0d881cfad75a39d57ad4cacbc.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_hello_controller-4f022ac0c6badd72dc8dbb9bc0242e533a1b54c86421c1c3efd8a24c7e8a8d41.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_index_controller-00367d705597f3a5530b9906ecf62bc4800a161780b8b7bfbc7342b32dad54ff.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_input_autocomplete2_controller-5b960b6d6405767942aff4f5aa69964e635b3ed4cb68c406427c0c90b48c353e.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_input_autocomplete_controller-4a8564ebb3256646f9baec549ed61c5389b278d5267470de231e05baa1d076ff.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js">
+<link rel="modulepreload" href="/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js">
+<script type="module">import "application"</script>
+</head>
+<body class="controller-tutorial action-actions " data-controller="lato-action lato-guide">
+  <header>
+    <nav id="nav" class="navbar navbar-dark navbar-expand-lg fixed-top bg-primary shadow-sm px-md-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="tutorial.html">
+      Lato example app
+
+<!--
+<img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+<span>Lato example app</span>
+-->
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+      <ul class="navbar-nav">
+          <li class="nav-item">
+  <a class="nav-link" href="#">
+    
+    Account
+
+</a>
+</li>  <li class="nav-item">
+  <a class="nav-link" href="#">
+    
+    Esci
+
+</a>
+</li>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">🇮🇹</a>
+  <ul class="dropdown-menu dropdown-menu-lg-end" style="min-width: auto;">
+      <li><a class="dropdown-item" data-turbo-method="GET" href="#">🇮🇹</a></li>
+      <li><a class="dropdown-item" data-turbo-method="GET" href="#">🇬🇧</a></li>
+  </ul>
+</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  </header>
+
+  <div class="d-flex">
+
+      <aside>
+        <div class="d-flex flex-column h-100 overflow-y-auto p-3 bg-light border-end">
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item border-bottom py-2">
+  <a class="nav-link link-dark" href="index.html">
+    
+  <i class="bi bi-house me-2"></i> Homepage
+
+</a>
+</li>
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link link-dark" href="tutorial.html">
+    
+  <i class="bi bi-info-circle me-2"></i> Tutorial
+
+</a>
+</li>
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link link-dark" href="configuration.html">
+    
+  <i class="bi bi-gear me-2"></i> Configurazione
+
+</a>
+</li>
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link link-dark" href="customization.html">
+    
+  <i class="bi bi-brightness-high me-2"></i> Personalizzazione
+
+</a>
+</li>
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link link-dark" href="components.html">
+    
+  <i class="bi bi-columns me-2"></i> Componenti
+
+</a>
+</li>
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link link-dark" href="operations.html">
+    
+  <i class="bi bi-pc-display-horizontal me-2"></i> Operazioni
+
+</a>
+</li>
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link active" href="actions.html">
+    
+  <i class="bi bi-layout-three-columns me-2"></i> Azioni
+
+</a>
+</li>
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link link-dark" href="invitations.html">
+    
+  <i class="bi bi-envelope-heart me-2"></i> Inviti
+
+</a>
+</li>
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link link-dark" href="guide.html">
+    
+  <i class="bi bi-book me-2"></i> Guida
+
+</a>
+</li>
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link link-dark" href="products.html">
+    
+  <i class="bi bi-list me-2"></i> Prodotti (esempio CRUD)
+
+</a>
+</li>
+  </ul>
+</div>
+      </aside>
+
+    <main class="layout_sidebar">
+      <div class="content px-md-3 py-3">
+  <div class="container-fluid">
+    <div class="lato-page-head border-bottom mb-3">
+    <ol class="breadcrumb mb-1">
+        <li class="breadcrumb-item">
+          <a href="tutorial.html">Tutorial</a>
+        </li>
+        <li class="breadcrumb-item">
+          <span>Azioni</span>
+        </li>
+    </ol>
+
+  <h1>Azioni</h1>
+
+  
+</div>
+
+<p>
+Le azioni permettono di visualizzare informazioni ed elementi funzionali in-page senza dover richiedere un cambio di pagina da parte dell'utente.<br>
+Le azioni sono gestite tramite il controller di Stimulus JS <code>lato_action_controller</code>.
+</p>
+
+<p>
+Per avviare un azione basta impostare l'attributo <code>data-lato-action-target="trigger"</code> ad un link del DOM e definire tramite l'attributo <code>data-turbo-frame="id_frame"</code> l'ID del turbo-frame da caricare nella azione. 
+</p>
+
+<p>
+<a data-lato-action-target="trigger" data-turbo-frame="lato_index_default_product" href="products.html">Esempio</a>
+</p>
+
+<pre>
+&lt;%= link_to 'Esempio',
+  main_app.products_path,
+  data: {
+    lato_action_target: 'trigger',
+    turbo_frame: 'lato_index_default_product'
+  }
+%&gt;
+</pre>
+
+<h3>Personalizzare l'overlay</h3>
+
+<h4>Specificare il titolo</h4>
+
+<p>
+<a data-lato-action-target="trigger" data-turbo-frame="lato_index_default_product" data-action-title="Titolo personalizzato" href="products.html">Esempio</a>
+</p>
+
+<pre>
+&lt;%= link_to 'Esempio',
+  main_app.products_path,
+  data: {
+    lato_action_target: 'trigger',
+    turbo_frame: 'lato_index_default_product',
+    action_title: 'Titolo personalizzato'
+  }
+%&gt;
+</pre>
+
+<h4>Specificare la dimensione</h4>
+
+<p>
+<a data-lato-action-target="trigger" data-turbo-frame="lato_index_default_product" data-action-size="xl" href="products.html">Esempio</a>
+</p>
+
+<pre>
+&lt;%= link_to 'Esempio',
+  main_app.products_path,
+  data: {
+    lato_action_target: 'trigger',
+    turbo_frame: 'lato_index_default_product',
+    action_size: 'xl'
+  }
+%&gt;
+</pre>
+  </div>
+</div>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
+  <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
+    <div>
+      v3.11.8 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+    </div>
+    <div class="mt-2 mt-md-0">
+      <a href="https://google.com">Privacy policy</a> -
+      <a href="https://google.com">Termini e condizioni</a>
+    </div>
+  </div>
+</div>
+  </footer>
+
+    <button class="aside-opener shadow" data-controller="lato-aside-opener" data-action="click-&gt;lato-aside-opener#onClickToggle" aria-label="Toggle sidebar">
+  <i class="bi bi-layout-text-sidebar-reverse"></i>
+</button>
+  
+  <div class="lato-confirm modal fade" data-controller="lato-confirm" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4">Conferma</h2>
+        <button type="button" class="btn-close" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-confirm-target="modalBody">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="No, annulla">No, annulla</button>
+        <button type="button" class="btn btn-success" data-action="click-&gt;lato-confirm#confirmSuccess" aria-label="Sì, procedi">Sì, procedi</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="toast-container">
+
+</div>
+  
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="mb-0 mt-0 fs-4" data-lato-action-target="modalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" data-lato-action-target="modalBody">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="fixed-bottom p-3 d-none" data-controller="lato-network">
+  <span class="badge rounded-pill text-bg-danger fs-6 d-none" data-lato-network-target="offline">You are offline</span>
+  <span class="badge rounded-pill text-bg-success fs-6 d-none" data-lato-network-target="online">You are online</span>
+</div>
+
+  <!-- Free for foot tags -->
+</body>
+</html>
