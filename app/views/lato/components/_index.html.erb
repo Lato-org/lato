@@ -7,7 +7,7 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
 
 <%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}", class: "lato-index #{browser.device.mobile? ? 'lato-index-mob' : 'lato-index-desk'}" do %>
 
-  <%= form_tag request.path, method: :get, data: { controller: 'lato_form', turbo_frame: '_self' } do %>
+  <%= form_tag request.path, method: :get, data: { controller: 'lato_form lato_index', turbo_frame: '_self' } do %>
     <%= hidden_field_tag :key, key %>
     <% params.each do |k, v| %>
       <%= hidden_field_tag k, v %>
@@ -17,7 +17,7 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
       <div class="d-flex mb-3">
         <% if searchable_columns.any? %>
           <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="<%= I18n.t('lato.search_for') %>: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>">
+            <input type="text" name="search" class="form-control" placeholder="<%= I18n.t('lato.search_for') %>: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>" data-action="keyup->lato_index#onSearchKeyUp" aria-label="<%= I18n.t('lato.search') %>">
             <button
               class="btn btn-outline-primary"
               type="submit"
