@@ -118,8 +118,20 @@ $ foreman start -f Procfile.dev
 
 ## Publish
 
+This script will publish the gem to rubygems.org. Make sure you have the correct permissions and that you are logged in to your rubygems account.
+
 ```shell
 $ ruby ./bin/publish.rb
+```
+
+## Generate documentation
+
+This script will generate the documentation for the gem by exporting the Rails rendered views to HTML files. The documentation will be generated in the **docs** folder.
+
+Make sure to have the server running on port 3000 before running the script.
+
+```shell
+$ ruby ./bin/generate_docs.rb
 ```
 
 ## License

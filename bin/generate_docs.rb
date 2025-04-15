@@ -7,7 +7,7 @@ require 'json'
 # Configurazione
 PORT = 3000
 BASE_URL = "http://localhost:#{PORT}"
-OUTPUT_DIR = "./doc"
+OUTPUT_DIR = "./docs"
 AUTH_EMAIL = 'admin@mail.com'
 AUTH_PASSWORD = 'Password1!'
 AUTH_GET_URL = "#{BASE_URL}/lato/authentication/signin"
