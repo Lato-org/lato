@@ -4,8 +4,8 @@ Lato.configure do |config|
 
   config.session_root_path = :tutorial_path
 
-  config.legal_privacy_policy_url = 'https://google.com'
-  config.legal_terms_and_conditions_url = 'https://google.com'
+  config.legal_privacy_policy_url = 'https://github.com/Lato-org'
+  config.legal_terms_and_conditions_url = 'https://github.com/Lato-org'
   # config.legal_terms_and_conditions_version = 4
   # config.legal_privacy_policy_version = 4
 

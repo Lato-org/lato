@@ -1,6 +1,23 @@
 <h1>Benvenuto su Lato</h1>
 <p class="lead">Questa è la homepage dell'applicazione. Una <b>breve guida su come personalizzare</b> un nuovo progetto.</p>
 
+<% if params[:generate_docs] %>
+<div class="alert alert-info mt-3">
+<p>
+Queste pagine sono state generate scaricando i template HTML renderizzati dalla dummy app di Lato.<br>
+<b>Alcune funzionalità potrebbero non essere disponibili</b>. Per utilizzare la documentazione completa è necessario eseguire la gemma in locale attraverso i seguenti comandi:
+</p>
+<pre>
+$ git clone https://github.com/lato-org/lato
+$ cd lato
+$ bundle
+$ rails db:migrate
+$ rails db:seed
+$ foreman start -f Procfile.dev
+</pre>
+</div>
+<% end %>
+
 <h2>Come iniziare</h2>
 <p>
 Per creare delle pagine custom di presentazione del progetto puoi modificare l' <code>ApplicationController</code> estendendo la classe <code>Lato::ApplicationController</code> e specificando di utilizzare il layout di Lato:
@@ -100,5 +117,5 @@ Di seguito trovi un esempio di utilizzo di un controller custom <code>hello_cont
 
 <div class="mt-5 mb-5 d-flex justify-content-between">
 <span></span>
-<%= link_to 'Accedi per altri esempi', lato.authentication_signin_path, class: 'btn btn-primary btn-lg' %>
+<%= link_to 'Prosegui', lato.authentication_signin_path, class: 'btn btn-primary btn-lg' %>
 </div>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <title>Lato example app</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="nBFK4xcauz0Awim9nzWiDIoaIhhOHwH17FBYSWqhbjnXcZbry7wbrrRZRzw-vAuWOEVnGfyDV2qAEGsam5wlwg">
+<meta name="csrf-token" content="mvtteEQGmVKPiKhBVVGa4YTqMdIk2A2PE7QTk6Df55NC9EROqT0jEGd0IwZzbkdLWpY1rA1kkrGIfeJ9RgChEA">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -101,23 +101,23 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
       <ul class="navbar-nav">
           <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>
     
     Account
 
 </a>
 </li>  <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>
     
     Esci
 
 </a>
 </li>
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">🇮🇹</a>
+  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")' role="button" aria-expanded="false">🇮🇹</a>
   <ul class="dropdown-menu dropdown-menu-lg-end" style="min-width: auto;">
-      <li><a class="dropdown-item" data-turbo-method="GET" href="#">🇮🇹</a></li>
-      <li><a class="dropdown-item" data-turbo-method="GET" href="#">🇬🇧</a></li>
+      <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>🇮🇹</a></li>
+      <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>🇬🇧</a></li>
   </ul>
 </li>
       </ul>
@@ -295,7 +295,7 @@ Parametri:<br>
 <div class="lato-page-head border-bottom mb-3">
     <ol class="breadcrumb mb-1">
         <li class="breadcrumb-item">
-          <a href="#">Titolo 1</a>
+          <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Titolo 1</a>
         </li>
         <li class="breadcrumb-item">
           <span>Titolo 2</span>
@@ -455,8 +455,8 @@ user ||= @session.user
 <div class="bg-light p-3 mb-3">
 
 <turbo-frame id="tutorial_form-example">
-  <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="post">
-<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="xckNaIxq2vP17DebVhT09t02wDsZvrXp05AHY7iEFC8_ad-pBOh8v5Ie_BwQakI_Xtwp4QkEgJZ5aKDrQ23dsA" autocomplete="off">
+  <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
+<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="PDkJ6GNBe745xAD0twu8_2NlQ5FRCgy2mYs2Dn3JLGx2Pc3aUaGqP89fr0ifASzPUdykmKhkDc8z0DkAQrQncQ" autocomplete="off">
     
     
 
@@ -558,7 +558,7 @@ Il modo più semplice per utilizzare la componente è quello di passargli una co
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="default" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -771,7 +771,7 @@ Le colonne possono essere personalizzate attraverso il parametro <code>:columns<
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="default" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -940,7 +940,7 @@ end
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="default" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -985,7 +985,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
               </tr>
               <tr>
@@ -999,7 +999,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
               </tr>
               <tr>
@@ -1013,7 +1013,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
               </tr>
               <tr>
@@ -1027,7 +1027,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
               </tr>
               <tr>
@@ -1041,7 +1041,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancellato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
               </tr>
           </tbody>
@@ -1096,7 +1096,7 @@ end
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="default" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -1105,7 +1105,7 @@ end
           <div></div>
         
           <div class="btn-group ms-2">
-              <a class="btn btn-primary" path="/products/create" icon="bi bi-plus" arial_label="Crea prodotto" title="Crea prodotto" href="#">
+              <a class="btn btn-primary" path="/products/create" icon="bi bi-plus" arial_label="Crea prodotto" title="Crea prodotto" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>
                 <i class="bi bi-plus"></i>
 </a>          </div>
 
@@ -1322,7 +1322,7 @@ end
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="default" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -1331,7 +1331,7 @@ end
           <div></div>
         
           <div class="btn-group ms-2">
-              <a class="btn btn-primary" path="/products/create" icon="bi bi-plus" data-lato-action-target="trigger" data-turbo-frame="form_product" arial_label="Crea prodotto" title="Crea prodotto" href="#">
+              <a class="btn btn-primary" path="/products/create" icon="bi bi-plus" data-lato-action-target="trigger" data-turbo-frame="form_product" arial_label="Crea prodotto" title="Crea prodotto" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>
                 <i class="bi bi-plus"></i>
 </a>          </div>
 
@@ -1567,7 +1567,7 @@ end
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="default" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -1617,11 +1617,11 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_1" href="#">Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href="#">Delete</a>
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_1" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Delete</a>
 </div>
                   </td>
               </tr>
@@ -1636,11 +1636,11 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_2" href="#">Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href="#">Delete</a>
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_2" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Delete</a>
 </div>
                   </td>
               </tr>
@@ -1655,11 +1655,11 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_3" href="#">Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href="#">Delete</a>
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_3" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Delete</a>
 </div>
                   </td>
               </tr>
@@ -1674,11 +1674,11 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_4" href="#">Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href="#">Delete</a>
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_4" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Delete</a>
 </div>
                   </td>
               </tr>
@@ -1693,11 +1693,11 @@ end
                     <span class="badge rounded-pill bg-danger">Cancellato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    02 h 19 m
+                    03 h 20 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_5" href="#">Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href="#">Delete</a>
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_5" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Modifica</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>Delete</a>
 </div>
                   </td>
               </tr>
@@ -1741,7 +1741,7 @@ end
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_products_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="products" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -2453,27 +2453,27 @@ end
 </span>
 
         <span class="page">
-  <a rel="next" href="#">2</a>
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>2</a>
 </span>
 
         <span class="page">
-  <a href="#">3</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>3</a>
 </span>
 
         <span class="page">
-  <a href="#">4</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>4</a>
 </span>
 
         <span class="page">
-  <a href="#">5</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>5</a>
 </span>
 
       <span class="next">
-  <a rel="next" href="#"><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
 </span>
 
       <span class="last">
-  <a href="#"><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
 </span>
 
   </nav>
@@ -2512,7 +2512,7 @@ end
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_products_columns_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="products_columns" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -2829,27 +2829,27 @@ end
 </span>
 
         <span class="page">
-  <a rel="next" href="#">2</a>
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>2</a>
 </span>
 
         <span class="page">
-  <a href="#">3</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>3</a>
 </span>
 
         <span class="page">
-  <a href="#">4</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>4</a>
 </span>
 
         <span class="page">
-  <a href="#">5</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>5</a>
 </span>
 
       <span class="next">
-  <a rel="next" href="#"><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
 </span>
 
       <span class="last">
-  <a href="#"><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
 </span>
 
   </nav>
@@ -2889,7 +2889,7 @@ end
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_products_sortable_columns_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="products_sortable_columns" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -3314,27 +3314,27 @@ end
 </span>
 
         <span class="page">
-  <a rel="next" href="#">2</a>
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>2</a>
 </span>
 
         <span class="page">
-  <a href="#">3</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>3</a>
 </span>
 
         <span class="page">
-  <a href="#">4</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>4</a>
 </span>
 
         <span class="page">
-  <a href="#">5</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>5</a>
 </span>
 
       <span class="next">
-  <a rel="next" href="#"><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
 </span>
 
       <span class="last">
-  <a href="#"><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
 </span>
 
   </nav>
@@ -3400,7 +3400,7 @@ end
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_products_searchable_columns_product">
 
-  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="get">
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
     <input type="hidden" name="key" id="key" value="products_searchable_columns" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
       <input type="hidden" name="action" id="action" value="components" autocomplete="off">
@@ -3833,27 +3833,27 @@ end
 </span>
 
         <span class="page">
-  <a rel="next" href="#">2</a>
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>2</a>
 </span>
 
         <span class="page">
-  <a href="#">3</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>3</a>
 </span>
 
         <span class="page">
-  <a href="#">4</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>4</a>
 </span>
 
         <span class="page">
-  <a href="#">5</a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>5</a>
 </span>
 
       <span class="next">
-  <a rel="next" href="#"><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
 </span>
 
       <span class="last">
-  <a href="#"><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
 </span>
 
   </nav>
@@ -3911,8 +3911,8 @@ end
       v3.11.8 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
-      <a href="https://google.com">Privacy policy</a> -
-      <a href="https://google.com">Termini e condizioni</a>
+      <a href="https://github.com/Lato-org">Privacy policy</a> -
+      <a href="https://github.com/Lato-org">Termini e condizioni</a>
     </div>
   </div>
 </div>

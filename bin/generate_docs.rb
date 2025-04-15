@@ -13,7 +13,7 @@ AUTH_PASSWORD = 'Password1!'
 AUTH_GET_URL = "#{BASE_URL}/lato/authentication/signin"
 AUTH_POST_URL = "#{BASE_URL}/lato/authentication/signin_action"
 PAGES = [
-  { path: '/', name: 'index.html' },
+  { path: '/?generate_docs=1', name: 'index.html' },
   # tutorial
   { path: '/tutorial', name: 'tutorial.html', auth: true },
   # configuration
@@ -221,9 +221,17 @@ def process_html(html_content, http, cookies)
     link['data-turbo-method'] = 'GET'
   end
 
+  # Sostituisci tutti i form con il metodo corretto (GET)
+  doc.css('form').each do |form|
+    method = form['method']
+    next if method.nil? || method.empty?
+
+    form['method'] = 'GET'
+  end
+
   # Sostituisci tutti i link relativi con i percorsi locali corrispondenti
   # Esempio: /customization -> ./customization.html
-  # Altrimenti forza a '#'
+  # Altrimenti forza messaggio di errore
   pages_paths = PAGES.map { |page| page[:path] }
   doc.css('a').each do |link|
     href = link['href']
@@ -237,7 +245,7 @@ def process_html(html_content, http, cookies)
     elsif href.start_with?('/') && pages_paths.include?(href)
       link['href'] = href[1..-1] + '.html'
     else
-      link['href'] = '#'
+      link['href'] = 'javascript:alert("Questo link non è disponibile nella documentazione. Per provare il funzionamento completo di Lato installa ed esegui la gemma in locale.")'
     end
   end
 

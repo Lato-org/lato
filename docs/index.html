@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <title>Lato example app</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="cwSKvIu5cL61ZzIlOaNu2L8-_njTWh609YEoLIRFoWpWb3oRfODbX9n0Ox6WhUtzZoe5lFe0rIeqhF6OcAolyw">
+<meta name="csrf-token" content="wOu9tvt40zwN0X9Hjif-LUNoRUhwN2AGT5D6Ftxnvpgdy3kykqesHh9TgQ40IwG-KzxAJLsJ-YWF9KUUpzU7pg">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -107,17 +107,17 @@
 
 </a>
 </li>  <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>
     
     Registrati
 
 </a>
 </li>
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">🇮🇹</a>
+  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")' role="button" aria-expanded="false">🇮🇹</a>
   <ul class="dropdown-menu dropdown-menu-lg-end" style="min-width: auto;">
-      <li><a class="dropdown-item" data-turbo-method="GET" href="#">🇮🇹</a></li>
-      <li><a class="dropdown-item" data-turbo-method="GET" href="#">🇬🇧</a></li>
+      <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>🇮🇹</a></li>
+      <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>🇬🇧</a></li>
   </ul>
 </li>
       </ul>
@@ -134,6 +134,21 @@
   <div class="container-fluid">
     <h1>Benvenuto su Lato</h1>
 <p class="lead">Questa è la homepage dell'applicazione. Una <b>breve guida su come personalizzare</b> un nuovo progetto.</p>
+
+<div class="alert alert-info mt-3">
+<p>
+Queste pagine sono state generate scaricando i template HTML renderizzati dalla dummy app di Lato.<br>
+<b>Alcune funzionalità potrebbero non essere disponibili</b>. Per utilizzare la documentazione completa è necessario eseguire la gemma in locale attraverso i seguenti comandi:
+</p>
+<pre>
+$ git clone https://github.com/lato-org/lato
+$ cd lato
+$ bundle
+$ rails db:migrate
+$ rails db:seed
+$ foreman start -f Procfile.dev
+</pre>
+</div>
 
 <h2>Come iniziare</h2>
 <p>
@@ -235,7 +250,7 @@ Di seguito trovi un esempio di utilizzo di un controller custom <code>hello_cont
 
 <div class="mt-5 mb-5 d-flex justify-content-between">
 <span></span>
-<a class="btn btn-primary btn-lg" href="tutorial.html">Accedi per altri esempi</a>
+<a class="btn btn-primary btn-lg" href="tutorial.html">Prosegui</a>
 </div>
   </div>
 </div>
@@ -250,8 +265,8 @@ Di seguito trovi un esempio di utilizzo di un controller custom <code>hello_cont
       v3.11.8 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
-      <a href="https://google.com">Privacy policy</a> -
-      <a href="https://google.com">Termini e condizioni</a>
+      <a href="https://github.com/Lato-org">Privacy policy</a> -
+      <a href="https://github.com/Lato-org">Termini e condizioni</a>
     </div>
   </div>
 </div>
