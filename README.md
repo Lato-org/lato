@@ -19,7 +19,7 @@ The front-end is designed to be responsive, mobile friendly and accessible.
 
 ## Full documentation (🇮🇹 Italian only)
 
-The full documentation is available at 👉 👉 [THIS LINK](http://lato.gregoriogalante.com/) 👈 👈
+The full documentation is available at ---> 👉 👉 [THIS LINK](http://lato.gregoriogalante.com/) 👈 👈
 
 You can also use the [Lato AI Agent](http://lato.gregoriogalante.com/AI.html) directly on your browser to generate code and get helps with the gem.
 
