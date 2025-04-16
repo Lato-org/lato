@@ -24,54 +24,109 @@
     const { useState, useRef, useEffect } = React;
 
     function MessageContent({ content }) {
-      const [isCodeVisible, setIsCodeVisible] = useState(false);
-      const [copySuccess, setCopySuccess] = useState(false);
+      const [copySuccess, setCopySuccess] = useState({});
 
-      const handleToggleCode = () => {
-      setIsCodeVisible(!isCodeVisible);
+      const handleCopyCode = (code, index) => {
+        navigator.clipboard.writeText(code).then(() => {
+          setCopySuccess({...copySuccess, [index]: true});
+          setTimeout(() => {
+            setCopySuccess({...copySuccess, [index]: false});
+          }, 2000);
+        });
       };
 
-      const handleCopyCode = (code) => {
-      navigator.clipboard.writeText(code).then(() => {
-        setCopySuccess(true);
-        setTimeout(() => setCopySuccess(false), 2000);
-      });
-      };
+      const parse = (string) => {
+        // Sostituisco [LINK](URL) con <a href="URL">LINK</a>
+        string = string.replace(/\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
+          return `<a href="${p2}" target="_blank" class="text-blue-500 underline">${p1}</a>`;
+        });
+        // Sostituisco **testo** con <strong>testo</strong>
+        string = string.replace(/\*\*(.*?)\*\*/g, (match, p1) => {
+          return `<strong>${p1}</strong>`;
+        });
+        // Sostituisco *testo* con <em>testo</em>
+        string = string.replace(/\*(.*?)\*/g, (match, p1) => {
+          return `<em>${p1}</em>`;
+        });
+        // Sostituisco ~~testo~~ con <del>testo</del>
+        string = string.replace(/~~(.*?)~~/g, (match, p1) => {
+          return `<del>${p1}</del>`;
+        });
+        // Sostituisco __testo__ con <u>testo</u>
+        string = string.replace(/__(.*?)__/g, (match, p1) => {
+          return `<u>${p1}</u>`;
+        });
+        // Sostituisco `testo` con <code>testo</code>
+        string = string.replace(/`(.*?)`/g, (match, p1) => {
+          return `<code class="bg-gray-200 p-1 rounded">${p1}</code>`;
+        });
 
-      const regex = /```(.*?)```/gs;
-      const parts = content.split(regex);
+        return string
+      }
+
+      // Regex migliorato per catturare i blocchi di codice con la sintassi ```linguaggio
+      const codeBlockRegex = /```(.*?)\n([\s\S]*?)```/g;
+      let parts = [];
+      let lastIndex = 0;
+      let match;
+
+      // Estrae tutti i blocchi di codice e il testo tra di essi
+      while ((match = codeBlockRegex.exec(content)) !== null) {
+        // Aggiunge il testo prima del blocco di codice corrente
+        if (match.index > lastIndex) {
+          parts.push({
+            type: 'text',
+            content: content.substring(lastIndex, match.index)
+          });
+        }
+
+        // Aggiunge il blocco di codice con il suo linguaggio
+        const language = match[1].trim();
+        const code = match[2];
+        parts.push({
+          type: 'code',
+          language,
+          content: code
+        });
+
+        lastIndex = match.index + match[0].length;
+      }
+
+      // Aggiunge il testo restante dopo l'ultimo blocco di codice
+      if (lastIndex < content.length) {
+        parts.push({
+          type: 'text',
+          content: parse(content.substring(lastIndex))
+        });
+      }
 
       return (
-      <div>
-        {parts.map((part, index) => {
-        if (index % 3 === 0) {
-          return <span key={index}>{part}</span>;
-        } else if (index % 3 === 1) {
-          return (
-          <div key={index} className="bg-gray-200 p-2 rounded mt-2 mb-2">
-            <div className="flex justify-between items-center mb-2 border-b pb-2">
-            <button onClick={handleToggleCode} className="text-blue-500 hover:text-blue-700">
-              {isCodeVisible ? "Nascondi codice" : "Mostra codice"}
-            </button>
-            {isCodeVisible && (
-              <button 
-              onClick={() => handleCopyCode(part)}
-              className="text-gray-600 hover:text-gray-800 text-sm"
-              >
-              {copySuccess ? "Copiato!" : "Copia codice"}
-              </button>
-            )}
-            </div>
-            {isCodeVisible && (
-            <pre className="overflow-x-auto bg-gray-100 p-2 rounded">
-              {part}
-            </pre>
-            )}
-          </div>
-          );
-        }
-        })}
-      </div>
+        <div>
+          {parts.map((part, index) => {
+            if (part.type === 'text') {
+              return <span key={index} dangerouslySetInnerHTML={{ __html: part.content }} />;
+            } else if (part.type === 'code') {
+              return (
+                <div key={index} className="bg-gray-200 p-2 rounded mt-2 mb-2">
+                  <div className="flex justify-between items-center mb-2 border-b pb-2">
+                    <span className="text-sm font-mono text-gray-600">
+                      {part.language || 'code'}
+                    </span>
+                    <button 
+                      onClick={() => handleCopyCode(part.content, index)}
+                      className="text-gray-600 hover:text-gray-800 text-sm"
+                    >
+                      {copySuccess[index] ? "Copiato!" : "Copia codice"}
+                    </button>
+                  </div>
+                  <pre className="overflow-x-auto bg-gray-100 p-2 rounded">
+                    {part.content}
+                  </pre>
+                </div>
+              );
+            }
+          })}
+        </div>
       );
     }
 
@@ -130,10 +185,11 @@
         if (!input.trim()) return;
         
         const systemMessage = { role: "system", content: `
-        Sei un assistente che aiuta gli utenti a sviluppare con la gemma Lato di Ruby on Rails.
-        Utilizza la documentazione fornita per dare supporto all'utente.
+        Il tuo nome è Lato AI Agent.
+        Sei un assistente che aiuta gli utenti a sviluppare con la gemma Lato (https://github.com/Lato-org/lato) di Ruby on Rails.
         Fornisci esempi di codice utilizzando le funzioni e i codici esempio messi a disposizione dalla documentazione.
-        Non fornire informazioni non correlate alla gemma Lato.
+        Utilizza la documentazione fornita per dare supporto all'utente. Non fornire informazioni non correlate alla gemma Lato.
+        Di seguito la documentazione.
         ${context}
         ` };
         const userMessage = { role: "user", content: input };
@@ -221,7 +277,7 @@
                     }`}
                   >
                     <div
-                      className={`inline-block p-3 rounded-lg max-w-xs sm:max-w-md ${
+                      className={`inline-block p-3 rounded-lg max-w-s sm:max-w-lg ${
                         msg.role === "user"
                           ? "bg-blue-100 text-blue-800"
                           : "bg-gray-100 text-gray-800"
