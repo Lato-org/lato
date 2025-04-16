@@ -269,15 +269,29 @@ end
 File.open(LLM_DIR, 'w') do |llm_file|
   Dir.glob("#{OUTPUT_DIR}/*.html").each do |file_path|
     next if File.basename(file_path).start_with?('AI.html') # skip AI.html
-    
-    title = File.basename(file_path, '.html').split('.html').first.capitalize
+    next if File.basename(file_path) == 'products.html' # skip products.html
 
     doc = Nokogiri::HTML(File.read(file_path))
     main = doc.at('main')
+
+    # Rimuovo da main tutti i tag con classe .example
+    main.css('.example').each do |example|
+      example.remove
+    end
+
+    # Sostituisco tutti i link assoluti in testo (esempio <a href="https://google.com">Google</a> -> [Google](https://google.com))
+    main.css('a').each do |link|
+      href = link['href']
+      next unless href&.start_with?('http://', 'https://', '//')
+
+      # Sostituisci il link con il formato Markdown
+      link.replace("[#{link.text}](#{href})")
+    end
+
+    # Estraggo il contenuto come testo
     content = main.text.strip.gsub(/\s+/, ' ')
 
-    llm_file.puts "TITOLO: #{title}"
-    llm_file.puts "CONTENUTO: #{content}"
+    llm_file.puts content
     llm_file.puts "----------------------------------------"
   end
 end

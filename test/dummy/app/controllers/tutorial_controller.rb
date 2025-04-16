@@ -31,6 +31,12 @@ class TutorialController < ApplicationController
       pagination: true,
       key: 'products'
     )
+    @products_pagination_options = lato_index_collection(
+      Product.all,
+      pagination: 10,
+      columns: %i[code status id],
+      key: 'products_pagination_options'
+    )
     @products_columns = lato_index_collection(
       Product.all,
       pagination: true,

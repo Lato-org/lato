@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <title>Lato example app</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="B9rP72ktBzlDOCJLe9AR5skhovC1LIqUuhHYb3sC6jBwQKKidq5hNqN4uby3YGnwCyQJnNJss9QQL96bR-FnSg">
+<meta name="csrf-token" content="6sSSYZzextrUilBZ0P0AoSh7pvcwoRVseM0i5j2QOgELM44Qfs8Rg6q5rxb2Y3d49r831lG3i2T2YouUIfLZ9w">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -278,7 +278,7 @@ Parametri:<br>
 &lt;%= lato_page_head 'Titolo pagina' %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <div class="lato-page-head border-bottom mb-3">
 
   <h1>Titolo pagina</h1>
@@ -291,7 +291,7 @@ Parametri:<br>
 &lt;%= lato_page_head 'Titolo pagina', [{ label: 'Titolo 1', path: main_app.page_path }, { label: 'Titolo 2' }] %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <div class="lato-page-head border-bottom mb-3">
     <ol class="breadcrumb mb-1">
         <li class="breadcrumb-item">
@@ -314,7 +314,7 @@ Parametri:<br>
 &lt;% end %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <div class="lato-page-head border-bottom mb-3">
 
   <h1>Titolo pagina</h1>
@@ -452,11 +452,11 @@ user ||= @session.user
 
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame id="tutorial_form-example">
   <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="uViZEe4FnC7-3adKDsqr9bN-9Izk-Lsnigvha8e1ySLht52_xwaNr0epjPXg4YBIyrwPASqmgLQ2ZYuVa91lHw" autocomplete="off">
+<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="jIfFf0vIIwZGvyTwkvsIq_aG_7GligJQTR2W5GCiC0KevHVvsqybywnG0B2uaeZuVQh-BFUU-g7KcCa8nGf6BA" autocomplete="off">
     
     
 
@@ -554,7 +554,7 @@ Il modo più semplice per utilizzare la componente è quello di passargli una co
 &lt;%= lato_index Product.all.limit(5) %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
@@ -767,7 +767,7 @@ Le colonne possono essere personalizzate attraverso il parametro <code>:columns<
 &lt;%= lato_index Product.all.limit(5), columns: %i[id code status] %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
@@ -936,7 +936,7 @@ end
 &lt;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime] %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
@@ -985,7 +985,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
               </tr>
               <tr>
@@ -999,7 +999,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
               </tr>
               <tr>
@@ -1013,7 +1013,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
               </tr>
               <tr>
@@ -1027,7 +1027,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
               </tr>
               <tr>
@@ -1041,7 +1041,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancellato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
               </tr>
           </tbody>
@@ -1092,7 +1092,7 @@ end
  } %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
@@ -1318,7 +1318,7 @@ end
  } %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
@@ -1563,7 +1563,7 @@ end
 &lt;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_default_product">
 
@@ -1617,7 +1617,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1636,7 +1636,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1655,7 +1655,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1674,7 +1674,7 @@ end
                     <span class="badge rounded-pill bg-success">Completato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1693,7 +1693,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancellato</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 17 m
+                    18 h 58 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1737,7 +1737,7 @@ end
 &lt;%= lato_index @products %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_products_product">
 
@@ -2508,7 +2508,7 @@ end
 &lt;%= lato_index @products_columns %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_products_columns_product">
 
@@ -2868,6 +2868,238 @@ end
 </turbo-frame>
 </div>
 
+<h4>Personalizzare il numero di elementi per pagina</h4>
+
+<p>
+Il numero di elementi per pagina può essere impostato dall'utente tramite un selettore con diversi opzioni. Il selettore può essere attivato e personalizzato tramite il parametro <code>:pagination_options</code> della funzione <code>lato_index_collection</code>.
+</p>
+
+<pre>
+def index
+  @products_pagination_options = lato_index_collection(
+    Product.all,
+    pagination: 10,
+    columns: %i[code status id],
+    key: 'products_pagination_options'
+  )
+end
+</pre>
+
+<pre>
+&lt;%= lato_index @products_pagination_options, pagination_options: [10,20,50,100] %&gt;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+
+<turbo-frame class="lato-index lato-index-desk" id="lato_index_products_pagination_options_product">
+
+  <form data-controller="lato_form lato_index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
+    <input type="hidden" name="key" id="key" value="products_pagination_options" autocomplete="off">
+      <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
+      <input type="hidden" name="action" id="action" value="components" autocomplete="off">
+
+
+
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr class="align-middle">
+                <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span>Codice</span>
+                  </div>
+                </th>
+                <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span>Stato</span>
+                  </div>
+                </th>
+                <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-id">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span>Id</span>
+                  </div>
+                </th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S8582347G
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completato</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    1
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S7478258B
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completato</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    2
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S8810559A
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completato</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    3
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6575126G
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completato</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    4
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    T0163008Z
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    5
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    T0363183J
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    6
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S7598774I
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    7
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S9964576H
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completato</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    8
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S9892631C
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    9
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6237207I
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completato</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    10
+                  </td>
+              </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>  <nav class="pagination" role="navigation" aria-label="pager">
+    
+    
+        <span class="page current">
+  1
+</span>
+
+        <span class="page">
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>2</a>
+</span>
+
+        <span class="page">
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>3</a>
+</span>
+
+        <span class="page">
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>4</a>
+</span>
+
+        <span class="page">
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'>5</a>
+</span>
+
+        <span class="page gap"><span class="translation_missing" title="translation missing: it.views.pagination.truncate">Truncate</span></span>
+
+      <span class="next">
+  <a rel="next" href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+</span>
+
+      <span class="last">
+  <a href='javascript:alert("Questo%20link%20non%20%C3%A8%20disponibile%20nella%20documentazione.%20Per%20provare%20il%20funzionamento%20completo%20di%20Lato%20installa%20ed%20esegui%20la%20gemma%20in%20locale.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+</span>
+
+  </nav>
+</div>
+                  <div class="d-flex justify-content-end align-items-center">
+                    <span class="text-muted">101 risultati totali</span>
+                      <select name="per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato_form#submit" aria-label="Elementi per pagina">
+                          <option value="10">
+                            10 per pagina
+                          </option>
+                          <option value="20">
+                            20 per pagina
+                          </option>
+                          <option value="50">
+                            50 per pagina
+                          </option>
+                          <option value="100">
+                            100 per pagina
+                          </option>
+                      </select>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+</form>
+</turbo-frame>
+</div>
+
 <h4>Rendere le colonne ordinabili</h4>
 
 <pre>
@@ -2885,7 +3117,7 @@ end
 &lt;%= lato_index @products_sortable_columns %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_products_sortable_columns_product">
 
@@ -3396,7 +3628,7 @@ end
 &lt;%= lato_index @products_searchable_columns %&gt;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 
 <turbo-frame class="lato-index lato-index-desk" id="lato_index_products_searchable_columns_product">
 
@@ -3898,6 +4130,7 @@ class Product &lt; ApplicationRecord
 end
 </pre>
 </div>
+
   </div>
 </div>
 

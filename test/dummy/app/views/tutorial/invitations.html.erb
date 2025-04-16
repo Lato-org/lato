@@ -13,11 +13,11 @@ Attraverso un invito è possibile:
   <li>Tenere traccia delle registrazioni avvenute</li>
 </ul>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= render 'tutorial/components/form-invitation' %>
 </div>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index @invitations, columns: %i[email accepted_at lato_user_id actions] %>
 </div>
 

@@ -65,7 +65,7 @@ Parametri:<br>
 &#60;%= lato_page_head 'Titolo pagina' %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_page_head 'Titolo pagina' %>
 </div>
 
@@ -73,7 +73,7 @@ Parametri:<br>
 &#60;%= lato_page_head 'Titolo pagina', [{ label: 'Titolo 1', path: main_app.page_path }, { label: 'Titolo 2' }] %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_page_head 'Titolo pagina', [{ label: 'Titolo 1', path: '#' }, { label: 'Titolo 2' }] %>
 </div>
 
@@ -83,7 +83,7 @@ Parametri:<br>
 &#60;% end %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_page_head 'Titolo pagina' do %>
   <p class="lead">Benvenuto in questa pagina</p>
 <% end %>
@@ -112,7 +112,7 @@ Di seguito la lista di componenti disponibili e un esempio di utilizzo:
 <%= component_code('form-example') %>
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= render 'tutorial/components/form-example' %>
 </div>
 
@@ -132,7 +132,7 @@ Il modo più semplice per utilizzare la componente è quello di passargli una co
 &#60;%= lato_index Product.all.limit(5) %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index Product.all.limit(5) %>
 </div>
 
@@ -146,7 +146,7 @@ Le colonne possono essere personalizzate attraverso il parametro <code>:columns<
 &#60;%= lato_index Product.all.limit(5), columns: %i[id code status] %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index Product.all.limit(5), columns: %i[id code status] %>
 </div>
 
@@ -211,7 +211,7 @@ end
 &#60;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime] %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index Product.all.limit(5), columns: %i[id code status lifetime] %>
 </div>
 
@@ -243,7 +243,7 @@ end
  } %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index Product.all.limit(5), custom_actions: {
     create: {
       path: products_create_path,
@@ -268,7 +268,7 @@ end
  } %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index Product.all.limit(5), custom_actions: {
     create: {
       path: products_create_path,
@@ -313,7 +313,7 @@ end
 &#60;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %>
 </div>
 
@@ -333,7 +333,7 @@ end
 &#60;%= lato_index @products %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index @products, key: 'products' %>
 </div>
 
@@ -353,8 +353,33 @@ end
 &#60;%= lato_index @products_columns %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index @products_columns, key: 'products_columns' %>
+</div>
+
+<h4>Personalizzare il numero di elementi per pagina</h4>
+
+<p>
+Il numero di elementi per pagina può essere impostato dall'utente tramite un selettore con diversi opzioni. Il selettore può essere attivato e personalizzato tramite il parametro <code>:pagination_options</code> della funzione <code>lato_index_collection</code>.
+</p>
+
+<pre>
+def index
+  @products_pagination_options = lato_index_collection(
+    Product.all,
+    pagination: 10,
+    columns: %i[code status id],
+    key: 'products_pagination_options'
+  )
+end
+</pre>
+
+<pre>
+&#60;%= lato_index @products_pagination_options, pagination_options: [10,20,50,100] %&#62;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_index @products_pagination_options, pagination_options: [10,20,50,100], key: 'products_pagination_options' %>
 </div>
 
 <h4>Rendere le colonne ordinabili</h4>
@@ -374,7 +399,7 @@ end
 &#60;%= lato_index @products_sortable_columns %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index @products_sortable_columns, key: 'products_sortable_columns' %>
 </div>
 
@@ -421,7 +446,7 @@ end
 &#60;%= lato_index @products_searchable_columns %&#62;
 </pre>
 
-<div class="bg-light p-3 mb-3">
+<div class="example bg-light p-3 mb-3">
 <%= lato_index @products_searchable_columns, key: 'products_searchable_columns' %>
 </div>
 
