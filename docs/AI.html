@@ -17,8 +17,8 @@
     }
   </style>
 </head>
-<body class="bg-gray-100">
-  <div id="root"></div>
+<body class="bg-[#1f262c] min-h-screen flex items-center">
+  <div id="root" class="w-full"></div>
 
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
@@ -195,7 +195,7 @@
               </div>
               <button
                 onClick={handleSubmitApiKey}
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
+                className="w-full bg-[#293b5a] text-white py-2 px-4 rounded transition-colors"
               >
                 Inizia a chattare
               </button>
@@ -205,7 +205,7 @@
             </div>
           ) : (
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="bg-blue-500 p-4">
+              <div className="bg-[#293b5a] p-4">
                 <h1 className="text-xl font-bold text-white">Lato AI Agent</h1>
               </div>
               
@@ -244,19 +244,19 @@
                 )}
               </div>
               
-              <form onSubmit={handleSendMessage} className="p-4 border-t">
+              <form onSubmit={handleSendMessage} className="p-4 bg-[#7b96c4]">
                 <div className="flex">
                   <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="flex-1 p-2 border border-gray-300 rounded-l focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="flex-1 p-2 border border-gray-300 bg-white rounded-l focus:outline-none focus:ring-2 focus:ring-[#293b5a]"
                     placeholder="Scrivi un messaggio..."
                   />
                   <button
                     type="submit"
                     disabled={loading}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600 transition-colors disabled:bg-blue-300"
+                    className="bg-[#293b5a] text-white px-4 py-2 rounded-r transition-colors"
                   >
                     Invia
                   </button>
