@@ -2,16 +2,16 @@
 
 [![Gem Version](https://badge.fury.io/rb/lato.svg)](https://badge.fury.io/rb/lato)
 
-Lato is a Rails Engine to deliver a full featured web panel for your Rails application.
+Lato is a Rails Engine to deliver a full featured web panel for your [Rails](https://rubyonrails.org/) application.
 
 This gem includes:
 - User management with full authentication (signin, signup, recover password, email validation, Google Authenticator multi-factor authentication, ETH wallet connection);
-- Web panel UI (Navbar, Sidebar, Body) with Bootstrap;
+- Web panel UI (Navbar, Sidebar, Body) with [Bootstrap](https://getbootstrap.com/) and [Bootstrap Icons](https://icons.getbootstrap.com/) integrated;
 - Some UI components ready to use integrated with Rails (data tables, forms, modals, async job executions);
 
 The gem is designed to be easily **customizable and extendable**. You can fully customize the UI and the functionalities of the panel. You can also add new functionalities and components to the panel on the main application or develop new engines to extend the panel.
 
-The gem is ready to be used with the **latest Rails 7+** features like **ESM import maps**, **Turbo** and **Stimulus**.
+The gem is ready to be used with the **latest Rails 7+** features like **[ESM import maps](https://github.com/rails/importmap-rails)**, **[Turbo](https://turbo.hotwired.dev/)** and **[Stimulus](https://stimulus.hotwired.dev)**.
 
 The front-end is designed to be responsive, mobile friendly and accessible.
 
@@ -34,13 +34,13 @@ Add required dependencies to your application's Gemfile:
 
 ```ruby
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails" # NOTE: Probably already installed in default rails 7 project
+gem "importmap-rails" # NOTE: Probably already installed in default rails 7+ project
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails" # NOTE: Probably already installed in default rails 7 project
+gem "turbo-rails" # NOTE: Probably already installed in default rails 7+ project
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails" # NOTE: Probably already installed in default rails 7 project
+gem "stimulus-rails" # NOTE: Probably already installed in default rails 7+ project
 
 # Use Sass to process CSS
 gem "sassc-rails"
