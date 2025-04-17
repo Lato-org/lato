@@ -5,9 +5,9 @@
 Lato is a Rails Engine to deliver a full featured web panel for your [Rails](https://rubyonrails.org/) application.
 
 This gem includes:
-- User management with full authentication (signin, signup, recover password, email validation, Google Authenticator multi-factor authentication, ETH wallet connection);
-- Web panel UI (Navbar, Sidebar, Body) with [Bootstrap](https://getbootstrap.com/) and [Bootstrap Icons](https://icons.getbootstrap.com/) integrated;
-- Some UI components ready to use integrated with Rails (data tables, forms, modals, async job executions);
+- User management with **full authentication system** (signin, signup, recover password, email validation, Google Authenticator multi-factor authentication, ETH wallet connection) and **account management** (user settings, password change, email change, etc.);
+- **Web interface** built with [Bootstrap](https://getbootstrap.com/) and [Bootstrap Icons](https://icons.getbootstrap.com/);
+- **UI components integrated with Rails** (data tables, forms, modals, async job executions etc.);
 
 The gem is **agnostic to the application stack**. You can use it with different databases (PostgreSQL, MySQL, SQLite), different Job processors (Solid queue, Sidekiq, Delayed Job, etc.), different cache systems (Redis, Memcached, etc.).
 
