@@ -8,6 +8,15 @@ export default class extends Controller {
   connect() {
     this.modal = new bootstrap.Modal(this.element)
     Turbo.setConfirmMethod(this.customConfirm.bind(this))
+
+    this.element.style.zIndex = 2001
+    this.element.addEventListener('show.bs.modal', () => {
+      // update backdrop z-index to be sure is always above other modals
+      setTimeout(() => { // use setTimeout because bsModalBackdropElement is not always ready after 'show.bs.modal' event
+        const bsModalBackdropElement = this.modal._backdrop._element
+        if (bsModalBackdropElement) bsModalBackdropElement.style.zIndex = 2000
+      }, 1)
+    })
   }
 
   disconnect() {
