@@ -13,6 +13,8 @@ The gem is designed to be easily **customizable and extendable**. You can fully 
 
 The gem is ready to be used with the **latest Rails 7+** features like **[ESM import maps](https://github.com/rails/importmap-rails)**, **[Turbo](https://turbo.hotwired.dev/)** and **[Stimulus](https://stimulus.hotwired.dev)**.
 
+The gem is agnostic to the application stack. You can use it with different databases (PostgreSQL, MySQL, SQLite), different Job processors (Solid queue, Sidekiq, Delayed Job, etc.), different cache systems (Redis, Memcached, etc.).
+
 The front-end is designed to be responsive, mobile friendly and accessible.
 
 <img src="./preview.gif" alt="Lato preview" width="100%">
