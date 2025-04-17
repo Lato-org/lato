@@ -27,6 +27,7 @@ export default class extends Controller {
    * Events
    */
 
+  // This event is used to remove the Bootstrap invalid class from the input when the user starts typing.
   onInputChange(e) {
     e.target.classList.remove('is-invalid')
   }

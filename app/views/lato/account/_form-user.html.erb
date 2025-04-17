@@ -5,7 +5,7 @@ user ||= Lato::User.new
 %>
 
 <%= turbo_frame_tag 'account_form-user' do %>
-  <%= form_with model: user, url: lato.account_update_user_action_path, data: { turbo_frame: '_self', controller: 'lato-form' } do |form| %>
+  <%= form_with model: user, url: lato.account_update_user_action_path, data: { turbo_frame: '_self', controller: 'lato-form lato-account-form-user' } do |form| %>
     <%= lato_form_notices class: %w[mb-3] %>
     <%= lato_form_errors user, class: %w[mb-3] %>
 
@@ -23,7 +23,7 @@ user ||= Lato::User.new
       <div class="col col-12 col-lg-4 mb-3">
         <%= lato_form_item_label form, :email %>
         <div class="input-group mb-3">
-          <%= lato_form_item_input_email form, :email, required: true %>
+          <%= lato_form_item_input_email form, :email, required: true, data: { lato_account_form_user_target: 'emailInput', action: 'keyup->lato-account-form-user#onEmailKeyUp' } %>
           <% if user.email_verified_at %>
             <button
               class="btn btn-outline-success"
@@ -31,7 +31,7 @@ user ||= Lato::User.new
               aria-label="<%= I18n.t('lato.email_verified') %>"
             ><%= I18n.t('lato.email_verified') %></span>
           <% else %>
-            <%= link_to I18n.t('lato.verify_email'), account_request_verify_email_action_path, class: 'btn btn-warning', data: { turbo_method: :patch, turbo_frame: '_self' }, aria: { label: I18n.t('lato.verify_email') } %>
+            <%= link_to I18n.t('lato.verify_email'), account_request_verify_email_action_path, class: 'btn btn-warning', data: { turbo_method: :patch, turbo_frame: '_self', lato_account_form_user_target: 'validateEmailLink' }, aria: { label: I18n.t('lato.verify_email') } %>
           <% end %>
         </div>
       </div>
