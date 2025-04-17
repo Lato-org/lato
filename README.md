@@ -9,13 +9,11 @@ This gem includes:
 - Web panel UI (Navbar, Sidebar, Body) with [Bootstrap](https://getbootstrap.com/) and [Bootstrap Icons](https://icons.getbootstrap.com/) integrated;
 - Some UI components ready to use integrated with Rails (data tables, forms, modals, async job executions);
 
+The gem is **agnostic to the application stack**. You can use it with different databases (PostgreSQL, MySQL, SQLite), different Job processors (Solid queue, Sidekiq, Delayed Job, etc.), different cache systems (Redis, Memcached, etc.).
+
 The gem is designed to be easily **customizable and extendable**. You can fully customize the UI and the functionalities of the panel. You can also add new functionalities and components to the panel on the main application or develop new engines to extend the panel.
 
-The gem is ready to be used with the **latest Rails 7+** features like **[ESM import maps](https://github.com/rails/importmap-rails)**, **[Turbo](https://turbo.hotwired.dev/)** and **[Stimulus](https://stimulus.hotwired.dev)**.
-
-The gem is agnostic to the application stack. You can use it with different databases (PostgreSQL, MySQL, SQLite), different Job processors (Solid queue, Sidekiq, Delayed Job, etc.), different cache systems (Redis, Memcached, etc.).
-
-The front-end is designed to be responsive, mobile friendly and accessible.
+The gem is ready to be used with the **latest Rails 7+** features like **[ESM import maps](https://github.com/rails/importmap-rails)**, **[Turbo](https://turbo.hotwired.dev/)** and **[Stimulus](https://stimulus.hotwired.dev)**. The front-end is designed to be responsive, mobile friendly and accessible.
 
 <img src="./preview.gif" alt="Lato preview" width="100%">
 
