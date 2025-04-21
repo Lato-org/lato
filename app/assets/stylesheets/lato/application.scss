@@ -113,6 +113,14 @@ main, aside {
   }
 }
 
+.lato-index {
+  .table {
+    th, td {
+      vertical-align: middle;
+    }
+  }
+}
+
 .lato-index-col-sort {
   .btn {
     font-size: 12px;
