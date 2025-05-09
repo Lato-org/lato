@@ -54,3 +54,7 @@
   },
   pagination_options: [10,20,50,100]
 %>
+
+<% if defined? @lato_users %>
+  <%= lato_index @lato_users, key: 'lato_users' %>
+<% end %>

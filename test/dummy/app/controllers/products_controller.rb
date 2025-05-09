@@ -15,6 +15,17 @@ class ProductsController < ApplicationController
       default_sort_by: 'code|ASC',
       pagination: 10,
     )
+
+    # BACKUP: Uncomment if you want to test multiple collections on same page
+    # @lato_users = lato_index_collection(
+    #   Lato::User.all,
+    #   columns: %i[last_name first_name email],
+    #   sortable_columns: %i[last_name first_name email],
+    #   searchable_columns: %i[last_name first_name email],
+    #   default_sort_by: 'last_name|ASC',
+    #   pagination: 10,
+    #   key: 'lato_users',
+    # )
   end
 
   def index_autocomplete

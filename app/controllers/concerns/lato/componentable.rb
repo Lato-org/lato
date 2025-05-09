@@ -16,11 +16,11 @@ module Lato
       }
 
       # manage default sort by parameter
-      params[:sort_by] = default_sort_by if params[:sort_by].blank? && default_sort_by
+      params["#{key}_sort_by"] = default_sort_by if params["#{key}_sort_by"].blank? && default_sort_by
 
       # manage sort by parameter
-      unless params[:sort_by].blank?
-        sort_by_splitted = params[:sort_by].split('|')
+      unless params["#{key}_sort_by"].blank?
+        sort_by_splitted = params["#{key}_sort_by"].split('|')
         sort_by_column = sort_by_splitted.first
         sort_by_order = sort_by_splitted.last
 
@@ -32,8 +32,8 @@ module Lato
       end
 
       # manage search by parameter
-      unless params[:search].blank?
-        search = params[:search].to_s
+      unless params["#{key}_search"].blank?
+        search = params["#{key}_search"].to_s
         if collection.respond_to?(:lato_index_search)
           collection = collection.lato_index_search(search)
         else
@@ -49,9 +49,9 @@ module Lato
       end
 
       # manage pagination
-      if pagination || params[:page] || params[:per_page]
-        page = params[:page]&.to_i || 1
-        per_page = params[:per_page]&.to_i || (pagination.is_a?(Integer) ? pagination : 25)
+      if pagination || params["#{key}_page"] || params["#{key}_per_page"]
+        page = params["#{key}_page"]&.to_i || 1
+        per_page = params["#{key}_per_page"]&.to_i || (pagination.is_a?(Integer) ? pagination : 25)
         per_page = 100 if per_page > 100
         collection = collection.page(page).per(per_page)
       end

@@ -17,7 +17,7 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
       <div class="d-flex mb-3">
         <% if searchable_columns.any? %>
           <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="<%= I18n.t('lato.search_for') %>: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params[:search] %>" data-action="keyup->lato-index#onSearchKeyUp" aria-label="<%= I18n.t('lato.search') %>">
+            <input type="text" name="<%= "#{key}_search" %>" class="form-control" placeholder="<%= I18n.t('lato.search_for') %>: <%= searchable_columns.map { |c| collection.model.human_attribute_name(c) }.to_sentence %>" value="<%= params["#{key}_search"] %>" data-action="keyup->lato-index#onSearchKeyUp" aria-label="<%= I18n.t('lato.search') %>">
             <button
               class="btn btn-outline-primary"
               type="submit"
@@ -114,13 +114,13 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
                     }) %></span>
                     <% if sortable_columns.include?(column) %>
                       <div class="btn-group ms-3 lato-index-col-sort">
-                        <div class="position-relative btn btn-sm <%= params[:sort_by] == "#{column}|ASC" ? 'btn-primary' : 'btn-outline-primary' %>">
-                          <input type="submit" name="sort_by" value="<%= column %>|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                        <div class="position-relative btn btn-sm <%= params["#{key}_sort_by"] == "#{column}|ASC" ? 'btn-primary' : 'btn-outline-primary' %>">
+                          <input type="submit" name="<%= "#{key}_sort_by" %>" value="<%= column %>|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
                           <i class="bi bi-sort-up"></i>
                         </div>
 
-                        <div class="position-relative btn btn-sm <%= params[:sort_by] == "#{column}|DESC" ? 'btn-primary' : 'btn-outline-primary' %>">
-                          <input type="submit" name="sort_by" value="<%= column %>|DESC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                        <div class="position-relative btn btn-sm <%= params["#{key}_sort_by"] == "#{column}|DESC" ? 'btn-primary' : 'btn-outline-primary' %>">
+                          <input type="submit" name="<%= "#{key}_sort_by" %>" value="<%= column %>|DESC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
                           <i class="bi bi-sort-down"></i>
                         </div>
                       </div>
@@ -152,16 +152,16 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
               <td colspan="<%= columns.length %>">
                 <div class="d-flex justify-content-between align-items-center">
                   <% if collection.respond_to?(:total_pages) %>
-                    <div><%= paginate collection %></div>
+                    <div><%= paginate collection, param_name: "#{key}_page" %></div>
                   <% else %>
                     <div></div>
                   <% end %>
                   <div class="d-flex justify-content-end align-items-center">
                     <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
                     <% if pagination_options %>
-                      <select name="per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change->lato-form#submit" aria-label="<%= I18n.t('lato.per_page_description') %>">
+                      <select name="<%= "#{key}_per_page" %>" class="ms-3 form-select form-select-sm w-auto" data-action="change->lato-form#submit" aria-label="<%= I18n.t('lato.per_page_description') %>">
                         <% pagination_options.each do |option| %>
-                          <option value="<%= option %>" <%= option == params[:per_page].to_i ? 'selected' : '' %>>
+                          <option value="<%= option %>" <%= option == params["#{key}_per_page"].to_i ? 'selected' : '' %>>
                             <%= option %> <%= I18n.t('lato.per_page').downcase %>
                           </option>
                         <% end %>
