@@ -247,7 +247,7 @@ def process_html(html_content, http, cookies)
     elsif href.start_with?('/') && pages_paths.include?(href)
       link['href'] = href[1..-1] + '.html'
     else
-      link['href'] = 'javascript:alert("Questo link non è disponibile nella documentazione. Per provare il funzionamento completo di Lato installa ed esegui la gemma in locale.")'
+      link['href'] = 'javascript:alert("This link is not available in the documentation. To test the full functionality of Lato, install and run the gem locally.")'
     end
   end
 
