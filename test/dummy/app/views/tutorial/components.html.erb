@@ -1,6 +1,6 @@
-<%= lato_page_head 'Componenti', [
+<%= lato_page_head 'Components', [
   { label: 'Tutorial', path: tutorial_path },
-  { label: 'Componenti' }
+  { label: 'Components' }
 ] %>
 
 <%
@@ -12,9 +12,9 @@ end
 %>
 
 <p>
-Lato dispone di una serie di componenti funzionali riutilizzabili.<br>
-Utilizzando le componenti di Lato è possibile risparmiare tempo di lavoro e facilitare le attività di manutenzione dell'applicazione.<br>
-Tutte le componenti sono disponibili tramite l'helper <code>Lato::ComponentsHelper</code>.
+Lato provides a set of reusable functional components.<br>
+By using Lato components, you can save development time and simplify maintenance tasks.<br>
+All components are available via the <code>Lato::ComponentsHelper</code> helper.
 </p>
 
 <p>
@@ -26,11 +26,11 @@ Tutte le componenti sono disponibili tramite l'helper <code>Lato::ComponentsHelp
 <h3>Navbar nav item</h3>
 
 <p>
-Componente per renderizzare una voce di menu nella navbar.
-Parametri:<br>
-- <i>key</i>: chiave della voce di menu. Utilizzata per attivare la voce di menu se impostata attiva tramite la funzione <code>active_navbar</code> del concern <code>Lato::Layoutable</code>.<br>
-- <i>path</i>: path o url assoluto dove rimandare l'utente.<br>
-- <i>&block</i>: blocco di HTML da renderizzare all'interno della voce di menu.
+Component to render a menu item in the navbar.<br>
+Parameters:<br>
+- <i>key</i>: the menu item's key. Used to activate the item via the <code>active_navbar</code> function from the <code>Lato::Layoutable</code> concern.<br>
+- <i>path</i>: a path or absolute URL to redirect the user.<br>
+- <i>&block</i>: block of HTML to render inside the menu item.
 </p>
 
 <pre>
@@ -44,11 +44,11 @@ Parametri:<br>
 <h3>Sidebar nav item</h3>
 
 <p>
-Componente per renderizzare una voce di menu nella sidebar.
-Parametri:<br>
-- <i>key</i>: chiave della voce di menu. Utilizzata per attivare la voce di menu se impostata attiva tramite la funzione <code>active_sidebar</code> del concern <code>Lato::Layoutable</code>.<br>
-- <i>path</i>: path o url assoluto dove rimandare l'utente.<br>
-- <i>&block</i>: blocco di HTML da renderizzare all'interno della voce di menu.
+Component to render a menu item in the sidebar.<br>
+Parameters:<br>
+- <i>key</i>: the menu item's key. Used to activate the item via the <code>active_sidebar</code> function from the <code>Lato::Layoutable</code> concern.<br>
+- <i>path</i>: a path or absolute URL to redirect the user.<br>
+- <i>&block</i>: block of HTML to render inside the menu item.
 </p>
 
 <pre>
@@ -62,56 +62,56 @@ Parametri:<br>
 <h3>Page head</h3>
 
 <pre>
-&#60;%= lato_page_head 'Titolo pagina' %&#62;
+&#60;%= lato_page_head 'Page title' %&#62;
 </pre>
 
 <div class="example bg-light p-3 mb-3">
-<%= lato_page_head 'Titolo pagina' %>
+<%= lato_page_head 'Page title' %>
 </div>
 
 <pre>
-&#60;%= lato_page_head 'Titolo pagina', [{ label: 'Titolo 1', path: main_app.page_path }, { label: 'Titolo 2' }] %&#62;
+&#60;%= lato_page_head 'Page title', [{ label: 'Title 1', path: main_app.page_path }, { label: 'Title 2' }] %&#62;
 </pre>
 
 <div class="example bg-light p-3 mb-3">
-<%= lato_page_head 'Titolo pagina', [{ label: 'Titolo 1', path: '#' }, { label: 'Titolo 2' }] %>
+<%= lato_page_head 'Page title', [{ label: 'Title 1', path: '#' }, { label: 'Title 2' }] %>
 </div>
 
 <pre>
-&#60;%= lato_page_head 'Titolo pagina' do %&#62;
-  &#60p class="lead"&#62;Benvenuto in questa pagina&#60/p&#62;
+&#60;%= lato_page_head 'Page title' do %&#62;
+  &#60p class="lead"&#62;Welcome to this page&#60/p&#62;
 &#60;% end %&#62;
 </pre>
 
 <div class="example bg-light p-3 mb-3">
-<%= lato_page_head 'Titolo pagina' do %>
-  <p class="lead">Benvenuto in questa pagina</p>
+<%= lato_page_head 'Page title' do %>
+  <p class="lead">Welcome to this page</p>
 <% end %>
 </div>
 
 <h2>Form</h2>
 
 <p>
-I form possono essere generati utilizzando le componenti <code>lato_form</code>.<br>
-Le componenti <code>lato_form</code> sono una serie di componenti diverse programmate per essere utilizzate con l'helper Rails <code>form_with</code> e il controller Stimulus <code>lato_form_controller</code>.<br>
-Di seguito la lista di componenti disponibili e un esempio di utilizzo:
+Forms can be generated using the <code>lato_form</code> components.<br>
+<code>lato_form</code> components are a set of utilities designed to work with Rails' <code>form_with</code> helper and the Stimulus controller <code>lato_form_controller</code>.<br>
+Below is a list of available components with usage examples:
 <ul>
-  <li><code>lato_form_notices</code> visualizza il feedback positivo al salvataggio (notice impostati dalla action).</li>
-  <li><code>lato_form_errors</code> visualizza il feedback negativo al salvataggio (errori presenti nell'istanza del modello).</li>
-  <li><code>lato_form_item_label</code> visualizza la label dei campi.</li>
-  <li><code>lato_form_item_input_text</code> visualizza un input di testo.</li>
-  <li><code>lato_form_item_input_number</code> visualizza un input numerico.</li>
-  <li><code>lato_form_item_input_email</code> visualizza un input email.</li>
-  <li><code>lato_form_item_input_password</code> visualizza un input password.</li>
-  <li><code>lato_form_item_input_check</code> visualizza un input checkbox.</li>
-  <li><code>lato_form_item_input_select</code> visualizza un input select.</li>
-  <li><code>lato_form_item_input_file</code> visualizza un input file.</li>
-  <li><code>lato_form_item_input_textarea</code> visualizza un input textarea.</li>
-  <li><code>lato_form_item_input_date</code> visualizza un input date.</li>
-  <li><code>lato_form_item_input_datetime</code> visualizza un input datetime.</li>
-  <li><code>lato_form_item_input_time</code> visualizza un input time.</li>
-  <li><code>lato_form_item_input_color</code> visualizza un input color.</li>
-  <li><code>lato_form_submit</code> visualizza il pulsante di submit.</li>
+  <li><code>lato_form_notices</code> displays success feedback (notices set by the controller action).</li>
+  <li><code>lato_form_errors</code> displays error feedback (based on model instance errors).</li>
+  <li><code>lato_form_item_label</code> renders the field label.</li>
+  <li><code>lato_form_item_input_text</code> renders a text input.</li>
+  <li><code>lato_form_item_input_number</code> renders a number input.</li>
+  <li><code>lato_form_item_input_email</code> renders an email input.</li>
+  <li><code>lato_form_item_input_password</code> renders a password input.</li>
+  <li><code>lato_form_item_input_check</code> renders a checkbox input.</li>
+  <li><code>lato_form_item_input_select</code> renders a select input.</li>
+  <li><code>lato_form_item_input_file</code> renders a file input.</li>
+  <li><code>lato_form_item_input_textarea</code> renders a textarea input.</li>
+  <li><code>lato_form_item_input_date</code> renders a date input.</li>
+  <li><code>lato_form_item_input_datetime</code> renders a datetime input.</li>
+  <li><code>lato_form_item_input_time</code> renders a time input.</li>
+  <li><code>lato_form_item_input_color</code> renders a color input.</li>
+  <li><code>lato_form_submit</code> renders the submit button.</li>
 </ul>
 </p>
 
@@ -126,13 +126,13 @@ Di seguito la lista di componenti disponibili e un esempio di utilizzo:
 <h2>Index</h2>
 
 <p>
-La componente <code>lato_index</code> permette di visualizzare facilmente i dati presenti in database.
+The <code>lato_index</code> component allows easy visualization of database records.
 </p>
 
 <h3>Index (front-end)</h3>
 
 <p>
-Il modo più semplice per utilizzare la componente è quello di passargli una collezione di <code>ActiveRecord</code> come parametro:
+The simplest way to use the component is to pass it an <code>ActiveRecord</code> collection:
 </p>
 
 <pre>
@@ -143,10 +143,10 @@ Il modo più semplice per utilizzare la componente è quello di passargli una co
 <%= lato_index Product.all.limit(5) %>
 </div>
 
-<h4>Personalizzare le colonne</h4>
+<h4>Customizing columns</h4>
 
 <p>
-Le colonne possono essere personalizzate attraverso il parametro <code>:columns</code>:
+Columns can be customized using the <code>:columns</code> parameter:
 </p>
 
 <pre>
@@ -158,26 +158,26 @@ Le colonne possono essere personalizzate attraverso il parametro <code>:columns<
 </div>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h4 class="alert-heading">Notes</h4>
   <p>
-  I titoli delle colonne possono essere modificati attraverso i file di traduzione di Rails.<br>
-  Esempio:
+  Column titles can be customized using Rails translation files.<br>
+  Example:
   </p>
 <pre>
-it:
+en:
   activerecord:
     attributes:
       product:
-        code: Codice
-        status: Stato
+        code: Code
+        status: Status
 </pre>
 </div>
 
-<h4>Personalizzare il contenuto delle colonne</h4>
+<h4>Customizing column content</h4>
 
 <p>
-Il contenuto delle colonne può essere personalizzato creando degli appositi helper con la sintassi <code>model_column(member)</code>.<br>
-Per esempio, per personalizzare l'output della colonna :lato_user_id è stato creato il seguente helper in <code>ProductsHelper</code>:
+You can customize column content by creating helper methods with the format <code>model_column(record)</code>.<br>
+For example, to customize the output of the :lato_user_id column, define the following helper in <code>ProductsHelper</code>:
 </p>
 
 <pre>
@@ -188,18 +188,15 @@ class ProductsHelper
 end
 </pre>
 
-<h4>Aggiungere colonne custom</h4>
+<h4>Adding custom columns</h4>
 
 <p>
-Per aggiungere colonne custom ad una tabella basta specificare il nome del metodo dichiarato nel modello per fornire il dato corrispondente.<br>
-Per esempio, dopo aver aggiunto il metodo <code>lifetime</code> al modello <code>Product</code>, è possibile utilizzare la colonna <code>:lifetime</code>:
+To add custom columns, declare a method in the model that provides the value.<br>
+For example, after adding a <code>lifetime</code> method to the <code>Product</code> model, you can use the <code>:lifetime</code> column:
 </p>
 
 <pre>
 class Product < ApplicationRecord
-  # Helpers
-  ##
-
   def lifetime
     Time.now - created_at
   end
@@ -223,12 +220,12 @@ end
 </div>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h4 class="alert-heading">Notes</h4>
   <p>
-  Anche le colonne custom possono essere tradotte dai file di traduzione di Rails proprio come le colonne realmente presenti in database.
+  Custom columns can also be translated using Rails translation files, just like database-backed columns.
   </p>
   <p>
-  Per aggiungere eventuali colonne che non corrispondo ad attributi reali del prodotto è possibile, invece di dichiarare una funzione nel modello, specificare la colonna con <code>attr_accessor :nome_colonna</code>:
+  To add columns that don't map to real attributes, use <code>attr_accessor :column_name</code> instead of defining a method in the model:
   </p>
 <pre>
 class Product < ApplicationRecord
@@ -237,31 +234,20 @@ end
 </pre>
 </div>
 
-<h4>Aggiungere azioni</h4>
+<h4>Adding actions</h4>
 
 <pre>
 &#60;%= lato_index Product.all.limit(5), custom_actions: {
     create: {
       path: products_create_path,
       icon: 'bi bi-plus',
-      aria_label: 'Crea prodotto',
-      title: 'Crea prodotto'
+      aria_label: 'Create product',
+      title: 'Create product'
     }
  } %&#62;
 </pre>
 
-<div class="example bg-light p-3 mb-3">
-<%= lato_index Product.all.limit(5), custom_actions: {
-    create: {
-      path: products_create_path,
-      icon: 'bi bi-plus',
-      arial_label: 'Crea prodotto',
-      title: 'Crea prodotto'
-    }
- } %>
-</div>
-
-<h4>Aggiungere azioni in-page</h4>
+<h4>Adding in-page actions</h4>
 
 <pre>
 &#60;%= lato_index Product.all.limit(5), custom_actions: {
@@ -269,36 +255,24 @@ end
       path: products_create_path,
       icon: 'bi bi-plus',
       data: { lato_action_target: 'trigger', turbo_frame: dom_id(Product.new, 'form') },
-      aria_label: 'Crea prodotto',
-      title: 'Crea prodotto'
+      aria_label: 'Create product',
+      title: 'Create product'
     }
  } %&#62;
 </pre>
-
-<div class="example bg-light p-3 mb-3">
-<%= lato_index Product.all.limit(5), custom_actions: {
-    create: {
-      path: products_create_path,
-      icon: 'bi bi-plus',
-      data: { lato_action_target: 'trigger', turbo_frame: dom_id(Product.new, 'form') },
-      arial_label: 'Crea prodotto',
-      title: 'Crea prodotto'
-    }
- } %>
-</div>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h4 class="alert-heading">Notes</h4>
   <p>
-  L'opzione <code>:create_turbo_frame</code> specifica l'ID del turbo-frame presente nella pagina <code>products_create_path</code> che deve essere inserito all'interno dell'overlay.
+  The <code>:create_turbo_frame</code> option specifies the turbo-frame ID in the <code>products_create_path</code> page that should be inserted into the overlay.
   </p>
 </div>
 
-<h4>Aggiungere azioni alle singole righe</h4>
+<h4>Adding row-specific actions</h4>
 
 <p>
-Le azioni sulle singole righe possono essere aggiunte attraverso l'aggiunta di colonne custom (come visto precedentemente).<br>
-Anche le azioni sulle righe possono essere aperte in-page tramite overlay specificando gli attributi <code>data-lato-index-target="action"</code> e <code>data-turbo-frame="ID-turbo-frame-da-caricare"</code>.
+Row-specific actions can be added through custom columns (as shown above).<br>
+These actions can also be opened in-page via overlays using <code>data-lato-index-target="action"</code> and <code>data-turbo-frame="turbo-frame-ID"</code>.
 </p>
 
 <pre>
@@ -306,7 +280,7 @@ class ProductsHelper
   def product_actions(product)
     content_tag(:div, class: 'btn-group btn-group-sm') do
       concat link_to(
-        'Modifica',
+        'Edit',
         products_update_path(product),
         class: 'btn btn-primary',
         data: { lato_action_target: 'trigger', turbo_frame: dom_id(product, 'form') }
@@ -320,14 +294,10 @@ end
 &#60;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %&#62;
 </pre>
 
-<div class="example bg-light p-3 mb-3">
-<%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %>
-</div>
-
 <h3>Index (back-end)</h3>
 
 <p>
-Per rendere l'index completamente interattivo è necessario utilizzare la funzione <code>lato_index_collection</code> del concern <code>Lato::Componentable</code> nel controller.
+To make the index fully interactive, use the <code>lato_index_collection</code> function from the <code>Lato::Componentable</code> concern in the controller.
 </p>
 
 <pre>
@@ -336,15 +306,7 @@ def index
 end
 </pre>
 
-<pre>
-&#60;%= lato_index @products %&#62;
-</pre>
-
-<div class="example bg-light p-3 mb-3">
-<%= lato_index @products, key: 'products' %>
-</div>
-
-<h4>Personalizzare le colonne</h4>
+<h4>Customizing columns</h4>
 
 <pre>
 def index
@@ -356,18 +318,10 @@ def index
 end
 </pre>
 
-<pre>
-&#60;%= lato_index @products_columns %&#62;
-</pre>
-
-<div class="example bg-light p-3 mb-3">
-<%= lato_index @products_columns, key: 'products_columns' %>
-</div>
-
-<h4>Personalizzare il numero di elementi per pagina</h4>
+<h4>Customizing pagination size</h4>
 
 <p>
-Il numero di elementi per pagina può essere impostato dall'utente tramite un selettore con diversi opzioni. Il selettore può essere attivato e personalizzato tramite il parametro <code>:pagination_options</code> della funzione <code>lato_index_collection</code>.
+Users can choose how many items to display per page using a selector enabled via the <code>:pagination_options</code> parameter in <code>lato_index_collection</code>.
 </p>
 
 <pre>
@@ -381,15 +335,7 @@ def index
 end
 </pre>
 
-<pre>
-&#60;%= lato_index @products_pagination_options, pagination_options: [10,20,50,100] %&#62;
-</pre>
-
-<div class="example bg-light p-3 mb-3">
-<%= lato_index @products_pagination_options, pagination_options: [10,20,50,100], key: 'products_pagination_options' %>
-</div>
-
-<h4>Rendere le colonne ordinabili</h4>
+<h4>Making columns sortable</h4>
 
 <pre>
 def index
@@ -402,29 +348,15 @@ def index
 end
 </pre>
 
-<pre>
-&#60;%= lato_index @products_sortable_columns %&#62;
-</pre>
-
-<div class="example bg-light p-3 mb-3">
-<%= lato_index @products_sortable_columns, key: 'products_sortable_columns' %>
-</div>
-
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h4 class="alert-heading">Notes</h4>
   <p>
-  Per personalizzare le regole di ordinamento è possibile definire lo scope <code>lato_index_order</code> all'interno del modello.<br>
-  Esempio
+  To customize sorting logic, define the <code>lato_index_order</code> scope inside the model.<br>
+  Example:
   </p>
 <pre>
 class Product < ApplicationRecord
-  # Relations
-  ##
-
   belongs_to :lato_user, class_name: 'Lato::User'
-
-  # Scopes
-  ##
 
   scope :lato_index_order, ->(column, order) do
     return joins(:lato_user).order("lato_users.last_name #{order}, lato_users.first_name #{order}") if column == :lato_user_id
@@ -435,7 +367,7 @@ end
 </pre>
 </div>
 
-<h4>Rendere le colonne ricercabili</h4>
+<h4>Making columns searchable</h4>
 
 <pre>
 def index
@@ -449,29 +381,15 @@ def index
 end
 </pre>
 
-<pre>
-&#60;%= lato_index @products_searchable_columns %&#62;
-</pre>
-
-<div class="example bg-light p-3 mb-3">
-<%= lato_index @products_searchable_columns, key: 'products_searchable_columns' %>
-</div>
-
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h4 class="alert-heading">Notes</h4>
   <p>
-  Per personalizzare le regole di ricerca è possibile definire lo scope <code>lato_index_search</code> all'interno del modello.<br>
-  Esempio
+  To customize search logic, define the <code>lato_index_search</code> scope inside the model.<br>
+  Example:
   </p>
 <pre>
 class Product < ApplicationRecord
-  # Relations
-  ##
-
   belongs_to :lato_user, class_name: 'Lato::User'
-
-  # Scopes
-  ##
 
   scope :lato_index_search, ->(search) do
     joins(:lato_user).where("

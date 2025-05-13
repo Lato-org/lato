@@ -1,13 +1,13 @@
 <%= lato_page_head 'Tutorial', [
   { label: 'Tutorial' }
 ] do %>
-  <p class="lead">👋 <%= @session.user.first_name %>, benvenuto nel tutorial di Lato!</p>
+  <p class="lead">👋 <%= @session.user.first_name %>, welcome to the Lato tutorial!</p>
 <% end %>
 
-<h2>Come proteggere una pagina</h2>
+<h2>How to Protect a Page</h2>
 
 <p>
-Per autenticare una pagina in modo da non renderla pubblica per utenti non registrati puoi utilizzare uno dei metodi messi a dispozione dal concern <code>Lato::Sessionable</code> (già importato da <code>Lato::ApplicationController</code>):
+To authenticate a page and prevent public access by unauthenticated users, you can use one of the methods provided by the <code>Lato::Sessionable</code> concern (already included via <code>Lato::ApplicationController</code>):
 </p>
 
 <pre>
@@ -19,7 +19,7 @@ end
 </pre>
 
 <p>
-Per applicare la regola su tutte le action del controller puoi utilizzare rapidamente il <code>before_action</code>:
+To apply the rule to all actions in the controller, you can simply use <code>before_action</code>:
 </p>
 
 <pre>
@@ -31,10 +31,10 @@ end
 </pre>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h4 class="alert-heading">Notes</h4>
   <p>
-  Proprio come <code>authenticate_session</code> puoi anche utilizzare il contrario <code>not_authenticate_session</code> per nascondere una pagina agli utenti registrati.<br>
-  Esempio:
+  Just like <code>authenticate_session</code>, you can also use its opposite <code>not_authenticate_session</code> to hide a page from authenticated users.<br>
+  Example:
   </p>
 <pre>
 class AuthenticationController < ApplicationController
@@ -48,10 +48,10 @@ end
 </pre>
 </div>
 
-<h3>Limitare il numero di richieste</h3>
+<h3>Limiting the Number of Requests</h3>
 
 <p>
-Per limitare il numero di richieste di una pagina puoi utilizzare il metodo <code>limit_request</code>:
+To limit the number of requests to a page, you can use the <code>limit_request</code> method:
 </p>
 
 <pre>
@@ -64,18 +64,18 @@ end
 </pre>
 
 <p>
-Il metodo <code>limit_request</code> accetta due parametri: <code>limit</code> (default: 10) e <code>time_window</code> (default: 10.minutes).<br>
-I due parametri specificano il numero di richieste massime che un utente può effettuare in un determinato lasso di tempo.<br>
+The <code>limit_request</code> method accepts two parameters: <code>limit</code> (default: 10) and <code>time_window</code> (default: 10.minutes).<br>
+These parameters define the maximum number of requests a user can make within a given time window.
 </p>
 
 <p>
-<%= link_to 'Source code Lato::Sessionable', 'https://github.com/lato-org/lato/blob/main/app/controllers/concerns/lato/sessionable.rb', target: '_blank' %>
+<%= link_to 'Source code: Lato::Sessionable', 'https://github.com/lato-org/lato/blob/main/app/controllers/concerns/lato/sessionable.rb', target: '_blank' %>
 </p>
 
-<h2>Accedere all'utente loggato</h2>
+<h2>Accessing the Logged-in User</h2>
 
 <p>
-L'utente che ha effettuato l'accesso a Lato è sempre disponibile in tutti i controller e tutte le view tramite l'istanza <code>@session</code> del modello <code>Lato::Session</code>:
+The user currently logged into Lato is always accessible in all controllers and views through the <code>@session</code> instance of the <code>Lato::Session</code> model:
 </p>
 
 <pre>
@@ -92,15 +92,15 @@ end
 </pre>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h4 class="alert-heading">Notes</h4>
   <p>
-  Utilizzando <code>@session.user_id</code> al posto di <code>@session.user.id</code> è possibile evitare di eseguire query nella tabella utenti ottimizzando i tempi di risposta!
+  Using <code>@session.user_id</code> instead of <code>@session.user.id</code> avoids triggering a query on the users table, improving performance!
   </p>
   <p>
-  <code>@session.valid?</code> permette di verificare se l'utente è loggato o meno.
+  <code>@session.valid?</code> lets you check whether the user is logged in or not.
   </p>
 </div>
 
 <p>
-<%= link_to 'Source code Lato::Session', 'https://github.com/lato-org/lato/blob/main/app/models/lato/session.rb', target: '_blank' %>
+<%= link_to 'Source code: Lato::Session', 'https://github.com/lato-org/lato/blob/main/app/models/lato/session.rb', target: '_blank' %>
 </p>

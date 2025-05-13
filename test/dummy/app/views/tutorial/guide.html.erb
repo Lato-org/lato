@@ -1,46 +1,46 @@
-<%= lato_page_head 'Guida', [
+<%= lato_page_head 'Guide', [
   { label: 'Tutorial', path: tutorial_path },
-  { label: 'Guida' }
+  { label: 'Guide' }
 ] %>
 
 <p
   data-lato-guide-target="item"
   data-guide-key="intro"
   data-guide-index="1"
-  data-guide-content="Questo è un esempio di una guida."
+  data-guide-content="This is an example of a guide."
 >
-La guida può essere utilizzata per costruire dei tutorial passo a passo di utilizzo della piattaforma.<br>
-Le guide sono gestite tramite il controller di Stimulus JS <code>lato_guide_controller</code>.
+The guide can be used to build step-by-step tutorials for using the platform.<br>
+Guides are managed via the Stimulus JS controller <code>lato_guide_controller</code>.
 </p>
 
 <p
   data-lato-guide-target="item"
   data-guide-key="add"
   data-guide-index="2"
-  data-guide-content="Qui è spiegato come aggiungere una guida."
+  data-guide-content="Here is how to add a guide."
 >
-  Per aggiungere una guida impostare l'attributo <code>data-lato-guide-target="item"</code> ad un elemento del DOM e definire tramite l'attributo <code>data-guide-key</code> una chiave univoca per la guida, <code>data-guide-index</code> l'indice di visualizzazione e <code>data-guide-content</code> il contenuto della guida.
+  To add a guide, set the attribute <code>data-lato-guide-target="item"</code> to a DOM element and define a unique key for the guide with the <code>data-guide-key</code> attribute, the display index with <code>data-guide-index</code>, and the guide content with <code>data-guide-content</code>.
 </p>
 
 <pre
   data-lato-guide-target="item"
   data-guide-key="code"
   data-guide-index="3"
-  data-guide-content="Questo è un esempio di codice."
+  data-guide-content="This is an example of code."
 >
 &#60;p
   data-lato-guide-target="item"
   data-guide-key="intro"
   data-guide-index="1"
-  data-guide-content="Questo è un esempio di una guida."
+  data-guide-content="This is an example of a guide."
 &#62;
 </pre>
 
-<h3>Reset delle guide</h3>
+<h3>Reset Guides</h3>
 
 <p>
-  Una volta che una guida è stata visualizzata, questa viene memorizzata nel local storage del browser.<br>
-  Per resettare le guide basta utilizzare il metodo <code>rerun</code> del controller <code>lato_guide_controller</code>.
+  Once a guide has been displayed, it is stored in the browser's local storage.<br>
+  To reset the guides, simply use the <code>rerun</code> method of the <code>lato_guide_controller</code>.
 </p>
 
 <p>

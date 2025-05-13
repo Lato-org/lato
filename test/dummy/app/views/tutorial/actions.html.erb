@@ -1,23 +1,23 @@
-<%= lato_page_head 'Azioni', [
+<%= lato_page_head 'Actions', [
   { label: 'Tutorial', path: tutorial_path },
-  { label: 'Azioni' }
+  { label: 'Actions' }
 ] %>
 
 <p>
-Le azioni permettono di visualizzare informazioni ed elementi funzionali in-page senza dover richiedere un cambio di pagina da parte dell'utente.<br>
-Le azioni sono gestite tramite il controller di Stimulus JS <code>lato_action_controller</code>.
+Actions allow you to display information and functional elements in-page without requiring a full page reload by the user.<br>
+They are managed via the Stimulus JS controller <code>lato_action_controller</code>.
 </p>
 
 <p>
-Per avviare un azione basta impostare l'attributo <code>data-lato-action-target="trigger"</code> ad un link del DOM e definire tramite l'attributo <code>data-turbo-frame="id_frame"</code> l'ID del turbo-frame da caricare nella azione. 
+To trigger an action, simply add the attribute <code>data-lato-action-target="trigger"</code> to a link in the DOM and define the ID of the turbo-frame to load using the <code>data-turbo-frame="frame_id"</code> attribute.
 </p>
 
 <p>
-<%= link_to 'Esempio', main_app.products_path, data: { lato_action_target: 'trigger', turbo_frame: 'lato_index_default_product' } %>
+<%= link_to 'Example', main_app.products_path, data: { lato_action_target: 'trigger', turbo_frame: 'lato_index_default_product' } %>
 </p>
 
 <pre>
-&#60;%= link_to 'Esempio',
+&#60;%= link_to 'Example',
   main_app.products_path,
   data: {
     lato_action_target: 'trigger',
@@ -26,33 +26,33 @@ Per avviare un azione basta impostare l'attributo <code>data-lato-action-target=
 %&#62;
 </pre>
 
-<h3>Personalizzare l'overlay</h3>
+<h3>Customizing the Overlay</h3>
 
-<h4>Specificare il titolo</h4>
+<h4>Set a Custom Title</h4>
 
 <p>
-<%= link_to 'Esempio', main_app.products_path, data: { lato_action_target: 'trigger', turbo_frame: 'lato_index_default_product', action_title: 'Titolo personalizzato' } %>
+<%= link_to 'Example', main_app.products_path, data: { lato_action_target: 'trigger', turbo_frame: 'lato_index_default_product', action_title: 'Custom Title' } %>
 </p>
 
 <pre>
-&#60;%= link_to 'Esempio',
+&#60;%= link_to 'Example',
   main_app.products_path,
   data: {
     lato_action_target: 'trigger',
     turbo_frame: 'lato_index_default_product',
-    action_title: 'Titolo personalizzato'
+    action_title: 'Custom Title'
   }
 %&#62;
 </pre>
 
-<h4>Specificare la dimensione</h4>
+<h4>Set a Custom Size</h4>
 
 <p>
-<%= link_to 'Esempio', main_app.products_path, data: { lato_action_target: 'trigger', turbo_frame: 'lato_index_default_product', action_size: 'xl' } %>
+<%= link_to 'Example', main_app.products_path, data: { lato_action_target: 'trigger', turbo_frame: 'lato_index_default_product', action_size: 'xl' } %>
 </p>
 
 <pre>
-&#60;%= link_to 'Esempio',
+&#60;%= link_to 'Example',
   main_app.products_path,
   data: {
     lato_action_target: 'trigger',

@@ -1,11 +1,11 @@
-<%= lato_page_head 'Configurazione', [
+<%= lato_page_head 'Configuration', [
   { label: 'Tutorial', path: tutorial_path },
-  { label: 'Configurazione' }
+  { label: 'Configuration' }
 ] %>
 
 <p>
-La configurazione di Lato è gestita dalla classe <code>Lato::Config</code> e può essere modificata tramite un apposito initializer.<br>
-Per personalizzare la configurazione di default puoi creare un initializer è inserire il codice seguente:
+Lato's configuration is managed by the <code>Lato::Config</code> class and can be customized through a dedicated initializer.<br>
+To override the default settings, create an initializer and add the following code:
 </p>
 
 <pre>
@@ -16,104 +16,104 @@ end
 </pre>
 
 <p>
-<%= link_to 'Source code: Esempio', 'https://github.com/lato-org/lato/blob/main/test/dummy/config/initializers/lato_config.rb', target: '_blank' %><br>
+<%= link_to 'Source code: Example', 'https://github.com/lato-org/lato/blob/main/test/dummy/config/initializers/lato_config.rb', target: '_blank' %><br>
 <%= link_to 'Source code: Lato::Config', 'https://github.com/lato-org/lato/blob/main/lib/lato/config.rb', target: '_blank' %>
 </p>
 
-<h2>Configurazione applicazione</h2>
+<h2>Application Configuration</h2>
 
 <pre>
 Lato.configure do |config|
-  config.application_title = 'Lato example app' # Titolo applicazione
-  config.application_company_name = 'Lato Team' # Titolo azienda proprietaria dell'applicazione
-  config.application_company_url = 'http://domain.com' # Url azienda proprietaria dell'applicazione
+  config.application_title = 'Lato example app' # Application title
+  config.application_company_name = 'Lato Team' # Name of the owning company
+  config.application_company_url = 'http://domain.com' # URL of the owning company
 end
 </pre>
 
-<h2>Configurazione autenticazione</h2>
+<h2>Authentication Configuration</h2>
 
 <pre>
 Lato.configure do |config|
-  config.auth_disable_signup = true # Disabilita la possibilità di registrarsi autonomamente
-  config.auth_disable_recover_password = true # Disabilita la possibilità di recuperare la password autonomamente
-  config.auth_disable_web3 = true # Disabilita la possibilità di autenticarsi utilizzando un wallet web3
-  config.auth_disable_authenticator = true # Disabilita la possibilità di autenticarsi utilizzando google authenticator
+  config.auth_disable_signup = true # Disable user self-signup
+  config.auth_disable_recover_password = true # Disable password recovery
+  config.auth_disable_web3 = true # Disable Web3 wallet login
+  config.auth_disable_authenticator = true # Disable Google Authenticator login
 end
 </pre>
 
-<h2>Configurazione assets</h2>
+<h2>Assets Configuration</h2>
 
 <pre>
 Lato.configure do |config|
-  config.assets_stylesheet_entry = 'application' # Specifica il file CSS utilizzato per lo stile di lato (default application.scss)
-  config.assets_importmap_entry = 'application' # Specifica il file JS base utilizzato per lo stile di lato (default application.js)
+  config.assets_stylesheet_entry = 'application' # CSS file for Lato styling (default: application.scss)
+  config.assets_importmap_entry = 'application' # JS entry point for Lato (default: application.js)
 end
 </pre>
 
-<h2>Configurazione gestione sessioni</h2>
+<h2>Session Management Configuration</h2>
 
 <pre>
 Lato.configure do |config|
-  config.session_lifetime = 5.days # Tempo di vita dei cookie di sessione
-  config.session_root_path = :tutorial_path # Nome della path dove rimandare l'utente una volta eseguito il login/signup
+  config.session_lifetime = 5.days # Lifetime of session cookies
+  config.session_root_path = :tutorial_path # Path to redirect users after login/signup
 end
 </pre>
 
-<h2>Configurazione email</h2>
+<h2>Email Configuration</h2>
 
 <pre>
 Lato.configure do |config|
-  config.email_from = 'demo@mail.com' # Indirizzo email mittente delle notifiche email
+  config.email_from = 'demo@mail.com' # Sender email address for notifications
 end
 </pre>
 
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Note</h4>
   <p>
-  La configurazione <code>email_from</code> può essere impostata con la struttura " <i>"Name" &#60;example@domain.com&#62;'</i> ".<br>
-  Esempio:
+  The <code>email_from</code> setting can include a display name using the format <i>"Name" &#60;example@domain.com&#62;</i>.<br>
+  Example:
   </p>
 <pre>
 Lato.configure do |config|
-  config.email_from = '"Company name" &#60;demo@mail.com&#62;' # Indirizzo email mittente delle notifiche email
+  config.email_from = '"Company name" &#60;demo@mail.com&#62;'
 end
 </pre>
 </div>
 
-<h2>Configurazione informazioni legali</h2>
+<h2>Legal Information Configuration</h2>
 
 <pre>
 Lato.configure do |config|
-  config.legal_privacy_policy_url = 'http:/domain.com/privacy' # Url privacy policy applicazione
-  config.legal_privacy_policy_version = 32 # Intero che specifica la versione di privacy policy attiva
-  config.legal_terms_and_conditions_url = 'http:/domain.com/terms' # Url termini e condizioni applicazione
-  config.legal_terms_and_conditions_version = 32 # Intero che specifica la versione di termini e condizioni attiva
+  config.legal_privacy_policy_url = 'http:/domain.com/privacy' # Privacy policy URL
+  config.legal_privacy_policy_version = 32 # Version number of the active privacy policy
+  config.legal_terms_and_conditions_url = 'http:/domain.com/terms' # Terms and conditions URL
+  config.legal_terms_and_conditions_version = 32 # Version number of the active terms and conditions
 end
 </pre>
 
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Note</h4>
   <p>
-  Lato tiene traccia della versione di privacy policy e termini e condizioni accettate dall'utente.<br>
-  Se l'utente loggato risulta aver accettato una versione inferiore a quella impostata tramite <code>legal_privacy_policy_version</code> o <code>legal_terms_and_conditions_version</code> allora vedrà automaticamente una richiesta di accettazione delle nuove policy nella pagina di gestione account.
+  Lato tracks which version of the privacy policy and terms the user has accepted.<br>
+  If the logged-in user has accepted a version lower than the one configured via <code>legal_privacy_policy_version</code> or <code>legal_terms_and_conditions_version</code>, a prompt will appear in the account management page to accept the new policies.
   </p>
   <p>
-  Per verificare se un utente ha accettato le ultime versioni di policy è possibile utilizzare i metodi <code>valid_accepted_privacy_policy_version?</code> e <code>valid_accepted_terms_and_conditions_version?</code> delle istanze del modello <code>Lato::User</code>.<br>
-  Esempio:
+  To check whether a user has accepted the latest policy versions, use the <code>valid_accepted_privacy_policy_version?</code> and <code>valid_accepted_terms_and_conditions_version?</code> methods on instances of the <code>Lato::User</code> model.<br>
+  Example:
   </p>
 <pre>
 user = Lato::User.all.first
-throw "Privacy policy non valida" unless user.valid_accepted_privacy_policy_version?
-throw "Termini e condizioni non validi" unless user.valid_accepted_terms_and_conditions_version?
+throw "Privacy policy not accepted" unless user.valid_accepted_privacy_policy_version?
+throw "Terms and conditions not accepted" unless user.valid_accepted_terms_and_conditions_version?
 </pre>
 </div>
 
-<h2>Configurazione connessioni account</h2>
+<h2>Account Connection Configuration</h2>
 
 <pre>
 Lato.configure do |config|
-  config.web3_connection = true # Permette all'utente di collegare un wallet web3 al proprio account
-  config.authenticator_connection = true # Permette all'utente di collegare google authenticator al proprio account
+  config.web3_connection = true # Allow users to link a Web3 wallet to their account
+  config.authenticator_connection = true # Allow users to link Google Authenticator to their account
 end
 </pre>
 

@@ -1,25 +1,25 @@
-<%= lato_page_head 'Personalizzazione', [
+<%= lato_page_head 'Customization', [
   { label: 'Tutorial', path: tutorial_path },
-  { label: 'Personalizzazione' }
+  { label: 'Customization' }
 ] %>
 
 <p>
-La personalizzazione di Lato può avvenire in diversi modi:
+Lato can be customized in several ways:
 </p>
 
 <ul>
-  <li>Configura le classi del layout di Bootstrap tramite la classe <code>Lato::Btstrap</code>;</li>
-  <li>Personalizza il comportamento delle componenti del layout tramite il concern <code>Lato::Layoutable</code>;</li>
-  <li>Aggiorna il contenuto del layout tramite i content partials;</li>
-  <li>Modifica il CSS di specifiche pagine tramite le classi del body.</li>
+  <li>Configure Bootstrap layout classes using the <code>Lato::Btstrap</code> class;</li>
+  <li>Customize layout behavior via the <code>Lato::Layoutable</code> concern;</li>
+  <li>Update layout content using content partials;</li>
+  <li>Modify page-specific CSS using body classes.</li>
 </ul>
 
-<h2>Configurazione classi layout</h2>
+<h2>Layout Class Configuration</h2>
 
 <p>
-Attraverso la classe <code>Lato::Btstrap</code> è possibile personalizzare le classi di Bootstrap utilizzate da Lato per gli elementi grafici del layout.<br>
-Gli elementi grafici che compongono il layout sono: <b>navbar</b>, <b>content</b>, <b>sidebar</b> e <b>footer</b>.<br>
-Per personalizzare le classi di default puoi creare un initializer è inserire il codice seguente:
+With the <code>Lato::Btstrap</code> class, you can customize the Bootstrap classes used by Lato for the layout’s UI components.<br>
+The layout is composed of the following UI elements: <b>navbar</b>, <b>content</b>, <b>sidebar</b>, and <b>footer</b>.<br>
+To override the default classes, you can create an initializer with the following code:
 </p>
 
 <pre>
@@ -39,26 +39,26 @@ end
 </pre>
 
 <p>
-<%= link_to 'Source code: Esempio', 'https://github.com/lato-org/lato/blob/main/test/dummy/config/initializers/lato_bootstrap.rb', target: '_blank' %><br>
+<%= link_to 'Source code: Example', 'https://github.com/lato-org/lato/blob/main/test/dummy/config/initializers/lato_bootstrap.rb', target: '_blank' %><br>
 <%= link_to 'Source code: Lato::Btstrap', 'https://github.com/lato-org/lato/blob/main/lib/lato/btstrap.rb', target: '_blank' %>
 </p>
 
-<h2>Personalizzazione comportamento layout</h2>
+<h2>Layout Behavior Customization</h2>
 
 <p>
-Il comportamento del layout di Lato può essere personalizzato tramite le funzioni messe a disposizione dal concern <code>Lato::Layoutable</code>.<br>
-Il concern disponde di una serie di funzioni utili. Di seguito un esempio:
+Lato’s layout behavior can be customized using methods provided by the <code>Lato::Layoutable</code> concern.<br>
+This concern offers a set of useful functions. Here’s an example:
 </p>
 
 <pre>
 class TutorialController < ApplicationController
   def index
-    hide_sidebar # nasconde la sidebar
-    show_sidebar # visualizza la sidebar
-    active_sidebar(:tutorial) # imposta l'active sulla voce della sidebar con chiave :tutorial
-    active_navbar(:tutorial) # imposta l'active sulla voce della navbar con chiave :tutorial
-    page_title('Custom title') # imposta il titolo della pagina
-    page_class('custom-class') # aggiunge una classe nel body della pagina
+    hide_sidebar # hides the sidebar
+    show_sidebar # shows the sidebar
+    active_sidebar(:tutorial) # sets active state on sidebar item with key :tutorial
+    active_navbar(:tutorial) # sets active state on navbar item with key :tutorial
+    page_title('Custom title') # sets the page title
+    page_class('custom-class') # adds a CSS class to the body element
   end
 end
 </pre>
@@ -66,7 +66,7 @@ end
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Note</h4>
   <p>
-  Tutte le funzioni di <code>Lato::Layoutable</code> possono essere anche utilizzate tramite i <code>before_action</code> dei controller.
+  All <code>Lato::Layoutable</code> methods can also be used inside controller <code>before_action</code> callbacks.
   </p>
 </div>
 
@@ -74,33 +74,33 @@ end
 <%= link_to 'Source code: Lato::Layoutable', 'https://github.com/lato-org/lato/blob/main/app/controllers/concerns/lato/layoutable.rb', target: '_blank' %>
 </p>
 
-<h2>Aggiornamento contenuto layout</h2>
+<h2>Layout Content Customization</h2>
 
 <p>
-La maggior parte dei contenuti del layout di lato sono impostati tramite appositi parziali chiamati attraverso la sintassi <code>_nome-parziale_content.html.erb</code>.<br>
-Per personalizzare il contenuto di queste componenti puoi sovrascrivere il parziale e modificarlo a piacimento.<br>
-Questi tipi di parziali sono automaticamente caricati nell'applicazione principale attraverso il comando <code>rails lato:install:application</code>.
+Most layout content in Lato is defined via specific partials following the naming convention <code>_partial-name_content.html.erb</code>.<br>
+To customize these layout parts, override and edit the partials as desired.<br>
+These partials are automatically loaded into the main application via the <code>rails lato:install:application</code> command.
 </p>
 
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Note</h4>
   <p>
-  Lo stesso uso di parziali è applicato anche per i template della mail (vedi <code>_mailer-head_content.html.erb</code> e <code>_mailer-foot_content.html.erb</code>).
+  This same partial-based approach is used for email templates (see <code>_mailer-head_content.html.erb</code> and <code>_mailer-foot_content.html.erb</code>).
   </p>
 </div>
 
 <p>
-<%= link_to 'Source code: directory con i vari parziali', 'https://github.com/lato-org/lato/tree/main/app/views/layouts/lato', target: '_blank' %>
+<%= link_to 'Source code: partials directory', 'https://github.com/lato-org/lato/tree/main/app/views/layouts/lato', target: '_blank' %>
 </p>
 
-<h2>Modifica CSS pagine</h2>
+<h2>Page CSS Customization</h2>
 
 <p>
-Per facilitare l'impostazione di regole CSS per specifiche pagine puoi utilizzare le classi applicate al body.<br>
-Il body contiene sempre due classi che specificano il controller e la action che lo renderizzando.<br>
+To easily apply custom CSS rules to specific pages, you can use the classes applied to the <code>&lt;body&gt;</code> tag.<br>
+The <code>body</code> always includes two classes that identify the controller and the action rendering the view.<br>
 </p>
 <p>
-Se, per esempio, abbiamo la action <code>tutorial</code> dentro il controller <code>HelpController</code>, allora il body avrà le classi:<br>
+For example, if you have an <code>tutorial</code> action inside the <code>HelpController</code>, the <code>body</code> will have the classes:<br>
 <code>.controller-help</code><br>
 <code>.action-tutorial</code>
 </p>
@@ -108,6 +108,6 @@ Se, per esempio, abbiamo la action <code>tutorial</code> dentro il controller <c
 <div class="alert alert-dark mt-3">
   <h4 class="alert-heading">Nice to have</h4>
   <p>
-  Impostare una terza classe con il nome del template HTML utilizzato per gestire template renderizzati da action diverse.
+  You can also add a third class based on the HTML template name when rendering the same template from multiple actions.
   </p>
 </div>

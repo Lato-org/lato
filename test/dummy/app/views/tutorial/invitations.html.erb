@@ -1,16 +1,16 @@
-<%= lato_page_head 'Inviti', [
+<%= lato_page_head 'Invitations', [
   { label: 'Tutorial', path: tutorial_path },
-  { label: 'Inviti' }
+  { label: 'Invitations' }
 ] %>
 
 <p>
-Gli inviti possono essere utilizzati per le applicazioni che non prevedono la registrazione ma permettono agli utenti di invitare nella piattaforma altri utenti.<br>
-Attraverso un invito è possibile:
+Invitations can be used for applications that do not require registration but allow users to invite others to the platform.<br>
+Through an invitation, it is possible to:
 </p>
 
 <ul>
-  <li>Inviare una mail di invito all'utente con cui impostare le proprie credenziali</li>
-  <li>Tenere traccia delle registrazioni avvenute</li>
+  <li>Send an invitation email to the user to set up their credentials</li>
+  <li>Track completed registrations</li>
 </ul>
 
 <div class="example bg-light p-3 mb-3">
@@ -22,16 +22,16 @@ Attraverso un invito è possibile:
 </div>
 
 <p>
-Di seguito esempi delle operazioni che è possibile eseguire con gli inviti:
+Here are some examples of the operations you can perform with invitations:
 </p>
 
 <pre>
-# creazione di un invito (e invio automatico della mail)
+# creating an invitation (and automatically sending the invite email)
 @invitation = Lato::Invitation.create(params.require(:invitation).permit(:email).merge(inviter_lato_user_id: @session.user_id))
 
-# re-invio della mail di invito (max 1 ogni 2 minuti)
+# re-sending the invitation email (max 1 every 2 minutes)
 @invitation.send_invite
 
-# eliminazione dell'invito
+# deleting the invitation
 @invitation.destroy
 </pre>
