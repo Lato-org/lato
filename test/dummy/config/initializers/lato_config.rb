@@ -1,5 +1,5 @@
 Lato.configure do |config|
-  config.application_title = 'Lato example app'
+  config.application_title = 'Lato documentation'
   config.application_version = Lato::VERSION
 
   config.session_root_path = :tutorial_path
