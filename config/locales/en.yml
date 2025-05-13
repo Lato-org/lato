@@ -64,6 +64,12 @@ en:
     confirm_title: Confirm
     confirm_yes: Yes, confirm
     confirm_no: No, cancel
+    operation_title: Running operation
+    operation_subtitle: Please wait..
+    operation_completed_title: Operation completed
+    operation_completed_subtitle: The operation has been completed successfully
+    operation_failed_title: Operation failed
+    operation_failed_subtitle: The operation has failed because of an error
 
     invitation_mailer:
       invite_mail_subject: You received an invitation

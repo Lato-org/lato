@@ -63,7 +63,7 @@ class TutorialController < ApplicationController
   def components_update_user_action
     respond_to do |format|
       if @session.user.update(params.require(:user).permit(:first_name, :last_name))
-        format.html { redirect_to main_app.components_path, notice: 'Informazioni account aggiornate correttamente' }
+        format.html { redirect_to main_app.components_path, notice: 'Account updated successfully' }
         format.json { render json: @session.user }
       else
         format.html { render :components, status: :unprocessable_entity }
@@ -116,7 +116,7 @@ class TutorialController < ApplicationController
 
     respond_to do |format|
       if @invitation.save
-        format.html { redirect_to main_app.invitations_path, notice: 'Invito creato correttamente' }
+        format.html { redirect_to main_app.invitations_path, notice: 'Invitation sent successfully' }
         format.json { render json: @invitation }
       else
         format.html { redirect_to main_app.invitations_path, alert: @invitation.errors.full_messages.join(', ') }
@@ -130,7 +130,7 @@ class TutorialController < ApplicationController
 
     respond_to do |format|
       if @invitation.send_invite
-        format.html { redirect_to main_app.invitations_path, notice: 'Invito inviato correttamente' }
+        format.html { redirect_to main_app.invitations_path, notice: 'Invitation sent successfully' }
         format.json { render json: @invitation }
       else
         format.html { redirect_to main_app.invitations_path, alert: @invitation.errors.full_messages.join(', ') }
@@ -144,10 +144,10 @@ class TutorialController < ApplicationController
 
     respond_to do |format|
       if @invitation.destroy
-        format.html { redirect_to main_app.invitations_path, notice: 'Invito eliminato correttamente' }
+        format.html { redirect_to main_app.invitations_path, notice: 'Invitation deleted successfully' }
         format.json { render json: @invitation }
       else
-        format.html { redirect_to main_app.invitations_path, alert: 'Invito non eliminato' }
+        format.html { redirect_to main_app.invitations_path, alert: 'Invitation not deleted' }
         format.json { render json: @invitation.errors, status: :unprocessable_entity }
       end
     end

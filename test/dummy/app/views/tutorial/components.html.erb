@@ -247,6 +247,17 @@ end
  } %&#62;
 </pre>
 
+<div class="example bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5), custom_actions: {
+    create: {
+      path: products_create_path,
+      icon: 'bi bi-plus',
+      arial_label: 'Crea prodotto',
+      title: 'Crea prodotto'
+    }
+ } %>
+</div>
+
 <h4>Adding in-page actions</h4>
 
 <pre>
@@ -260,6 +271,18 @@ end
     }
  } %&#62;
 </pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5), custom_actions: {
+    create: {
+      path: products_create_path,
+      icon: 'bi bi-plus',
+      data: { lato_action_target: 'trigger', turbo_frame: dom_id(Product.new, 'form') },
+      arial_label: 'Crea prodotto',
+      title: 'Crea prodotto'
+    }
+ } %>
+</div>
 
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Notes</h4>
@@ -294,6 +317,10 @@ end
 &#60;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %&#62;
 </pre>
 
+<div class="example bg-light p-3 mb-3">
+<%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %>
+</div>
+
 <h3>Index (back-end)</h3>
 
 <p>
@@ -306,6 +333,14 @@ def index
 end
 </pre>
 
+<pre>
+&#60;%= lato_index @products %&#62;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_index @products, key: 'products' %>
+</div>
+
 <h4>Customizing columns</h4>
 
 <pre>
@@ -317,6 +352,14 @@ def index
   )
 end
 </pre>
+
+<pre>
+&#60;%= lato_index @products_columns %&#62;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_index @products_columns, key: 'products_columns' %>
+</div>
 
 <h4>Customizing pagination size</h4>
 
@@ -335,6 +378,14 @@ def index
 end
 </pre>
 
+<pre>
+&#60;%= lato_index @products_pagination_options, pagination_options: [10,20,50,100] %&#62;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_index @products_pagination_options, pagination_options: [10,20,50,100], key: 'products_pagination_options' %>
+</div>
+
 <h4>Making columns sortable</h4>
 
 <pre>
@@ -347,6 +398,14 @@ def index
   )
 end
 </pre>
+
+<pre>
+&#60;%= lato_index @products_sortable_columns %&#62;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_index @products_sortable_columns, key: 'products_sortable_columns' %>
+</div>
 
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Notes</h4>
@@ -380,6 +439,14 @@ def index
   )
 end
 </pre>
+
+<pre>
+&#60;%= lato_index @products_searchable_columns %&#62;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_index @products_searchable_columns, key: 'products_searchable_columns' %>
+</div>
 
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Notes</h4>

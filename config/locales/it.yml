@@ -66,6 +66,12 @@ it:
     confirm_title: Conferma
     confirm_yes: Sì, procedi
     confirm_no: No, annulla
+    operation_title: Operazione in corso
+    operation_subtitle: Si prega di attendere..
+    operation_completed_title: Operazione completata
+    operation_completed_subtitle: L'operazione è stata completata con successo
+    operation_failed_title: Operazione fallita
+    operation_failed_subtitle: Si è verificato un errore durante l'operazione
 
     invitation_mailer:
       invite_mail_subject: Hai ricevuto un invito

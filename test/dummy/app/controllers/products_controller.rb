@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to main_app.products_path, notice: 'Prodotto aggiunto correttamente' }
+        format.html { redirect_to main_app.products_path, notice: 'Product created successfully' }
         format.json { render json: @product }
       else
         format.html { render :create, status: :unprocessable_entity }
@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to main_app.products_path, notice: 'Prodotto aggiornato correttamente' }
+        format.html { redirect_to main_app.products_path, notice: 'Product updated successfully' }
         format.json { render json: @product }
       else
         format.html { render :update, status: :unprocessable_entity }

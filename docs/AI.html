@@ -185,11 +185,11 @@
         if (!input.trim()) return;
         
         const systemMessage = { role: "system", content: `
-        Il tuo nome è Lato AI Agent.
-        Sei un assistente che aiuta gli utenti a sviluppare con la gemma Lato (https://github.com/Lato-org/lato) di Ruby on Rails.
-        Fornisci esempi di codice utilizzando le funzioni e i codici esempio messi a disposizione dalla documentazione.
-        Utilizza la documentazione fornita per dare supporto all'utente. Non fornire informazioni non correlate alla gemma Lato.
-        Di seguito la documentazione.
+        Your name is Lato AI Agent.
+        You are an assistant that helps users develop with the Lato gem (https://github.com/Lato-org/lato) for Ruby on Rails.
+        You provide code examples using the functions and sample code available in the documentation.
+        Use the provided documentation to support the user. Do not provide information unrelated to the Lato gem.
+        Below is the documentation.
         ${context}
         ` };
         const userMessage = { role: "user", content: input };
@@ -205,7 +205,7 @@
               "Authorization": `Bearer ${apiKey}`
             },
             body: JSON.stringify({
-              model: "gpt-3.5-turbo",
+              model: "gpt-4.1-mini",
               messages: [systemMessage, ...messages, userMessage],
               temperature: 0.7
             })
@@ -237,7 +237,7 @@
               <h1 className="text-2xl font-bold text-center mb-6">Lato AI Agent</h1>
               <div className="mb-4">
                 <label className="block text-gray-700 mb-2" htmlFor="apiKey">
-                  Inserisci la tua API Key di OpenAI
+                  Insert your OpenAI API Key (or others compatible service):
                 </label>
                 <input
                   id="apiKey"
@@ -253,10 +253,10 @@
                 onClick={handleSubmitApiKey}
                 className="w-full bg-[#293b5a] text-white py-2 px-4 rounded transition-colors"
               >
-                Inizia a chattare
+                Start to chat
               </button>
               <p className="text-sm text-gray-500 mt-4 text-center">
-                La tua API key viene utilizzata solo localmente e non viene salvata.
+                Your API key is used only locally and is not saved.
               </p>
             </div>
           ) : (
@@ -314,7 +314,7 @@
                     disabled={loading}
                     className="bg-[#293b5a] text-white px-4 py-2 rounded-r transition-colors"
                   >
-                    Invia
+                    Send
                   </button>
                 </div>
                 {error && <p className="text-red-500 mt-2">{error}</p>}

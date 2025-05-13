@@ -15011,13 +15011,18 @@ main, aside {
   }
 }
 
-/* line 117, ../../app/assets/stylesheets/lato/application.scss */
+/* line 118, ../../app/assets/stylesheets/lato/application.scss */
+.lato-index .table th, .lato-index .table td {
+  vertical-align: middle;
+}
+
+/* line 125, ../../app/assets/stylesheets/lato/application.scss */
 .lato-index-col-sort .btn {
   font-size: 12px;
   padding: 0.15rem 0.3rem;
 }
 
-/* line 123, ../../app/assets/stylesheets/lato/application.scss */
+/* line 131, ../../app/assets/stylesheets/lato/application.scss */
 .lato-spin {
   animation: spin 1s linear infinite;
 }
@@ -15031,7 +15036,7 @@ main, aside {
   }
 }
 
-/* line 135, ../../app/assets/stylesheets/lato/application.scss */
+/* line 143, ../../app/assets/stylesheets/lato/application.scss */
 .lato-form-item-input-color {
   width: 100%;
   min-height: 38px;

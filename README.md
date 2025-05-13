@@ -17,7 +17,7 @@ The gem is ready to be used with the **latest Rails 7+** features like **[ESM im
 
 <img src="./preview.gif" alt="Lato preview" width="100%">
 
-## Full documentation (🇮🇹 Italian only)
+## Full documentation
 
 The full documentation is available at: 👉 👉 [THIS LINK](http://lato.gregoriogalante.com/) 👈 👈
 
