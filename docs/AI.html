@@ -152,7 +152,7 @@
         fetch("./llm.txt")
           .then(response => response.text())
           .then(data => setContext(data))
-          .catch(error => console.error("Errore nel caricamento del contesto:", error));
+          .catch(error => console.error("Error loading context:", error));
       }, []);
 
       useEffect(() => {
@@ -169,13 +169,13 @@
 
       const handleSubmitApiKey = () => {
         if (!apiKey.trim()) {
-          setError("Per favore, inserisci una API key valida");
+          setError("Please enter a valid API key");
           return;
         }
         
         setIsAuthenticated(true);
         setMessages([
-          { role: "assistant", content: "Ciao! Come posso aiutarti?" }
+          { role: "assistant", content: "Hello! How can I assist you?" }
         ]);
       };
 
@@ -212,7 +212,7 @@
           });
           
           if (!response.ok) {
-            throw new Error(`Errore nella richiesta: ${response.status}`);
+            throw new Error(`Error on request: ${response.status}`);
           }
           
           const data = await response.json();
@@ -223,8 +223,8 @@
           
           setMessages(prevMessages => [...prevMessages, assistantMessage]);
         } catch (error) {
-          console.error("Errore:", error);
-          setError(`Si è verificato un errore: ${error.message}`);
+          console.error("Error:", error);
+          setError(`There was an error: ${error.message}`);
         } finally {
           setLoading(false);
         }
@@ -307,7 +307,7 @@
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     className="flex-1 p-2 border border-gray-300 bg-white rounded-l focus:outline-none focus:ring-2 focus:ring-[#293b5a]"
-                    placeholder="Scrivi un messaggio..."
+                    placeholder="Write your request..."
                   />
                   <button
                     type="submit"
