@@ -19,7 +19,7 @@ The gem is ready to be used with the **latest Rails 7+** features like **[ESM im
 
 ## Full documentation
 
-The full documentation is available at: 👉 👉 [THIS LINK](http://lato.gregoriogalante.com/) 👈 👈
+The full documentation is available at: 👉 👉 [THIS LINK](https://auuu.link/s/gh-lato) 👈 👈
 
 You can also use the [Lato AI Agent](http://lato.gregoriogalante.com/AI.html) directly on your browser to generate code and get helps with the gem.
 
