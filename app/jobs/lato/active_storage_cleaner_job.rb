@@ -6,11 +6,6 @@ module Lato
         blobs.each(&:purge_later)
       end
 
-      # delete all active storage attachments that are not attached to any record
-      ActiveStorage::Attachment.where(record_type: nil, record_id: nil).find_in_batches do |attachments|
-        attachments.each(&:purge_later)
-      end
-
       # delete all empty folders in active storage local service (if exists)
       if ActiveStorage::Blob.service.class.to_s == 'ActiveStorage::Service::DiskService'
         storage_folder = ActiveStorage::Blob.service.root
