@@ -65,6 +65,22 @@ module Lato
       "#{last_name} #{first_name}"
     end
 
+    def email_protected
+      return email unless email.include?('@')
+  
+      local_part, domain = email.split('@', 2)
+      
+      # Keep first 2 characters of local part
+      chars_to_keep = [local_part.length, 2].min
+      protected_local = local_part[0, chars_to_keep] + '*' * [local_part.length - chars_to_keep, 0].max
+      
+      # Keep domain as is or partially protect it
+      chars_to_keep = [domain.length, 2].min
+      protected_domain = domain[0, chars_to_keep] + '*' * [domain.length - chars_to_keep, 0].max
+      
+      "#{protected_local}@#{protected_domain}"
+    end
+
     def gravatar_image_url(size = 200)
       @gravatar_image_url ||= "https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=#{size}"
     end
