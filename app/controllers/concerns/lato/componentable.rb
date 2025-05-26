@@ -38,7 +38,7 @@ module Lato
           collection = collection.lato_index_search(search)
         else
           query = @_lato_index[key][:searchable_columns].map do |key|
-            if collection.column_for_attribute(key).type == :string
+            if collection.column_for_attribute(key).type == :string || collection.column_for_attribute(key).type == :text || collection.column_for_attribute(key).type == :integer
               "LOWER(#{key}) LIKE :search"
             else
               "CAST(#{key} AS TEXT) LIKE :search"
