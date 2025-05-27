@@ -8,7 +8,8 @@ module Lato
     ##
 
     def valid?
-      !@session.blank?
+      # !@session.blank?
+      really_valid?
     end
 
     def really_valid?
