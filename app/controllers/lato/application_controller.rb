@@ -11,7 +11,7 @@ module Lato
 
     def index
       session_root_path = Lato.config.session_root_path ? main_app.send(Lato.config.session_root_path) : lato.account_path
-      redirect_to @session.valid? ? session_root_path : lato.authentication_signin_path
+      redirect_to @session.really_valid? ? session_root_path : lato.authentication_signin_path
     end
 
     def offline
@@ -46,7 +46,7 @@ module Lato
     def set_default_locale
       return unless @session.valid?
 
-      I18n.locale = @session.user.locale || I18n.default_locale
+      I18n.locale = @session.user&.locale || I18n.default_locale
     end
 
     def respond_to_redirect_same_page(notice = nil)

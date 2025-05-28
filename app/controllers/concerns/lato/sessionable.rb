@@ -9,7 +9,7 @@ module Lato
     end
 
     def authenticate_session
-      return true if @session.valid?
+      return true if @session.really_valid?
 
       respond_to do |format|
         format.html { redirect_to lato.root_path }
@@ -20,7 +20,7 @@ module Lato
     end
 
     def not_authenticate_session
-      return true unless @session.valid?
+      return true unless @session.really_valid?
 
       respond_to do |format|
         format.html { redirect_to lato.root_path }
