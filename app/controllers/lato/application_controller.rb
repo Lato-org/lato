@@ -28,7 +28,6 @@ module Lato
 
     def switch_locale
       locale = I18n.available_locales.map(&:to_s).include?(params[:locale]) ? params[:locale] : I18n.default_locale.to_s
-
       @session.user.update(locale: locale) if @session.valid?
       cookies[:lato_locale] = { value: locale, expires: 1.year.from_now }
       respond_to_redirect_same_page
@@ -46,9 +45,7 @@ module Lato
     # This method set the default locale for the application.
     # The default locale is the locale of the user if exists, otherwise is the default locale of the application.
     def set_default_locale
-      return unless @session.valid?
-
-      I18n.locale = @session.user&.locale || cookies[:lato_locale] || I18n.default_locale
+      I18n.locale = (@session.valid? ? @session.user&.locale : nil) || cookies[:lato_locale] || I18n.default_locale
     end
 
     def respond_to_redirect_same_page(notice = nil)
