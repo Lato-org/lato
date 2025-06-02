@@ -426,6 +426,26 @@ end
 </pre>
 </div>
 
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  To set a default sorting column, use the <code>default_sort_by</code> option in the <code>lato_index_collection</code> method.<br>
+  Example:
+  </p>
+<pre>
+def index
+  @products_default_sort = lato_index_collection(
+    Product.all,
+    pagination: true,
+    columns: %i[code status lato_user_id],
+    sortable_columns: %i[code status lato_user_id],
+    default_sort_by: 'code|asc' # 'column|direction'
+  )
+end
+</pre>
+</div>
+
+
 <h4>Making columns searchable</h4>
 
 <pre>
