@@ -39,6 +39,9 @@ group :development do
 
   # Generate random data [https://github.com/faker-ruby/faker]
   gem "faker"
+
+  # Check security vulnerabilities [https://github.com/presidentbeef/brakeman]
+  gem "brakeman", require: false
 end
 
 group :test do

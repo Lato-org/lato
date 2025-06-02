@@ -10,7 +10,7 @@ user ||= Lato::User.new
     <%= lato_form_errors user, class: %w[mb-3] %>
 
     <div class="mb-3 text-center">
-      <p><%= raw I18n.t('lato.authenticator_code_help', email: user.email_protected) %></p>
+      <p><%= raw I18n.t('lato.authenticator_code_help', email: h(user.email_protected)) %></p>
     </div>
     
     <div class="mb-3">

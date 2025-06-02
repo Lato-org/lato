@@ -1,5 +1,7 @@
 module Lato
   class ApplicationController < ActionController::Base
+    protect_from_forgery with: :exception
+
     include Lato::Sessionable
     include Lato::Layoutable
     include Lato::Componentable
