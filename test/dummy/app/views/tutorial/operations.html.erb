@@ -91,7 +91,7 @@ Use the link below to try out an operation:
 %&#62;
 </pre>
 
-<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path, data: { turbo_method: :post } %>
+<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path, data: { turbo_method: :post }, class: 'llm-ignore' %>
 
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Notes</h4>
@@ -105,7 +105,7 @@ Use the link below to try out an operation:
   data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }
 %&#62;
 </pre>
-<%= link_to 'Generate Operation with Success', main_app.operations_create_operation_action_path, data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+<%= link_to 'Generate Operation with Success', main_app.operations_create_operation_action_path, data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </div>
 
 <h3>Handling Operation Outputs</h3>
@@ -118,7 +118,7 @@ These functions can also be called even if the Job is executed without using the
 <h4>Set an Output Message</h4>
 
 <p>
-<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'success'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'success'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
 <pre>
@@ -132,7 +132,7 @@ end
 <h4>Set an Output File</h4>
 
 <p>
-<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'file'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'file'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
 <pre>
@@ -147,7 +147,7 @@ end
 <h4>Set an Error</h4>
 
 <p>
-<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'failed'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'failed'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
 <pre>
@@ -161,7 +161,7 @@ end
 <h4>Update Progress Percentage</h4>
 
 <p>
-<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'percentage'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' } %>
+<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'percentage'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
 <pre>

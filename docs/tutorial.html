@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="RFMpSf8sSn_H1fxezbNsVQqvzwN1nyC9tCNDmGt9F29EfgOknAheB4QsCZ2dyKcAykfGyLCT1QC7i4B2ngz5bA">
+<meta name="csrf-token" content="6i6WU5bOIInZy0X2VVUIb-QuK3ql7nxlHpId9wo8WeA2GOwoOpBnQvf8yXn5vi-TqOxuSyJhBwQ3fmsntld4UQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -116,12 +116,12 @@ document.addEventListener('turbo:load', () => {
 </li>  <li class="nav-item">
   <a class="nav-link" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>
     
-    Esci
+    Logout
 
 </a>
 </li>
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' role="button" aria-expanded="false">🇮🇹</a>
+  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' role="button" aria-expanded="false">🇬🇧</a>
   <ul class="dropdown-menu dropdown-menu-lg-end" style="min-width: auto;">
       <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>🇮🇹</a></li>
       <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>🇬🇧</a></li>
@@ -225,7 +225,7 @@ document.addEventListener('turbo:load', () => {
   <h1>Tutorial</h1>
 
   
-  <p class="lead">👋 Admin, welcome to the Lato tutorial!</p>
+  <p class="lead llm-ignore">👋 Admin, welcome to the Lato tutorial!</p>
 
 </div>
 <h2>How to Protect a Page</h2>
@@ -293,7 +293,7 @@ These parameters define the maximum number of requests a user can make within a 
 </p>
 
 <p>
-<a target="_blank" href="https://github.com/lato-org/lato/blob/main/app/controllers/concerns/lato/sessionable.rb">Source code: Lato::Sessionable</a>
+<a target="_blank" class="llm-ignore" href="https://github.com/lato-org/lato/blob/main/app/controllers/concerns/lato/sessionable.rb">Source code: Lato::Sessionable</a>
 </p>
 
 <h2>Accessing the Logged-in User</h2>
@@ -326,7 +326,7 @@ end
 </div>
 
 <p>
-<a target="_blank" href="https://github.com/lato-org/lato/blob/main/app/models/lato/session.rb">Source code: Lato::Session</a>
+<a target="_blank" class="llm-ignore" href="https://github.com/lato-org/lato/blob/main/app/models/lato/session.rb">Source code: Lato::Session</a>
 </p>
 
   </div>
@@ -343,7 +343,7 @@ end
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -
-      <a href="https://github.com/Lato-org">Termini e condizioni</a>
+      <a href="https://github.com/Lato-org">Terms and conditions</a>
     </div>
   </div>
 </div>
@@ -508,14 +508,14 @@ end
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="mb-0 mt-0 fs-4">Conferma</h2>
+        <h2 class="mb-0 mt-0 fs-4">Confirm</h2>
         <button type="button" class="btn-close" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="Close"></button>
       </div>
       <div class="modal-body" data-lato-confirm-target="modalBody">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="No, annulla">No, annulla</button>
-        <button type="button" class="btn btn-success" data-action="click-&gt;lato-confirm#confirmSuccess" aria-label="Sì, procedi">Sì, procedi</button>
+        <button type="button" class="btn btn-danger" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="No, cancel">No, cancel</button>
+        <button type="button" class="btn btn-success" data-action="click-&gt;lato-confirm#confirmSuccess" aria-label="Yes, confirm">Yes, confirm</button>
       </div>
     </div>
   </div>

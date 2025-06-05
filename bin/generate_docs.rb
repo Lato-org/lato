@@ -279,6 +279,11 @@ File.open(LLM_DIR, 'w') do |llm_file|
       example.remove
     end
 
+    # Rimuovo tutti i tag con classe .llm-ignore
+    main.css('.llm-ignore').each do |llm_ignore|
+      llm_ignore.remove
+    end
+
     # Sostituisco tutti i link assoluti in testo (esempio <a href="https://google.com">Google</a> -> [Google](https://google.com))
     main.css('a').each do |link|
       href = link['href']

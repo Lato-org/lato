@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="2J2FJygYKljsMIwz_o1wiLWuMQkF7FwU-zIS4gVVgr_YsK_KSzw-IK_JefCu9rvddUY4wsDgqan0mtEM8CRsvA">
+<meta name="csrf-token" content="usX1kj2e6QhLuC7O133JfOQlAbOAFTzgmF8VLntJtupm84_pkcCuw2WPokF7lu6AqOdEggeaR4Gxs2P-xyKXWw">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -116,12 +116,12 @@ document.addEventListener('turbo:load', () => {
 </li>  <li class="nav-item">
   <a class="nav-link" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>
     
-    Esci
+    Logout
 
 </a>
 </li>
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' role="button" aria-expanded="false">🇮🇹</a>
+  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' role="button" aria-expanded="false">🇬🇧</a>
   <ul class="dropdown-menu dropdown-menu-lg-end" style="min-width: auto;">
       <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>🇮🇹</a></li>
       <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>🇬🇧</a></li>
@@ -238,8 +238,8 @@ document.addEventListener('turbo:load', () => {
 
       <div class="d-flex mb-3">
           <div class="input-group">
-            <input type="text" name="default_search" class="form-control" placeholder="Ricerca per: Id, Codice e Utente" value="" data-action="keyup-&gt;lato-index#onSearchKeyUp" aria-label="Cerca">
-            <button class="btn btn-outline-primary" type="submit" aria-label="Cerca"><i class="bi bi-search"></i></button>
+            <input type="text" name="default_search" class="form-control" placeholder="Search for: Id, Code, and Lato user" value="" data-action="keyup-&gt;lato-index#onSearchKeyUp" aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
           </div>
         
           <div class="btn-group ms-2">
@@ -290,7 +290,7 @@ document.addEventListener('turbo:load', () => {
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
                         <div class="position-relative btn btn-sm btn-primary">
                           <input type="submit" name="default_sort_by" value="code|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
@@ -306,7 +306,7 @@ document.addEventListener('turbo:load', () => {
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
                         <div class="position-relative btn btn-sm btn-outline-primary">
                           <input type="submit" name="default_sort_by" value="status|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
@@ -322,12 +322,12 @@ document.addEventListener('turbo:load', () => {
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-product_parent_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Prodotto padre</span>
+                    <span>Product parent</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lato_user_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Utente</span>
+                    <span>Lato user</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
                         <div class="position-relative btn btn-sm btn-outline-primary">
                           <input type="submit" name="default_sort_by" value="lato_user_id|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
@@ -348,12 +348,12 @@ document.addEventListener('turbo:load', () => {
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-created_at">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Data creazione</span>
+                    <span>Created at</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-actions">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Azioni</span>
+                    <span>Actions</span>
                   </div>
                 </th>
             </tr>
@@ -367,7 +367,7 @@ document.addEventListener('turbo:load', () => {
                     S6069124Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -398,7 +398,7 @@ document.addEventListener('turbo:load', () => {
                     S6113718A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -429,7 +429,7 @@ document.addEventListener('turbo:load', () => {
                     S6248524H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -460,7 +460,7 @@ document.addEventListener('turbo:load', () => {
                     S6294400E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -491,7 +491,7 @@ document.addEventListener('turbo:load', () => {
                     S6311281Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -522,7 +522,7 @@ document.addEventListener('turbo:load', () => {
                     S6459835Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -553,7 +553,7 @@ document.addEventListener('turbo:load', () => {
                     S6481543A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -584,7 +584,7 @@ document.addEventListener('turbo:load', () => {
                     S6599465H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -615,7 +615,7 @@ document.addEventListener('turbo:load', () => {
                     S6616964B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -646,7 +646,7 @@ document.addEventListener('turbo:load', () => {
                     S6628207D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
                      - 
@@ -697,32 +697,32 @@ document.addEventListener('turbo:load', () => {
   <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>5</a>
 </span>
 
-        <span class="page gap"><span class="translation_missing" title="translation missing: it.views.pagination.truncate">Truncate</span></span>
+        <span class="page gap">…</span>
 
       <span class="next">
-  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Next ›</a>
 </span>
 
       <span class="last">
-  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Last »</a>
 </span>
 
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 risultati totali</span>
-                      <select name="default_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Elementi per pagina">
+                    <span class="text-muted">100 total results</span>
+                      <select name="default_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
                           <option value="10">
-                            10 per pagina
+                            10 per page
                           </option>
                           <option value="20">
-                            20 per pagina
+                            20 per page
                           </option>
                           <option value="50">
-                            50 per pagina
+                            50 per page
                           </option>
                           <option value="100">
-                            100 per pagina
+                            100 per page
                           </option>
                       </select>
                   </div>
@@ -751,7 +751,7 @@ document.addEventListener('turbo:load', () => {
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -
-      <a href="https://github.com/Lato-org">Termini e condizioni</a>
+      <a href="https://github.com/Lato-org">Terms and conditions</a>
     </div>
   </div>
 </div>
@@ -916,14 +916,14 @@ document.addEventListener('turbo:load', () => {
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="mb-0 mt-0 fs-4">Conferma</h2>
+        <h2 class="mb-0 mt-0 fs-4">Confirm</h2>
         <button type="button" class="btn-close" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="Close"></button>
       </div>
       <div class="modal-body" data-lato-confirm-target="modalBody">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="No, annulla">No, annulla</button>
-        <button type="button" class="btn btn-success" data-action="click-&gt;lato-confirm#confirmSuccess" aria-label="Sì, procedi">Sì, procedi</button>
+        <button type="button" class="btn btn-danger" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="No, cancel">No, cancel</button>
+        <button type="button" class="btn btn-success" data-action="click-&gt;lato-confirm#confirmSuccess" aria-label="Yes, confirm">Yes, confirm</button>
       </div>
     </div>
   </div>

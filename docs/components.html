@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="gokBNhPBlWdksRcNVVFis5BspzabH1HOzxv2-aTFCpGCpCvbcOWBHydI4s4FKqnmUISu_V4TpHPAszUXUbTkkg">
+<meta name="csrf-token" content="IE6jqgfeRzN-Y3-v4WGzRUZ1Faxgl9llzt86PtMVLLj8eNnRq4AA-FBU8yBNipS5CrdQnecYogTnM0zub34NCQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -116,12 +116,12 @@ document.addEventListener('turbo:load', () => {
 </li>  <li class="nav-item">
   <a class="nav-link" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>
     
-    Esci
+    Logout
 
 </a>
 </li>
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' role="button" aria-expanded="false">🇮🇹</a>
+  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' role="button" aria-expanded="false">🇬🇧</a>
   <ul class="dropdown-menu dropdown-menu-lg-end" style="min-width: auto;">
       <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>🇮🇹</a></li>
       <li><a class="dropdown-item" data-turbo-method="GET" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>🇬🇧</a></li>
@@ -238,7 +238,7 @@ All components are available via the <code>Lato::ComponentsHelper</code> helper.
 </p>
 
 <p>
-<a target="_blank" href="https://github.com/lato-org/lato/blob/main/app/helpers/lato/components_helper.rb">Source code: Lato::ComponentsHelper</a>
+<a target="_blank" class="llm-ignore" href="https://github.com/lato-org/lato/blob/main/app/helpers/lato/components_helper.rb">Source code: Lato::ComponentsHelper</a>
 </p>
 
 <h2>Navbar</h2>
@@ -477,7 +477,7 @@ user ||= @session.user
 
 <turbo-frame id="tutorial_form-example">
   <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="_3dL-tepGsuarWOdM_COi8yZEHzfZeTwwMgm2HylcDMGGMtnczd_iFybQ5HVgcnu3N809R8WiAnTvql6BUX2UQ" autocomplete="off">
+<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="ZiIbVNukVjKqYLGA_NXlcYgnHtDdcFIUV3Og8YUCdy44GjflDeBp7aedIwPJaPbAqIdPDs_sM104R8-lJy-cFQ" autocomplete="off">
     
     
 
@@ -597,32 +597,32 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lato_user_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Utente</span>
+                    <span>Lato user</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-created_at">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Data creazione</span>
+                    <span>Created at</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-updated_at">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Data modifica</span>
+                    <span>Updated at</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-product_parent_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Prodotto padre</span>
+                    <span>Product parent</span>
                   </div>
                 </th>
             </tr>
@@ -636,7 +636,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -662,7 +662,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -688,7 +688,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -714,7 +714,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -740,7 +740,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -765,7 +765,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 risultati totali</span>
+                    <span class="text-muted">5 total results</span>
                   </div>
                 </div>
               </td>
@@ -810,12 +810,12 @@ Columns can be customized using the <code>:columns</code> parameter:
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                   </div>
                 </th>
             </tr>
@@ -829,7 +829,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
               </tr>
               <tr>
@@ -840,7 +840,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
               </tr>
               <tr>
@@ -851,7 +851,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
               </tr>
               <tr>
@@ -862,7 +862,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
               </tr>
               <tr>
@@ -873,7 +873,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
               </tr>
           </tbody>
@@ -883,7 +883,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 risultati totali</span>
+                    <span class="text-muted">5 total results</span>
                   </div>
                 </div>
               </td>
@@ -976,17 +976,17 @@ end
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lifetime">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Tempo di vita</span>
+                    <span>Lifetime</span>
                   </div>
                 </th>
             </tr>
@@ -1000,10 +1000,10 @@ end
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
               </tr>
               <tr>
@@ -1014,10 +1014,10 @@ end
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
               </tr>
               <tr>
@@ -1028,10 +1028,10 @@ end
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
               </tr>
               <tr>
@@ -1042,10 +1042,10 @@ end
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
               </tr>
               <tr>
@@ -1056,10 +1056,10 @@ end
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
               </tr>
           </tbody>
@@ -1069,7 +1069,7 @@ end
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 risultati totali</span>
+                    <span class="text-muted">5 total results</span>
                   </div>
                 </div>
               </td>
@@ -1141,32 +1141,32 @@ end
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lato_user_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Utente</span>
+                    <span>Lato user</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-created_at">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Data creazione</span>
+                    <span>Created at</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-updated_at">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Data modifica</span>
+                    <span>Updated at</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-product_parent_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Prodotto padre</span>
+                    <span>Product parent</span>
                   </div>
                 </th>
             </tr>
@@ -1180,7 +1180,7 @@ end
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1206,7 +1206,7 @@ end
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1232,7 +1232,7 @@ end
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1258,7 +1258,7 @@ end
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1284,7 +1284,7 @@ end
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1309,7 +1309,7 @@ end
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 risultati totali</span>
+                    <span class="text-muted">5 total results</span>
                   </div>
                 </div>
               </td>
@@ -1367,32 +1367,32 @@ end
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lato_user_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Utente</span>
+                    <span>Lato user</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-created_at">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Data creazione</span>
+                    <span>Created at</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-updated_at">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Data modifica</span>
+                    <span>Updated at</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-product_parent_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Prodotto padre</span>
+                    <span>Product parent</span>
                   </div>
                 </th>
             </tr>
@@ -1406,7 +1406,7 @@ end
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1432,7 +1432,7 @@ end
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1458,7 +1458,7 @@ end
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1484,7 +1484,7 @@ end
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1510,7 +1510,7 @@ end
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1535,7 +1535,7 @@ end
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 risultati totali</span>
+                    <span class="text-muted">5 total results</span>
                   </div>
                 </div>
               </td>
@@ -1603,22 +1603,22 @@ end
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lifetime">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Tempo di vita</span>
+                    <span>Lifetime</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-actions">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Azioni</span>
+                    <span>Actions</span>
                   </div>
                 </th>
             </tr>
@@ -1632,10 +1632,10 @@ end
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1651,10 +1651,10 @@ end
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1670,10 +1670,10 @@ end
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1689,10 +1689,10 @@ end
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1708,10 +1708,10 @@ end
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    01 h 16 m
+                    02 h 43 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1726,7 +1726,7 @@ end
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 risultati totali</span>
+                    <span class="text-muted">5 total results</span>
                   </div>
                 </div>
               </td>
@@ -1777,32 +1777,32 @@ end
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lato_user_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Utente</span>
+                    <span>Lato user</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-created_at">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Data creazione</span>
+                    <span>Created at</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-updated_at">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Data modifica</span>
+                    <span>Updated at</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-product_parent_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Prodotto padre</span>
+                    <span>Product parent</span>
                   </div>
                 </th>
             </tr>
@@ -1816,7 +1816,7 @@ end
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1842,7 +1842,7 @@ end
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1868,7 +1868,7 @@ end
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1894,7 +1894,7 @@ end
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1920,7 +1920,7 @@ end
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1946,7 +1946,7 @@ end
                     T0177097C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1972,7 +1972,7 @@ end
                     S9119897E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -1998,7 +1998,7 @@ end
                     S9310289D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2024,7 +2024,7 @@ end
                     S8879757D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2050,7 +2050,7 @@ end
                     T0227585B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2076,7 +2076,7 @@ end
                     S6481543A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2102,7 +2102,7 @@ end
                     S7837484E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2128,7 +2128,7 @@ end
                     S6311281Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2154,7 +2154,7 @@ end
                     S8148809F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2180,7 +2180,7 @@ end
                     S8186570A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2206,7 +2206,7 @@ end
                     T0265341E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2232,7 +2232,7 @@ end
                     S7223859A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2258,7 +2258,7 @@ end
                     S6069124Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2284,7 +2284,7 @@ end
                     S9888358D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2310,7 +2310,7 @@ end
                     S7789196Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2336,7 +2336,7 @@ end
                     T0525625E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2362,7 +2362,7 @@ end
                     S8143709B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2388,7 +2388,7 @@ end
                     S7371530Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2414,7 +2414,7 @@ end
                     S7675078E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2440,7 +2440,7 @@ end
                     S8712790G
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -2483,17 +2483,17 @@ end
 </span>
 
       <span class="next">
-  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Next ›</a>
 </span>
 
       <span class="last">
-  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Last »</a>
 </span>
 
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 risultati totali</span>
+                    <span class="text-muted">100 total results</span>
                   </div>
                 </div>
               </td>
@@ -2539,12 +2539,12 @@ end
             <tr class="align-middle">
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-id">
@@ -2560,7 +2560,7 @@ end
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     1
@@ -2571,7 +2571,7 @@ end
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     2
@@ -2582,7 +2582,7 @@ end
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     3
@@ -2593,7 +2593,7 @@ end
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     4
@@ -2604,7 +2604,7 @@ end
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     5
@@ -2615,7 +2615,7 @@ end
                     T0177097C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     6
@@ -2626,7 +2626,7 @@ end
                     S9119897E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     7
@@ -2637,7 +2637,7 @@ end
                     S9310289D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     8
@@ -2648,7 +2648,7 @@ end
                     S8879757D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     9
@@ -2659,7 +2659,7 @@ end
                     T0227585B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     10
@@ -2670,7 +2670,7 @@ end
                     S6481543A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     11
@@ -2681,7 +2681,7 @@ end
                     S7837484E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     12
@@ -2692,7 +2692,7 @@ end
                     S6311281Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     13
@@ -2703,7 +2703,7 @@ end
                     S8148809F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     14
@@ -2714,7 +2714,7 @@ end
                     S8186570A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     15
@@ -2725,7 +2725,7 @@ end
                     T0265341E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     16
@@ -2736,7 +2736,7 @@ end
                     S7223859A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     17
@@ -2747,7 +2747,7 @@ end
                     S6069124Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     18
@@ -2758,7 +2758,7 @@ end
                     S9888358D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     19
@@ -2769,7 +2769,7 @@ end
                     S7789196Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     20
@@ -2780,7 +2780,7 @@ end
                     T0525625E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     21
@@ -2791,7 +2791,7 @@ end
                     S8143709B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     22
@@ -2802,7 +2802,7 @@ end
                     S7371530Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     23
@@ -2813,7 +2813,7 @@ end
                     S7675078E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     24
@@ -2824,7 +2824,7 @@ end
                     S8712790G
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     25
@@ -2855,17 +2855,17 @@ end
 </span>
 
       <span class="next">
-  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Next ›</a>
 </span>
 
       <span class="last">
-  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Last »</a>
 </span>
 
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 risultati totali</span>
+                    <span class="text-muted">100 total results</span>
                   </div>
                 </div>
               </td>
@@ -2916,12 +2916,12 @@ end
             <tr class="align-middle">
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                   </div>
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-id">
@@ -2937,7 +2937,7 @@ end
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     1
@@ -2948,7 +2948,7 @@ end
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     2
@@ -2959,7 +2959,7 @@ end
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     3
@@ -2970,7 +2970,7 @@ end
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     4
@@ -2981,7 +2981,7 @@ end
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     5
@@ -2992,7 +2992,7 @@ end
                     T0177097C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     6
@@ -3003,7 +3003,7 @@ end
                     S9119897E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     7
@@ -3014,7 +3014,7 @@ end
                     S9310289D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     8
@@ -3025,7 +3025,7 @@ end
                     S8879757D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     9
@@ -3036,7 +3036,7 @@ end
                     T0227585B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     10
@@ -3070,32 +3070,32 @@ end
   <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>5</a>
 </span>
 
-        <span class="page gap"><span class="translation_missing" title="translation missing: it.views.pagination.truncate">Truncate</span></span>
+        <span class="page gap">…</span>
 
       <span class="next">
-  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Next ›</a>
 </span>
 
       <span class="last">
-  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Last »</a>
 </span>
 
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 risultati totali</span>
-                      <select name="products_pagination_options_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Elementi per pagina">
+                    <span class="text-muted">100 total results</span>
+                      <select name="products_pagination_options_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
                           <option value="10">
-                            10 per pagina
+                            10 per page
                           </option>
                           <option value="20">
-                            20 per pagina
+                            20 per page
                           </option>
                           <option value="50">
-                            50 per pagina
+                            50 per page
                           </option>
                           <option value="100">
-                            100 per pagina
+                            100 per page
                           </option>
                       </select>
                   </div>
@@ -3144,7 +3144,7 @@ end
             <tr class="align-middle">
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
                         <div class="position-relative btn btn-sm btn-outline-primary">
                           <input type="submit" name="products_sortable_columns_sort_by" value="code|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
@@ -3160,7 +3160,7 @@ end
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
                         <div class="position-relative btn btn-sm btn-outline-primary">
                           <input type="submit" name="products_sortable_columns_sort_by" value="status|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
@@ -3176,7 +3176,7 @@ end
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lato_user_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Utente</span>
+                    <span>Lato user</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
                         <div class="position-relative btn btn-sm btn-outline-primary">
                           <input type="submit" name="products_sortable_columns_sort_by" value="lato_user_id|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
@@ -3198,7 +3198,7 @@ end
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3212,7 +3212,7 @@ end
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3226,7 +3226,7 @@ end
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3240,7 +3240,7 @@ end
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3254,7 +3254,7 @@ end
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3268,7 +3268,7 @@ end
                     T0177097C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3282,7 +3282,7 @@ end
                     S9119897E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3296,7 +3296,7 @@ end
                     S9310289D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3310,7 +3310,7 @@ end
                     S8879757D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3324,7 +3324,7 @@ end
                     T0227585B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3338,7 +3338,7 @@ end
                     S6481543A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3352,7 +3352,7 @@ end
                     S7837484E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3366,7 +3366,7 @@ end
                     S6311281Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3380,7 +3380,7 @@ end
                     S8148809F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3394,7 +3394,7 @@ end
                     S8186570A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3408,7 +3408,7 @@ end
                     T0265341E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3422,7 +3422,7 @@ end
                     S7223859A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3436,7 +3436,7 @@ end
                     S6069124Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3450,7 +3450,7 @@ end
                     S9888358D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3464,7 +3464,7 @@ end
                     S7789196Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3478,7 +3478,7 @@ end
                     T0525625E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3492,7 +3492,7 @@ end
                     S8143709B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3506,7 +3506,7 @@ end
                     S7371530Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3520,7 +3520,7 @@ end
                     S7675078E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3534,7 +3534,7 @@ end
                     S8712790G
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3568,17 +3568,17 @@ end
 </span>
 
       <span class="next">
-  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Next ›</a>
 </span>
 
       <span class="last">
-  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Last »</a>
 </span>
 
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 risultati totali</span>
+                    <span class="text-muted">100 total results</span>
                   </div>
                 </div>
               </td>
@@ -3659,8 +3659,8 @@ end
 
       <div class="d-flex mb-3">
           <div class="input-group">
-            <input type="text" name="products_searchable_columns_search" class="form-control" placeholder="Ricerca per: Codice e Utente" value="" data-action="keyup-&gt;lato-index#onSearchKeyUp" aria-label="Cerca">
-            <button class="btn btn-outline-primary" type="submit" aria-label="Cerca"><i class="bi bi-search"></i></button>
+            <input type="text" name="products_searchable_columns_search" class="form-control" placeholder="Search for: Code and Lato user" value="" data-action="keyup-&gt;lato-index#onSearchKeyUp" aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
           </div>
         
 
@@ -3673,7 +3673,7 @@ end
             <tr class="align-middle">
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Codice</span>
+                    <span>Code</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
                         <div class="position-relative btn btn-sm btn-outline-primary">
                           <input type="submit" name="products_searchable_columns_sort_by" value="code|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
@@ -3689,7 +3689,7 @@ end
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Stato</span>
+                    <span>Status</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
                         <div class="position-relative btn btn-sm btn-outline-primary">
                           <input type="submit" name="products_searchable_columns_sort_by" value="status|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
@@ -3705,7 +3705,7 @@ end
                 </th>
                 <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lato_user_id">
                   <div class="d-flex align-items-center justify-content-between">
-                    <span>Utente</span>
+                    <span>Lato user</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
                         <div class="position-relative btn btn-sm btn-outline-primary">
                           <input type="submit" name="products_searchable_columns_sort_by" value="lato_user_id|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
@@ -3727,7 +3727,7 @@ end
                     T0196172H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3741,7 +3741,7 @@ end
                     S8631447I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3755,7 +3755,7 @@ end
                     S8045197J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3769,7 +3769,7 @@ end
                     S7634215F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3783,7 +3783,7 @@ end
                     S7964049B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3797,7 +3797,7 @@ end
                     T0177097C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3811,7 +3811,7 @@ end
                     S9119897E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3825,7 +3825,7 @@ end
                     S9310289D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3839,7 +3839,7 @@ end
                     S8879757D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3853,7 +3853,7 @@ end
                     T0227585B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3867,7 +3867,7 @@ end
                     S6481543A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3881,7 +3881,7 @@ end
                     S7837484E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3895,7 +3895,7 @@ end
                     S6311281Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3909,7 +3909,7 @@ end
                     S8148809F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3923,7 +3923,7 @@ end
                     S8186570A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3937,7 +3937,7 @@ end
                     T0265341E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3951,7 +3951,7 @@ end
                     S7223859A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Creato</span>
+                    <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3965,7 +3965,7 @@ end
                     S6069124Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3979,7 +3979,7 @@ end
                     S9888358D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completato</span>
+                    <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3993,7 +3993,7 @@ end
                     S7789196Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4007,7 +4007,7 @@ end
                     T0525625E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4021,7 +4021,7 @@ end
                     S8143709B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4035,7 +4035,7 @@ end
                     S7371530Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancellato</span>
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4049,7 +4049,7 @@ end
                     S7675078E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4063,7 +4063,7 @@ end
                     S8712790G
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In lavorazione</span>
+                    <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4097,17 +4097,17 @@ end
 </span>
 
       <span class="next">
-  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.next">Next</span></a>
+  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Next ›</a>
 </span>
 
       <span class="last">
-  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'><span class="translation_missing" title="translation missing: it.views.pagination.last">Last</span></a>
+  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Last »</a>
 </span>
 
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 risultati totali</span>
+                    <span class="text-muted">100 total results</span>
                   </div>
                 </div>
               </td>
@@ -4155,7 +4155,7 @@ end
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -
-      <a href="https://github.com/Lato-org">Termini e condizioni</a>
+      <a href="https://github.com/Lato-org">Terms and conditions</a>
     </div>
   </div>
 </div>
@@ -4320,14 +4320,14 @@ end
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="mb-0 mt-0 fs-4">Conferma</h2>
+        <h2 class="mb-0 mt-0 fs-4">Confirm</h2>
         <button type="button" class="btn-close" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="Close"></button>
       </div>
       <div class="modal-body" data-lato-confirm-target="modalBody">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="No, annulla">No, annulla</button>
-        <button type="button" class="btn btn-success" data-action="click-&gt;lato-confirm#confirmSuccess" aria-label="Sì, procedi">Sì, procedi</button>
+        <button type="button" class="btn btn-danger" data-action="click-&gt;lato-confirm#confirmCancel" aria-label="No, cancel">No, cancel</button>
+        <button type="button" class="btn btn-success" data-action="click-&gt;lato-confirm#confirmSuccess" aria-label="Yes, confirm">Yes, confirm</button>
       </div>
     </div>
   </div>
