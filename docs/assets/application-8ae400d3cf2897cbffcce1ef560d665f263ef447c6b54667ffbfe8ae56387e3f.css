@@ -15072,5 +15072,6 @@ main, aside {
 pre {
   border-radius: 15px;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #303030;
+  color: #ffffff;
 }

@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<script>
+hljs.configure({
+  cssSelector: 'pre',
+  languages: ['ruby', 'javascript', 'scss', 'html', 'erb']
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  hljs.highlightAll();
+});
+
+document.addEventListener('turbo:load', () => {
+  hljs.highlightAll();
+});
+</script>
