@@ -19,9 +19,9 @@ The gem is ready to be used with the **latest Rails 7+** features like **[ESM im
 
 ## Full documentation
 
-The full documentation is available at: 👉 👉 [THIS LINK](https://auuu.link/s/lato) 👈 👈
+The full documentation is available at: 👉 👉 [THIS LINK](https://lato-oss.gregoriogalante.com) 👈 👈
 
-You can also use the [Lato AI Agent](http://lato.gregoriogalante.com/AI.html) directly on your browser to generate code and get helps with the gem.
+You can also use the [Lato AI Agent](https://lato-oss.gregoriogalante.com/AI.html) directly on your browser to generate code and get helps with the gem.
 
 ## Eco-system
 The idea behind Lato is to create an eco-system of engines that can improve the functionalities of the panel. The following engines are already available:
