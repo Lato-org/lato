@@ -15042,6 +15042,19 @@ main, aside {
   min-height: 38px;
 }
 
+/** Print style */
+@media print {
+  /* line 151, ../../app/assets/stylesheets/lato/application.scss */
+  header, aside, footer {
+    display: none !important;
+  }
+  /* line 155, ../../app/assets/stylesheets/lato/application.scss */
+  main {
+    padding-top: 0 !important;
+    width: 100% !important;
+  }
+}
+
 /* line 24, app/assets/stylesheets/application.scss */
 .controller-authentication {
   background-color: #293b5a;
