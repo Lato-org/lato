@@ -145,6 +145,15 @@ main, aside {
   min-height: 38px;
 }
 
-.lato-guide-tooltip {
+/** Print style */
 
+@media print {
+  header, aside, footer {
+    display: none !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+    width: 100% !important;
+  }
 }
