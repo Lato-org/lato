@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="e9yBdlLe81VPnBrhrBb7gfuRXFEK6ICACUrxEOkPaaIhMrvIEDGADQUNnATNDpIHANXSvq7D1hGNFkiam6AI4g">
+<meta name="csrf-token" content="dfjntfJVpIH583jV2w51xBoEeNOMp2a_X_AeH0TsHVaRGiJm3zfL1tVKZsZRTe_rDB-SlsYclle1pbAypZL7Sg">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -192,6 +192,84 @@ document.addEventListener('turbo:load', () => {
             <div class="card-body">
               <h3 class="card-title">Modern Rails Features</h3>
               <p class="card-text">Ready to use with the latest Rails 7+ features like ESM import maps, Turbo and Stimulus. The front-end is responsive, mobile friendly and accessible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-12">
+          <div class="card text-white" style="background-color: rgba(255,255,255,0.1)">
+            <div class="card-body">
+              <h3 class="card-title">Installation</h3>
+              
+              <h5 class="mt-4 mb-3">Add Dependencies</h5>
+              <p class="card-text mb-3">Add required dependencies to your application's Gemfile:</p>
+              <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code># Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem "importmap-rails" # NOTE: Probably already installed in default rails 7+ project
+
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails" # NOTE: Probably already installed in default rails 7+ project
+
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails" # NOTE: Probably already installed in default rails 7+ project
+
+# Use Sass to process CSS
+gem "sassc-rails"
+
+# Use lato as application panel
+gem "lato"</code></pre>
+              </div>
+
+              <h5 class="mt-4 mb-3">Install and Setup</h5>
+              <p class="card-text mb-3">Install gem and run required tasks:</p>
+              <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code>$ bundle
+$ rails active_storage:install
+$ rails lato:install:application
+$ rails lato:install:migrations
+$ rails db:migrate</code></pre>
+              </div>
+
+              <h5 class="mt-4 mb-3">Configure Routes</h5>
+              <p class="card-text mb-3">Mount lato routes on the <strong>config/routes.rb</strong> file:</p>
+              <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code>Rails.application.routes.draw do
+  mount Lato::Engine =&gt; "/lato"
+
+  # ....
+end</code></pre>
+              </div>
+
+              <h5 class="mt-4 mb-3">Import Styles</h5>
+              <p class="card-text mb-3">Import Lato Scss on <strong>app/assets/stylesheets/application.scss</strong> file:</p>
+              <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code>@import 'lato/application';
+
+// ....</code></pre>
+              </div>
+
+              <h5 class="mt-4 mb-3">Import JavaScript</h5>
+              <p class="card-text mb-3">Import Lato Js on <strong>app/javascript/application.js</strong> file:</p>
+              <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code>import "lato/application";
+
+// ....</code></pre>
+              </div>
+
+              <h5 class="mt-4 mb-3">Setup I18n</h5>
+              <p class="card-text mb-3">Setup I18n on the <strong>config/application.rb</strong> file:</p>
+              <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code>module MyApplication
+  class Application &lt; Rails::Application
+    config.i18n.available_locales = [:it, :en]
+    config.i18n.default_locale = :it
+
+    # ...
+  end
+end</code></pre>
+              </div>
             </div>
           </div>
         </div>
