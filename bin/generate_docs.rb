@@ -234,7 +234,7 @@ def process_html(html_content, http, cookies)
   # Sostituisci tutti i link relativi con i percorsi locali corrispondenti
   # Esempio: /customization -> ./customization.html
   # Altrimenti forza messaggio di errore
-  pages_paths = PAGES.map { |page| page[:path] }
+  pages_paths = PAGES.map { |page| page[:path].sub(/\?generate_docs=1$/, '') }
   doc.css('a').each do |link|
     href = link['href']
     next if href.nil? || href.empty? || href.start_with?('http://', 'https://', '//')
@@ -242,8 +242,6 @@ def process_html(html_content, http, cookies)
     # Se l'URL è relativo, aggiungi il BASE_URL
     if href == '/'
       link['href'] = 'index.html'
-    elsif href == '/tutorial'
-      link['href'] = 'tutorial.html'
     elsif href.start_with?('/') && pages_paths.include?(href)
       link['href'] = href[1..-1] + '.html'
     else
