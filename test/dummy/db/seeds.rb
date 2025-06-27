@@ -2,8 +2,8 @@
 ##
 
 Lato::User.create!(
-  first_name: 'Admin',
-  last_name: 'Admin',
+  first_name: 'User',
+  last_name: 'User',
   email: 'admin@mail.com',
   password: 'Password1!',
   password_confirmation: 'Password1!',

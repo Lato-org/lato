@@ -3,5 +3,6 @@ class ApplicationController < Lato::ApplicationController
 
   def index
     hide_sidebar
+    page_class 'homepage'
   end
 end

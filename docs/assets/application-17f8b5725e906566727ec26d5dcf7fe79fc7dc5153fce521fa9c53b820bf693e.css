@@ -15056,28 +15056,28 @@ main, aside {
 }
 
 /* line 24, app/assets/stylesheets/application.scss */
-.controller-authentication {
+.controller-authentication, .homepage {
   background-color: #293b5a;
 }
 
 /* line 28, app/assets/stylesheets/application.scss */
-.controller-authentication header .navbar {
+.controller-authentication header .navbar, .homepage header .navbar {
   box-shadow: none !important;
 }
 
 /* line 33, app/assets/stylesheets/application.scss */
-.controller-authentication .footer {
+.controller-authentication .footer, .homepage .footer {
   background-color: transparent !important;
   border-width: 0 !important;
 }
 
 /* line 37, app/assets/stylesheets/application.scss */
-.controller-authentication .footer a {
+.controller-authentication .footer a, .homepage .footer a {
   color: #fff !important;
 }
 
 /* line 41, app/assets/stylesheets/application.scss */
-.controller-authentication .footer .text-muted {
+.controller-authentication .footer .text-muted, .homepage .footer .text-muted {
   color: rgba(255, 255, 255, 0.75) !important;
 }
 

@@ -21,7 +21,7 @@
 @import 'lato/application';
 
 // Make authentication pages with primary color
-.controller-authentication {
+.controller-authentication, .homepage {
   background-color: $primary;
 
   header {
