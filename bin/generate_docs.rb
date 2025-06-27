@@ -242,7 +242,7 @@ def process_html(html_content, http, cookies)
     # Se l'URL è relativo, aggiungi il BASE_URL
     if href == '/'
       link['href'] = 'index.html'
-    elsif href == '/lato/authentication/signin'
+    elsif href == '/tutorial'
       link['href'] = 'tutorial.html'
     elsif href.start_with?('/') && pages_paths.include?(href)
       link['href'] = href[1..-1] + '.html'
