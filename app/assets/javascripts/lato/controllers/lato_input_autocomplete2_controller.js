@@ -86,7 +86,7 @@ export default class extends Controller {
   suggestShow(data = []) {
     if (this.optionsList) this.optionsList.remove()
     this.optionsList = document.createElement('ul')
-    this.optionsList.classList.add('list-group')
+    this.optionsList.classList.add('list-group', 'border')
     this.optionsList.style.position = 'fixed'
     this.optionsList.style.width = this.element.offsetWidth + 'px'
     this.optionsList.style.maxHeight = '200px'
@@ -127,6 +127,14 @@ export default class extends Controller {
     if (this.optionsList) this.optionsList.remove()
   }
 
+  suggestReposition() {
+    if (!this.optionsList) return
+
+    const elementRect = this.element.getBoundingClientRect()
+    this.optionsList.style.top = elementRect.bottom + 'px'
+    this.optionsList.style.left = elementRect.left + 'px'
+  }
+
   async setDefaultElementValue() {
     try {
       const url = new URL(this.pathValue, window.location.origin)
@@ -146,10 +154,10 @@ export default class extends Controller {
   }
 
   onWindowScroll(event) {
-    this.suggestHide()
+    this.suggestReposition()
   }
 
   onWindowResize(event) {
-    this.suggestHide()
+    this.suggestReposition()
   }
 }
