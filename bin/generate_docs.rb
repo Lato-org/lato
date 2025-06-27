@@ -16,23 +16,23 @@ AUTH_POST_URL = "#{BASE_URL}/lato/authentication/signin_action"
 PAGES = [
   { path: '/?generate_docs=1', name: 'index.html' },
   # tutorial
-  { path: '/tutorial', name: 'tutorial.html', auth: true },
+  { path: '/tutorial?generate_docs=1', name: 'tutorial.html', auth: true },
   # configuration
-  { path: '/configuration', name: 'configuration.html', auth: true },
+  { path: '/configuration?generate_docs=1', name: 'configuration.html', auth: true },
   # customization
-  { path: '/customization', name: 'customization.html', auth: true },
+  { path: '/customization?generate_docs=1', name: 'customization.html', auth: true },
   # components
-  { path: '/components', name: 'components.html', auth: true },
+  { path: '/components?generate_docs=1', name: 'components.html', auth: true },
   # operations
-  { path: '/operations', name: 'operations.html', auth: true },
+  { path: '/operations?generate_docs=1  ', name: 'operations.html', auth: true },
   # actions
-  { path: '/actions', name: 'actions.html', auth: true },
+  { path: '/actions?generate_docs=1', name: 'actions.html', auth: true },
   # invitations
-  { path: '/invitations', name: 'invitations.html', auth: true },
+  { path: '/invitations?generate_docs=1', name: 'invitations.html', auth: true },
   # guide
-  { path: '/guide', name: 'guide.html', auth: true },
+  { path: '/guide?generate_docs=1', name: 'guide.html', auth: true },
   # products
-  { path: '/products', name: 'products.html', auth: true },
+  { path: '/products?generate_docs=1', name: 'products.html', auth: true },
 ]
 
 # Assicurati che la directory di output esista
