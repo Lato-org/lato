@@ -24,7 +24,7 @@ PAGES = [
   # components
   { path: '/components?generate_docs=1', name: 'components.html', auth: true },
   # operations
-  { path: '/operations?generate_docs=1  ', name: 'operations.html', auth: true },
+  { path: '/operations?generate_docs=1', name: 'operations.html', auth: true },
   # actions
   { path: '/actions?generate_docs=1', name: 'actions.html', auth: true },
   # invitations
