@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/lato.svg)](https://badge.fury.io/rb/lato)
 
-Lato is a Rails Engine to deliver a full featured web panel for [Ruby on Rails](https://rubyonrails.org/).
+Lato is a Rails Engine that offers a comprehensive web application starter kit with user management, authentication, and UI components for [Ruby on Rails](https://rubyonrails.org/).
 
 This gem includes:
 - User management with **full authentication system** (signin, signup, recover password, email validation, Google Authenticator multi-factor authentication, ETH wallet connection) and **account management** (user settings, password change, email change, etc.);
