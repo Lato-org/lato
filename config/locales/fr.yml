@@ -1,0 +1,349 @@
+# Start from: https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/fr.yml
+
+fr:
+  lato:
+    account: Compte
+    signout: Déconnexion
+    signin: Connexion
+    signup: Inscription
+    forgot_your_password?: Mot de passe oublié ?
+    already_have_an_account?: Vous avez déjà un compte ?
+    or: Ou
+    create_free_account: Créer un compte gratuit
+    privacy_policy: Politique de confidentialité
+    privacy_policy_checkbox: Je déclare avoir lu et accepté la %{link}
+    terms_and_conditions: Conditions générales
+    terms_and_conditions_checkbox: Je déclare avoir lu et accepté les %{link} d'utilisation
+    recover_password: Récupérer le mot de passe
+    next: Suivant
+    cancel: Annuler
+    back_to_login: Retour à la connexion
+    there_are_some_errors: Les erreurs suivantes se sont produites
+    update_password: Mise à jour du mot de passe
+    confirm: Confirmer
+    search: Rechercher
+    search_for: Recherche par
+    total_results: Résultats totaux
+    account_informations: Informations du compte
+    verify_email: Vérifier l'email
+    email_verified: Vérifié
+    update: Mettre à jour
+    new_password: Nouveau mot de passe
+    confirm_new_password: Confirmer le nouveau mot de passe
+    account_delete: Suppression du compte
+    warning: Attention
+    account_delete_details: En supprimant votre compte, <b>toutes les données associées seront définitivement supprimées</b>.<br>Après confirmation, il ne sera plus possible de récupérer les informations perdues.
+    account_delete_guide: Saisissez votre adresse e-mail d'inscription et cliquez sur "Supprimer le compte" pour continuer.
+    account_delete_confirm: Supprimer le compte
+    signup_email: Adresse e-mail d'inscription
+    signout_confirmation_request: "%{user}, êtes-vous sûr de vouloir vous déconnecter de votre compte ?"
+    recover_password_code: Code reçu par e-mail
+    operation_completed: Opération terminée
+    operation_failed: Échec de l'opération
+    privacy_policy_update_title: Mise à jour de la politique de confidentialité
+    terms_and_conditions_update_title: Mise à jour des conditions générales
+    accept_invitation: Accepter l'invitation
+    account_web3: Connexion Web3
+    account_web3_start_title: Connectez votre portefeuille
+    account_web3_start_description: Connectez votre portefeuille web3 en cliquant sur le bouton ci-dessous et en signant le message.<br>Cela vous permettra d'utiliser la plateforme sans avoir à saisir votre mot de passe.
+    connect_wallet: Connecter le portefeuille
+    disconnect_wallet: Déconnecter
+    connected_wallet: Connecté
+    web3_signin: Connexion avec Web3
+    retry: Réessayer
+    back: Retour
+    account_authenticator: Google Authenticator
+    account_authenticator_start_title: Activer Google Authenticator
+    account_authenticator_start_description: Générez un code QR en cliquant sur le bouton ci-dessous et scannez-le avec l'application Google Authenticator sur votre téléphone.<br>Cela vous permettra de protéger votre compte avec une authentification à deux facteurs.
+    account_authenticator_ready_qr: Scannez le code QR avec l'application Google Authenticator pour activer la protection de votre compte avec une authentification à deux facteurs.
+    generate_qr_code: Générer un code QR
+    cancel_authenticator: Déconnecter
+    authenticator: Authentification à deux facteurs
+    authenticator_code_help: Saisissez le code généré par l'application Google Authenticator pour le compte <b>%{email}</b>
+    reset_password: Réinitialisez votre mot de passe
+    per_page: Par page
+    per_page_description: Éléments par page
+    confirm_title: Confirmation
+    confirm_yes: Oui, confirmer
+    confirm_no: Non, annuler
+    operation_title: Opération en cours
+    operation_subtitle: Veuillez patienter...
+    operation_completed_title: Opération terminée
+    operation_completed_subtitle: L'opération a été réalisée avec succès
+    operation_failed_title: Échec de l'opération
+    operation_failed_subtitle: Une erreur s'est produite lors de l'opération
+
+    invitation_mailer:
+      invite_mail_subject: Vous avez reçu une invitation
+    user_mailer:
+      email_verification_mail_subject: Confirmez votre adresse e-mail
+      password_update_mail_subject: Définissez un nouveau mot de passe
+      signin_success_mail_subject: Nouvelle connexion à votre compte
+
+    account_controller:
+      update_user_action_notice: Informations du compte mises à jour avec succès
+      request_verify_email_action_notice: Nous vous avons envoyé un e-mail avec les étapes à suivre pour terminer la procédure
+      update_password_action_notice: Mot de passe mis à jour avec succès
+    authentication_controller:
+      verify_email_action_notice: Adresse e-mail vérifiée avec succès
+      update_password_action_notice: Votre mot de passe a été mis à jour avec succès
+
+  activerecord:
+    attributes:
+      lato/user:
+        first_name: Prénom
+        last_name: Nom
+        password_confirmation: Confirmation du mot de passe
+        email: E-mail
+        accepted_privacy_policy_version: Politique de confidentialité
+        accepted_terms_and_conditions_version: Conditions générales
+    errors:
+      messages:
+        record_invalid: 'Validation échouée : %{errors}'
+        restrict_dependent_destroy:
+          has_one: L'enregistrement ne peut pas être supprimé car il existe un %{record} dépendant
+          has_many: L'enregistrement ne peut pas être supprimé car il existe des %{record} dépendants
+      models:
+        lato/user:
+          attributes:
+            base:
+              email_sending_error: Impossible d'envoyer l'e-mail
+              email_verification_limit: Veuillez attendre au moins 2 minutes avant de réessayer la vérification de l'e-mail
+              email_verification_code_expired: Le code de vérification de l'e-mail a expiré
+              email_verification_code_invalid: Le code de vérification de l'e-mail n'est pas valide
+              password_update_code_expired: Le code de vérification a expiré
+              password_update_code_invalid: Le code de vérification n'est pas valide
+              privacy_policy_invalid: Pour accepter la politique de confidentialité, vous devez cocher la case de confirmation
+              terms_and_conditions_invalid: Pour accepter les conditions générales, vous devez cocher la case de confirmation
+              invitation_invalid: Invitation non valide
+              web3_address_invalid: L'adresse envoyée n'est pas correctement signée
+              web3_connection_error: Impossible de connecter le portefeuille
+              authenticator_code_invalid: Le code saisi n'est pas correct
+            password:
+              not_correct: incorrect
+            password_confirmation:
+              confirmation: ne correspond pas au mot de passe
+            email:
+              taken: déjà utilisé par un autre compte
+              not_registered: non enregistrée
+              not_correct: incorrect
+            accepted_privacy_policy_version:
+              inclusion: non acceptée
+            accepted_terms_and_conditions_version:
+              inclusion: non acceptées
+            web3_address:
+              not_correct: incorrect
+        lato/invitation:
+          attributes:
+            base:
+              already_accepted: Invitation déjà acceptée par l'utilisateur
+              email_sending_error: Impossible d'envoyer l'e-mail
+              email_sending_limit: Veuillez attendre au moins 2 minutes avant de réessayer d'envoyer une invitation
+
+
+  date:
+    abbr_day_names:
+    - dim
+    - lun
+    - mar
+    - mer
+    - jeu
+    - ven
+    - sam
+    abbr_month_names:
+    - 
+    - janv
+    - févr
+    - mars
+    - avr
+    - mai
+    - juin
+    - juil
+    - août
+    - sept
+    - oct
+    - nov
+    - déc
+    day_names:
+    - dimanche
+    - lundi
+    - mardi
+    - mercredi
+    - jeudi
+    - vendredi
+    - samedi
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d %B %Y"
+      short: "%d %b"
+    month_names:
+    - 
+    - janvier
+    - février
+    - mars
+    - avril
+    - mai
+    - juin
+    - juillet
+    - août
+    - septembre
+    - octobre
+    - novembre
+    - décembre
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: environ une heure
+        other: environ %{count} heures
+      about_x_months:
+        one: environ un mois
+        other: environ %{count} mois
+      about_x_years:
+        one: environ un an
+        other: environ %{count} ans
+      almost_x_years:
+        one: presque un an
+        other: presque %{count} ans
+      half_a_minute: une demi-minute
+      less_than_x_seconds:
+        one: moins d'une seconde
+        other: moins de %{count} secondes
+      less_than_x_minutes:
+        one: moins d'une minute
+        other: moins de %{count} minutes
+      over_x_years:
+        one: plus d'un an
+        other: plus de %{count} ans
+      x_seconds:
+        one: 1 seconde
+        other: "%{count} secondes"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_days:
+        one: 1 jour
+        other: "%{count} jours"
+      x_months:
+        one: 1 mois
+        other: "%{count} mois"
+      x_years:
+        one: 1 an
+        other: "%{count} ans"
+    prompts:
+      second: Seconde
+      minute: Minute
+      hour: Heure
+      day: Jour
+      month: Mois
+      year: Année
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: doit être accepté
+      blank: ne peut pas être vide
+      confirmation: ne correspond pas à %{attribute}
+      empty: ne peut pas être vide
+      equal_to: doit être égal à %{count}
+      even: doit être pair
+      exclusion: est réservé
+      greater_than: doit être supérieur à %{count}
+      greater_than_or_equal_to: doit être supérieur ou égal à %{count}
+      inclusion: n'est pas inclus dans la liste
+      invalid: n'est pas valide
+      less_than: doit être inférieur à %{count}
+      less_than_or_equal_to: doit être inférieur ou égal à %{count}
+      model_invalid: 'Validation échouée : %{errors}'
+      not_a_number: n'est pas un nombre
+      not_an_integer: n'est pas un entier
+      odd: doit être impair
+      other_than: doit être différent de %{count}
+      present: doit être vide
+      required: doit exister
+      taken: est déjà pris
+      too_long:
+        one: est trop long (maximum 1 caractère)
+        other: est trop long (maximum %{count} caractères)
+      too_short:
+        one: est trop court (minimum 1 caractère)
+        other: est trop court (minimum %{count} caractères)
+      wrong_length:
+        one: n'a pas la bonne longueur (doit être de 1 caractère)
+        other: n'a pas la bonne longueur (doit être de %{count} caractères)
+    template:
+      body: 'Vérifiez les champs suivants :'
+      header:
+        one: 'Impossible d’enregistrer ce %{model} : 1 erreur'
+        other: 'Impossible d’enregistrer ce %{model} : %{count} erreurs.'
+  helpers:
+    select:
+      prompt: Sélectionner...
+    submit:
+      create: Créer %{model}
+      submit: Envoyer %{model}
+      update: Mettre à jour %{model}
+  number:
+    currency:
+      format:
+        delimiter: " "
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
+    format:
+      delimiter: " "
+      precision: 2
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Milliards
+          million: Millions
+          quadrillion: Billiards
+          thousand: Mille
+          trillion: Billions
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Octet
+            other: Octets
+          eb: Eo
+          gb: Go
+          kb: Ko
+          mb: Mo
+          pb: Po
+          tb: To
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: " et "
+      two_words_connector: " et "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%a %d %b %Y, %H:%M:%S %z"
+      long: "%d %B %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm
