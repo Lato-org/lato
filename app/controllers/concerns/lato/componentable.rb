@@ -37,14 +37,25 @@ module Lato
         if collection.respond_to?(:lato_index_search)
           collection = collection.lato_index_search(search)
         else
-          query = @_lato_index[key][:searchable_columns].map do |key|
-            if collection.column_for_attribute(key).type == :string || collection.column_for_attribute(key).type == :text || collection.column_for_attribute(key).type == :integer
-              "LOWER(#{key}) LIKE :search"
+          query_parts = @_lato_index[key][:searchable_columns].map do |column_name|
+            # Sanitize column name per prevenire SQL injection
+            sanitized_column = connection.quote_column_name(column_name)
+            column_type = collection.column_for_attribute(column_name).type
+            
+            case column_type
+            when :string, :text
+              "LOWER(#{sanitized_column}) LIKE :search"
+            when :integer, :decimal, :float
+              "CAST(#{sanitized_column} AS TEXT) LIKE :search"
             else
-              "CAST(#{key} AS TEXT) LIKE :search"
+              "CAST(#{sanitized_column} AS TEXT) LIKE :search"
             end
           end
-          collection = collection.where(query.join(' OR '), search: "%#{search.downcase.strip}%")
+          
+          collection = collection.where(
+            query_parts.join(' OR '), 
+            search: "%#{search.downcase.strip}%"
+          )
         end
       end
 
