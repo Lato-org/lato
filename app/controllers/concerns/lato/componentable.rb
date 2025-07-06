@@ -39,7 +39,7 @@ module Lato
         else
           query_parts = @_lato_index[key][:searchable_columns].map do |column_name|
             # Sanitize column name per prevenire SQL injection
-            sanitized_column = connection.quote_column_name(column_name)
+            sanitized_column = collection.quote_column_name(column_name)
             column_type = collection.column_for_attribute(column_name).type
             
             case column_type
