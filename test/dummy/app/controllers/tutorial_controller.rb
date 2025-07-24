@@ -58,6 +58,14 @@ class TutorialController < ApplicationController
       searchable_columns: %i[code lato_user_id],
       key: 'products_searchable_columns'
     )
+    @products_skip_total_count_columns = lato_index_collection(
+      Product.all,
+      pagination: true,
+      columns: %i[code status lato_user_id],
+      sortable_columns: %i[code status lato_user_id],
+      searchable_columns: %i[code lato_user_id],
+      key: 'products_skip_total_count_columns'
+    )
   end
 
   def components_update_user_action
