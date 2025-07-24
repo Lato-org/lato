@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="e2X7n5ZHwlIjI6ntE-x_RYl3XPpYJCzslOmiKkX2ykFIOc7qmlh0HAS-_c2Re0bg9kGBvLI8HL2aSeL6qf9uHg">
+<meta name="csrf-token" content="_hPB2Acaomzd731wL1kQXrT0lZS2_QpE_Jd8Tgfp85X1grTUyF9Gb1fBXg4bnBEl2D5PEVUmnRmT48hV-np51A">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -470,7 +470,7 @@ user ||= @session.user
 
 <turbo-frame id="tutorial_form-example">
   <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="OC4DCifqhXHxqD4ZgpN6GUJix0yEoizLswO0n-7JR2ZKggw7lIw4E2CtB2D1pAK-La2SrQmRh4y-fQ7n8j0Zmg" autocomplete="off">
+<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="Zd7uWvrCEyyH6ftEgIu6FC024su0o2EYKo4ceRdmu_IyZ5mkX6Hp9Bh_bErbuE7BgN40C2TLfDnJGWcdQhECow" autocomplete="off">
     
     
 
@@ -759,7 +759,15 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 total results</span>
+                      <span class="text-muted">5 total results</span>
+                      <select name="default_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -878,7 +886,15 @@ Columns can be customized using the <code>:columns</code> parameter:
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 total results</span>
+                      <span class="text-muted">5 total results</span>
+                      <select name="default_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -999,7 +1015,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
               </tr>
               <tr>
@@ -1013,7 +1029,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
               </tr>
               <tr>
@@ -1027,7 +1043,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
               </tr>
               <tr>
@@ -1041,7 +1057,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
               </tr>
               <tr>
@@ -1055,7 +1071,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
               </tr>
           </tbody>
@@ -1065,7 +1081,15 @@ end
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 total results</span>
+                      <span class="text-muted">5 total results</span>
+                      <select name="default_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -1306,7 +1330,15 @@ end
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 total results</span>
+                      <span class="text-muted">5 total results</span>
+                      <select name="default_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -1533,7 +1565,15 @@ end
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 total results</span>
+                      <span class="text-muted">5 total results</span>
+                      <select name="default_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -1634,7 +1674,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1653,7 +1693,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1672,7 +1712,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1691,7 +1731,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1710,7 +1750,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 39 m
+                    15 h 56 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1725,7 +1765,15 @@ end
                 <div class="d-flex justify-content-between align-items-center">
                     <div></div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">5 total results</span>
+                      <span class="text-muted">5 total results</span>
+                      <select name="default_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -2493,7 +2541,15 @@ end
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 total results</span>
+                      <span class="text-muted">100 total results</span>
+                      <select name="products_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -2866,7 +2922,15 @@ end
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 total results</span>
+                      <span class="text-muted">100 total results</span>
+                      <select name="products_columns_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -3085,19 +3149,13 @@ end
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 total results</span>
+                      <span class="text-muted">100 total results</span>
                       <select name="products_pagination_options_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
-                          <option value="10">
-                            10 per page
+                          <option value="[10, 20, 50, 100]">
+                            [10, 20, 50, 100] per page
                           </option>
-                          <option value="20">
-                            20 per page
-                          </option>
-                          <option value="50">
-                            50 per page
-                          </option>
-                          <option value="100">
-                            100 per page
+                          <option value="false">
+                            false per page
                           </option>
                       </select>
                   </div>
@@ -3581,7 +3639,15 @@ end
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 total results</span>
+                      <span class="text-muted">100 total results</span>
+                      <select name="products_sortable_columns_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -4111,7 +4177,15 @@ end
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted">100 total results</span>
+                      <span class="text-muted">100 total results</span>
+                      <select name="products_searchable_columns_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="false">
+                            false per page
+                          </option>
+                      </select>
                   </div>
                 </div>
               </td>
@@ -4145,6 +4219,497 @@ end
 </pre>
 </div>
 
+<h4>Skip total count for large tables</h4>
+
+<p>
+For large tables, you can skip the total count to improve performance by setting the <code>:skip_total_count</code> option to <code>true</code> in the <code>lato_index</code> method.
+This is useful when you don't need the total count of records, such as when displaying a large collection.
+</p> 
+
+<pre>
+&lt;%= lato_index @products_searchable_columns, skip_total_count: true %&gt;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+
+<turbo-frame class="lato-index lato-index-desk" id="lato_index_products_searchable_columns_product">
+
+  <form data-controller="lato-form lato-index" data-turbo-frame="_self" action="/components" accept-charset="UTF-8" method="GET">
+    <input type="hidden" name="key" id="key" value="products_searchable_columns" autocomplete="off">
+      <input type="hidden" name="generate_docs" id="generate_docs" value="1" autocomplete="off">
+      <input type="hidden" name="controller" id="controller" value="tutorial" autocomplete="off">
+      <input type="hidden" name="action" id="action" value="components" autocomplete="off">
+
+      <div class="d-flex mb-3">
+          <div class="input-group">
+            <input type="text" name="products_searchable_columns_search" class="form-control" placeholder="Search for: Code and Lato user" value="" data-action="keyup-&gt;lato-index#onSearchKeyUp" aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        
+
+      </div>
+
+
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr class="align-middle">
+                <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-code">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span>Code</span>
+                      <div class="btn-group ms-3 lato-index-col-sort">
+                        <div class="position-relative btn btn-sm btn-outline-primary">
+                          <input type="submit" name="products_searchable_columns_sort_by" value="code|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                          <i class="bi bi-sort-up"></i>
+                        </div>
+
+                        <div class="position-relative btn btn-sm btn-outline-primary">
+                          <input type="submit" name="products_searchable_columns_sort_by" value="code|DESC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                          <i class="bi bi-sort-down"></i>
+                        </div>
+                      </div>
+                  </div>
+                </th>
+                <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-status">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span>Status</span>
+                      <div class="btn-group ms-3 lato-index-col-sort">
+                        <div class="position-relative btn btn-sm btn-outline-primary">
+                          <input type="submit" name="products_searchable_columns_sort_by" value="status|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                          <i class="bi bi-sort-up"></i>
+                        </div>
+
+                        <div class="position-relative btn btn-sm btn-outline-primary">
+                          <input type="submit" name="products_searchable_columns_sort_by" value="status|DESC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                          <i class="bi bi-sort-down"></i>
+                        </div>
+                      </div>
+                  </div>
+                </th>
+                <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-lato_user_id">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span>Lato user</span>
+                      <div class="btn-group ms-3 lato-index-col-sort">
+                        <div class="position-relative btn btn-sm btn-outline-primary">
+                          <input type="submit" name="products_searchable_columns_sort_by" value="lato_user_id|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                          <i class="bi bi-sort-up"></i>
+                        </div>
+
+                        <div class="position-relative btn btn-sm btn-outline-primary">
+                          <input type="submit" name="products_searchable_columns_sort_by" value="lato_user_id|DESC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
+                          <i class="bi bi-sort-down"></i>
+                        </div>
+                      </div>
+                  </div>
+                </th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S9325236E
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S7139673H
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-warning">Created</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S7490915I
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completed</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Franco Pippo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    T0364491F
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Franco Pippo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6895023F
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6912488G
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completed</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S8592863E
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6753571E
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completed</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Franco Pippo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    T0139094A
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-primary">In progress</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6837583E
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S7355585Z
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-warning">Created</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6249070E
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-warning">Created</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Franco Pippo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    T0698020H
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-primary">In progress</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S8096808F
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-primary">In progress</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S8433075B
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    T0167519I
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S7273832B
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Franco Pippo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    T0578210J
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completed</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S9287663B
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-warning">Created</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Franco Pippo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S8913885Z
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6223725B
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S9058609B
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-warning">Created</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S7544973I
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completed</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    T0793249E
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completed</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    T0616976C
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+              </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>  <nav class="pagination" role="navigation" aria-label="pager">
+    
+    
+        <span class="page current">
+  1
+</span>
+
+        <span class="page">
+  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>2</a>
+</span>
+
+        <span class="page">
+  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>3</a>
+</span>
+
+        <span class="page">
+  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>4</a>
+</span>
+
+      <span class="next">
+  <a rel="next" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Next ›</a>
+</span>
+
+      <span class="last">
+  <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Last »</a>
+</span>
+
+  </nav>
+</div>
+                  <div class="d-flex justify-content-end align-items-center">
+                      <select name="products_searchable_columns_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
+                          <option value="">
+                             per page
+                          </option>
+                          <option value="true">
+                            true per page
+                          </option>
+                      </select>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+</form>
+</turbo-frame>
+</div>
+
   </div>
 </div>
 
@@ -4155,7 +4720,7 @@ end
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.13.12 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.13.17 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

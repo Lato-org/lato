@@ -488,3 +488,18 @@ class Product < ApplicationRecord
 end
 </pre>
 </div>
+
+<h4>Skip total count for large tables</h4>
+
+<p>
+For large tables, you can skip the total count to improve performance by setting the <code>:skip_total_count</code> option to <code>true</code> in the <code>lato_index</code> method.
+This is useful when you don't need the total count of records, such as when displaying a large collection.
+</p> 
+
+<pre>
+&#60;%= lato_index @products_searchable_columns, skip_total_count: true %&#62;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_index @products_searchable_columns, key: 'products_searchable_columns', skip_total_count: true %>
+</div>

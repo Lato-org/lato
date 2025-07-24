@@ -1,7 +1,7 @@
 <%
 
 collection_test_istance = collection.model.new
-collection_total = collection.respond_to?(:total_count) ? collection.total_count : collection.count
+collection_total = skip_total_count ? nil : (collection.respond_to?(:total_count) ? collection.total_count : collection.count)
 
 %>
 
@@ -92,7 +92,9 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
       </ul>
 
       <div class="d-flex flex-column align-items-center">
-        <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
+        <% if collection_total %>
+          <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
+        <% end %>
         <% if collection.respond_to?(:total_pages) %>
           <div class="mt-3"><%= paginate collection, param_name: "#{key}_page" %></div>
         <% end %>
@@ -157,7 +159,9 @@ collection_total = collection.respond_to?(:total_count) ? collection.total_count
                     <div></div>
                   <% end %>
                   <div class="d-flex justify-content-end align-items-center">
-                    <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
+                    <% if collection_total %>
+                      <span class="text-muted"><%= collection_total %> <%= I18n.t('lato.total_results').downcase %></span>
+                    <% end %>
                     <% if pagination_options %>
                       <select name="<%= "#{key}_per_page" %>" class="ms-3 form-select form-select-sm w-auto" data-action="change->lato-form#submit" aria-label="<%= I18n.t('lato.per_page_description') %>">
                         <% pagination_options.each do |option| %>
