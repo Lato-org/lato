@@ -52,7 +52,7 @@ module Lato
       searchable_columns = @_lato_index[key][:searchable_columns] || []
       model_name = options[:model_name] || collection.model.name
       model_name_underscore = options[:model_name] || model_name.underscore.gsub('/', '_')
-      pagination_options = options[:pagination_options] || nil,
+      pagination_options = options[:pagination_options] || nil
       skip_total_count = options[:skip_total_count] || false
 
       render(

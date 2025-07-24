@@ -9,6 +9,7 @@ require "lato/engine"
 require "lato/config"
 require "lato/btstrap"
 require "lato/dependency_helper"
+require "lato/kaminari_extensions"
 
 module Lato
   class << self
