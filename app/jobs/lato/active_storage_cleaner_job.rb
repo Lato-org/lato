@@ -4,7 +4,9 @@ module Lato
       update_operation_percentage(0)
 
       # delete all active storage blobs that are not attached to any record with more than 12 hours of life
-      query = ActiveStorage::Blob.where('active_storage_blobs.created_at < ?', 12.hours.ago)
+      query = ActiveStorage::Blob.joins("LEFT JOIN active_storage_attachments ON active_storage_attachments.blob_id = active_storage_blobs.id")
+                                 .where("active_storage_attachments.blob_id IS NULL")
+                                 .where("active_storage_blobs.created_at < ?", 12.hours.ago)
       totals = query.count
       runned = 0
       query.find_in_batches do |blobs|
