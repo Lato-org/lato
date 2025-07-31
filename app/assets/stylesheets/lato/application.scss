@@ -50,7 +50,7 @@ main {
   &.layout_sidebar {
     width: calc(100% - 280px);
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
       width: 100%;
     }
   }
@@ -86,7 +86,7 @@ main, aside {
   border-radius: 50%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   aside {
     position: fixed;
     bottom: 0;
