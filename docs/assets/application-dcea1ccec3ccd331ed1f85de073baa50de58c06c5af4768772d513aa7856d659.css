@@ -14943,7 +14943,7 @@ main.layout_sidebar {
   width: calc(100% - 280px);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   /* line 50, ../../app/assets/stylesheets/lato/application.scss */
   main.layout_sidebar {
     width: 100%;
@@ -14983,7 +14983,7 @@ main, aside {
   border-radius: 50%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   /* line 90, ../../app/assets/stylesheets/lato/application.scss */
   aside {
     position: fixed;

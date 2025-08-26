@@ -10,6 +10,8 @@ user ||= Lato::User.new
     
     <%= render 'lato/authentication/fields-registration', form: form %>
 
+    <%= render 'lato/authentication/hcaptcha' %>
+
     <div class="d-flex justify-content-end">
       <%= lato_form_submit form, I18n.t('lato.signup') %>
     </div>

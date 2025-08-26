@@ -82,6 +82,7 @@ module Lato
 
     def signup_action
       @user = Lato::User.new(registration_params)
+      return unless verify_hcaptcha(:signup)
 
       respond_to do |format|
         if @user.signup(ip_address: request.remote_ip, user_agent: request.user_agent)
@@ -264,6 +265,44 @@ module Lato
       return if Lato.config.authenticator_connection && !Lato.config.auth_disable_authenticator
 
       respond_to_with_not_found
+    end
+
+    def verify_hcaptcha(render_key)
+      return true unless Lato.config.hcaptcha_site_key && Lato.config.hcaptcha_secret
+
+      # Per compatibilità con i vari endpoint, istanzia @user se non esiste
+      @user ||= Lato::User.new
+
+      hcaptcha_response = params["h-captcha-response"]
+      if hcaptcha_response.blank?
+        @user.errors.add(:base, "hCaptcha response is missing")
+        respond_to do |format|
+          format.html { render render_key, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+        return false
+      end
+
+      require 'net/http'
+      require 'uri'
+      require 'json'
+      uri = URI.parse("https://hcaptcha.com/siteverify")
+      response = Net::HTTP.post_form(uri, {
+        "secret" => Lato.config.hcaptcha_secret,
+        "response" => hcaptcha_response,
+        "remoteip" => request.remote_ip
+      })
+      result = JSON.parse(response.body)
+      unless result["success"]
+        @user.errors.add(:base, "hCaptcha verification failed")
+        respond_to do |format|
+          format.html { render render_key, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+        return false
+      end
+
+      true
     end
   end
 end

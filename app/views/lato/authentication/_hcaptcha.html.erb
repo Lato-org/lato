@@ -1,0 +1,5 @@
+<% if Lato.config.hcaptcha_site_key && Lato.config.hcaptcha_secret %>
+  <div class="mb-3 d-flex justify-content-center">
+  <div class="h-captcha" data-controller="lato-hcaptcha" data-sitekey="<%= Lato.config.hcaptcha_site_key %>"></div>
+  </div>
+<% end %>

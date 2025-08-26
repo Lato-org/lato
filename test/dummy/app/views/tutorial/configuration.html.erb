@@ -41,6 +41,20 @@ Lato.configure do |config|
 end
 </pre>
 
+<h2>HCaptcha Configuration</h2>
+
+<p>
+  <a href="https://hcaptcha.com">HCaptcha</a> is a service that helps protect websites from spam and abuse by using advanced risk analysis techniques.
+  By integrating HCaptcha into your application, you can add an extra layer of security to authentication forms.
+</p>
+
+<pre>
+Lato.configure do |config|
+  config.hcaptcha_site_key = 'your-hcaptcha-site-key'
+  config.hcaptcha_secret = 'your-hcaptcha-secret'
+end
+</pre>
+
 <h2>Assets Configuration</h2>
 
 <pre>

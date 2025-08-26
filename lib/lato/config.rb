@@ -12,6 +12,9 @@ module Lato
     # Authentication configs
     attr_accessor :auth_disable_signup, :auth_disable_recover_password, :auth_disable_web3, :auth_disable_authenticator
 
+    # Hcaptcha configs
+    attr_accessor :hcaptcha_site_key, :hcaptcha_secret
+
     # Assets configs
     attr_accessor :assets_stylesheet_entry
     attr_accessor :assets_importmap_entry
@@ -40,6 +43,9 @@ module Lato
       @auth_disable_recover_password = false
       @auth_disable_web3 = false
       @auth_disable_authenticator = false
+      
+      @hcaptcha_site_key = nil
+      @hcaptcha_secret = nil
 
       @assets_stylesheet_entry = 'application'
       @assets_importmap_entry = 'application'
