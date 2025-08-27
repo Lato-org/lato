@@ -293,7 +293,6 @@ module Lato
         "remoteip" => request.remote_ip
       })
       result = JSON.parse(response.body)
-      Rails.logger.info("[hCaptcha] Verification remoteip: #{request.remote_ip}")
       Rails.logger.info("[hCaptcha] Verification result: #{result}")
       unless result["success"]
         @user.errors.add(:base, "hCaptcha verification failed")
