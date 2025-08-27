@@ -41,7 +41,7 @@ module Lato
     # This method is used to get the real ip of the user when the application is behind a proxy.
     # For example if the application is behind a nginx proxy the request.remote_ip will be the ip of the proxy and not the ip of the user.
     def override_request_remote_ip
-      request.remote_ip = request.headers['X-Forwarded-For'] if request.headers['X-Forwarded-For']
+      request.remote_ip = request.headers['X-Forwarded-For'].split(',').first if request.headers['X-Forwarded-For']
     end
 
     # This method set the default locale for the application.
