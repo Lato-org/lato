@@ -21,11 +21,11 @@ module Lato
     # Sidebar
     ##
 
-    def lato_sidebar_nav_item(key, path, &block)
+    def lato_sidebar_nav_item(key, path, external: false, &block)
       active = request.path == path
       active = @sidebar_key == key if @sidebar_key
 
-      render 'lato/components/sidebar_nav_item', active: active, path: path do
+      render 'lato/components/sidebar_nav_item', active: active, path: path, external: external do
         yield if block
       end
     end

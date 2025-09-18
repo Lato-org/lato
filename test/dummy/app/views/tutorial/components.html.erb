@@ -51,6 +51,11 @@ Parameters:<br>
 - <i>&block</i>: block of HTML to render inside the menu item.
 </p>
 
+<p>
+There are also some extra parameters to customize the menu item:<br>
+- <i>external</i> (default: false): if true, an icon is added to indicate that the link opens in a new tab and a <code>target="_blank"</code> attribute is added to the link.
+</p>
+
 <pre>
 &#60;%= lato_sidebar_nav_item :account, lato.account_path do %&#62;
   Account

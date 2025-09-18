@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="JQr5OVV9mU8gqMaUKV5X4ArB_LBmNo6pmVDPFnyVB74wtE4UagsXlSw6uEs-uOrszyaljFAQ24ggEO36yiB4FA">
+<meta name="csrf-token" content="4CwpUMkwi23S4L1wOcUUZRbm4B2-YfHfisCM5kw_JhJ9TlFQwF-u_MTp9KzHVHgK81cpCPcDJCRwUjzsChl35g">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -133,74 +133,104 @@ document.addEventListener('turbo:load', () => {
       <aside>
         <div class="d-flex flex-column h-100 overflow-y-auto p-3 bg-light border-end">
   <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item border-bottom py-2">
-  <a class="nav-link link-dark" href="index.html">
+    
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link position-relative link-dark" href="index.html">
     
   <i class="bi bi-house me-2"></i> Homepage
 
+
 </a>
 </li>
+
 <li class="nav-item border-bottom py-2">
-  <a class="nav-link link-dark" href="tutorial.html">
+  <a class="nav-link position-relative link-dark" href="tutorial.html">
     
   <i class="bi bi-info-circle me-2"></i> Tutorial
 
+
 </a>
 </li>
+
 <li class="nav-item border-bottom py-2">
-  <a class="nav-link link-dark" href="configuration.html">
+  <a class="nav-link position-relative link-dark" href="configuration.html">
     
   <i class="bi bi-gear me-2"></i> Configuration
 
+
 </a>
 </li>
+
 <li class="nav-item border-bottom py-2">
-  <a class="nav-link link-dark" href="customization.html">
+  <a class="nav-link position-relative link-dark" href="customization.html">
     
   <i class="bi bi-brightness-high me-2"></i> Customization
 
+
 </a>
 </li>
+
 <li class="nav-item border-bottom py-2">
-  <a class="nav-link active" href="components.html">
+  <a class="nav-link position-relative active" href="components.html">
     
   <i class="bi bi-columns me-2"></i> Components
 
+
 </a>
 </li>
+
 <li class="nav-item border-bottom py-2">
-  <a class="nav-link link-dark" href="operations.html">
+  <a class="nav-link position-relative link-dark" href="operations.html">
     
   <i class="bi bi-pc-display-horizontal me-2"></i> Operations
 
+
 </a>
 </li>
+
 <li class="nav-item border-bottom py-2">
-  <a class="nav-link link-dark" href="actions.html">
+  <a class="nav-link position-relative link-dark" href="actions.html">
     
   <i class="bi bi-layout-three-columns me-2"></i> Actions
 
+
 </a>
 </li>
+
 <li class="nav-item border-bottom py-2">
-  <a class="nav-link link-dark" href="invitations.html">
+  <a class="nav-link position-relative link-dark" href="invitations.html">
     
   <i class="bi bi-envelope-heart me-2"></i> Invitations
 
+
 </a>
 </li>
+
 <li class="nav-item border-bottom py-2">
-  <a class="nav-link link-dark" href="guide.html">
+  <a class="nav-link position-relative link-dark" href="guide.html">
     
   <i class="bi bi-book me-2"></i> Guide
 
+
 </a>
 </li>
+
 <li class="nav-item border-bottom py-2">
-  <a class="nav-link link-dark" href="products.html">
+  <a class="nav-link position-relative link-dark" href="products.html">
     
   <i class="bi bi-list me-2"></i> CRUD Example
 
+
+</a>
+</li>
+
+<li class="nav-item border-bottom py-2">
+  <a class="nav-link position-relative link-dark" target="_blank" href="https://github.com/Lato-org/lato">
+    
+  <i class="bi bi-github me-2"></i> GitHub
+
+
+      <i class="bi bi-arrow-up-right position-absolute end-0 top-50 translate-middle-y me-2" style="font-size: 0.75rem"></i>
 </a>
 </li>
   </ul>
@@ -264,6 +294,11 @@ Parameters:<br>
 - <i>key</i>: the menu item's key. Used to activate the item via the <code>active_sidebar</code> function from the <code>Lato::Layoutable</code> concern.<br>
 - <i>path</i>: a path or absolute URL to redirect the user.<br>
 - <i>&amp;block</i>: block of HTML to render inside the menu item.
+</p>
+
+<p>
+There are also some extra parameters to customize the menu item:<br>
+- <i>external</i> (default: false): if true, an icon is added to indicate that the link opens in a new tab and a <code>target="_blank"</code> attribute is added to the link.
 </p>
 
 <pre>
@@ -472,7 +507,7 @@ user ||= @session.user
 
 <turbo-frame id="tutorial_form-example">
   <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="wXio_7CaIA0tn6qTzaTHHjA3UDuRVoE64B6KbTxnXWtmRd7eO5prkHd5sWPH7wJcfU-FEwg4-rCE74k0G7E9DA" autocomplete="off">
+<input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="KIySK6sD19AeEDq0ri5_a0J_cuoM7Oz3m515hHsOjtr1y-OJ-w8QTrwZPUQbwUMyYOxgl4gZStmbqAVaplViYA" autocomplete="off">
     
     
 
@@ -1001,7 +1036,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
               </tr>
               <tr>
@@ -1015,7 +1050,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
               </tr>
               <tr>
@@ -1029,7 +1064,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
               </tr>
               <tr>
@@ -1043,7 +1078,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
               </tr>
               <tr>
@@ -1057,7 +1092,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
               </tr>
           </tbody>
@@ -1636,7 +1671,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1655,7 +1690,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1674,7 +1709,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1693,7 +1728,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1712,7 +1747,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    16 h 08 m
+                    13 h 25 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -4646,7 +4681,7 @@ This is useful when you don't need the total count of records, such as when disp
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.14.0 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.14.4 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

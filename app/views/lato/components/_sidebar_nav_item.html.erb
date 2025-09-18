@@ -1,5 +1,18 @@
+<%
+
+link_to_options = {
+  class: ['nav-link position-relative', (active ? 'active' : 'link-dark')].join(' '),
+}
+link_to_options[:target] = '_blank' if external
+
+%>
+
 <li class="nav-item border-bottom py-2">
-  <%= link_to path, class: ['nav-link', (active ? 'active' : 'link-dark')] do %>
+  <%= link_to path, link_to_options do %>
     <%= yield %>
+
+    <% if external %>
+      <i class="bi bi-arrow-up-right position-absolute end-0 top-50 translate-middle-y me-2" style="font-size: 0.75rem"></i>
+    <% end %>
   <% end %>
 </li>
