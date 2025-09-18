@@ -61,6 +61,11 @@ aside {
   max-height: 100vh;
   position: sticky;
   top: 0;
+
+  .dropdown-toggle::after {
+    position: absolute;
+    right: 0.5rem;
+  }
 }
 
 main, aside {

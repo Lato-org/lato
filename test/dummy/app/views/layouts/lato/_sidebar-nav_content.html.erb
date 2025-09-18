@@ -34,8 +34,11 @@
   <i class="bi bi-book me-2"></i> Guide
 <% end %>
 
-<%= lato_sidebar_nav_item :products, main_app.products_path do %>
-  <i class="bi bi-list me-2"></i> CRUD Example
+<%= lato_sidebar_nav_item :examples, '#', children: [
+  { key: :products, label: 'CRUD Example', path: main_app.products_path },
+  { key: :other, label: 'Other Examples soon..', path: '#' },
+] do %>
+  <i class="bi bi-list me-2"></i> Examples
 <% end %>
 
 <%= lato_sidebar_nav_item :github, 'https://github.com/Lato-org/lato', external: true do %>

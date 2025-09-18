@@ -1,18 +1,51 @@
 <%
 
-link_to_options = {
-  class: ['nav-link position-relative', (active ? 'active' : 'link-dark')].join(' '),
-}
-link_to_options[:target] = '_blank' if external
+# Controlla se ci sono children da visualizzare
+has_children = children&.any?
+
+# Se non ci sono children, comportamento normale
+unless has_children
+  link_to_options = {
+    class: ['nav-link position-relative', (active ? 'active' : 'link-dark')].join(' '),
+  }
+  link_to_options[:target] = '_blank' if external
+end
 
 %>
 
-<li class="nav-item border-bottom py-2">
-  <%= link_to path, link_to_options do %>
-    <%= yield %>
+<% if has_children %>
+  <!-- Menu con dropdown per children -->
+  <li class="nav-item border-bottom py-2">
+    <div class="nav-link position-relative dropdown">
+      <a href="#" class="link-dark text-decoration-none dropdown-toggle d-flex align-items-center" 
+         data-bs-toggle="collapse" 
+         data-bs-target="#sidebar-nav-item-dropdown-<%= key || 'item' %>" 
+         aria-expanded="<%= active ? 'true' : 'false' %>">
+        <%= yield %>
+      </a>
+      
+      <div class="collapse <%= 'show' if active %>" id="sidebar-nav-item-dropdown-<%= key || 'item' %>">
+        <ul class="list-unstyled mt-2 border-start border-1 ps-2">
+          <% children.each do |child| %>
+            <li class="py-1">
+              <%= link_to child[:path], class: ['nav-link py-1', (active == child[:key] ? 'active' : 'link-dark')].join(' ') do %>
+                <%= child[:label] %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </li>
+<% else %>
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <%= link_to path, link_to_options do %>
+      <%= yield %>
 
-    <% if external %>
-      <i class="bi bi-arrow-up-right position-absolute end-0 top-50 translate-middle-y me-2" style="font-size: 0.75rem"></i>
+      <% if external %>
+        <i class="bi bi-arrow-up-right position-absolute end-0 top-50 translate-middle-y me-2" style="font-size: 0.75rem"></i>
+      <% end %>
     <% end %>
-  <% end %>
-</li>
+  </li>
+<% end %>

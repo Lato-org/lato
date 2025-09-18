@@ -51,6 +51,12 @@ document.addEventListener('turbo:before-cache', (e) => {
   document.body.style.paddingRight = ''
   document.body.style.overflow = ''
 
+  // close sidebar submenus
+  document.querySelectorAll('aside .nav-item .collapse.show').forEach((el) => {
+    if (el.querySelector('.nav-link.active')) return // keep open if contains active link
+    el.classList.remove('show')
+  })
+
   // close nav menu (for mobile)
   document.querySelector('.navbar-toggler').classList.add('collapsed')
   document.querySelector('.navbar-collapse').classList.remove('show')

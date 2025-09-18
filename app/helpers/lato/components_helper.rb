@@ -21,11 +21,21 @@ module Lato
     # Sidebar
     ##
 
-    def lato_sidebar_nav_item(key, path, external: false, &block)
+    def lato_sidebar_nav_item(key, path, external: false, children: nil, &block)
       active = request.path == path
       active = @sidebar_key == key if @sidebar_key
+      
+      # se ci sono children, verifico se uno di questi è attivo e assegno a active la key del child attivo
+      if children && children.is_a?(Array)
+        children.each do |child|
+          if request.path == child[:path] || (@sidebar_key && @sidebar_key == (child[:key] || key))
+            active = child[:key] || key
+            break
+          end
+        end
+      end
 
-      render 'lato/components/sidebar_nav_item', active: active, path: path, external: external do
+      render 'lato/components/sidebar_nav_item', key: key, active: active, path: path, external: external, children: children do
         yield if block
       end
     end

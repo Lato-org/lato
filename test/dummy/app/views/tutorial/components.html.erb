@@ -53,12 +53,24 @@ Parameters:<br>
 
 <p>
 There are also some extra parameters to customize the menu item:<br>
-- <i>external</i> (default: false): if true, an icon is added to indicate that the link opens in a new tab and a <code>target="_blank"</code> attribute is added to the link.
+- <i>external</i> (default: false): if true, an icon is added to indicate that the link opens in a new tab and a <code>target="_blank"</code> attribute is added to the link.<br>
+- <i>children</i> (default: nil): an array of hashes representing submenu items. Each hash should contain the keys <code>:key</code>, <code>:label</code>, and <code>:path</code>. If this parameter is provided, the menu item will have a collapsible submenu.
 </p>
 
 <pre>
 &#60;%= lato_sidebar_nav_item :account, lato.account_path do %&#62;
   Account
+&#60;% end %&#62;
+
+&#60;%= lato_sidebar_nav_item :github, 'https://github.com/Lato-org/lato', external: true do %&#62;
+  <i class="bi bi-github me-2"></i> GitHub
+&#60;% end %&#62;
+
+&#60;%= lato_sidebar_nav_item :examples, '#', children: [
+  { key: :products, label: 'CRUD Example', path: main_app.products_path },
+  { key: :other, label: 'Other Examples soon..', path: '#' },
+] do %&#62;
+  Examples
 &#60;% end %&#62;
 </pre>
 
