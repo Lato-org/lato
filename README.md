@@ -19,9 +19,9 @@ The gem is ready to be used with the **latest Rails 7+** features like **[ESM im
 
 ## Full documentation
 
-The full documentation is available at: 👉 👉 [THIS LINK](https://lato-oss.gregoriogalante.com) 👈 👈
+The full documentation is available here: 👉 👉 [DOCUMENTATION](https://lato-oss.gregoriogalante.com) 👈 👈
 
-The `llm.txt` file with all the context to use with LLMs is available at: 👉 [THIS LINK](https://github.com/Lato-org/lato/raw/refs/heads/main/docs/llm.txt) 👈
+The `llm.txt` file with all the context to use with LLMs is available here: 👉 [LLM CONTEXT](https://github.com/Lato-org/lato/raw/refs/heads/main/docs/llm.txt) 👈
 
 You can also use the [Lato AI Agent](https://lato-oss.gregoriogalante.com/AI.html) directly on your browser to generate code and get helps with the gem.
 
