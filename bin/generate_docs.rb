@@ -31,6 +31,8 @@ PAGES = [
   { path: '/invitations?generate_docs=1', name: 'invitations.html', auth: true },
   # guide
   { path: '/guide?generate_docs=1', name: 'guide.html', auth: true },
+  # crud
+  { path: '/crud?generate_docs=1', name: 'crud.html', auth: true },
   # products
   { path: '/products?generate_docs=1', name: 'products.html', auth: true },
 ]

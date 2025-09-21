@@ -1,0 +1,61 @@
+<%= lato_page_head 'CRUD', [
+  { label: 'Tutorial', path: tutorial_path },
+  { label: 'CRUD' }
+] %>
+
+<%
+
+def source_code(file_app_path)
+  File.read(Rails.root.join('app', file_app_path))
+end
+
+%>
+
+<p>
+This section illustrates how to build a full CRUD interface using Lato features.
+</p>
+
+<h2>Model</h2>
+
+<pre>
+<%= source_code('models/product.rb') %>
+</pre>
+
+<h2>Controller</h2>
+
+<pre>
+<%= source_code('controllers/products_controller.rb') %>
+</pre>
+
+<h2>Views</h2>
+
+<h3>Index</h3>
+
+<pre>
+<%= source_code('views/products/index.html.erb') %>
+</pre>
+
+<h3>Create</h3>
+
+<pre>
+<%= source_code('views/products/create.html.erb') %>
+</pre>
+
+<h3>Update</h3>
+
+<pre>
+<%= source_code('views/products/update.html.erb') %>
+</pre>
+
+<h3>Partial Form</h3>
+
+<pre>
+<%= source_code('views/products/_form.html.erb') %>
+</pre>
+
+<h2>Helpers</h2>
+
+<pre>
+<%= source_code('helpers/products_helper.rb') %>
+</pre>
+

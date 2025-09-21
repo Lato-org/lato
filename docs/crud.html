@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="4gbLW8cu8i_QePRdgI5Kg7wYZvgObBu-jVqH1XWDkxij3C3SWuHB9I7LR-JZzuU_iHF8m1Ned8qq8njuGwRuVw">
+<meta name="csrf-token" content="FU-n7hlWwPO9ECM6QEsKiWaBfoivunfThOee-XyLkD1UlUFnhJnzKOOjkIWZC6U1Uuhk6_KIG6ejT2HCEgxtcg">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -92,7 +92,7 @@ document.addEventListener('turbo:load', () => {
 <link rel="modulepreload" href="/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js">
 <script type="module">import "application"</script>
 </head>
-<body class="controller-tutorial action-actions " data-controller="lato-action lato-guide">
+<body class="controller-tutorial action-crud " data-controller="lato-action lato-guide">
   <header>
     <nav id="nav" class="navbar navbar-dark navbar-expand-lg fixed-top bg-primary shadow-sm px-md-3">
   <div class="container-fluid">
@@ -196,7 +196,7 @@ document.addEventListener('turbo:load', () => {
 
   <!-- Menu normale senza children -->
   <li class="nav-item border-bottom py-2">
-    <a class="nav-link position-relative active" href="actions.html">
+    <a class="nav-link position-relative link-dark" href="actions.html">
       
   <i class="bi bi-layout-three-columns me-2"></i> Actions
 
@@ -227,16 +227,16 @@ document.addEventListener('turbo:load', () => {
   <!-- Menu con dropdown per children -->
   <li class="nav-item border-bottom py-2">
     <div class="nav-link position-relative dropdown">
-      <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' class="link-dark text-decoration-none dropdown-toggle d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#sidebar-nav-item-dropdown-crud" aria-expanded="false">
+      <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' class="link-dark text-decoration-none dropdown-toggle d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#sidebar-nav-item-dropdown-crud" aria-expanded="true">
         
   <i class="bi bi-list me-2"></i> CRUD
 
       </a>
       
-      <div class="collapse " id="sidebar-nav-item-dropdown-crud">
+      <div class="collapse show" id="sidebar-nav-item-dropdown-crud">
         <ul class="list-unstyled mt-2 border-start border-1 ps-2">
             <li class="py-1">
-              <a class="nav-link py-1 link-dark" href="crud.html">
+              <a class="nav-link py-1 active" href="crud.html">
                 How to built
 </a>            </li>
             <li class="py-1">
@@ -272,73 +272,339 @@ document.addEventListener('turbo:load', () => {
           <a href="tutorial.html">Tutorial</a>
         </li>
         <li class="breadcrumb-item">
-          <span>Actions</span>
+          <span>CRUD</span>
         </li>
     </ol>
 
-  <h1>Actions</h1>
+  <h1>CRUD</h1>
 
   
 </div>
 
-<p>
-Actions allow you to display information and functional elements in-page without requiring a full page reload by the user.<br>
-They are managed via the Stimulus JS controller <code>lato_action_controller</code>.
-</p>
 
 <p>
-To trigger an action, simply add the attribute <code>data-lato-action-target="trigger"</code> to a link in the DOM and define the ID of the turbo-frame to load using the <code>data-turbo-frame="frame_id"</code> attribute.
+This section illustrates how to build a full CRUD interface using Lato features.
 </p>
 
-<p>
-<a data-lato-action-target="trigger" data-turbo-frame="lato_index_default_product" class="llm-ignore" href="products.html">Example</a>
-</p>
+<h2>Model</h2>
 
 <pre>
-&lt;%= link_to 'Example',
-  main_app.products_path,
-  data: {
-    lato_action_target: 'trigger',
-    turbo_frame: 'lato_index_default_product'
-  }
-%&gt;
+class Product &lt; ApplicationRecord
+  enum :status, {
+    created: 0,
+    in_progress: 1,
+    completed: 2,
+    cancelled: 3
+  }, suffix: true
+
+  attr_reader :actions
+
+  # Relations
+  ##
+
+  belongs_to :lato_user, class_name: 'Lato::User'
+  belongs_to :product_parent, class_name: 'Product', optional: true
+  has_many :product_children, class_name: 'Product', foreign_key: :product_parent_id
+
+  # Scopes
+  ##
+
+  scope :lato_index_order, -&gt;(column, order) do
+    return joins(:lato_user).order("lato_users.last_name #{order}, lato_users.first_name #{order}") if column == :lato_user_id
+
+    order("#{column} #{order}")
+  end
+
+  scope :lato_index_search, -&gt;(search) do
+    joins(:lato_user).where("lower(code) LIKE :search OR lower(lato_users.first_name) LIKE :search OR lower(lato_users.last_name) LIKE :search", search: "%#{search.downcase.strip}%")
+  end
+
+  # Hooks
+  ##
+
+  before_create do
+    self.status ||= :created
+  end
+
+  # Helpers
+  ##
+
+  def lifetime
+    Time.now - created_at
+  end
+
+  def status_color
+    return 'warning' if created_status?
+    return 'primary' if in_progress_status?
+    return 'success' if completed_status?
+    return 'danger' if cancelled_status?
+
+    'secondary'
+  end
+end
+
 </pre>
 
-<h3>Customizing the Overlay</h3>
-
-<h4>Set a Custom Title</h4>
-
-<p>
-<a data-lato-action-target="trigger" data-turbo-frame="lato_index_default_product" data-action-title="Custom Title" class="llm-ignore" href="products.html">Example</a>
-</p>
+<h2>Controller</h2>
 
 <pre>
-&lt;%= link_to 'Example',
-  main_app.products_path,
-  data: {
-    lato_action_target: 'trigger',
-    turbo_frame: 'lato_index_default_product',
-    action_title: 'Custom Title'
-  }
-%&gt;
+class ProductsController &lt; ApplicationController
+  before_action :authenticate_session
+  before_action { active_sidebar(:products) }
+
+  def index
+    columns = %i[id code status product_parent_id lato_user_id custom_dynamic_column created_at actions]
+    sortable_columns = %i[id code status lato_user_id]
+    searchable_columns = %i[id code lato_user_id]
+
+    @products = lato_index_collection(
+      Product.all.includes(:lato_user),
+      columns: columns,
+      sortable_columns: sortable_columns,
+      searchable_columns: searchable_columns,
+      default_sort_by: 'code|ASC',
+      pagination: 10,
+    )
+  end
+
+  # NOTE: This endpoint is used for inputs with autocomplete feature to select a product using search.
+  def index_autocomplete
+    unless params[:value].blank?
+      @product = Product.find_by(id: params[:value])
+      return render json: @product ? { label: @product.code, value: @product.id } : nil
+    end
+
+    @products = Product.where('code LIKE ?', "#{params[:q]}%").limit(10)
+    render json: @products.map { |product| { label: product.code, value: product.id } }
+  end
+
+  def create
+    @product = Product.new
+  end
+
+  def create_action
+    @product = Product.new(product_params.merge(lato_user_id: @session.user_id))
+
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to main_app.products_path, notice: 'Product created successfully' }
+        format.json { render json: @product }
+      else
+        format.html { render :create, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    @product = Product.find(params[:id])
+  end
+
+  def update_action
+    @product = Product.find(params[:id])
+
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to main_app.products_path, notice: 'Product updated successfully' }
+        format.json { render json: @product }
+      else
+        format.html { render :update, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def export_action
+    @operation = Lato::Operation.generate('ExportProductsJob', {}, @session.user_id)
+
+    respond_to do |format|
+      if @operation.start
+        format.html { redirect_to lato.operation_path(@operation) }
+        format.json { render json: @operation }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @operation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:code, :product_parent_id)
+  end
+end
+
 </pre>
 
-<h4>Set a Custom Size</h4>
+<h2>Views</h2>
 
-<p>
-<a data-lato-action-target="trigger" data-turbo-frame="lato_index_default_product" data-action-size="xl" class="llm-ignore" href="products.html">Example</a>
-</p>
+<h3>Index</h3>
 
 <pre>
-&lt;%= link_to 'Example',
-  main_app.products_path,
-  data: {
-    lato_action_target: 'trigger',
-    turbo_frame: 'lato_index_default_product',
-    action_size: 'xl'
-  }
+&lt;%= lato_page_head 'Products', [
+  { label: 'Products' }
+] %&gt;
+
+&lt;%= lato_index @products,
+  custom_actions: {
+    create: {
+      path: products_create_path,
+      icon: 'bi bi-plus',
+      title: 'Create product',
+      data: {
+        controller: 'lato-tooltip',
+        lato_action_target: 'trigger',
+        turbo_frame: dom_id(Product.new, 'form'),
+        action_title: 'Create product'
+      }
+    },
+    export: {
+      path: products_export_action_path,
+      icon: 'bi bi-download',
+      title: 'Export products',
+      data: {
+        controller: 'lato-tooltip',
+        lato_action_target: 'trigger',
+        turbo_method: :post,
+        turbo_frame: 'lato_operation'
+      }
+    },
+  },
+  dropdown_actions: {
+    icon: 'bi bi-three-dots',
+    title: 'More actions',
+    data: {
+      controller: 'lato-tooltip',
+    },
+    actions: [
+      {
+        path: '#',
+        icon: 'bi bi-trash',
+        title: 'Example 1',
+        data: {
+          custom: 'value',
+        }
+      },
+      {
+        path: '#',
+        icon: 'bi bi-download',
+        title: 'Example 2',
+        data: {
+          custom: 'value',
+        }
+      }
+    ]
+  },
+  pagination_options: [10,20,50,100]
 %&gt;
+
 </pre>
+
+<h3>Create</h3>
+
+<pre>
+&lt;%= lato_page_head 'New product', [
+  { label: 'Products', path: products_path },
+  { label: 'New product' }
+] %&gt;
+
+&lt;div class="card mb-4"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h2 class="fs-4 mb-0"&gt;New product registration&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;%= render 'products/form', product: @product %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<h3>Update</h3>
+
+<pre>
+&lt;%= lato_page_head 'Edit product', [
+  { label: 'Products', path: products_path },
+  { label: 'Edit product' }
+] %&gt;
+
+&lt;div class="card mb-4"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h2 class="fs-4 mb-0"&gt;Edit product&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;%= render 'products/form', product: @product %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<h3>Partial Form</h3>
+
+<pre>
+&lt;%
+
+product ||= Product.new
+
+%&gt;
+
+&lt;%= turbo_frame_tag dom_id(product, 'form') do %&gt;
+  &lt;%= form_with model: product, url: product.persisted? ? products_update_action_path(product) : products_create_action_path, data: { turbo_frame: '_self', controller: 'lato-form' } do |form| %&gt;
+    &lt;%= lato_form_notices class: %w[mb-3] %&gt;
+    &lt;%= lato_form_errors product, class: %w[mb-3] %&gt;
+
+    &lt;div class="mb-3"&gt;
+      &lt;%= lato_form_item_label form, :code %&gt;
+      &lt;%= lato_form_item_input_text form, :code, required: true, data: { controller: 'lato-input-autocomplete', lato_input_autocomplete_path_value: products_autocomplete_path } %&gt;
+    &lt;/div&gt;
+
+    &lt;div class="mb-3"&gt;
+      &lt;%= lato_form_item_label form, :product_parent_id %&gt;
+      &lt;%= lato_form_item_input_text form, :product_parent_id, required: true, data: { controller: 'lato-input-autocomplete2', lato_input_autocomplete2_path_value: products_autocomplete_path } %&gt;
+    &lt;/div&gt;
+
+    &lt;div class="d-flex justify-content-end"&gt;
+      &lt;%= lato_form_submit form, product.persisted? ? 'Update' : 'Confirm', class: %w[btn-success] %&gt;
+    &lt;/div&gt;
+  &lt;% end %&gt;
+&lt;% end %&gt;
+
+</pre>
+
+<h2>Helpers</h2>
+
+<pre>
+module ProductsHelper
+  def product_status(product)
+    lato_data_badge(Product.human_attribute_name("status.#{product.status}"), product.status_color)
+  end
+
+  def product_created_at(product)
+    product.created_at.strftime('%d/%m/%Y')
+  end
+
+  def product_lato_user_id(product)
+    lato_data_user(product.lato_user.full_name, product.lato_user.gravatar_image_url(50))
+  end
+
+  def product_product_parent_id(product)
+    return ' - ' if product.product_parent.nil?
+
+    product.product_parent.code
+  end
+
+  def product_lifetime(product)
+    Time.at(product.lifetime).utc.strftime('%H h %M m')
+  end
+
+  def product_actions(product)
+    content_tag(:div, class: 'btn-group btn-group-sm') do
+      concat link_to('Edit', products_update_path(product), class: 'btn btn-primary', data: { lato_action_target: 'trigger', turbo_frame: dom_id(product, 'form'), action_title: 'Edit product' })
+      concat link_to('Delete', '#', class: 'btn btn-danger', data: { turbo_method: 'POST', turbo_confirm: 'Are you sure to continue?' })
+    end
+  end
+end
+
+</pre>
+
 
   </div>
 </div>

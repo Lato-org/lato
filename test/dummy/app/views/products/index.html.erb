@@ -12,7 +12,7 @@
         controller: 'lato-tooltip',
         lato_action_target: 'trigger',
         turbo_frame: dom_id(Product.new, 'form'),
-        action_rows: 8
+        action_title: 'Create product'
       }
     },
     export: {
@@ -52,10 +52,5 @@
       }
     ]
   },
-  pagination_options: [10,20,50,100],
-  skip_total_count: true
+  pagination_options: [10,20,50,100]
 %>
-
-<% if defined? @lato_users %>
-  <%= lato_index @lato_users, key: 'lato_users' %>
-<% end %>

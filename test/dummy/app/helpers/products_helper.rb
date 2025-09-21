@@ -23,7 +23,7 @@ module ProductsHelper
 
   def product_actions(product)
     content_tag(:div, class: 'btn-group btn-group-sm') do
-      concat link_to('Edit', products_update_path(product), class: 'btn btn-primary', data: { lato_action_target: 'trigger', turbo_frame: dom_id(product, 'form') })
+      concat link_to('Edit', products_update_path(product), class: 'btn btn-primary', data: { lato_action_target: 'trigger', turbo_frame: dom_id(product, 'form'), action_title: 'Edit product' })
       concat link_to('Delete', '#', class: 'btn btn-danger', data: { turbo_method: 'POST', turbo_confirm: 'Are you sure to continue?' })
     end
   end

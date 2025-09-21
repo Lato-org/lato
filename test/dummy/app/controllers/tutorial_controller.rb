@@ -167,4 +167,10 @@ class TutorialController < ApplicationController
     active_sidebar(:guide)
   end
 
+  # Crud
+  
+  def crud
+    active_sidebar(:crud)
+  end
+
 end

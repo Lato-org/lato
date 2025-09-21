@@ -1,11 +1,11 @@
-<%= lato_page_head 'Modifica prodotto', [
-  { label: 'Prodotti', path: products_path },
-  { label: 'Modifica prodotto' }
+<%= lato_page_head 'Edit product', [
+  { label: 'Products', path: products_path },
+  { label: 'Edit product' }
 ] %>
 
 <div class="card mb-4">
   <div class="card-header">
-    <h2 class="fs-4 mb-0">Modifica prodotto</h2>
+    <h2 class="fs-4 mb-0">Edit product</h2>
   </div>
   <div class="card-body">
     <%= render 'products/form', product: @product %>

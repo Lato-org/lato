@@ -1,11 +1,11 @@
-<%= lato_page_head 'Nuovo prodotto', [
-  { label: 'Prodotti', path: products_path },
-  { label: 'Nuovo prodotto' }
+<%= lato_page_head 'New product', [
+  { label: 'Products', path: products_path },
+  { label: 'New product' }
 ] %>
 
 <div class="card mb-4">
   <div class="card-header">
-    <h2 class="fs-4 mb-0">Registrazione nuovo prodotto</h2>
+    <h2 class="fs-4 mb-0">New product registration</h2>
   </div>
   <div class="card-body">
     <%= render 'products/form', product: @product %>

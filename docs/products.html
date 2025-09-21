@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="VwpqthMcsLaRWy-q0wlaAW6LUXX3a9_WJqRd0LrrvD9VZxtXMH6PzxaMWwI_Hfl-LXWcyUWLTcNVv1Sx8z9JIA">
+<meta name="csrf-token" content="qLo8N83kt_A150l7wy2Fu72YODL1-H_4j8gX6SLKRvbpYNq-UCuEK2tU-sQabSoHifEiUajKE4yoYOjSTE27uQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -227,21 +227,21 @@ document.addEventListener('turbo:load', () => {
   <!-- Menu con dropdown per children -->
   <li class="nav-item border-bottom py-2">
     <div class="nav-link position-relative dropdown">
-      <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' class="link-dark text-decoration-none dropdown-toggle d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#sidebar-nav-item-dropdown-examples" aria-expanded="true">
+      <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' class="link-dark text-decoration-none dropdown-toggle d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#sidebar-nav-item-dropdown-crud" aria-expanded="true">
         
-  <i class="bi bi-list me-2"></i> Examples
+  <i class="bi bi-list me-2"></i> CRUD
 
       </a>
       
-      <div class="collapse show" id="sidebar-nav-item-dropdown-examples">
+      <div class="collapse show" id="sidebar-nav-item-dropdown-crud">
         <ul class="list-unstyled mt-2 border-start border-1 ps-2">
             <li class="py-1">
-              <a class="nav-link py-1 active" href="products.html">
-                CRUD Example
+              <a class="nav-link py-1 link-dark" href="crud.html">
+                How to built
 </a>            </li>
             <li class="py-1">
-              <a class="nav-link py-1 link-dark" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>
-                Other Examples soon..
+              <a class="nav-link py-1 active" href="products.html">
+                Example
 </a>            </li>
         </ul>
       </div>
@@ -286,6 +286,7 @@ document.addEventListener('turbo:load', () => {
       <input type="hidden" name="generate_docs" id="generate_docs" value="1" autocomplete="off">
       <input type="hidden" name="controller" id="controller" value="products" autocomplete="off">
       <input type="hidden" name="action" id="action" value="index" autocomplete="off">
+      <input type="hidden" name="default_sort_by" id="default_sort_by" value="code|ASC" autocomplete="off">
 
       <div class="d-flex mb-3">
           <div class="input-group">
@@ -294,7 +295,7 @@ document.addEventListener('turbo:load', () => {
           </div>
         
           <div class="btn-group ms-2">
-              <a class="btn btn-primary" path="/products/create" icon="bi bi-plus" title="Create product" data-controller="lato-tooltip" data-lato-action-target="trigger" data-turbo-frame="form_product" data-action-rows="8" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>
+              <a class="btn btn-primary" path="/products/create" icon="bi bi-plus" title="Create product" data-controller="lato-tooltip" data-lato-action-target="trigger" data-turbo-frame="form_product" data-action-title="Create product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>
                 <i class="bi bi-plus"></i>
 </a>              <a class="btn btn-primary" path="/products/export_action" icon="bi bi-download" title="Export products" data-controller="lato-tooltip" data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>
                 <i class="bi bi-download"></i>
@@ -343,7 +344,7 @@ document.addEventListener('turbo:load', () => {
                   <div class="d-flex align-items-center justify-content-between">
                     <span>Code</span>
                       <div class="btn-group ms-3 lato-index-col-sort">
-                        <div class="position-relative btn btn-sm btn-outline-primary">
+                        <div class="position-relative btn btn-sm btn-primary">
                           <input type="submit" name="default_sort_by" value="code|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
                           <i class="bi bi-sort-up"></i>
                         </div>
@@ -412,10 +413,10 @@ document.addEventListener('turbo:load', () => {
           <tbody>
               <tr>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    1
+                    42
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    S9325236E
+                    S6196249B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
@@ -425,8 +426,8 @@ document.addEventListener('turbo:load', () => {
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
-<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
-<small class="text-black">Abbondo Mimmo</small>
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Franco Pippo</small>
 </div>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
@@ -437,16 +438,140 @@ document.addEventListener('turbo:load', () => {
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_1" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_42" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
 </div>
                   </td>
               </tr>
               <tr>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    2
+                    21
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    S7139673H
+                    S6223725B
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
+                     - 
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
+                    Custom value
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
+                    27/06/2025
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
+                    <div class="btn-group btn-group-sm">
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_21" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    12
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6249070E
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-warning">Created</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
+                     - 
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Franco Pippo</small>
+</div>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
+                    Custom value
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
+                    27/06/2025
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
+                    <div class="btn-group btn-group-sm">
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_12" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    34
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6285045J
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completed</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
+                     - 
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
+                    Custom value
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
+                    27/06/2025
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
+                    <div class="btn-group btn-group-sm">
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_34" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    74
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6317786E
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-primary">In progress</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
+                     - 
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Franco Pippo</small>
+</div>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
+                    Custom value
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
+                    27/06/2025
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
+                    <div class="btn-group btn-group-sm">
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_74" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    48
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6322372G
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
                     <span class="badge rounded-pill bg-warning">Created</span>
@@ -468,233 +593,16 @@ document.addEventListener('turbo:load', () => {
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_2" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_48" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
 </div>
                   </td>
               </tr>
               <tr>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    3
+                    73
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    S7490915I
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
-                     - 
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
-                    <div class="d-flex align-items-center">
-<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
-<small class="text-black">Franco Pippo</small>
-</div>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
-                    Custom value
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
-                    27/06/2025
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
-                    <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_3" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
-</div>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    4
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    T0364491F
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
-                     - 
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
-                    <div class="d-flex align-items-center">
-<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
-<small class="text-black">Franco Pippo</small>
-</div>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
-                    Custom value
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
-                    27/06/2025
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
-                    <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_4" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
-</div>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    5
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    S6895023F
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
-                     - 
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
-                    <div class="d-flex align-items-center">
-<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
-<small class="text-black">Abbondo Mimmo</small>
-</div>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
-                    Custom value
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
-                    27/06/2025
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
-                    <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_5" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
-</div>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    6
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    S6912488G
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
-                     - 
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
-                    <div class="d-flex align-items-center">
-<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
-<small class="text-black">User User</small>
-</div>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
-                    Custom value
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
-                    27/06/2025
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
-                    <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_6" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
-</div>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    7
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    S8592863E
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
-                     - 
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
-                    <div class="d-flex align-items-center">
-<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
-<small class="text-black">Abbondo Mimmo</small>
-</div>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
-                    Custom value
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
-                    27/06/2025
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
-                    <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_7" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
-</div>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    8
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    S6753571E
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
-                     - 
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
-                    <div class="d-flex align-items-center">
-<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/a8d8100a3460e9a492f986bf81d14e8b?s=50); width: 30px; height: 30px;"></div>
-<small class="text-black">Franco Pippo</small>
-</div>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
-                    Custom value
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
-                    27/06/2025
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
-                    <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_8" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
-</div>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    9
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    T0139094A
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
-                     - 
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
-                    <div class="d-flex align-items-center">
-<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
-<small class="text-black">Abbondo Mimmo</small>
-</div>
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
-                    Custom value
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
-                    27/06/2025
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
-                    <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_9" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
-</div>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
-                    10
-                  </td>
-                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
-                    S6837583E
+                    S6479278D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
@@ -716,7 +624,100 @@ document.addEventListener('turbo:load', () => {
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
-<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_10" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_73" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    28
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6490546E
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
+                     - 
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/822adfa90ee6de9dcf20b597bdac3d72?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">Abbondo Mimmo</small>
+</div>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
+                    Custom value
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
+                    27/06/2025
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
+                    <div class="btn-group btn-group-sm">
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_28" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    82
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6652683F
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-success">Completed</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
+                     - 
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
+                    Custom value
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
+                    27/06/2025
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
+                    <div class="btn-group btn-group-sm">
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_82" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
+</div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
+                    92
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-code">
+                    S6683691F
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
+                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-product_parent_id">
+                     - 
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
+                    <div class="d-flex align-items-center">
+<div class="border border-2 rounded-circle me-2" style="background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(https://www.gravatar.com/avatar/edb0e96701c209ab4b50211c856c50c4?s=50); width: 30px; height: 30px;"></div>
+<small class="text-black">User User</small>
+</div>
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-custom_dynamic_column">
+                    Custom value
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-created_at">
+                    27/06/2025
+                  </td>
+                  <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
+                    <div class="btn-group btn-group-sm">
+<a class="btn btn-primary" data-lato-action-target="trigger" data-turbo-frame="form_product_92" data-action-title="Edit product" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Edit</a><a class="btn btn-danger" data-turbo-method="GET" data-turbo-confirm="Are you sure to continue?" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Delete</a>
 </div>
                   </td>
               </tr>
@@ -761,6 +762,7 @@ document.addEventListener('turbo:load', () => {
   </nav>
 </div>
                   <div class="d-flex justify-content-end align-items-center">
+                      <span class="text-muted">100 total results</span>
                       <select name="default_per_page" class="ms-3 form-select form-select-sm w-auto" data-action="change-&gt;lato-form#submit" aria-label="Number of elements per page">
                           <option value="10">
                             10 per page
@@ -785,7 +787,6 @@ document.addEventListener('turbo:load', () => {
 
 </form>
 </turbo-frame>
-
 
   </div>
 </div>

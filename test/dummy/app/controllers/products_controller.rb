@@ -12,22 +12,12 @@ class ProductsController < ApplicationController
       columns: columns,
       sortable_columns: sortable_columns,
       searchable_columns: searchable_columns,
-      # default_sort_by: 'code|ASC',
+      default_sort_by: 'code|ASC',
       pagination: 10,
     )
-
-    # BACKUP: Uncomment if you want to test multiple collections on same page
-    # @lato_users = lato_index_collection(
-    #   Lato::User.all,
-    #   columns: %i[last_name first_name email],
-    #   sortable_columns: %i[last_name first_name email],
-    #   searchable_columns: %i[last_name first_name email],
-    #   default_sort_by: 'last_name|ASC',
-    #   pagination: 10,
-    #   key: 'lato_users',
-    # )
   end
 
+  # NOTE: This endpoint is used for inputs with autocomplete feature to select a product using search.
   def index_autocomplete
     unless params[:value].blank?
       @product = Product.find_by(id: params[:value])
