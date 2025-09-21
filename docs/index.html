@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="AkQQWlyd5ojv1RnrZJMlsm9AypWD4h1l1Dod3612MahVAwMHE3qNe0xoKn-VEpQzykE1j6PgSDbB6S-bHqqtmQ">
+<meta name="csrf-token" content="wMGW5pCSgDRmTTM9eAbBX0STdmX2_MDVxNDPim5_nGVfaf0jv91V0BBze_S1yvWCHipayhDJBuWf5zQSwnIjHA">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -218,6 +218,15 @@ gem "sassc-rails"
 
 # Use lato as application panel
 gem "lato"</code></pre>
+              </div>
+
+              <h5 class="mt-4 mb-3">Configure Asset Manifest</h5>
+              <p class="card-text mb-3">If not already present, add <strong>app/assets/config/manifest.js</strong> file with the following content:</p>
+              <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code>//= link_tree ../images
+//= link_directory ../stylesheets .css
+//= link_tree ../../javascript .js
+//= link_tree ../../../vendor/javascript .js</code></pre>
               </div>
 
               <h5 class="mt-4 mb-3">Install and Setup</h5>

@@ -84,6 +84,15 @@ gem "sassc-rails"
 gem "lato"</code></pre>
               </div>
 
+              <h5 class="mt-4 mb-3">Configure Asset Manifest</h5>
+              <p class="card-text mb-3">If not already present, add <strong>app/assets/config/manifest.js</strong> file with the following content:</p>
+              <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code>//= link_tree ../images
+//= link_directory ../stylesheets .css
+//= link_tree ../../javascript .js
+//= link_tree ../../../vendor/javascript .js</code></pre>
+              </div>
+
               <h5 class="mt-4 mb-3">Install and Setup</h5>
               <p class="card-text mb-3">Install gem and run required tasks:</p>
               <div class="bg-dark p-3 rounded mb-4">

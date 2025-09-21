@@ -52,14 +52,23 @@ gem "sassc-rails"
 gem "lato"
 ```
 
+If not already present, add `app/assets/config/manifest.js` file with the following content:
+
+```js
+//= link_tree ../images
+//= link_directory ../stylesheets .css
+//= link_tree ../../javascript .js
+//= link_tree ../../../vendor/javascript .js
+```
+
 Install gem and run required tasks:
 
 ```bash
-$ bundle
-$ rails active_storage:install
-$ rails lato:install:application
-$ rails lato:install:migrations
-$ rails db:migrate
+bundle
+rails active_storage:install
+rails lato:install:application
+rails lato:install:migrations
+rails db:migrate
 ```
 
 Mount lato routes on the **config/routes.rb** file:
@@ -108,29 +117,29 @@ Lato integrates by default a basic PWAs manifest and service worker. To re-gener
 3. Run the following commands:
 
 ```bash
-$ rails lato:generate:favicon
-$ rails lato:generate:pwa
+rails lato:generate:favicon
+rails lato:generate:pwa
 ```
 
 ## Development
 
 Clone repository, install dependencies, run migrations and start:
 
-```shell
-$ git clone https://github.com/lato-org/lato
-$ cd lato
-$ bundle
-$ rails db:migrate
-$ rails db:seed
-$ foreman start -f Procfile.dev
+```bash
+git clone https://github.com/lato-org/lato
+cd lato
+bundle
+rails db:migrate
+rails db:seed
+foreman start -f Procfile.dev
 ```
 
 ### Publish
 
 This script will publish the gem to rubygems.org. Make sure you have the correct permissions and that you are logged in to your rubygems account.
 
-```shell
-$ ruby ./bin/publish.rb
+```bash
+ruby ./bin/publish.rb
 ```
 
 ### Generate documentation
@@ -139,8 +148,8 @@ This script will generate the documentation for the gem by exporting the Rails r
 
 Make sure to have the server running on port 3000 before running the script.
 
-```shell
-$ ruby ./bin/generate_docs.rb
+```bash
+ruby ./bin/generate_docs.rb
 ```
 
 ## License
