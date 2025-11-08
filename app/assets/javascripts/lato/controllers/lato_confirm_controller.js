@@ -32,6 +32,9 @@ export default class extends Controller {
       await new Promise(resolve => setTimeout(resolve, 100))
     }
 
+    // add another await to ensure modal is fully hidden before returning
+    await new Promise(resolve => setTimeout(resolve, 500))
+
     return this._result
   }
 
