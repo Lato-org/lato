@@ -66,18 +66,45 @@ export default class extends Controller {
   }
 
   triggerTargetConnected(element) {
-    element.addEventListener('click', (e) => this.openAction(this.loadOptionsFromTriggerElement(element)))
+    element.addEventListener('click', (e) => {
+      this.openAction(this.loadOptionsFromTriggerElement(element), e, this._loadConfirmMessage(element))
+    })
   }
 
   triggerSubmitTargetConnected(element) {
-    element.addEventListener('submit', (e) => this.openAction(this.loadOptionsFromTriggerElement(element)))
+    element.addEventListener('submit', (e) => {
+      this.openAction(this.loadOptionsFromTriggerElement(element), e, this._loadConfirmMessage(element))
+    })
+  }
+
+  // NOTE: Dato che turbo-confirm non riesce a co-esistere con lato_action_controller,
+  //       rimuoviamo l'attributo data-turbo-confirm dall'elemento e lo gestiamo
+  //       manualmente all'interno di openAction.
+  _loadConfirmMessage(element) {
+    let confirmData = null
+    if (element && element.hasAttribute('data-turbo-confirm')) {
+      confirmData = element.getAttribute('data-turbo-confirm')
+      element.removeAttribute('data-turbo-confirm')
+    }
+    return confirmData
   }
 
   /**
    * Functions
    */
 
-  openAction(options) {
+  openAction(options, event, confirmMessage = null) {
+    // NOTE: Al momento non riusciamo a utilizzare lato_confirm_controller per gestire le conferme
+    //       in quanto è asincrono e richiede di annullare l'evento in modo sincrono.
+    //       Per questo motivo, per ora, gestiamo le conferme con il classico window.confirm.
+    if (confirmMessage) {
+      const result = window.confirm(confirmMessage)
+      if (!result) {
+        event.preventDefault()
+        return
+      }
+    }
+
     const index = this.getFreeModalIndex()
 
     if (options.turboFrame && options.turboFrame != '_top') {
@@ -128,6 +155,6 @@ export default class extends Controller {
    */
 
   onTriggerRun(e) {
-    this.openAction(this.loadOptionsFromTriggerElement(e.currentTarget))
+    this.openAction(this.loadOptionsFromTriggerElement(e.currentTarget), e)
   }
 }
