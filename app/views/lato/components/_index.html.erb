@@ -167,7 +167,7 @@ total_pages = collection.empty? ? params["#{key}_page"]&.to_i : 999_999_999 if s
                     <% if pagination_options %>
                       <select name="<%= "#{key}_per_page" %>" class="ms-3 form-select form-select-sm w-auto" data-action="change->lato-form#submit" aria-label="<%= I18n.t('lato.per_page_description') %>">
                         <% pagination_options.each do |option| %>
-                          <option value="<%= option %>" <%= option == params["#{key}_per_page"].to_i ? 'selected' : '' %>>
+                          <option value="<%= option %>" <%= option == params["#{key}_per_page"].to_i || (collection.respond_to?(:limit_value) && option == collection.limit_value) ? 'selected' : '' %>>
                             <%= option %> <%= I18n.t('lato.per_page').downcase %>
                           </option>
                         <% end %>
