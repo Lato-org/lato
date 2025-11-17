@@ -297,6 +297,6 @@ File.open(LLM_DIR, 'w') do |llm_file|
     content = main.text.strip.gsub(/\s+/, ' ')
 
     llm_file.puts content
-    llm_file.puts "----------------------------------------"
+    llm_file.puts "-"
   end
 end
