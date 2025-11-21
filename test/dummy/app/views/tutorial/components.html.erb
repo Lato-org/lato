@@ -140,6 +140,53 @@ Below is a list of available components with usage examples:
 <%= render 'tutorial/components/form-example' %>
 </div>
 
+<h2>Data</h2>
+
+<h3>Data badge</h3>
+
+<p>
+The <code>lato_data_badge</code> component allows easy rendering of badges with different styles.
+</p>
+
+<pre>
+&#60;%= lato_data_badge "badge primary", "primary" %&#62;
+&#60;%= lato_data_badge "badge secondary", "secondary" %&#62;
+&#60;%= lato_data_badge "badge info", "info" %&#62;
+&#60;%= lato_data_badge "badge success", "success" %&#62;
+&#60;%= lato_data_badge "badge warning", "warning" %&#62;
+&#60;%= lato_data_badge "badge danger", "danger" %&#62;
+&#60;%= lato_data_badge "badge light", "light" %&#62;
+&#60;%= lato_data_badge "badge dark", "dark" %&#62;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_data_badge "badge primary", "primary" %>
+<%= lato_data_badge "badge secondary", "secondary" %>
+<%= lato_data_badge "badge info", "info" %>
+<%= lato_data_badge "badge success", "success" %>
+<%= lato_data_badge "badge warning", "warning" %>
+<%= lato_data_badge "badge danger", "danger" %>
+<%= lato_data_badge "badge light", "light" %>
+<%= lato_data_badge "badge dark", "dark" %>
+</div>
+
+<h3>Data user</h3>
+
+<p>
+The <code>lato_data_user</code> component allows easy rendering of user information with avatar and full name.
+</p>
+
+<pre>
+&#60;%= lato_data_user("Mr. Wolf") %&#62;
+&#60;%= lato_data_user("Ms. White", "https://i.pravatar.cc/40?img=5") %&#62;
+</pre>
+
+<div class="example bg-light p-3 mb-3">
+<%= lato_data_user("Mr. Wolf") %>
+<div class="my-2"></div>
+<%= lato_data_user("Ms. White", "https://i.pravatar.cc/40?img=5") %>
+</div>
+
 <h2>Index</h2>
 
 <p>
