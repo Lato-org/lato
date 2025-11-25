@@ -72,6 +72,7 @@ ro:
     operation_completed_subtitle: Operația a fost finalizată cu succes
     operation_failed_title: Operație eșuată
     operation_failed_subtitle: A apărut o eroare în timpul operației
+    dropzone_drag_and_drop_or_click: Trage și plasează fișiere aici sau fă clic pentru a le încărca
 
     invitation_mailer:
       invite_mail_subject: Ai primit o invitație

@@ -1,8 +1,48 @@
 <%
-
 form ||= nil
 key ||= nil
 options ||= {}
 
+multiple = options[:multiple] || false
+direct_upload = options[:direct_upload] || false
+
+# Merge classes
+input_classes = options[:class] || []
+input_classes = input_classes.is_a?(Array) ? input_classes : input_classes.split(' ')
+input_classes.push('d-none')
+
+# Merge data attributes
+input_data = options[:data] || {}
+input_data[:lato_input_dropzone_target] = 'input'
+current_action = input_data[:action] || ''
+input_data[:action] = "#{current_action} change->lato-input-dropzone#onInputChange".strip
+
+input_options = options.merge(
+  class: input_classes,
+  data: input_data
+)
 %>
+
+<div class="lato-input-dropzone mb-3"
+     data-controller="lato-input-dropzone"
+     data-lato-input-dropzone-multiple-value="<%= multiple %>"
+     data-lato-input-dropzone-direct-upload-value="<%= direct_upload %>">
+
+  <%= form.file_field key, input_options %>
+
+  <div class="dropzone-area border rounded p-4 text-center bg-light cursor-pointer position-relative"
+       style="border-style: dashed !important; border-width: 2px !important;"
+       data-lato-input-dropzone-target="dropzone"
+       data-action="click->lato-input-dropzone#onClick dragover->lato-input-dropzone#onDragOver dragleave->lato-input-dropzone#onDragLeave drop->lato-input-dropzone#onDrop">
+    
+    <div class="text-muted pointer-events-none">
+      <i class="bi bi-cloud-arrow-up fs-1"></i>
+      <div class="mt-2">
+        <%= I18n.t('lato.dropzone_drag_and_drop_or_click') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="file-list mt-3" data-lato-input-dropzone-target="preview"></div>
+</div>
 

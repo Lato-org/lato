@@ -72,6 +72,7 @@ fr:
     operation_completed_subtitle: L'opération a été réalisée avec succès
     operation_failed_title: Échec de l'opération
     operation_failed_subtitle: Une erreur s'est produite lors de l'opération
+    dropzone_drag_and_drop_or_click: Faites glisser et déposez les fichiers ici ou cliquez pour télécharger
 
     invitation_mailer:
       invite_mail_subject: Vous avez reçu une invitation

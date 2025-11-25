@@ -70,6 +70,7 @@ en:
     operation_completed_subtitle: The operation has been completed successfully
     operation_failed_title: Operation failed
     operation_failed_subtitle: The operation has failed because of an error
+    dropzone_drag_and_drop_or_click: Drag and drop files here or click to upload
 
     invitation_mailer:
       invite_mail_subject: You received an invitation
