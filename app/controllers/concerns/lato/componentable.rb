@@ -50,9 +50,14 @@ module Lato
 
       # manage pagination
       if pagination || params["#{key}_page"] || params["#{key}_per_page"]
+        # Read from params or fallback to cookies, then to defaults
         page = params["#{key}_page"]&.to_i || 1
-        per_page = params["#{key}_per_page"]&.to_i || (pagination.is_a?(Integer) ? pagination : 25)
+        per_page = params["#{key}_per_page"]&.to_i || cookies["lato_index_#{key}_per_page"]&.to_i || (pagination.is_a?(Integer) ? pagination : 25)
         per_page = 100 if per_page > 100
+        
+        # Save to cookies for persistence
+        cookies["lato_index_#{key}_per_page"] = { value: per_page.to_s, expires: 1.year.from_now }
+        
         collection = collection.page(page).per(per_page)
       end
 
