@@ -4,9 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
-  <title>Lato documentation</title>
+  <title>Lato Documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="CNzQ2U99-RjP5Gv7CXxEbBVWZjUktdHO1-peilEJHeMxnJTo4v9rUfkwfZDru2WAr3Qacm3NGWdKxN3YFQDHdA">
+<meta name="csrf-token" content="1Bl6UJTVTVigLtD-1HaJW64-Asamz9_IrgSR5JHV2bKZf7quzDfgOflJ30VSAMEXr1nZq5ePcOo0JUiGzAkABw">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -37,6 +37,7 @@ document.addEventListener('turbo:load', () => {
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-da017927e6f9a04a461673f60b4b79f07f67dee99929b08f8219a230e237394d.js",
+    "@rails/activestorage": "/assets/activestorage.esm-3f2e9c040e7870f701a98bbbb1c77c979bbbdab80af967b59174f14d9388a0c1.js",
     "bootstrap": "/assets/bootstrap-54269516010afd745bd3f754e13dc670e8f6b20673cf40c9c583f37a7c388ee9.js",
     "lodash": "https://ga.jspm.io/npm:lodash@4.17.21/lodash.js",
     "application": "/assets/application-8af143a2d03f7b88ea77e93e0373226f1e959e43ed6d2e85b05f9d5df015f0e8.js",
@@ -58,6 +59,7 @@ document.addEventListener('turbo:load', () => {
     "controllers/lato_index_controller": "/assets/lato/controllers/lato_index_controller-20b04745b6c9da4f87e5943e7fe79e48b194a4135fc8ad4972142c3d2e867c71.js",
     "controllers/lato_input_autocomplete2_controller": "/assets/lato/controllers/lato_input_autocomplete2_controller-4ae4106211c6b5b99eb76120bdb4ec2ae1acc9ffc8e86ba90bfd4121e39e5454.js",
     "controllers/lato_input_autocomplete_controller": "/assets/lato/controllers/lato_input_autocomplete_controller-4a8564ebb3256646f9baec549ed61c5389b278d5267470de231e05baa1d076ff.js",
+    "controllers/lato_input_dropzone_controller": "/assets/lato/controllers/lato_input_dropzone_controller-a5c47ddd2b1c6bac6e4ebe98389fc66184e5ecaeddba3d91099b0a68a5fb49fe.js",
     "controllers/lato_network_controller": "/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js",
     "controllers/lato_operation_controller": "/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js",
     "controllers/lato_tooltip_controller": "/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js",
@@ -65,6 +67,7 @@ document.addEventListener('turbo:load', () => {
   }
 }</script>
 <link rel="modulepreload" href="/assets/lato/application-da017927e6f9a04a461673f60b4b79f07f67dee99929b08f8219a230e237394d.js">
+<link rel="modulepreload" href="/assets/activestorage.esm-3f2e9c040e7870f701a98bbbb1c77c979bbbdab80af967b59174f14d9388a0c1.js">
 <link rel="modulepreload" href="/assets/bootstrap-54269516010afd745bd3f754e13dc670e8f6b20673cf40c9c583f37a7c388ee9.js">
 <link rel="modulepreload" href="https://ga.jspm.io/npm:lodash@4.17.21/lodash.js">
 <link rel="modulepreload" href="/assets/application-8af143a2d03f7b88ea77e93e0373226f1e959e43ed6d2e85b05f9d5df015f0e8.js">
@@ -86,6 +89,7 @@ document.addEventListener('turbo:load', () => {
 <link rel="modulepreload" href="/assets/lato/controllers/lato_index_controller-20b04745b6c9da4f87e5943e7fe79e48b194a4135fc8ad4972142c3d2e867c71.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_input_autocomplete2_controller-4ae4106211c6b5b99eb76120bdb4ec2ae1acc9ffc8e86ba90bfd4121e39e5454.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_input_autocomplete_controller-4a8564ebb3256646f9baec549ed61c5389b278d5267470de231e05baa1d076ff.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_input_dropzone_controller-a5c47ddd2b1c6bac6e4ebe98389fc66184e5ecaeddba3d91099b0a68a5fb49fe.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js">
@@ -97,11 +101,11 @@ document.addEventListener('turbo:load', () => {
     <nav id="nav" class="navbar navbar-dark navbar-expand-lg fixed-top bg-primary shadow-sm px-md-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="tutorial.html">
-      Lato documentation
+      Lato Documentation
 
 <!--
 <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-<span>Lato documentation</span>
+<span>Lato Documentation</span>
 -->
 </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -533,6 +537,13 @@ user ||= @session.user
       &lt;/div&gt;
     &lt;/div&gt;
 
+    &lt;div class="row"&gt;
+      &lt;div class="col col-12 mb-3"&gt;
+        &lt;%= lato_form_item_label form, :file_dropzone, 'File Dropzone' %&gt;
+        &lt;%= lato_form_item_input_file_dropzone form, :file_dropzone, required: true %&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
     &lt;div class="d-flex justify-content-end"&gt;
       &lt;%= lato_form_submit form, 'Update', class: %w[btn-success] %&gt;
     &lt;/div&gt;
@@ -545,7 +556,7 @@ user ||= @session.user
 
 <turbo-frame id="tutorial_form-example">
   <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="e_1a0sYVmz_m6LofpRkuNg9R2NBkNki_ST1ycBUn9_0yULLyaanPK4-rhHt-HGeKSkCMQCVug4jPVO71hUgs7g">
+<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="xthMvR1OUhp3NMotlWR2uvUH1hFQaGc_fbyIiX5NoRUK3jRaVK3RQp7bDW293e0Ojuvcdx7_PRxyCmPwAsSRgA">
     
     
 
@@ -618,6 +629,31 @@ user ||= @session.user
       <div class="col col-12 mb-3">
         <label class="form-label" for="user_first_name">Name with auto-complete V2</label>
         <input required="required" data-controller="lato-input-autocomplete2" data-lato-input-autocomplete2-path-value="/products/autocomplete" data-action=" keyup-&gt;lato-form#onInputChange" data-lato-form-target="input" class="form-control" type="text" value="User" name="user[first_name]" id="user_first_name">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-12 mb-3">
+        <label class="form-label" for="user_file_dropzone">File Dropzone</label>
+        
+<div class="lato-input-dropzone mb-3" data-controller="lato-input-dropzone" data-lato-input-dropzone-multiple-value="false" data-lato-input-dropzone-direct-upload-value="false">
+
+  <input required="required" class="d-none" data-action="change-&gt;lato-form#onInputChange change-&gt;lato-input-dropzone#onInputChange" data-lato-form-target="input" data-lato-input-dropzone-target="input" type="file" name="user[file_dropzone]" id="user_file_dropzone">
+
+  <div class="border rounded p-4 text-center cursor-pointer position-relative" style="border-style: dashed !important; border-width: 2px !important;" data-lato-input-dropzone-target="dropzone" data-action="click-&gt;lato-input-dropzone#onClick dragover-&gt;lato-input-dropzone#onDragOver dragleave-&gt;lato-input-dropzone#onDragLeave drop-&gt;lato-input-dropzone#onDrop">
+    
+    <div class="text-muted pointer-events-none">
+      <i class="bi bi-cloud-arrow-up fs-1"></i>
+      <div class="mt-2">
+        Drag and drop files here or click to upload
+      </div>
+    </div>
+  </div>
+
+  <div class="file-list mt-3" data-lato-input-dropzone-target="preview"></div>
+</div>
+
+
       </div>
     </div>
 
@@ -1127,7 +1163,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
               </tr>
               <tr>
@@ -1141,7 +1177,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
               </tr>
               <tr>
@@ -1155,7 +1191,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
               </tr>
               <tr>
@@ -1169,7 +1205,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
               </tr>
               <tr>
@@ -1183,7 +1219,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
               </tr>
           </tbody>
@@ -1762,7 +1798,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1781,7 +1817,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1800,7 +1836,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1819,7 +1855,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1838,7 +1874,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 57 m
+                    19 h 24 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -4772,7 +4808,7 @@ This is useful when you don't need the total count of records, such as when disp
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.14.10 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.15.0 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -
