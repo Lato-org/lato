@@ -18,7 +18,7 @@ export default class extends Controller {
 
     // Initialize files from input if any (e.g. browser back button)
     if (this.inputTarget.files.length > 0) {
-      this.handleFiles(this.inputTarget.files)
+      this.handleFiles(Array.from(this.inputTarget.files))
     }
   }
 
@@ -28,26 +28,20 @@ export default class extends Controller {
 
   onDragOver(e) {
     e.preventDefault()
-    this.dropzoneTarget.classList.add("border-primary")
-    this.dropzoneTarget.classList.remove("bg-light")
-    this.dropzoneTarget.classList.add("bg-white")
+    this.dropzoneTarget.classList.add("opacity-75")
   }
 
   onDragLeave(e) {
     e.preventDefault()
-    this.dropzoneTarget.classList.remove("border-primary")
-    this.dropzoneTarget.classList.add("bg-light")
-    this.dropzoneTarget.classList.remove("bg-white")
+    this.dropzoneTarget.classList.remove("opacity-75")
   }
 
   onDrop(e) {
     e.preventDefault()
-    this.dropzoneTarget.classList.remove("border-primary")
-    this.dropzoneTarget.classList.add("bg-light")
-    this.dropzoneTarget.classList.remove("bg-white")
+    this.dropzoneTarget.classList.remove("opacity-75")
 
     if (e.dataTransfer.files.length > 0) {
-      this.handleFiles(e.dataTransfer.files)
+      this.handleFiles(Array.from(e.dataTransfer.files))
     }
   }
 
