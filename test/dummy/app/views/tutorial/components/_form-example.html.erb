@@ -87,6 +87,13 @@ user ||= @session.user
       </div>
     </div>
 
+    <div class="row">
+      <div class="col col-12 mb-3">
+        <%= lato_form_item_label form, :file_dropzone, 'File Dropzone' %>
+        <%= lato_form_item_input_file_dropzone form, :file_dropzone, required: true %>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-end">
       <%= lato_form_submit form, 'Update', class: %w[btn-success] %>
     </div>

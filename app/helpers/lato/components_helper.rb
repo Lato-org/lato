@@ -202,6 +202,12 @@ module Lato
       form.file_field key, options
     end
 
+    def lato_form_item_input_file_dropzone(form, key, options = {})
+      _lato_form_input_options(form, key, options, :change, '')
+
+      render 'lato/components/form_item_input_file_dropzone', form: form, key: key, options: options
+    end
+
     def lato_form_item_input_textarea(form, key, options = {})
       _lato_form_input_options(form, key, options, :keyup, 'form-control')
 
