@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato Documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="1Bl6UJTVTVigLtD-1HaJW64-Asamz9_IrgSR5JHV2bKZf7quzDfgOflJ30VSAMEXr1nZq5ePcOo0JUiGzAkABw">
+<meta name="csrf-token" content="tMkAZNxdf6CenmgKrJigzn_E0YvfdMJYnSDqQw_wpFovTfQ094Rq79amU8kvUQnl2YcoQQHTuqZ-on4wbPwYrQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -314,6 +314,8 @@ Parameters:<br>
 &lt;% end %&gt;
 </pre>
 
+<hr>
+
 <h2>Sidebar</h2>
 
 <h3>Sidebar nav item</h3>
@@ -348,6 +350,8 @@ There are also some extra parameters to customize the menu item:<br>
   Examples
 &lt;% end %&gt;
 </pre>
+
+<hr>
 
 <h2>Page</h2>
 
@@ -404,6 +408,8 @@ There are also some extra parameters to customize the menu item:<br>
 </div>
 </div>
 
+<hr>
+
 <h2>Form</h2>
 
 <p>
@@ -432,6 +438,8 @@ Below is a list of available components with usage examples:
 <code>lato_form_item_input_select</code> renders a select input.</li>
   <li>
 <code>lato_form_item_input_file</code> renders a file input.</li>
+  <li>
+<code>lato_form_item_input_file_dropzone</code> renders a file input with drag-and-drop support.</li>
   <li>
 <code>lato_form_item_input_textarea</code> renders a textarea input.</li>
   <li>
@@ -556,7 +564,7 @@ user ||= @session.user
 
 <turbo-frame id="tutorial_form-example">
   <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="xthMvR1OUhp3NMotlWR2uvUH1hFQaGc_fbyIiX5NoRUK3jRaVK3RQp7bDW293e0Ojuvcdx7_PRxyCmPwAsSRgA">
+<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="pSavNzeJYwSmVP4xkoi1Ju3KVGPAMEt9gtarfltyuqmM47PGR__VCn8lJNBOMYtCVG74lpTTGmAvFMVae6wbNA">
     
     
 
@@ -663,6 +671,8 @@ user ||= @session.user
 </form></turbo-frame>
 </div>
 
+<hr>
+
 <h2>Data</h2>
 
 <h3>Data badge</h3>
@@ -715,6 +725,8 @@ The <code>lato_data_user</code> component allows easy rendering of user informat
 <small class="text-black">Ms. White</small>
 </div>
 </div>
+
+<hr>
 
 <h2>Index</h2>
 
@@ -1163,7 +1175,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
               </tr>
               <tr>
@@ -1177,7 +1189,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
               </tr>
               <tr>
@@ -1191,7 +1203,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
               </tr>
               <tr>
@@ -1205,7 +1217,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
               </tr>
               <tr>
@@ -1219,7 +1231,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
               </tr>
           </tbody>
@@ -1798,7 +1810,7 @@ end
                     <span class="badge rounded-pill bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1817,7 +1829,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1836,7 +1848,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1855,7 +1867,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1874,7 +1886,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    19 h 24 m
+                    22 h 12 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -4808,7 +4820,7 @@ This is useful when you don't need the total count of records, such as when disp
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.15.0 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.15.2 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -
