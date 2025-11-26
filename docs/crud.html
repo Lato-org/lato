@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato Documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="5jJETQYYwNRFHaEF4_faKkziQO39iZ_31s2J_WZOK7p9trAdLcHVmw0lmsZgPnMB6qG5JyMu5wk1Tx2OBUKXTQ">
+<meta name="csrf-token" content="pGSpt3BweKOJgNvsuVqVJwwloLiWmG5Z9hUNuPXHC9hIJmhGNVGb7Baji6GvkDMbxYf7qUJaN59k64WfmtesGw">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -60,6 +60,7 @@ document.addEventListener('turbo:load', () => {
     "controllers/lato_input_autocomplete2_controller": "/assets/lato/controllers/lato_input_autocomplete2_controller-4ae4106211c6b5b99eb76120bdb4ec2ae1acc9ffc8e86ba90bfd4121e39e5454.js",
     "controllers/lato_input_autocomplete_controller": "/assets/lato/controllers/lato_input_autocomplete_controller-4a8564ebb3256646f9baec549ed61c5389b278d5267470de231e05baa1d076ff.js",
     "controllers/lato_input_dropzone_controller": "/assets/lato/controllers/lato_input_dropzone_controller-a5c47ddd2b1c6bac6e4ebe98389fc66184e5ecaeddba3d91099b0a68a5fb49fe.js",
+    "controllers/lato_input_list_controller": "/assets/lato/controllers/lato_input_list_controller-e283f2eeab45ad5a3dd7546de8d5bd00e567c5773f1d5986121aaf1d92bc6094.js",
     "controllers/lato_network_controller": "/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js",
     "controllers/lato_operation_controller": "/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js",
     "controllers/lato_tooltip_controller": "/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js",
@@ -90,6 +91,7 @@ document.addEventListener('turbo:load', () => {
 <link rel="modulepreload" href="/assets/lato/controllers/lato_input_autocomplete2_controller-4ae4106211c6b5b99eb76120bdb4ec2ae1acc9ffc8e86ba90bfd4121e39e5454.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_input_autocomplete_controller-4a8564ebb3256646f9baec549ed61c5389b278d5267470de231e05baa1d076ff.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_input_dropzone_controller-a5c47ddd2b1c6bac6e4ebe98389fc66184e5ecaeddba3d91099b0a68a5fb49fe.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_input_list_controller-e283f2eeab45ad5a3dd7546de8d5bd00e567c5773f1d5986121aaf1d92bc6094.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js">
@@ -307,8 +309,12 @@ class Product &lt; ApplicationRecord
   ##
 
   belongs_to :lato_user, class_name: 'Lato::User'
+  
   belongs_to :product_parent, class_name: 'Product', optional: true
   has_many :product_children, class_name: 'Product', foreign_key: :product_parent_id
+  
+  has_many :product_items
+  accepts_nested_attributes_for :product_items, allow_destroy: true, reject_if: proc { |attributes| attributes["name"].blank? }
 
   # Scopes
   ##
@@ -418,6 +424,20 @@ class ProductsController &lt; ApplicationController
     end
   end
 
+  def destroy_action
+    @product = Product.find(params[:id])
+
+    respond_to do |format|
+      if @product.destroy
+        format.html { redirect_to main_app.products_path, notice: 'Product deleted successfully' }
+        format.json { render json: { message: 'Product deleted successfully' } }
+      else
+        format.html { redirect_to main_app.products_path, alert: 'Failed to delete product' }
+        format.json { render json: { error: 'Failed to delete product' }, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def export_action
     @operation = Lato::Operation.generate('ExportProductsJob', {}, @session.user_id)
 
@@ -435,7 +455,9 @@ class ProductsController &lt; ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:code, :product_parent_id)
+    params.require(:product).permit(:code, :product_parent_id, product_items_attributes: [
+      :id, :name, :quantity, :_destroy
+    ])
   end
 end
 
@@ -565,6 +587,11 @@ product ||= Product.new
       &lt;%= lato_form_item_input_text form, :product_parent_id, required: true, data: { controller: 'lato-input-autocomplete2', lato_input_autocomplete2_path_value: products_autocomplete_path } %&gt;
     &lt;/div&gt;
 
+    &lt;div class="mb-3"&gt;
+      &lt;%= lato_form_item_label form, :product_items %&gt;
+      &lt;%= lato_form_item_input_list form, :product_items, 'products/input_list_product_item' %&gt;
+    &lt;/div&gt;
+
     &lt;div class="d-flex justify-content-end"&gt;
       &lt;%= lato_form_submit form, product.persisted? ? 'Update' : 'Confirm', class: %w[btn-success] %&gt;
     &lt;/div&gt;
@@ -602,7 +629,7 @@ module ProductsHelper
   def product_actions(product)
     content_tag(:div, class: 'btn-group btn-group-sm') do
       concat link_to('Edit', products_update_path(product), class: 'btn btn-primary', data: { lato_action_target: 'trigger', turbo_frame: dom_id(product, 'form'), action_title: 'Edit product' })
-      concat link_to('Delete', '#', class: 'btn btn-danger', data: { turbo_method: 'POST', turbo_confirm: 'Are you sure to continue?' })
+      concat link_to('Delete', products_destroy_action_path(product), class: 'btn btn-danger', data: { turbo_method: 'DELETE', turbo_confirm: 'Are you sure to continue?' })
     end
   end
 end
@@ -620,7 +647,7 @@ end
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.15.2 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.16.0 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -
