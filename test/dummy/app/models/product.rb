@@ -12,8 +12,12 @@ class Product < ApplicationRecord
   ##
 
   belongs_to :lato_user, class_name: 'Lato::User'
+  
   belongs_to :product_parent, class_name: 'Product', optional: true
   has_many :product_children, class_name: 'Product', foreign_key: :product_parent_id
+  
+  has_many :product_items
+  accepts_nested_attributes_for :product_items, allow_destroy: true, reject_if: proc { |attributes| attributes["name"].blank? }
 
   # Scopes
   ##

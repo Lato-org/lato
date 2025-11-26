@@ -147,6 +147,44 @@ Below is a list of available components with usage examples:
 <%= render 'tutorial/components/form-example' %>
 </div>
 
+<h3>Nested attributes</h3>
+
+<p>
+Lato provides support for nested attributes in forms using the <code>lato_form_item_input_list</code> component.<br>
+This component allows you to easily manage collections of associated records within a parent form.
+</p>
+
+<p>
+The <code>lato_form_item_input_list</code> component requires three parameters:<br>
+- <i>form</i>: the form builder object.<br>
+- <i>key</i>: the attribute name representing the collection of associated records.<br>
+- <i>partial_path</i>: the path to the partial that will be used to render each item in the collection.<br>
+- <i>partial_params</i> (optional): a hash of additional parameters to pass to the partial.
+</p>
+
+<p>
+  The <code>lato_form_item_input_list</code> component will render the list of items associated to the form object record and a button to add new items.<br>
+  Each item will be rendered using the specified partial. The partial will receive the following local variables:<br>
+  - <i>form</i>: the form builder object for the item.<br>
+  - <i>*partial_params</i>: any additional parameters passed to the component.
+</p>
+
+<p>
+  The partial used to render each item should contain only the fields related to the item.<br>
+  Other hidden fields (such as the item ID) and the remove button are automatically handled by the component.
+</p>
+
+<pre>
+&#60;%= lato_form_item_input_list(form, :product_items, 'products/input_list_product_item') %&#62;
+</pre>
+
+<p>
+<%= link_to 'Example: main form', '#', target: '_blank', class: 'llm-ignore' %><br>
+<%= link_to 'Example: form item partial', '#', target: '_blank', class: 'llm-ignore' %><br>
+<%= link_to 'Example: controller params', '#', target: '_blank', class: 'llm-ignore' %><br>
+<%= link_to 'Example: model configuration', '#', target: '_blank', class: 'llm-ignore' %>
+</p>
+
 <hr>
 
 <h2>Data</h2>

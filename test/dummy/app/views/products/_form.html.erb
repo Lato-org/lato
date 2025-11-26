@@ -19,6 +19,11 @@ product ||= Product.new
       <%= lato_form_item_input_text form, :product_parent_id, required: true, data: { controller: 'lato-input-autocomplete2', lato_input_autocomplete2_path_value: products_autocomplete_path } %>
     </div>
 
+    <div class="mb-3">
+      <%= lato_form_item_label form, :product_items %>
+      <%= lato_form_item_input_list form, :product_items, 'products/input_list_product_item' %>
+    </div>
+
     <div class="d-flex justify-content-end">
       <%= lato_form_submit form, product.persisted? ? 'Update' : 'Confirm', class: %w[btn-success] %>
     </div>

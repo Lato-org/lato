@@ -64,6 +64,20 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy_action
+    @product = Product.find(params[:id])
+
+    respond_to do |format|
+      if @product.destroy
+        format.html { redirect_to main_app.products_path, notice: 'Product deleted successfully' }
+        format.json { render json: { message: 'Product deleted successfully' } }
+      else
+        format.html { redirect_to main_app.products_path, alert: 'Failed to delete product' }
+        format.json { render json: { error: 'Failed to delete product' }, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def export_action
     @operation = Lato::Operation.generate('ExportProductsJob', {}, @session.user_id)
 
@@ -81,6 +95,8 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:code, :product_parent_id)
+    params.require(:product).permit(:code, :product_parent_id, product_items_attributes: [
+      :id, :name, :quantity, :_destroy
+    ])
   end
 end

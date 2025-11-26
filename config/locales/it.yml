@@ -73,6 +73,8 @@ it:
     operation_failed_title: Operazione fallita
     operation_failed_subtitle: Si è verificato un errore durante l'operazione
     dropzone_drag_and_drop_or_click: Trascina qui i file o clicca per caricare
+    add_item: Aggiungi elemento
+    remove_item: Rimuovi elemento
 
     invitation_mailer:
       invite_mail_subject: Hai ricevuto un invito

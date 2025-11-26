@@ -1,0 +1,66 @@
+<%
+
+form ||= nil
+key ||= nil
+partial ||= nil
+partial_params ||= {}
+
+existing_records = form.object.send(key) || []
+
+%>
+
+<% unless partial %>
+  <div class="alert alert-warning">
+    Missing partial parameter for form_item_input_list partial.
+  </div>
+<% else %>
+  <div data-controller="lato-input-list">
+    <div data-lato-input-list-target="list" id="<%= "#{form.object_name}_#{key}" %>">
+      <% existing_records.each_with_index do |record, index| %>
+        <%
+          item_nested_form = form.fields_for(key, record) do |f|
+            partial_params[:form] = f
+          end
+        %>
+
+        <div class="border p-2 mb-2 rounded" data-lato-input-list-target="listItem" data-index="<%= index %>">
+          <input type="hidden" name="<%= "#{form.object_name}[#{key}_attributes][#{index}][id]" %>" value="<%= record.id %>">
+
+          <%= render partial: partial, locals: { 
+            form: item_nested_form,
+            **partial_params
+          } %>
+
+          <div class="d-flex justify-content-end mt-2">
+            <button type="button" class="btn btn-danger btn-sm" data-action="click->lato-input-list#removeItem" title="<%= I18n.t('lato.remove_item') %>" data-controller="lato-tooltip">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="d-flex justify-content-end mt-2 pt-2 border-top">
+      <button type="button" class="btn btn-outline-primary btn-sm" data-action="click->lato-input-list#addItem">
+        <i class="bi bi-plus-circle"></i> <%= I18n.t('lato.add_item') %>
+      </button>
+    </div>
+
+    <template data-lato-input-list-target="template">
+      <div class="template border p-2 mb-2 rounded">
+        <%= render partial: partial, locals: { 
+          form: form.fields_for(key, form.object.send(key).new) do |f|
+            partial_params[:form] = f
+          end,
+          **partial_params
+        } %>
+
+        <div class="d-flex justify-content-end mt-2">
+          <button type="button" class="btn btn-danger btn-sm" data-action="click->lato-input-list#removeItem" title="<%= I18n.t('lato.remove_item') %>" data-controller="lato-tooltip">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+    </template>
+  </div>
+<% end %>
