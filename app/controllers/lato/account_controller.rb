@@ -17,6 +17,36 @@ module Lato
       end
     end
 
+    def update_authenticator_action
+      return respond_to_with_not_found unless Lato.config.authenticator_connection
+
+      if @session.user.authenticator_secret
+        respond_to do |format|
+          if @session.user.remove_authenticator_secret
+            format.html { redirect_to lato.account_path }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        respond_to do |format|
+          if @session.user.generate_authenticator_secret
+            format.html { redirect_to lato.account_path }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+    end
+
+    def update_webauthn_action
+      # TODO...
+    end
+
     def update_web3_action
       return respond_to_with_not_found unless Lato.config.web3_connection
 
@@ -45,32 +75,6 @@ module Lato
       else
         respond_to do |format|
           if session[:web3_nonce] = SecureRandom.hex(32)
-            format.html { redirect_to lato.account_path }
-            format.json { render json: @session.user }
-          else
-            format.html { render :index, status: :unprocessable_entity }
-            format.json { render json: @session.user.errors, status: :unprocessable_entity }
-          end
-        end
-      end
-    end
-
-    def update_authenticator_action
-      return respond_to_with_not_found unless Lato.config.authenticator_connection
-
-      if @session.user.authenticator_secret
-        respond_to do |format|
-          if @session.user.remove_authenticator_secret
-            format.html { redirect_to lato.account_path }
-            format.json { render json: @session.user }
-          else
-            format.html { render :index, status: :unprocessable_entity }
-            format.json { render json: @session.user.errors, status: :unprocessable_entity }
-          end
-        end
-      else
-        respond_to do |format|
-          if @session.user.generate_authenticator_secret
             format.html { redirect_to lato.account_path }
             format.json { render json: @session.user }
           else
