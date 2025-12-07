@@ -32,6 +32,17 @@
 </div>
 <% end %>
 
+<% if Lato.config.webauthn_connection %>
+<div class="card mb-4">
+  <div class="card-header">
+    <h2 class="fs-4 mb-0"><%= I18n.t('lato.account_webauthn') %></h2>
+  </div>
+  <div class="card-body">
+    <%= render 'lato/account/form-webauthn', user: @session.user %>
+  </div>
+</div>
+<% end %>
+
 <% if Lato.config.web3_connection %>
 <div class="card mb-4">
   <div class="card-header">
