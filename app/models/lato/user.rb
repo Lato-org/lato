@@ -256,7 +256,9 @@ module Lato
       c_password_update_code('')
 
       update(params.permit(:password, :password_confirmation).merge(
-        authenticator_secret: nil # Reset authenticator secret when password is updated
+        authenticator_secret: nil, # Reset authenticator secret when password is updated
+        webauthn_id: nil,          # Reset webauthn credential when password is updated
+        webauthn_public_key: nil   # Reset webauthn credential when password is updated
       ))
     end
 
