@@ -10,7 +10,7 @@ module Lato
     attr_accessor :session_lifetime, :session_root_path
 
     # Authentication configs
-    attr_accessor :auth_disable_signup, :auth_disable_recover_password, :auth_disable_web3, :auth_disable_authenticator
+    attr_accessor :auth_disable_signup, :auth_disable_recover_password, :auth_disable_web3, :auth_disable_authenticator, :auth_disable_webauthn
 
     # Hcaptcha configs
     attr_accessor :hcaptcha_site_key, :hcaptcha_secret
@@ -25,12 +25,16 @@ module Lato
     # Legal settings
     attr_accessor :legal_privacy_policy_url, :legal_privacy_policy_version, :legal_terms_and_conditions_url, :legal_terms_and_conditions_version
 
+    # Authenticator connection
+    attr_accessor :authenticator_connection
+
+    # Webauth connection
+    attr_accessor :webauthn_connection, :webauthn_origin, :webauthn_rp_name
+
     # Web3 connection
     # NOTE: It requires the gem 'eth' to be installed in the application Gemfile
     attr_accessor :web3_connection
 
-    # Authenticator connection
-    attr_accessor :authenticator_connection
 
     def initialize
       @application_title = 'Lato'
@@ -43,6 +47,7 @@ module Lato
       @auth_disable_recover_password = false
       @auth_disable_web3 = false
       @auth_disable_authenticator = false
+      @auth_disable_webauthn = false
       
       @hcaptcha_site_key = nil
       @hcaptcha_secret = nil
@@ -62,6 +67,9 @@ module Lato
 
       @web3_connection = false
       @authenticator_connection = false
+      @webauthn_connection = false
+      @webauthn_origin = 'http://localhost:3000'
+      @webauthn_rp_name = 'Lato Application'
     end
   end
 end

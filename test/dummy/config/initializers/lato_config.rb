@@ -11,4 +11,7 @@ Lato.configure do |config|
 
   config.web3_connection = true
   config.authenticator_connection = true
+  config.webauthn_connection = true
+  config.webauthn_origin = 'http://localhost:3000'
+  config.webauthn_rp_name = 'Lato Documentation'
 end

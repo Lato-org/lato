@@ -55,12 +55,32 @@ ro:
     account_authenticator: Google Authenticator
     account_authenticator_start_title: Activează Google Authenticator
     account_authenticator_start_description: Generează un cod QR făcând clic pe butonul de mai jos și scanează-l cu aplicația Google Authenticator de pe telefon.<br>Aceasta îți va permite să îți protejezi contul cu autentificare în doi pași.
+    account_authenticator_ready_title: Google Authenticator gata
     account_authenticator_ready_qr: Scanează codul QR cu aplicația Google Authenticator pentru a utiliza protecția contului cu autentificare în doi pași.
-    generate_qr_code: Generează cod QR
-    cancel_authenticator: Deconectează
-    authenticator: Autentificare în doi pași
+    account_authenticator_generate_qr_code: Generează cod QR
+    account_authenticator_disable: Deconectează
+    authenticator: Google Authenticator
     authenticator_code_help: Introdu codul generat de aplicația Google Authenticator pentru contul <b>%{email}</b>
     reset_password: Resetează-ți parola
+    choose_authentication_method: Alege metoda de autentificare
+    use_google_authenticator: Folosește Google Authenticator
+    use_webauthn: Folosește Passkey
+    authenticate: Autentifică
+    webauthn: Autentificare Passkey
+    webauthn_help: Folosește dispozitivul tău pentru a te autentifica pe contul <b>%{email}</b>
+    account_webauthn: Autentificare Passkey
+    account_webauthn_start_title: Activează Passkey
+    account_webauthn_start_description: Folosește securitatea dispozitivului tău (Touch ID, Face ID, Windows Hello etc.) pentru a aproba conectările viitoare.<br>Apasă butonul de mai jos și urmează instrucțiunile din browser pentru a înregistra o Passkey.
+    account_webauthn_enable: Înregistrează Passkey
+    account_webauthn_in_progress_title: Finalizează înregistrarea din browser
+    account_webauthn_in_progress_description: Aprobă solicitarea care apare în browser pentru a termina asocierea Passkey la contul tău.
+    account_webauthn_in_progress_error: Nu am putut înregistra Passkey. Repornește procedura și încearcă din nou.
+    account_webauthn_waiting_browser: Se așteaptă confirmarea din browser...
+    account_webauthn_cancel: Anulează solicitarea
+    account_webauthn_finalize: Finalizează înregistrarea
+    account_webauthn_ready_title: Passkey activă
+    account_webauthn_ready_description: Acest cont va solicita acum o provocare WebAuthn imediat după fluxul de autentificare clasic.
+    account_webauthn_disable: Elimină Passkey
     per_page: Pe pagină
     per_page_description: Elemente pe pagină
     confirm_title: Confirmă
@@ -87,6 +107,8 @@ ro:
       update_user_action_notice: Informațiile contului au fost actualizate cu succes
       request_verify_email_action_notice: Ți-am trimis un email cu pașii de urmat pentru a finaliza procedura
       update_password_action_notice: Parolele au fost actualizate cu succes
+      update_webauthn_action_notice: Passkey înregistrată cu succes
+      remove_webauthn_action_notice: Passkey eliminată cu succes
     authentication_controller:
       verify_email_action_notice: Adresa de email a fost verificată cu succes
       update_password_action_notice: Parola ta a fost actualizată cu succes
@@ -122,6 +144,10 @@ ro:
               web3_address_invalid: Adresa trimisă nu este semnată corect
               web3_connection_error: Imposibil să se conecteze portofelul
               authenticator_code_invalid: Codul introdus nu este corect
+              webauthn_payload_missing: Răspunsul Passkey lipsește. Te rugăm să încerci din nou.
+              webauthn_challenge_missing: Provocarea Passkey a expirat. Repornește procedura.
+              webauthn_registration_failed: Nu am putut verifica răspunsul Passkey. Repornește procedura.
+              webauthn_authentication_failed: Autentificarea Passkey a eșuat. Te rugăm să încerci din nou sau să folosești altă metodă.
             password:
               not_correct: incorectă
             password_confirmation:

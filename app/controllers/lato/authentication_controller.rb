@@ -6,11 +6,13 @@ module Lato
 
     before_action :find_user, only: %i[verify_email verify_email_action update_password update_password_action]
     before_action :find_invitation, only: %i[accept_invitation accept_invitation_action]
+    before_action :find_authentication_user, only: %i[authentication_method authentication_method_action webauthn webauthn_action]
 
     before_action :lock_signup_if_disabled, only: %i[signup signup_action]
     before_action :lock_recover_password_if_disabled, only: %i[recover_password recover_password_action update_password update_password_action]
     before_action :lock_web3_if_disabled, only: %i[web3_signin web3_signin_action]
     before_action :lock_authenticator_if_disabled, only: %i[authenticator authenticator_action]
+    before_action :lock_webauthn_if_disabled, only: %i[webauthn webauthn_action]
 
     before_action :hide_sidebar
 
@@ -29,11 +31,13 @@ module Lato
           ip_address: request.remote_ip,
           user_agent: request.user_agent
         ))
-          if create_session_or_start_authenticator(@user)
-            format.html { redirect_to lato.root_path }
+          redirect_path = determine_authentication_redirect(@user)
+          if redirect_path
+            format.html { redirect_to redirect_path }
             format.json { render json: @user }
           else
-            format.html { redirect_to lato.authentication_authenticator_path }
+            session_create(@user.id)
+            format.html { redirect_to lato.root_path }
             format.json { render json: @user }
           end
         else
@@ -58,11 +62,13 @@ module Lato
           web3_nonce: session[:web3_nonce]
         ))
           session[:web3_nonce] = nil
-          if create_session_or_start_authenticator(@user)
-            format.html { redirect_to lato.root_path }
+          redirect_path = determine_authentication_redirect(@user)
+          if redirect_path
+            format.html { redirect_to redirect_path }
             format.json { render json: @user }
           else
-            format.html { redirect_to lato.authentication_authenticator_path }
+            session_create(@user.id)
+            format.html { redirect_to lato.root_path }
             format.json { render json: @user }
           end
         else
@@ -191,26 +197,76 @@ module Lato
       end
     end
 
+    # Authentication method choice
+    ##
+
+    def authentication_method; end
+
+    def authentication_method_action
+      method = params[:method]
+      
+      respond_to do |format|
+        case method
+        when 'authenticator'
+          session[:authentication_method] = 'authenticator'
+          format.html { redirect_to lato.authentication_authenticator_path }
+          format.json { render json: { redirect: lato.authentication_authenticator_path } }
+        when 'webauthn'
+          session[:authentication_method] = 'webauthn'
+          format.html { redirect_to lato.authentication_webauthn_path }
+          format.json { render json: { redirect: lato.authentication_webauthn_path } }
+        else
+          format.html { redirect_to lato.authentication_signin_path }
+          format.json { render json: { error: 'Invalid method' }, status: :unprocessable_entity }
+        end
+      end
+    end
+
     # Authenticator
     ##
 
     def authenticator
-      @user = Lato::User.find_by_id(session[:authenticator_user_id])
+      @user = Lato::User.find_by_id(session[:authentication_user_id])
       return respond_to_with_not_found unless @user
     end
 
     def authenticator_action
-      @user = Lato::User.find_by_id(session[:authenticator_user_id])
+      @user = Lato::User.find_by_id(session[:authentication_user_id])
 
       respond_to do |format|
         if @user.authenticator(params.require(:user).permit(:authenticator_code))
-          session[:authenticator_user_id] = nil
+          clear_authentication_session
           session_create(@user.id)
 
           format.html { redirect_to lato.root_path }
           format.json { render json: @user }
         else
           format.html { render :authenticator, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    # WebAuthn
+    ##
+
+    def webauthn
+      @options = @user.webauthn_authentication_options
+      session[:webauthn_challenge] = @options.challenge
+    end
+
+    def webauthn_action
+      respond_to do |format|
+        if @user.webauthn_authentication(params.require(:user).permit(:webauthn_credential), session[:webauthn_challenge])
+          clear_authentication_session
+          session_create(@user.id)
+
+          format.html { redirect_to lato.root_path }
+          format.json { render json: @user }
+        else
+          @options = @user.webauthn_authentication_options
+          session[:webauthn_challenge] = @options.challenge
+          format.html { render :webauthn, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
@@ -232,14 +288,32 @@ module Lato
       respond_to_with_not_found unless @invitation
     end
 
-    def create_session_or_start_authenticator(user)
-      if !Lato.config.authenticator_connection || Lato.config.auth_disable_authenticator || !user.authenticator_enabled?
-        session_create(user.id)
-        return true
-      end
+    def find_authentication_user
+      @user = Lato::User.find_by_id(session[:authentication_user_id])
+      respond_to_with_not_found unless @user
+    end
 
-      session[:authenticator_user_id] = user.id
-      false
+    def determine_authentication_redirect(user)
+      authenticator_enabled = Lato.config.authenticator_connection && !Lato.config.auth_disable_authenticator && user.authenticator_enabled?
+      webauthn_enabled = Lato.config.webauthn_connection && !Lato.config.auth_disable_webauthn && user.webauthn_enabled?
+
+      return nil unless authenticator_enabled || webauthn_enabled
+
+      session[:authentication_user_id] = user.id
+
+      if authenticator_enabled && webauthn_enabled
+        lato.authentication_authentication_method_path
+      elsif authenticator_enabled
+        lato.authentication_authenticator_path
+      elsif webauthn_enabled
+        lato.authentication_webauthn_path
+      end
+    end
+
+    def clear_authentication_session
+      session[:authentication_user_id] = nil
+      session[:authentication_method] = nil
+      session[:webauthn_challenge] = nil
     end
 
     def lock_signup_if_disabled
@@ -263,6 +337,12 @@ module Lato
 
     def lock_authenticator_if_disabled
       return if Lato.config.authenticator_connection && !Lato.config.auth_disable_authenticator
+
+      respond_to_with_not_found
+    end
+
+    def lock_webauthn_if_disabled
+      return if Lato.config.webauthn_connection && !Lato.config.auth_disable_webauthn
 
       respond_to_with_not_found
     end

@@ -14,6 +14,7 @@ module Lato
     validates :accepted_privacy_policy_version, presence: true
     validates :accepted_terms_and_conditions_version, presence: true
     validates :web3_address, uniqueness: true, allow_blank: true
+    validates :webauthn_id, uniqueness: true, allow_blank: true
 
     # Relations
     ##
@@ -56,6 +57,10 @@ module Lato
 
     def authenticator_enabled?
       !authenticator_secret.blank?
+    end
+
+    def webauthn_enabled?
+      webauthn_id.present? && webauthn_public_key.present?
     end
 
     # Helpers
@@ -251,7 +256,9 @@ module Lato
       c_password_update_code('')
 
       update(params.permit(:password, :password_confirmation).merge(
-        authenticator_secret: nil # Reset authenticator secret when password is updated
+        authenticator_secret: nil, # Reset authenticator secret when password is updated
+        webauthn_id: nil,          # Reset webauthn credential when password is updated
+        webauthn_public_key: nil   # Reset webauthn credential when password is updated
       ))
     end
 
@@ -320,6 +327,93 @@ module Lato
       true
     end
 
+    def webauthn_registration_options
+      WebAuthn::Credential.options_for_create(
+        user: {
+          id: Base64.strict_encode64(webauthn_user_handle),
+          name: email,
+          display_name: full_name
+        },
+        exclude: webauthn_exclude_credentials.map { |cred| Base64.strict_encode64(cred) }
+      )
+    end
+
+    def webauthn_authentication_options
+      WebAuthn::Credential.options_for_get(
+        allow: webauthn_allow_credentials.map { |cred| Base64.strict_encode64(cred) }
+      )
+    end
+
+    def register_webauthn_credential(credential_payload, encoded_challenge)
+      if credential_payload.blank?
+        errors.add(:base, :webauthn_payload_missing)
+        return false
+      end
+
+      if encoded_challenge.blank?
+        errors.add(:base, :webauthn_challenge_missing)
+        return false
+      end
+
+      parsed_payload = JSON.parse(credential_payload)
+      credential = WebAuthn::Credential.from_create(parsed_payload)
+      credential.verify(Base64.strict_decode64(encoded_challenge))
+
+      update(
+        webauthn_id: Base64.strict_encode64(credential.raw_id),
+        webauthn_public_key: credential.public_key
+      )
+    rescue JSON::ParserError, WebAuthn::Error => e
+      Rails.logger.error(e)
+      errors.add(:base, :webauthn_registration_failed)
+      false
+    end
+
+    def webauthn_authentication(params, encoded_challenge)
+      return false unless webauthn_enabled?
+
+      if params[:webauthn_credential].blank?
+        errors.add(:base, :webauthn_payload_missing)
+        return false
+      end
+
+      if encoded_challenge.blank?
+        errors.add(:base, :webauthn_challenge_missing)
+        return false
+      end
+
+      parsed_payload = JSON.parse(params[:webauthn_credential])
+      
+      # Converti i campi da base64url a base64 standard per il gem webauthn
+      parsed_payload['rawId'] = base64url_to_base64(parsed_payload['rawId'])
+      parsed_payload['response']['clientDataJSON'] = base64url_to_base64(parsed_payload['response']['clientDataJSON'])
+      parsed_payload['response']['authenticatorData'] = base64url_to_base64(parsed_payload['response']['authenticatorData'])
+      parsed_payload['response']['signature'] = base64url_to_base64(parsed_payload['response']['signature'])
+      parsed_payload['response']['userHandle'] = base64url_to_base64(parsed_payload['response']['userHandle']) if parsed_payload['response']['userHandle']
+      
+      credential = WebAuthn::Credential.from_get(parsed_payload)
+      
+      credential.verify(
+        encoded_challenge,
+        public_key: webauthn_public_key,
+        sign_count: 0
+      )
+
+      true
+    rescue JSON::ParserError, WebAuthn::Error => e
+      Rails.logger.error(e)
+      Rails.logger.error(e.backtrace.join("\n"))
+      errors.add(:base, :webauthn_authentication_failed)
+      false
+    end
+
+    def remove_webauthn_credential
+      update(
+        webauthn_id: nil,
+        webauthn_public_key: nil
+      )
+    end
+
     def generate_authenticator_secret
       update(authenticator_secret: ROTP::Base32.random)
     end
@@ -366,6 +460,42 @@ module Lato
 
       Rails.cache.write(cache_key, value, expires_in: 30.minutes)
       value
+    end
+
+    private
+
+    def webauthn_user_handle
+      Digest::SHA256.digest("lato-user-#{id}")
+    end
+
+    def webauthn_exclude_credentials
+      return [] unless webauthn_id.present?
+
+      [Base64.strict_decode64(webauthn_id)]
+    rescue ArgumentError
+      []
+    end
+
+    def webauthn_allow_credentials
+      return [] unless webauthn_id.present?
+
+      [Base64.strict_decode64(webauthn_id)]
+    rescue ArgumentError
+      []
+    end
+
+    def base64url_to_base64(str)
+      return nil if str.nil?
+      # Converti base64url in base64 standard
+      base64 = str.tr('-_', '+/')
+      # Aggiungi padding se necessario
+      case base64.length % 4
+      when 2
+        base64 += '=='
+      when 3
+        base64 += '='
+      end
+      base64
     end
   end
 end

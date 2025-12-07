@@ -55,12 +55,32 @@ fr:
     account_authenticator: Google Authenticator
     account_authenticator_start_title: Activer Google Authenticator
     account_authenticator_start_description: Générez un code QR en cliquant sur le bouton ci-dessous et scannez-le avec l'application Google Authenticator sur votre téléphone.<br>Cela vous permettra de protéger votre compte avec une authentification à deux facteurs.
+    account_authenticator_ready_title: Google Authenticator prêt
     account_authenticator_ready_qr: Scannez le code QR avec l'application Google Authenticator pour activer la protection de votre compte avec une authentification à deux facteurs.
-    generate_qr_code: Générer un code QR
-    cancel_authenticator: Déconnecter
-    authenticator: Authentification à deux facteurs
+    account_authenticator_generate_qr_code: Générer un code QR
+    account_authenticator_disable: Déconnecter
+    authenticator: Google Authenticator
     authenticator_code_help: Saisissez le code généré par l'application Google Authenticator pour le compte <b>%{email}</b>
     reset_password: Réinitialisez votre mot de passe
+    choose_authentication_method: Choisir la méthode d'authentification
+    use_google_authenticator: Utiliser Google Authenticator
+    use_webauthn: Utiliser Passkey
+    authenticate: Authentifier
+    webauthn: Authentification Passkey
+    webauthn_help: Utilisez votre appareil pour vous authentifier sur le compte <b>%{email}</b>
+    account_webauthn: Authentification Passkey
+    account_webauthn_start_title: Activer les passkeys
+    account_webauthn_start_description: Utilisez la sécurité de votre appareil (Touch ID, Face ID, Windows Hello, etc.) pour approuver les connexions futures.<br>Cliquez sur le bouton ci-dessous et suivez les instructions de votre navigateur pour enregistrer une passkey.
+    account_webauthn_enable: Enregistrer la passkey
+    account_webauthn_in_progress_title: Validez l'inscription depuis votre navigateur
+    account_webauthn_in_progress_description: Approuvez la demande qui apparaît dans votre navigateur pour terminer l'association de la passkey à votre compte.
+    account_webauthn_in_progress_error: Impossible d'enregistrer la passkey. Redémarrez la procédure et réessayez.
+    account_webauthn_waiting_browser: En attente de la confirmation du navigateur...
+    account_webauthn_cancel: Annuler la demande
+    account_webauthn_finalize: Terminer l'inscription
+    account_webauthn_ready_title: Passkey activée
+    account_webauthn_ready_description: Ce compte nécessite désormais un défi WebAuthn juste après le processus de connexion classique.
+    account_webauthn_disable: Supprimer la passkey
     per_page: Par page
     per_page_description: Éléments par page
     confirm_title: Confirmation
@@ -87,6 +107,8 @@ fr:
       update_user_action_notice: Informations du compte mises à jour avec succès
       request_verify_email_action_notice: Nous vous avons envoyé un e-mail avec les étapes à suivre pour terminer la procédure
       update_password_action_notice: Mot de passe mis à jour avec succès
+      update_webauthn_action_notice: Passkey enregistrée avec succès
+      remove_webauthn_action_notice: Passkey supprimée avec succès
     authentication_controller:
       verify_email_action_notice: Adresse e-mail vérifiée avec succès
       update_password_action_notice: Votre mot de passe a été mis à jour avec succès
@@ -122,6 +144,10 @@ fr:
               web3_address_invalid: L'adresse envoyée n'est pas correctement signée
               web3_connection_error: Impossible de connecter le portefeuille
               authenticator_code_invalid: Le code saisi n'est pas correct
+              webauthn_payload_missing: Réponse passkey manquante. Veuillez réessayer.
+              webauthn_challenge_missing: Le défi passkey a expiré. Veuillez relancer la procédure.
+              webauthn_registration_failed: Impossible de vérifier la réponse passkey. Redémarrez la procédure.
+              webauthn_authentication_failed: Échec de l'authentification passkey. Veuillez réessayer ou utiliser une autre méthode.
             password:
               not_correct: incorrect
             password_confirmation:

@@ -17,6 +17,81 @@ module Lato
       end
     end
 
+    def update_authenticator_action
+      return respond_to_with_not_found unless Lato.config.authenticator_connection
+
+      if @session.user.authenticator_secret
+        respond_to do |format|
+          if @session.user.remove_authenticator_secret
+            format.html { redirect_to lato.account_path }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        respond_to do |format|
+          if @session.user.generate_authenticator_secret
+            format.html { redirect_to lato.account_path }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+    end
+
+    def update_webauthn_action
+      return respond_to_with_not_found unless Lato.config.webauthn_connection
+
+      respond_to do |format|
+        command = params.dig(:user, :webauthn_command)
+
+        case command
+        when 'remove'
+          if @session.user.remove_webauthn_credential
+            reset_webauthn_registration_state
+            format.html { redirect_to lato.account_path, notice: I18n.t('lato.account_controller.remove_webauthn_action_notice') }
+            format.json { render json: @session.user }
+          else
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        when 'cancel'
+          reset_webauthn_registration_state
+          format.html { redirect_to lato.account_path }
+          format.json { render json: {} }
+        when 'complete'
+          permitted = params.require(:user).permit(:webauthn_credential)
+
+          if @session.user.register_webauthn_credential(permitted[:webauthn_credential], session[:webauthn_registration_challenge])
+            reset_webauthn_registration_state
+            format.html { redirect_to lato.account_path, notice: I18n.t('lato.account_controller.update_webauthn_action_notice') }
+            format.json { render json: @session.user }
+          else
+            reset_webauthn_registration_state
+            format.html { render :index, status: :unprocessable_entity }
+            format.json { render json: @session.user.errors, status: :unprocessable_entity }
+          end
+        else
+          options = @session.user.webauthn_registration_options
+          session[:webauthn_registration_challenge] = Base64.strict_encode64(options.challenge)
+          session[:webauthn_registration_options] = options.as_json
+          format.html { redirect_to lato.account_path }
+          format.json { render json: { options: session[:webauthn_registration_options] } }
+        end
+      end
+    rescue StandardError => e
+      Rails.logger.error(e)
+      reset_webauthn_registration_state
+      respond_to do |format|
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: { error: :webauthn_unexpected_error }, status: :unprocessable_entity }
+      end
+    end
+
     def update_web3_action
       return respond_to_with_not_found unless Lato.config.web3_connection
 
@@ -45,32 +120,6 @@ module Lato
       else
         respond_to do |format|
           if session[:web3_nonce] = SecureRandom.hex(32)
-            format.html { redirect_to lato.account_path }
-            format.json { render json: @session.user }
-          else
-            format.html { render :index, status: :unprocessable_entity }
-            format.json { render json: @session.user.errors, status: :unprocessable_entity }
-          end
-        end
-      end
-    end
-
-    def update_authenticator_action
-      return respond_to_with_not_found unless Lato.config.authenticator_connection
-
-      if @session.user.authenticator_secret
-        respond_to do |format|
-          if @session.user.remove_authenticator_secret
-            format.html { redirect_to lato.account_path }
-            format.json { render json: @session.user }
-          else
-            format.html { render :index, status: :unprocessable_entity }
-            format.json { render json: @session.user.errors, status: :unprocessable_entity }
-          end
-        end
-      else
-        respond_to do |format|
-          if @session.user.generate_authenticator_secret
             format.html { redirect_to lato.account_path }
             format.json { render json: @session.user }
           else
@@ -141,6 +190,13 @@ module Lato
           format.json { render json: @session.user.errors, status: :unprocessable_entity }
         end
       end
+    end
+
+    private
+
+    def reset_webauthn_registration_state
+      session[:webauthn_registration_challenge] = nil
+      session[:webauthn_registration_options] = nil
     end
   end
 end
