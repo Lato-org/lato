@@ -157,8 +157,15 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 Stiamo integrando l'autenticazione WebAuthn nel pannello Lato.
 L'idea è che l'utente, dal suo account, può, volontariamente, attivare l'autenticazione WebAuthn per il suo account.
-L'attivazione consiste nel registrare un dispositivo WebAuthn (ad esempio una chiave di sicurezza FIDO2 o l'autenticazione biometrica del dispositivo) che verrà poi utilizzato come secondo fattore di autenticazione al momento del login.
+Una volta attivata, al login, dopo aver inserito email e password, l'utente dovrà autenticarsi con il dispositivo WebAuthn registrato (ad esempio una chiave di sicurezza FIDO2 o l'autenticazione biometrica del dispositivo).
+Se è attiva anche l'autenticazione a due fattori con Google Authenticator, l'utente dovrà scegliere quale dei due metodi utilizzare per completare l'autenticazione.
 
-Il modello Lato::User ha già i nuovi campi webauthn_id e webauthn_public_key da utilizzare per memorizzare le informazioni del dispositivo WebAuthn registrato.
+Il modello Lato::User ha già i campi webauthn_id e webauthn_public_key da utilizzati per memorizzare le informazioni del dispositivo WebAuthn registrato.
 
-Modifica la view della pagina di gestiona account, il controller account_controller.rb e il modello user.rb per gestire la registrazione di un dispositivo WebAuthn.
+Modifica il flow di login per includere il passaggio di autenticazione WebAuthn se l'utente ha un dispositivo WebAuthn registrato.
+
+La logica dovrebbe essere la seguente:
+- Se Google Auth e WebAuthn non sono attivi o se l'utente non li ha collegati, il login procede normalmente.
+- Se solo Google Auth è attivo e l'utente lo ha collegato, dopo aver inserito email e password, l'utente viene reindirizzato alla pagina di inserimento del codice di Google Authenticator.
+- Se solo WebAuthn è attivo e l'utente lo ha collegato, dopo aver inserito email e password, l'utente viene reindirizzato alla pagina di autenticazione WebAuthn.
+- Se entrambi sono attivi e l'utente li ha collegati, dopo aver inserito email e password, l'utente deve scegliere quale metodo utilizzare per completare l'autenticazione.

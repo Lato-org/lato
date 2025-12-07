@@ -61,6 +61,13 @@ it:
     authenticator: Autenticazione a due fattori
     authenticator_code_help: Inserisci il codice generato dall'app Google Authenticator per l'account <b>%{email}</b>
     reset_password: Reimposta la tua password
+    choose_authentication_method: Scegli il metodo di autenticazione
+    authentication_method_help: Scegli come completare l'autenticazione per l'account <b>%{email}</b>
+    use_google_authenticator: Usa Google Authenticator
+    use_webauthn: Usa Passkey
+    authenticate: Autentica
+    webauthn_authentication: Autenticazione Passkey
+    webauthn_authentication_help: Usa il tuo dispositivo per autenticarti nell'account <b>%{email}</b>
     account_webauthn: Autenticazione Passkey
     account_webauthn_start_title: Abilita le Passkey
     account_webauthn_start_description: Utilizza la sicurezza del tuo dispositivo (Touch ID, Face ID, Windows Hello, ecc.) per approvare gli accessi futuri.<br>Clicca il pulsante qui sotto e segui le istruzioni del browser per registrare una Passkey.
@@ -140,6 +147,7 @@ it:
               webauthn_payload_missing: Risposta Passkey mancante. Riprovare.
               webauthn_challenge_missing: La sfida Passkey è scaduta. Avvia nuovamente la procedura.
               webauthn_registration_failed: Impossibile verificare la risposta Passkey. Riavvia la procedura.
+              webauthn_authentication_failed: Autenticazione Passkey fallita. Riprova o usa un altro metodo.
             password:
               not_correct: non corretta
             password_confirmation:

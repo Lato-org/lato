@@ -10,7 +10,7 @@ module Lato
     attr_accessor :session_lifetime, :session_root_path
 
     # Authentication configs
-    attr_accessor :auth_disable_signup, :auth_disable_recover_password, :auth_disable_web3, :auth_disable_authenticator
+    attr_accessor :auth_disable_signup, :auth_disable_recover_password, :auth_disable_web3, :auth_disable_authenticator, :auth_disable_webauthn
 
     # Hcaptcha configs
     attr_accessor :hcaptcha_site_key, :hcaptcha_secret
@@ -47,6 +47,7 @@ module Lato
       @auth_disable_recover_password = false
       @auth_disable_web3 = false
       @auth_disable_authenticator = false
+      @auth_disable_webauthn = false
       
       @hcaptcha_site_key = nil
       @hcaptcha_secret = nil

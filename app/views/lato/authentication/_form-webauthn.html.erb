@@ -1,0 +1,27 @@
+<%
+
+user ||= Lato::User.new
+options ||= {}
+
+%>
+
+<%= turbo_frame_tag 'authentication_form-webauthn' do %>
+  <%= form_with model: user, url: lato.authentication_webauthn_action_path, method: :post, data: { turbo_frame: '_self', controller: 'lato-form lato-webauthn-auth', 'lato-webauthn-auth-options-value': options.to_json } do |form| %>
+    <%= lato_form_notices class: %w[mb-3] %>
+    <%= lato_form_errors user, class: %w[mb-3] %>
+
+    <div class="mb-4 text-center">
+      <p><%= raw I18n.t('lato.webauthn_authentication_help', email: h(user.email_protected)) %></p>
+    </div>
+    
+    <%= form.hidden_field :webauthn_credential, data: { 'lato-webauthn-auth-target': 'credential' } %>
+
+    <div class="mb-3">
+      <%= lato_form_submit form, I18n.t('lato.authenticate'), class: %w[d-block w-100], data: { action: 'lato-webauthn-auth#authenticate' } %>
+    </div>
+
+    <div class="text-center mt-3 mb-3">
+      <%= I18n.t('lato.or').downcase %> <%= link_to I18n.t('lato.reset_password').downcase, lato.authentication_recover_password_path %>
+    </div>
+  <% end %>
+<% end %>

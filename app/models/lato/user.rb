@@ -336,6 +336,12 @@ module Lato
       )
     end
 
+    def webauthn_authentication_options
+      WebAuthn::Credential.options_for_get(
+        allow: webauthn_allow_credentials.map { |cred| Base64.strict_encode64(cred) }
+      )
+    end
+
     def register_webauthn_credential(credential_payload, encoded_challenge)
       if credential_payload.blank?
         errors.add(:base, :webauthn_payload_missing)
@@ -358,6 +364,44 @@ module Lato
     rescue JSON::ParserError, WebAuthn::Error => e
       Rails.logger.error(e)
       errors.add(:base, :webauthn_registration_failed)
+      false
+    end
+
+    def webauthn_authentication(params, encoded_challenge)
+      return false unless webauthn_enabled?
+
+      if params[:webauthn_credential].blank?
+        errors.add(:base, :webauthn_payload_missing)
+        return false
+      end
+
+      if encoded_challenge.blank?
+        errors.add(:base, :webauthn_challenge_missing)
+        return false
+      end
+
+      parsed_payload = JSON.parse(params[:webauthn_credential])
+      
+      # Converti i campi da base64url a base64 standard per il gem webauthn
+      parsed_payload['rawId'] = base64url_to_base64(parsed_payload['rawId'])
+      parsed_payload['response']['clientDataJSON'] = base64url_to_base64(parsed_payload['response']['clientDataJSON'])
+      parsed_payload['response']['authenticatorData'] = base64url_to_base64(parsed_payload['response']['authenticatorData'])
+      parsed_payload['response']['signature'] = base64url_to_base64(parsed_payload['response']['signature'])
+      parsed_payload['response']['userHandle'] = base64url_to_base64(parsed_payload['response']['userHandle']) if parsed_payload['response']['userHandle']
+      
+      credential = WebAuthn::Credential.from_get(parsed_payload)
+      
+      credential.verify(
+        encoded_challenge,
+        public_key: webauthn_public_key,
+        sign_count: 0
+      )
+
+      true
+    rescue JSON::ParserError, WebAuthn::Error => e
+      Rails.logger.error(e)
+      Rails.logger.error(e.backtrace.join("\n"))
+      errors.add(:base, :webauthn_authentication_failed)
       false
     end
 
@@ -428,6 +472,28 @@ module Lato
       [Base64.strict_decode64(webauthn_id)]
     rescue ArgumentError
       []
+    end
+
+    def webauthn_allow_credentials
+      return [] unless webauthn_id.present?
+
+      [Base64.strict_decode64(webauthn_id)]
+    rescue ArgumentError
+      []
+    end
+
+    def base64url_to_base64(str)
+      return nil if str.nil?
+      # Converti base64url in base64 standard
+      base64 = str.tr('-_', '+/')
+      # Aggiungi padding se necessario
+      case base64.length % 4
+      when 2
+        base64 += '=='
+      when 3
+        base64 += '='
+      end
+      base64
     end
   end
 end

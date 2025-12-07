@@ -1,0 +1,10 @@
+<div class="w-100 h-100 d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 54px - 2rem)">
+  <div class="card w-100" style="max-width: 400px">
+    <div class="card-header">
+      <h1 class="fs-3 mb-0 text-center"><%= I18n.t('lato.webauthn_authentication') %></h1>
+    </div>
+    <div class="card-body">
+      <%= render 'lato/authentication/form-webauthn', user: @user, options: @options %>
+    </div>
+  </div>
+</div>

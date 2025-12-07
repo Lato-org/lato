@@ -61,6 +61,13 @@ ro:
     authenticator: Autentificare în doi pași
     authenticator_code_help: Introdu codul generat de aplicația Google Authenticator pentru contul <b>%{email}</b>
     reset_password: Resetează-ți parola
+    choose_authentication_method: Alege metoda de autentificare
+    authentication_method_help: Alege cum să finalizezi autentificarea pentru contul <b>%{email}</b>
+    use_google_authenticator: Folosește Google Authenticator
+    use_webauthn: Folosește Passkey
+    authenticate: Autentifică
+    webauthn_authentication: Autentificare Passkey
+    webauthn_authentication_help: Folosește dispozitivul tău pentru a te autentifica pe contul <b>%{email}</b>
     account_webauthn: Autentificare Passkey
     account_webauthn_start_title: Activează Passkey
     account_webauthn_start_description: Folosește securitatea dispozitivului tău (Touch ID, Face ID, Windows Hello etc.) pentru a aproba conectările viitoare.<br>Apasă butonul de mai jos și urmează instrucțiunile din browser pentru a înregistra o Passkey.
@@ -140,6 +147,7 @@ ro:
               webauthn_payload_missing: Răspunsul Passkey lipsește. Te rugăm să încerci din nou.
               webauthn_challenge_missing: Provocarea Passkey a expirat. Repornește procedura.
               webauthn_registration_failed: Nu am putut verifica răspunsul Passkey. Repornește procedura.
+              webauthn_authentication_failed: Autentificarea Passkey a eșuat. Te rugăm să încerci din nou sau să folosești altă metodă.
             password:
               not_correct: incorectă
             password_confirmation:
