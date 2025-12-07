@@ -61,6 +61,19 @@ it:
     authenticator: Autenticazione a due fattori
     authenticator_code_help: Inserisci il codice generato dall'app Google Authenticator per l'account <b>%{email}</b>
     reset_password: Reimposta la tua password
+    account_webauthn: Autenticazione Passkey
+    account_webauthn_start_title: Abilita le Passkey
+    account_webauthn_start_description: Utilizza la sicurezza del tuo dispositivo (Touch ID, Face ID, Windows Hello, ecc.) per approvare gli accessi futuri.<br>Clicca il pulsante qui sotto e segui le istruzioni del browser per registrare una Passkey.
+    account_webauthn_enable: Registra Passkey
+    account_webauthn_in_progress_title: Completa la registrazione dal browser
+    account_webauthn_in_progress_description: Approva la richiesta che appare nel browser per terminare l'associazione della Passkey al tuo account.
+    account_webauthn_in_progress_error: Impossibile registrare la Passkey. Riavvia la procedura e riprova.
+    account_webauthn_waiting_browser: In attesa della conferma dal browser...
+    account_webauthn_cancel: Annulla richiesta
+    account_webauthn_finalize: Concludi registrazione
+    account_webauthn_ready_title: Passkey attiva
+    account_webauthn_ready_description: Questo account richiederà ora una sfida WebAuthn subito dopo il flusso di login classico.
+    account_webauthn_disable: Rimuovi Passkey
     per_page: Per pagina
     per_page_description: Elementi per pagina
     confirm_title: Conferma
@@ -87,6 +100,8 @@ it:
       update_user_action_notice: Informazioni account aggiornate correttamente
       request_verify_email_action_notice: Ti abbiamo inviato una email con i passaggi da seguire per completare la procedura
       update_password_action_notice: Password aggiornate correttamente
+      update_webauthn_action_notice: Passkey registrata correttamente
+      remove_webauthn_action_notice: Passkey rimossa correttamente
     authentication_controller:
       verify_email_action_notice: Indirizzo email verificato correttamente
       update_password_action_notice: La tua password è stata aggiornata correttamente
@@ -122,6 +137,9 @@ it:
               web3_address_invalid: L'inidirizzo inviato non è correttamente firmato
               web3_connection_error: Impossibile connettere il wallet
               authenticator_code_invalid: Il codice inserito non è corretto
+              webauthn_payload_missing: Risposta Passkey mancante. Riprovare.
+              webauthn_challenge_missing: La sfida Passkey è scaduta. Avvia nuovamente la procedura.
+              webauthn_registration_failed: Impossibile verificare la risposta Passkey. Riavvia la procedura.
             password:
               not_correct: non corretta
             password_confirmation:

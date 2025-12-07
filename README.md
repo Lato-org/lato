@@ -154,3 +154,11 @@ ruby ./bin/generate_docs.rb
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+Stiamo integrando l'autenticazione WebAuthn nel pannello Lato.
+L'idea è che l'utente, dal suo account, può, volontariamente, attivare l'autenticazione WebAuthn per il suo account.
+L'attivazione consiste nel registrare un dispositivo WebAuthn (ad esempio una chiave di sicurezza FIDO2 o l'autenticazione biometrica del dispositivo) che verrà poi utilizzato come secondo fattore di autenticazione al momento del login.
+
+Il modello Lato::User ha già i nuovi campi webauthn_id e webauthn_public_key da utilizzare per memorizzare le informazioni del dispositivo WebAuthn registrato.
+
+Modifica la view della pagina di gestiona account, il controller account_controller.rb e il modello user.rb per gestire la registrazione di un dispositivo WebAuthn.

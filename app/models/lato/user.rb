@@ -14,6 +14,7 @@ module Lato
     validates :accepted_privacy_policy_version, presence: true
     validates :accepted_terms_and_conditions_version, presence: true
     validates :web3_address, uniqueness: true, allow_blank: true
+    validates :webauthn_id, uniqueness: true, allow_blank: true
 
     # Relations
     ##
@@ -56,6 +57,10 @@ module Lato
 
     def authenticator_enabled?
       !authenticator_secret.blank?
+    end
+
+    def webauthn_enabled?
+      webauthn_id.present? && webauthn_public_key.present?
     end
 
     # Helpers
@@ -320,6 +325,49 @@ module Lato
       true
     end
 
+    def webauthn_registration_options
+      WebAuthn::Credential.options_for_create(
+        user: {
+          id: Base64.strict_encode64(webauthn_user_handle),
+          name: email,
+          display_name: full_name
+        },
+        exclude: webauthn_exclude_credentials.map { |cred| Base64.strict_encode64(cred) }
+      )
+    end
+
+    def register_webauthn_credential(credential_payload, encoded_challenge)
+      if credential_payload.blank?
+        errors.add(:base, :webauthn_payload_missing)
+        return false
+      end
+
+      if encoded_challenge.blank?
+        errors.add(:base, :webauthn_challenge_missing)
+        return false
+      end
+
+      parsed_payload = JSON.parse(credential_payload)
+      credential = WebAuthn::Credential.from_create(parsed_payload)
+      credential.verify(Base64.strict_decode64(encoded_challenge))
+
+      update(
+        webauthn_id: Base64.strict_encode64(credential.raw_id),
+        webauthn_public_key: credential.public_key
+      )
+    rescue JSON::ParserError, WebAuthn::Error => e
+      Rails.logger.error(e)
+      errors.add(:base, :webauthn_registration_failed)
+      false
+    end
+
+    def remove_webauthn_credential
+      update(
+        webauthn_id: nil,
+        webauthn_public_key: nil
+      )
+    end
+
     def generate_authenticator_secret
       update(authenticator_secret: ROTP::Base32.random)
     end
@@ -366,6 +414,20 @@ module Lato
 
       Rails.cache.write(cache_key, value, expires_in: 30.minutes)
       value
+    end
+
+    private
+
+    def webauthn_user_handle
+      Digest::SHA256.digest("lato-user-#{id}")
+    end
+
+    def webauthn_exclude_credentials
+      return [] unless webauthn_id.present?
+
+      [Base64.strict_decode64(webauthn_id)]
+    rescue ArgumentError
+      []
     end
   end
 end

@@ -1,0 +1,66 @@
+<%
+
+user ||= Lato::User.new
+registration_options = session[:webauthn_registration_options]
+form_data = { turbo_frame: '_self', controller: 'lato-form' }
+
+if registration_options.present?
+  form_data[:controller] += ' lato-account-webauthn'
+  form_data['lato-account-webauthn-options-value'] = registration_options.to_json
+  form_data['lato-account-webauthn-error-message-value'] = I18n.t('lato.account_webauthn_in_progress_error')
+end
+
+%>
+
+<%= turbo_frame_tag 'account_form-webauthn' do %>
+  <%= form_with model: user, url: lato.account_update_webauthn_action_path, data: form_data do |form| %>
+    <%= lato_form_notices class: %w[mb-3] %>
+    <%= lato_form_errors user, class: %w[mb-3] %>
+
+    <% if user.webauthn_enabled? %>
+      <div class="alert alert-light mb-3">
+        <h4 class="alert-heading"><%= I18n.t('lato.account_webauthn_ready_title') %></h4>
+        <p class="mb-0">
+          <%= raw I18n.t('lato.account_webauthn_ready_description') %>
+        </p>
+      </div>
+
+      <%= form.hidden_field :webauthn_command, value: 'remove' %>
+
+      <div class="d-flex justify-content-end">
+        <%= lato_form_submit form, I18n.t('lato.account_webauthn_disable'), class: %w[btn-danger] %>
+      </div>
+    <% elsif registration_options.present? %>
+      <%= form.hidden_field :webauthn_command, value: 'complete' %>
+      <%= form.hidden_field :webauthn_credential, data: { lato_account_webauthn_target: 'credentialInput' } %>
+
+      <div class="alert alert-light mb-3" data-lato-account-webauthn-target="status">
+        <h4 class="alert-heading"><%= I18n.t('lato.account_webauthn_in_progress_title') %></h4>
+        <p class="mb-0">
+          <%= raw I18n.t('lato.account_webauthn_in_progress_description') %>
+        </p>
+      </div>
+
+      <%= lato_form_submit form, I18n.t('lato.account_webauthn_finalize'), class: %w[btn-primary d-none], data: { lato_account_webauthn_target: 'submit' } %>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <%= link_to I18n.t('lato.account_webauthn_cancel'), lato.account_update_webauthn_action_path(user: { webauthn_command: 'cancel' }), class: 'btn btn-link px-0 text-decoration-none', data: { turbo_frame: '_self', turbo_method: :patch } %>
+        <div class="text-muted small d-flex align-items-center">
+          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+          <span><%= I18n.t('lato.account_webauthn_waiting_browser') %></span>
+        </div>
+      </div>
+    <% else %>
+      <div class="alert alert-light mb-0">
+        <h4 class="alert-heading"><%= I18n.t('lato.account_webauthn_start_title') %></h4>
+        <p>
+          <%= raw I18n.t('lato.account_webauthn_start_description') %>
+        </p>
+        <p class="mb-0">
+          <%= form.hidden_field :webauthn_command, value: 'start' %>
+          <%= lato_form_submit form, I18n.t('lato.account_webauthn_enable'), class: %w[btn-primary] %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
