@@ -11,7 +11,7 @@ options ||= {}
     <%= lato_form_errors user, class: %w[mb-3] %>
 
     <div class="mb-4 text-center">
-      <p><%= raw I18n.t('lato.webauthn_authentication_help', email: h(user.email_protected)) %></p>
+      <p><%= raw I18n.t('lato.webauthn_help', email: h(user.email_protected)) %></p>
     </div>
     
     <%= form.hidden_field :webauthn_credential, data: { 'lato-webauthn-auth-target': 'credential' } %>

@@ -55,19 +55,19 @@ fr:
     account_authenticator: Google Authenticator
     account_authenticator_start_title: Activer Google Authenticator
     account_authenticator_start_description: Générez un code QR en cliquant sur le bouton ci-dessous et scannez-le avec l'application Google Authenticator sur votre téléphone.<br>Cela vous permettra de protéger votre compte avec une authentification à deux facteurs.
+    account_authenticator_ready_title: Google Authenticator prêt
     account_authenticator_ready_qr: Scannez le code QR avec l'application Google Authenticator pour activer la protection de votre compte avec une authentification à deux facteurs.
-    generate_qr_code: Générer un code QR
-    cancel_authenticator: Déconnecter
-    authenticator: Authentification à deux facteurs
+    account_authenticator_generate_qr_code: Générer un code QR
+    account_authenticator_disable: Déconnecter
+    authenticator: Google Authenticator
     authenticator_code_help: Saisissez le code généré par l'application Google Authenticator pour le compte <b>%{email}</b>
     reset_password: Réinitialisez votre mot de passe
     choose_authentication_method: Choisir la méthode d'authentification
-    authentication_method_help: Choisissez comment compléter l'authentification pour le compte <b>%{email}</b>
     use_google_authenticator: Utiliser Google Authenticator
     use_webauthn: Utiliser Passkey
     authenticate: Authentifier
-    webauthn_authentication: Authentification Passkey
-    webauthn_authentication_help: Utilisez votre appareil pour vous authentifier sur le compte <b>%{email}</b>
+    webauthn: Authentification Passkey
+    webauthn_help: Utilisez votre appareil pour vous authentifier sur le compte <b>%{email}</b>
     account_webauthn: Authentification Passkey
     account_webauthn_start_title: Activer les passkeys
     account_webauthn_start_description: Utilisez la sécurité de votre appareil (Touch ID, Face ID, Windows Hello, etc.) pour approuver les connexions futures.<br>Cliquez sur le bouton ci-dessous et suivez les instructions de votre navigateur pour enregistrer une passkey.

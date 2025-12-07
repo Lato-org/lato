@@ -9,10 +9,6 @@ user ||= Lato::User.new
     <%= lato_form_notices class: %w[mb-3] %>
     <%= lato_form_errors user, class: %w[mb-3] %>
 
-    <div class="mb-4 text-center">
-      <p><%= I18n.t('lato.authentication_method_help', email: h(user.email_protected)) %></p>
-    </div>
-    
     <% if user.authenticator_enabled? %>
       <div class="mb-3">
         <%= form.button I18n.t('lato.use_google_authenticator'), 

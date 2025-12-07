@@ -18,7 +18,7 @@ end
     <%= lato_form_errors user, class: %w[mb-3] %>
 
     <% if user.webauthn_enabled? %>
-      <div class="alert alert-light mb-3">
+      <div class="alert alert-success mb-3">
         <h4 class="alert-heading"><%= I18n.t('lato.account_webauthn_ready_title') %></h4>
         <p class="mb-0">
           <%= raw I18n.t('lato.account_webauthn_ready_description') %>

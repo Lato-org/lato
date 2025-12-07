@@ -55,19 +55,19 @@ it:
     account_authenticator: Google Authenticator
     account_authenticator_start_title: Abilita Google Authenticator
     account_authenticator_start_description: Genera un codice QR cliccando il pulsante sottostante e scansionalo con l'app Google Authenticator sul tuo telefono.<br>Questo ti permetterà di proteggere il tuo account con un'autenticazione a due fattori.
+    account_authenticator_ready_title: Google Authenticator pronto
     account_authenticator_ready_qr: Scansiona il codice QR con l'app Google Authenticator per utilizzare la protezione dell'account con un'autenticazione a due fattori.
-    generate_qr_code: Genera codice QR
-    cancel_authenticator: Disconnetti
-    authenticator: Autenticazione a due fattori
+    account_authenticator_generate_qr_code: Genera codice QR
+    account_authenticator_disable: Disconnetti
+    authenticator: Google Authenticator
     authenticator_code_help: Inserisci il codice generato dall'app Google Authenticator per l'account <b>%{email}</b>
     reset_password: Reimposta la tua password
     choose_authentication_method: Scegli il metodo di autenticazione
-    authentication_method_help: Scegli come completare l'autenticazione per l'account <b>%{email}</b>
     use_google_authenticator: Usa Google Authenticator
     use_webauthn: Usa Passkey
     authenticate: Autentica
-    webauthn_authentication: Autenticazione Passkey
-    webauthn_authentication_help: Usa il tuo dispositivo per autenticarti nell'account <b>%{email}</b>
+    webauthn: Autenticazione Passkey
+    webauthn_help: Usa il tuo dispositivo per autenticarti nell'account <b>%{email}</b>
     account_webauthn: Autenticazione Passkey
     account_webauthn_start_title: Abilita le Passkey
     account_webauthn_start_description: Utilizza la sicurezza del tuo dispositivo (Touch ID, Face ID, Windows Hello, ecc.) per approvare gli accessi futuri.<br>Clicca il pulsante qui sotto e segui le istruzioni del browser per registrare una Passkey.

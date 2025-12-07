@@ -55,19 +55,19 @@ ro:
     account_authenticator: Google Authenticator
     account_authenticator_start_title: Activează Google Authenticator
     account_authenticator_start_description: Generează un cod QR făcând clic pe butonul de mai jos și scanează-l cu aplicația Google Authenticator de pe telefon.<br>Aceasta îți va permite să îți protejezi contul cu autentificare în doi pași.
+    account_authenticator_ready_title: Google Authenticator gata
     account_authenticator_ready_qr: Scanează codul QR cu aplicația Google Authenticator pentru a utiliza protecția contului cu autentificare în doi pași.
-    generate_qr_code: Generează cod QR
-    cancel_authenticator: Deconectează
-    authenticator: Autentificare în doi pași
+    account_authenticator_generate_qr_code: Generează cod QR
+    account_authenticator_disable: Deconectează
+    authenticator: Google Authenticator
     authenticator_code_help: Introdu codul generat de aplicația Google Authenticator pentru contul <b>%{email}</b>
     reset_password: Resetează-ți parola
     choose_authentication_method: Alege metoda de autentificare
-    authentication_method_help: Alege cum să finalizezi autentificarea pentru contul <b>%{email}</b>
     use_google_authenticator: Folosește Google Authenticator
     use_webauthn: Folosește Passkey
     authenticate: Autentifică
-    webauthn_authentication: Autentificare Passkey
-    webauthn_authentication_help: Folosește dispozitivul tău pentru a te autentifica pe contul <b>%{email}</b>
+    webauthn: Autentificare Passkey
+    webauthn_help: Folosește dispozitivul tău pentru a te autentifica pe contul <b>%{email}</b>
     account_webauthn: Autentificare Passkey
     account_webauthn_start_title: Activează Passkey
     account_webauthn_start_description: Folosește securitatea dispozitivului tău (Touch ID, Face ID, Windows Hello etc.) pentru a aproba conectările viitoare.<br>Apasă butonul de mai jos și urmează instrucțiunile din browser pentru a înregistra o Passkey.
