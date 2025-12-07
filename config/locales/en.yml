@@ -105,8 +105,6 @@ en:
       update_user_action_notice: Account information properly updated
       request_verify_email_action_notice: We have sent you an email with the steps to follow to complete the procedure
       update_password_action_notice: Passwords updated successfully
-      update_webauthn_action_notice: Passkey registered successfully
-      remove_webauthn_action_notice: Passkey removed successfully
     authentication_controller:
       verify_email_action_notice: Successfully verified email address
       update_password_action_notice: Your password has been successfully updated

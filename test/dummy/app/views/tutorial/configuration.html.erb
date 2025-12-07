@@ -38,6 +38,7 @@ Lato.configure do |config|
   config.auth_disable_recover_password = true # Disable password recovery
   config.auth_disable_web3 = true # Disable Web3 wallet login
   config.auth_disable_authenticator = true # Disable Google Authenticator login
+  config.auth_disable_webauthn = true # Disable WebAuthn login
 end
 </pre>
 
@@ -128,6 +129,9 @@ throw "Terms and conditions not accepted" unless user.valid_accepted_terms_and_c
 Lato.configure do |config|
   config.web3_connection = true # Allow users to link a Web3 wallet to their account
   config.authenticator_connection = true # Allow users to link Google Authenticator to their account
+  config.webauthn_connection = true # Allow users to link WebAuthn to their account
+  config.webauthn_origin = 'http://localhost:3000' # Origin URL for WebAuthn (must match the one used in your app)
+  config.webauthn_rp_name = 'Lato Example App' # Relying Party name for WebAuthn
 end
 </pre>
 

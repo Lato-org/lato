@@ -107,8 +107,6 @@ fr:
       update_user_action_notice: Informations du compte mises à jour avec succès
       request_verify_email_action_notice: Nous vous avons envoyé un e-mail avec les étapes à suivre pour terminer la procédure
       update_password_action_notice: Mot de passe mis à jour avec succès
-      update_webauthn_action_notice: Passkey enregistrée avec succès
-      remove_webauthn_action_notice: Passkey supprimée avec succès
     authentication_controller:
       verify_email_action_notice: Adresse e-mail vérifiée avec succès
       update_password_action_notice: Votre mot de passe a été mis à jour avec succès

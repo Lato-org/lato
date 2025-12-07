@@ -53,7 +53,7 @@ module Lato
         when 'remove'
           if @session.user.remove_webauthn_credential
             reset_webauthn_registration_state
-            format.html { redirect_to lato.account_path, notice: I18n.t('lato.account_controller.remove_webauthn_action_notice') }
+            format.html { redirect_to lato.account_path }
             format.json { render json: @session.user }
           else
             format.html { render :index, status: :unprocessable_entity }
@@ -68,7 +68,7 @@ module Lato
 
           if @session.user.register_webauthn_credential(permitted[:webauthn_credential], session[:webauthn_registration_challenge])
             reset_webauthn_registration_state
-            format.html { redirect_to lato.account_path, notice: I18n.t('lato.account_controller.update_webauthn_action_notice') }
+            format.html { redirect_to lato.account_path }
             format.json { render json: @session.user }
           else
             reset_webauthn_registration_state

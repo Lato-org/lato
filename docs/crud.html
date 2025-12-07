@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato Documentation</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="pGSpt3BweKOJgNvsuVqVJwwloLiWmG5Z9hUNuPXHC9hIJmhGNVGb7Baji6GvkDMbxYf7qUJaN59k64WfmtesGw">
+<meta name="csrf-token" content="TjkV5SsDJb6aIuYfNPRHUl5lO8_i4KHUYlvKyCdit--kmvceGiubguKtMls9xvwwdhIKAZIbss5CdPnwvo4Nvw">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -47,6 +47,7 @@ document.addEventListener('turbo:load', () => {
     "controllers/application": "/assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js",
     "controllers": "/assets/controllers/index-78fbd01474398c3ea1bffd81ebe0dc0af5146c64dfdcbe64a0f4763f9840df28.js",
     "controllers/lato_account_form_user_controller": "/assets/lato/controllers/lato_account_form_user_controller-1a1852a64befc2ad913c250288ee4ab890db01f0401291dc34cd25612292a0fb.js",
+    "controllers/lato_account_webauthn_controller": "/assets/lato/controllers/lato_account_webauthn_controller-bea194f8b45b3f58f765b697bb0376fcbe6c6f9217358d0963385aa4b02c3b39.js",
     "controllers/lato_action_controller": "/assets/lato/controllers/lato_action_controller-b5bf90674ec19974055751aca6862684575da04a9cd282f0f153fc575ac31214.js",
     "controllers/lato_aside_opener_controller": "/assets/lato/controllers/lato_aside_opener_controller-4d1ed9086fcd01e9c001ee51c11094aab1e99712f0c61cd7ae8e43cc3ce44a83.js",
     "controllers/lato_confirm_controller": "/assets/lato/controllers/lato_confirm_controller-bee4fe291abfb1603b992c678401028a892a54243750fa99be5220960c19f6f0.js",
@@ -64,6 +65,7 @@ document.addEventListener('turbo:load', () => {
     "controllers/lato_network_controller": "/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js",
     "controllers/lato_operation_controller": "/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js",
     "controllers/lato_tooltip_controller": "/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js",
+    "controllers/lato_webauthn_auth_controller": "/assets/lato/controllers/lato_webauthn_auth_controller-b6378add3dd4eb04b9fb9451dc82907d6c150345ee71d823a8673cb65a9442a8.js",
     "controllers/hello_controller": "/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js"
   }
 }</script>
@@ -78,6 +80,7 @@ document.addEventListener('turbo:load', () => {
 <link rel="modulepreload" href="/assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js">
 <link rel="modulepreload" href="/assets/controllers/index-78fbd01474398c3ea1bffd81ebe0dc0af5146c64dfdcbe64a0f4763f9840df28.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_account_form_user_controller-1a1852a64befc2ad913c250288ee4ab890db01f0401291dc34cd25612292a0fb.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_account_webauthn_controller-bea194f8b45b3f58f765b697bb0376fcbe6c6f9217358d0963385aa4b02c3b39.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_action_controller-b5bf90674ec19974055751aca6862684575da04a9cd282f0f153fc575ac31214.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_aside_opener_controller-4d1ed9086fcd01e9c001ee51c11094aab1e99712f0c61cd7ae8e43cc3ce44a83.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_confirm_controller-bee4fe291abfb1603b992c678401028a892a54243750fa99be5220960c19f6f0.js">
@@ -95,6 +98,7 @@ document.addEventListener('turbo:load', () => {
 <link rel="modulepreload" href="/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_webauthn_auth_controller-b6378add3dd4eb04b9fb9451dc82907d6c150345ee71d823a8673cb65a9442a8.js">
 <link rel="modulepreload" href="/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js">
 <script type="module">import "application"</script>
 </head>
@@ -647,7 +651,7 @@ end
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.16.0 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.17.0 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -
@@ -662,7 +666,7 @@ end
 </button>
   
   
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -677,7 +681,7 @@ end
 </div>
 
 
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -692,7 +696,7 @@ end
 </div>
 
 
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -707,7 +711,7 @@ end
 </div>
 
 
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -722,7 +726,7 @@ end
 </div>
 
 
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -737,7 +741,7 @@ end
 </div>
 
 
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -752,7 +756,7 @@ end
 </div>
 
 
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -767,7 +771,7 @@ end
 </div>
 
 
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -782,7 +786,7 @@ end
 </div>
 
 
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -797,7 +801,7 @@ end
 </div>
 
 
-<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="false">
+<div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" data-lato-action-target="modalDialog">
     <div class="modal-content">
       <div class="modal-header">

@@ -107,8 +107,6 @@ ro:
       update_user_action_notice: Informațiile contului au fost actualizate cu succes
       request_verify_email_action_notice: Ți-am trimis un email cu pașii de urmat pentru a finaliza procedura
       update_password_action_notice: Parolele au fost actualizate cu succes
-      update_webauthn_action_notice: Passkey înregistrată cu succes
-      remove_webauthn_action_notice: Passkey eliminată cu succes
     authentication_controller:
       verify_email_action_notice: Adresa de email a fost verificată cu succes
       update_password_action_notice: Parola ta a fost actualizată cu succes

@@ -107,8 +107,6 @@ it:
       update_user_action_notice: Informazioni account aggiornate correttamente
       request_verify_email_action_notice: Ti abbiamo inviato una email con i passaggi da seguire per completare la procedura
       update_password_action_notice: Password aggiornate correttamente
-      update_webauthn_action_notice: Passkey registrata correttamente
-      remove_webauthn_action_notice: Passkey rimossa correttamente
     authentication_controller:
       verify_email_action_notice: Indirizzo email verificato correttamente
       update_password_action_notice: La tua password è stata aggiornata correttamente
