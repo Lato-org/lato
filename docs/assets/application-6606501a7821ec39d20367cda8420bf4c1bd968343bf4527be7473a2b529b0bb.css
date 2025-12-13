@@ -14941,30 +14941,31 @@ main, aside {
 /* line 24, app/assets/stylesheets/application.scss */
 .controller-authentication, .homepage {
   background-color: #293b5a;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
-/* line 28, app/assets/stylesheets/application.scss */
+/* line 29, app/assets/stylesheets/application.scss */
 .controller-authentication header .navbar, .homepage header .navbar {
   box-shadow: none !important;
 }
 
-/* line 33, app/assets/stylesheets/application.scss */
+/* line 34, app/assets/stylesheets/application.scss */
 .controller-authentication .footer, .homepage .footer {
   background-color: transparent !important;
   border-width: 0 !important;
 }
 
-/* line 37, app/assets/stylesheets/application.scss */
+/* line 38, app/assets/stylesheets/application.scss */
 .controller-authentication .footer a, .homepage .footer a {
   color: #fff !important;
 }
 
-/* line 41, app/assets/stylesheets/application.scss */
+/* line 42, app/assets/stylesheets/application.scss */
 .controller-authentication .footer .text-muted, .homepage .footer .text-muted {
   color: rgba(255, 255, 255, 0.75) !important;
 }
 
-/* line 48, app/assets/stylesheets/application.scss */
+/* line 49, app/assets/stylesheets/application.scss */
 pre {
   border-radius: 15px;
   padding: 10px;
