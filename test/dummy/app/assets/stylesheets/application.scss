@@ -28,6 +28,8 @@
   header {
     .navbar {
       box-shadow: none !important;
+      background: rgba(#fff, 0.05) !important;
+      backdrop-filter: blur(10px);
     }
   }
 

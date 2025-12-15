@@ -14947,25 +14947,27 @@ main, aside {
 /* line 29, app/assets/stylesheets/application.scss */
 .controller-authentication header .navbar, .homepage header .navbar {
   box-shadow: none !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(10px);
 }
 
-/* line 34, app/assets/stylesheets/application.scss */
+/* line 36, app/assets/stylesheets/application.scss */
 .controller-authentication .footer, .homepage .footer {
   background-color: transparent !important;
   border-width: 0 !important;
 }
 
-/* line 38, app/assets/stylesheets/application.scss */
+/* line 40, app/assets/stylesheets/application.scss */
 .controller-authentication .footer a, .homepage .footer a {
   color: #fff !important;
 }
 
-/* line 42, app/assets/stylesheets/application.scss */
+/* line 44, app/assets/stylesheets/application.scss */
 .controller-authentication .footer .text-muted, .homepage .footer .text-muted {
   color: rgba(255, 255, 255, 0.75) !important;
 }
 
-/* line 49, app/assets/stylesheets/application.scss */
+/* line 51, app/assets/stylesheets/application.scss */
 pre {
   border-radius: 15px;
   padding: 10px;
