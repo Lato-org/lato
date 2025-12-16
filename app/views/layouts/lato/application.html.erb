@@ -24,7 +24,7 @@
   <%= javascript_importmap_tags Lato.config.assets_importmap_entry %>
 </head>
 <body
-  class="controller-<%= controller_name %> action-<%= action_name %> <%= @layout_body_classes.join(' ') %>"
+  class="controller-<%= controller_name %> action-<%= action_name %> <%= @layout_body_classes.join(' ') %> <%= cookies[:lato_aside_hidden] == 'true' ? 'aside-hidden' : '' %>"
   data-controller="lato-action lato-guide"
 >
   <header>
