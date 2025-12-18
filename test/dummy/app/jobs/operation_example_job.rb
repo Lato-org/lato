@@ -2,7 +2,7 @@ class OperationExampleJob < ApplicationJob
   def perform(params = {})
     if params['type'] == 'success'
       5.times { sleep(1) }
-      save_operation_output_message("Messaggio di successo dell'operazione")
+      save_operation_output_message("Custom operation success message")
       return
     end
 
@@ -14,7 +14,7 @@ class OperationExampleJob < ApplicationJob
 
     if params['type'] == 'failed'
       5.times { sleep(1) }
-      raise "Messaggio di errore dell'operazione"
+      raise "Custom operation error message"
       return
     end
 
@@ -26,9 +26,25 @@ class OperationExampleJob < ApplicationJob
       return
     end
 
+    if params['type'] == 'logs_add'
+      10.times do |index|
+        sleep(1)
+        add_operation_log("Custom log message #{index + 1}")
+      end
+      return
+    end
+
+    if params['type'] == 'logs_replace'
+      10.times do |index|
+        sleep(1)
+        replace_operation_log("Custom log message #{index + 1}")
+      end
+      return
+    end
+
     if params['type'] == 'file_input'
       5.times { sleep(1) }
-      save_operation_output_message("Hai caricato il file #{operation_input_file_attachment.filename}")
+      save_operation_output_message("You have uploaded the file #{operation_input_file_attachment.filename}")
       return
     end
 

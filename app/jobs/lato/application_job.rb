@@ -24,6 +24,36 @@ module Lato
       )
     end
 
+    # This method can be used to add a log message to the operation.
+    def add_operation_log(message)
+      return false unless operation?
+
+      @operation.update(
+        logs: @operation.logs + [[Time.now.utc, message]]
+      )
+    end
+
+    # This method can be used to replace a log message to the operation.
+    def replace_operation_log(message, index = -1)
+      return false unless operation?
+        
+      logs = @operation.logs
+      index = 0 if logs.empty?
+      logs[index] = [Time.now.utc, message]
+      @operation.update(
+        logs: logs
+      )
+    end
+
+    # This method can be used to clear all logs of the operation.
+    def clear_operation_logs
+      return false unless operation?
+        
+      @operation.update(
+        logs: []
+      )
+    end
+
     # This method can be used to save a file as output of the operation.
     def save_operation_output_file(file_path)
       return false unless operation?

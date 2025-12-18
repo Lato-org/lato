@@ -175,6 +175,40 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
+<h4>Add logs during operation execution</h4>
+
+<p>
+<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'logs_add'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
+</p>
+
+<pre>
+class MyJob < Lato::ApplicationJob
+  def perform(params = {})
+    10.times do |index|
+      sleep(1)
+      add_operation_log("Custom log message #{index + 1}")
+    end
+  end
+end
+</pre>
+
+<h4>Replace logs during operation execution</h4>
+
+<p>
+<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'logs_replace'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
+</p>
+
+<pre>
+class MyJob < Lato::ApplicationJob
+  def perform(params = {})
+    10.times do |index|
+      sleep(1)
+      replace_operation_log("Custom log message #{index + 1}")
+    end
+  end
+end
+</pre>
+
 <h4>Set an Input File</h4>
 
 <div class="example bg-light p-3 mb-3">

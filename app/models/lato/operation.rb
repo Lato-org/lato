@@ -25,6 +25,7 @@ module Lato
 
     before_create do
       self.status = :created
+      self.logs ||= []
       self.active_job_input ||= {}
       self.active_job_output ||= {}
     end
