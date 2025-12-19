@@ -121,6 +121,17 @@ rails lato:generate:favicon
 rails lato:generate:pwa
 ```
 
+## Upgrading
+
+To upgrade Lato to the latest version, run the following commands:
+
+```bash
+bundle update lato
+rails lato:install:application
+rails lato:install:migrations
+rails db:migrate
+```
+
 ## Development
 
 Clone repository, install dependencies, run migrations and start:

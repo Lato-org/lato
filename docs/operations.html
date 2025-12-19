@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="MflK6bIIqn9g2eRaEaQ5R_YtrxTi_6k0FWcvDH205iE40PPj96IleBSEh1yxL5MlN6bZkR-iPzucPPotQk6nyA">
+<meta name="csrf-token" content="iqDovQOr-D-eYf2u_TDEWtZfRIcDpW0wu6CWKZq3V1ABgMUfSjFgAsU2j7lHN-ZiEwiH6EkuSVPwoX1rDdoGAg">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -48,7 +48,7 @@ document.addEventListener('turbo:load', () => {
     "controllers": "/assets/controllers/index-78fbd01474398c3ea1bffd81ebe0dc0af5146c64dfdcbe64a0f4763f9840df28.js",
     "controllers/lato_account_form_user_controller": "/assets/lato/controllers/lato_account_form_user_controller-1a1852a64befc2ad913c250288ee4ab890db01f0401291dc34cd25612292a0fb.js",
     "controllers/lato_account_webauthn_controller": "/assets/lato/controllers/lato_account_webauthn_controller-bea194f8b45b3f58f765b697bb0376fcbe6c6f9217358d0963385aa4b02c3b39.js",
-    "controllers/lato_action_controller": "/assets/lato/controllers/lato_action_controller-b5bf90674ec19974055751aca6862684575da04a9cd282f0f153fc575ac31214.js",
+    "controllers/lato_action_controller": "/assets/lato/controllers/lato_action_controller-14ff59e6247beb8b0559205fff4b14db13cde2d9b8b063dc212061ff3744e16e.js",
     "controllers/lato_aside_opener_controller": "/assets/lato/controllers/lato_aside_opener_controller-ca3c07fbc599e78c0fdd96ab833d51e1bf2f9281537b832968f5bcc7d694bb81.js",
     "controllers/lato_confirm_controller": "/assets/lato/controllers/lato_confirm_controller-bee4fe291abfb1603b992c678401028a892a54243750fa99be5220960c19f6f0.js",
     "controllers/lato_copyclip_controller": "/assets/lato/controllers/lato_copyclip_controller-3c6bd0cf431edac433e801b9dfd87dfca76e6a146e98574322f6fd9ab86e3c16.js",
@@ -81,7 +81,7 @@ document.addEventListener('turbo:load', () => {
 <link rel="modulepreload" href="/assets/controllers/index-78fbd01474398c3ea1bffd81ebe0dc0af5146c64dfdcbe64a0f4763f9840df28.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_account_form_user_controller-1a1852a64befc2ad913c250288ee4ab890db01f0401291dc34cd25612292a0fb.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_account_webauthn_controller-bea194f8b45b3f58f765b697bb0376fcbe6c6f9217358d0963385aa4b02c3b39.js">
-<link rel="modulepreload" href="/assets/lato/controllers/lato_action_controller-b5bf90674ec19974055751aca6862684575da04a9cd282f0f153fc575ac31214.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_action_controller-14ff59e6247beb8b0559205fff4b14db13cde2d9b8b063dc212061ff3744e16e.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_aside_opener_controller-ca3c07fbc599e78c0fdd96ab833d51e1bf2f9281537b832968f5bcc7d694bb81.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_confirm_controller-bee4fe291abfb1603b992c678401028a892a54243750fa99be5220960c19f6f0.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_copyclip_controller-3c6bd0cf431edac433e801b9dfd87dfca76e6a146e98574322f6fd9ab86e3c16.js">
@@ -401,7 +401,7 @@ An operation's output can be handled directly within the Job using a series of h
 These functions can also be called even if the Job is executed without using the <code>Lato::Operation</code> model.
 </p>
 
-<h4>Set an Output Message</h4>
+<h4>Set an output message</h4>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
@@ -415,7 +415,7 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an Output File</h4>
+<h4>Set an output file</h4>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
@@ -430,7 +430,22 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an Error</h4>
+<h4>Set an output action</h4>
+
+<p>
+<a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
+</p>
+
+<pre>
+class MyJob &lt; Lato::ApplicationJob
+  def perform(params = {})
+    save_operation_output_message("Custom operation success message and action")
+    save_operation_output_action('Back to homepage', Rails.application.routes.url_helpers.root_path, target: '_blank')
+  end
+end
+</pre>
+
+<h4>Show execution error</h4>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
@@ -444,7 +459,7 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Update Progress Percentage</h4>
+<h4>Update progress percentage</h4>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
@@ -461,11 +476,45 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an Input File</h4>
+<h4>Add logs during operation execution</h4>
+
+<p>
+<a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
+</p>
+
+<pre>
+class MyJob &lt; Lato::ApplicationJob
+  def perform(params = {})
+    10.times do |index|
+      sleep(1)
+      add_operation_log("Custom log message #{index + 1}")
+    end
+  end
+end
+</pre>
+
+<h4>Replace logs during operation execution</h4>
+
+<p>
+<a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
+</p>
+
+<pre>
+class MyJob &lt; Lato::ApplicationJob
+  def perform(params = {})
+    10.times do |index|
+      sleep(1)
+      replace_operation_log("Custom log message #{index + 1}")
+    end
+  end
+end
+</pre>
+
+<h4>Set an input file</h4>
 
 <div class="example bg-light p-3 mb-3">
   <form data-lato-action-target="triggerSubmit" data-turbo-frame="lato_operation" data-controller="lato-form" enctype="multipart/form-data" action="/operations/create_operation_action?type=file_input" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="authenticity_token" value="J_sh4mJ4OjyxD_NUsGiL4hvkfY3QLNdxnHwWaG_HKzN3cV7RFipBZktREoZ_ZUwmJLP2xVkDEOR1VMrSsfYOYQ">
+<input type="hidden" name="authenticity_token" value="lndfU_H378o3FEyX8FO-ifrIxcBTov25F0CHgMPJdNR5tY_61qb0-sedpwuy3Oc3hEUEjIlsGXBqQu5n-FqK7w">
     <div class="col mb-3">
       <label class="form-label" for="file">File</label>
       <input required="required" class="form-control" data-action=" change-&gt;lato-form#onInputChange" data-lato-form-target="input" type="file" name="file" id="file">
@@ -516,7 +565,7 @@ end
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.18.0 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.19.0 - © 2025 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

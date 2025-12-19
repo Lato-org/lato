@@ -123,11 +123,11 @@ export default class extends Controller {
       }
 
       if (options.actionSize) {
-        this.modalDialogTargets[index].classList.add(`modal-${options.actionSize}`)
-      } else {
-        this.modalDialogTargets[index].classList.remove('modal-lg')
+        this.modalDialogTargets[index].classList.remove('modal-md')
         this.modalDialogTargets[index].classList.remove('modal-xl')
+        this.modalDialogTargets[index].classList.remove('modal-lg')
         this.modalDialogTargets[index].classList.remove('modal-sm')
+        this.modalDialogTargets[index].classList.add(`modal-${options.actionSize}`)
       }
 
       this.bsModals[index].show()
@@ -138,7 +138,7 @@ export default class extends Controller {
     const options = {}
     options.turboFrame = element.getAttribute('data-turbo-frame')
     options.actionTitle = element.getAttribute('data-action-title')
-    options.actionSize = element.getAttribute('data-action-size')
+    options.actionSize = element.getAttribute('data-action-size') || 'md'
     options.actionRows = element.getAttribute('data-action-rows')
     options.actionRows = options.actionRows ? parseInt(options.actionRows) : 4
     return options
