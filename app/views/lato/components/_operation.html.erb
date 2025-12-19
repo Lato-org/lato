@@ -44,6 +44,12 @@
             <%= operation.output_message %>
           </p>
         <% end %>
+
+        <% if operation.output_action? %>
+          <div class="mt-3 d-flex justify-content-center">
+            <%= link_to operation.output_action['label'], operation.output_action['href'], { class: 'btn btn-primary' }.merge(operation.output_action['attributes']) %>
+          </div>
+        <% end %>
       </div>
     <% end %>
 

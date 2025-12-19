@@ -115,7 +115,7 @@ An operation's output can be handled directly within the Job using a series of h
 These functions can also be called even if the Job is executed without using the <code>Lato::Operation</code> model.
 </p>
 
-<h4>Set an Output Message</h4>
+<h4>Set an output message</h4>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'success'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
@@ -129,7 +129,7 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an Output File</h4>
+<h4>Set an output file</h4>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'file'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
@@ -144,7 +144,22 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an Error</h4>
+<h4>Set an output action</h4>
+
+<p>
+<%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'success_action'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
+</p>
+
+<pre>
+class MyJob < Lato::ApplicationJob
+  def perform(params = {})
+    save_operation_output_message("Custom operation success message and action")
+    save_operation_output_action('Back to homepage', Rails.application.routes.url_helpers.root_path, target: '_blank')
+  end
+end
+</pre>
+
+<h4>Show execution error</h4>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'failed'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
@@ -158,7 +173,7 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Update Progress Percentage</h4>
+<h4>Update progress percentage</h4>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'percentage'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
@@ -209,7 +224,7 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an Input File</h4>
+<h4>Set an input file</h4>
 
 <div class="example bg-light p-3 mb-3">
   <%= form_with url: main_app.operations_create_operation_action_path(type: 'file_input'), data: { lato_action_target: 'triggerSubmit', turbo_frame: 'lato_operation', controller: 'lato-form' } do |form| %>

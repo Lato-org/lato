@@ -41,6 +41,10 @@ module Lato
       active_job_output && !active_job_output['_message'].blank?
     end
 
+    def output_action?
+      active_job_output && !active_job_output['_action'].blank?
+    end
+
     def output_error?
       active_job_output && !active_job_output['_error'].blank?
     end
@@ -58,6 +62,10 @@ module Lato
 
     def output_message
       active_job_output['_message']
+    end
+
+    def output_action
+      active_job_output['_action']
     end
 
     # Operations

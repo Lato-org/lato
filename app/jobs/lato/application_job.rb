@@ -73,8 +73,15 @@ module Lato
       @operation.update(
         active_job_output: @operation.active_job_output.merge(_message: message)
       )
+    end
 
-      true
+    # This method can be used to save an action as output of the operation.
+    def save_operation_output_action(label, href, attributes = {})
+      return false unless operation?
+
+      @operation.update(
+        active_job_output: @operation.active_job_output.merge(_action: { label: label, href: href, attributes: attributes })
+      )
     end
 
     private
