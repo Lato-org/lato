@@ -1,5 +1,7 @@
 module Lato
   class User < ApplicationRecord
+    attr_accessor :actions # Free for custom user indexes with actions
+
     include Lato::DependencyHelper
     include LatoUserApplication
 
