@@ -120,6 +120,8 @@ fr:
         email: E-mail
         accepted_privacy_policy_version: Politique de confidentialité
         accepted_terms_and_conditions_version: Conditions générales
+        locale: Langue
+        actions: Actions
     errors:
       messages:
         record_invalid: 'Validation échouée : %{errors}'

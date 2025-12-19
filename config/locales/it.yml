@@ -120,6 +120,8 @@ it:
         email: Email
         accepted_privacy_policy_version: Privacy policy
         accepted_terms_and_conditions_version: Termini e condizioni
+        locale: Lingua
+        actions: Azioni
     errors:
       messages:
         record_invalid: 'Validazione fallita: %{errors}'

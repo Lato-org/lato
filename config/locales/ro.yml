@@ -120,6 +120,8 @@ ro:
         email: Email
         accepted_privacy_policy_version: Politica de confidențialitate
         accepted_terms_and_conditions_version: Termeni și condiții
+        locale: Limba
+        actions: Acțiuni
     errors:
       messages:
         record_invalid: 'Validarea a eșuat: %{errors}'

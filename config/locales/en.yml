@@ -118,6 +118,8 @@ en:
         email: Email
         accepted_privacy_policy_version: Privacy policy
         accepted_terms_and_conditions_version: Terms and conditions
+        locale: Language
+        actions: Actions
     errors:
       models:
         lato/user:
