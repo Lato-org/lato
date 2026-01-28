@@ -1,3 +1,3 @@
 module Lato
-  VERSION = "3.19.4"
+  VERSION = "3.19.5"
 end
