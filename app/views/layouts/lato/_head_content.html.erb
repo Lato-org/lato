@@ -1,3 +1,6 @@
+<link rel="canonical" href="<%= request.original_url %>">
+
+<!-- PWA Support -->
 <meta name="application-name" content="<%= Lato.config.application_title %>">
 <meta name="theme-color" content="<%= Lato.config.application_brand_color %>">
 <meta name="full-screen" content="yes">
@@ -6,8 +9,26 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="<%= Lato.config.application_title %>">
-
 <link rel="icon" href="/favicon.ico">
 <link rel="manifest" href="/manifest.json">
 
-<!-- Free for head tags -->
+<!-- Standard Metadata -->
+<%# <meta name="description" content=""> %>
+<%# <meta name="keywords" content=""> %>
+<%# <meta name="author" content=""> %>
+
+<!-- OG Tags -->
+<meta property="og:title" content="<%= @layout_page_title || Lato.config.application_title %>">
+<meta property="og:site_name" content="<%= Lato.config.application_title %>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= request.original_url %>">
+<%# <meta property="og:description" content=""> %>
+<%# <meta property="og:image" content=""> %>
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= @layout_page_title || Lato.config.application_title %>">
+<%# <meta name="twitter:description" content=""> %>
+<%# <meta name="twitter:image" content=""> %>
+
+<%# Free for head tags %>
