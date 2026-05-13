@@ -21,9 +21,11 @@ The gem is ready to be used with the **latest Rails 7+** features like **[ESM im
 
 The full documentation is available here: 👉 👉 [DOCUMENTATION](https://lato-oss.gregoriogalante.com) 👈 👈
 
-The SKILL usable with LLMs to generate code and get helps with the gem is available here: 👉 [SKILL](https://github.com/Lato-org/lato/raw/refs/heads/main/docs/SKILL.md) 👈
+### Working with LLMs
 
-The `documentation.txt` file with all the context to use with LLMs is available here: 👉 [LLM CONTEXT](https://github.com/Lato-org/lato/raw/refs/heads/main/docs/documentation.txt) 👈
+The `SKILL.md` usable with LLMs to generate code and get helps with the gem is available here: 👉 [SKILL.md](https://github.com/Lato-org/lato/raw/refs/heads/main/docs/SKILL.md) 👈
+
+The `documentation.txt` file with all the context to use with LLMs is available here: 👉 [documentation.txt](https://github.com/Lato-org/lato/raw/refs/heads/main/docs/documentation.txt) 👈
 
 ## Eco-system
 The idea behind Lato is to create an eco-system of engines that can improve the functionalities of the panel. The following engines are already available:
