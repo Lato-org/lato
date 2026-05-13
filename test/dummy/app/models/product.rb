@@ -19,6 +19,8 @@ class Product < ApplicationRecord
   has_many :product_items
   accepts_nested_attributes_for :product_items, allow_destroy: true, reject_if: proc { |attributes| attributes["name"].blank? }
 
+  has_one_attached :signature
+
   # Scopes
   ##
 

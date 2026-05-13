@@ -244,6 +244,10 @@ module Lato
       render 'lato/components/form_item_input_list', form: form, key: key, partial: partial, partial_params: partial_params
     end
 
+    def lato_form_item_input_signature(form, key, options = {})
+      render 'lato/components/form_item_input_signature', form: form, key: key, options: options
+    end
+
     def lato_form_submit(form, label, options = {})
       options[:class] ||= []
       options[:class].push('btn')

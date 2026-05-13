@@ -93,6 +93,14 @@ ro:
     operation_failed_title: Operație eșuată
     operation_failed_subtitle: A apărut o eroare în timpul operației
     dropzone_drag_and_drop_or_click: Trage și plasează fișiere aici sau fă clic pentru a le încărca
+    signature_draw: Desenează
+    signature_upload: Încarcă imagine
+    signature_draw_help: Desenează semnătura ta în spațiul de mai sus
+    signature_clear: Șterge
+    signature_current: Semnătura actuală
+    signature_preview_alt: Previzualizare semnătură
+    signature_edit: Editează
+    signature_cancel_edit: Anulează modificarea
     add_item: Adaugă un element
     remove_item: Elimină un element
 

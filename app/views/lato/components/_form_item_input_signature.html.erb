@@ -1,0 +1,112 @@
+<%
+
+form    ||= nil
+key     ||= nil
+options ||= {}
+
+existing_attachment = form.object.respond_to?(key) ? form.object.send(key) : nil
+existing_url        = (existing_attachment.respond_to?(:attached?) && existing_attachment.attached?) ? url_for(existing_attachment) : nil
+
+has_error = form.object && form.object.errors[key] && form.object.errors[key].any?
+container_classes = ['lato-input-signature', 'border', 'rounded', 'p-3']
+container_classes << 'border-danger' if has_error
+
+# Se esiste una firma, la tab attiva di default è 'current', altrimenti 'draw'
+default_tab = existing_url ? 'current' : 'draw'
+
+%>
+
+<div class="<%= container_classes.join(' ') %>"
+     data-controller="lato-input-signature"
+     data-lato-input-signature-default-tab-value="<%= default_tab %>"
+     <% if existing_url %>data-lato-input-signature-existing-url-value="<%= existing_url %>"<% end %>>
+
+  <%# Hidden file input – submitted with the form %>
+  <%= form.file_field key, class: 'd-none', data: { 'lato_input_signature_target': 'fileInput' }, accept: 'image/png,image/jpeg' %>
+
+  <%# Tab navigation %>
+  <ul class="nav nav-tabs mb-2" style="font-size: 0.8rem;">
+    <% if existing_url %>
+      <li class="nav-item">
+        <a href="#" class="nav-link py-1 px-2 <%= 'active' if default_tab == 'current' %>"
+           data-lato-input-signature-target="currentTab"
+           data-action="click->lato-input-signature#switchToCurrentTab">
+          <i class="bi bi-image"></i> <%= I18n.t('lato.signature_current') %>
+        </a>
+      </li>
+    <% end %>
+    <li class="nav-item">
+      <a href="#" class="nav-link py-1 px-2 <%= 'active' if default_tab == 'draw' %>"
+         data-lato-input-signature-target="drawTab"
+         data-action="click->lato-input-signature#switchToDrawTab">
+        <i class="bi bi-pen"></i> <%= I18n.t('lato.signature_draw') %>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link py-1 px-2"
+         data-lato-input-signature-target="uploadTab"
+         data-action="click->lato-input-signature#switchToUploadTab">
+        <i class="bi bi-upload"></i> <%= I18n.t('lato.signature_upload') %>
+      </a>
+    </li>
+  </ul>
+
+  <%# Current signature panel (solo se esiste) %>
+  <% if existing_url %>
+    <div data-lato-input-signature-target="currentPanel">
+      <img src="<%= existing_url %>"
+           class="border rounded"
+           style="max-height: 120px; max-width: 100%; object-fit: contain; display: block;"
+           alt="<%= I18n.t('lato.signature_current') %>">
+    </div>
+  <% end %>
+
+  <%# Draw panel %>
+  <div class="<%= existing_url ? 'd-none' : '' %>" data-lato-input-signature-target="drawPanel">
+    <canvas class="border rounded w-100 bg-white"
+            style="height: 140px; cursor: crosshair; touch-action: none; display: block;"
+            data-lato-input-signature-target="canvas"
+            data-action="mousedown->lato-input-signature#onMouseDown
+                         mousemove->lato-input-signature#onMouseMove
+                         mouseup->lato-input-signature#onMouseUp
+                         mouseleave->lato-input-signature#onMouseLeave
+                         touchstart->lato-input-signature#onTouchStart
+                         touchmove->lato-input-signature#onTouchMove
+                         touchend->lato-input-signature#onTouchEnd">
+    </canvas>
+    <div class="text-muted mt-1" style="font-size: 0.75rem;">
+      <i class="bi bi-info-circle"></i> <%= I18n.t('lato.signature_draw_help') %>
+    </div>
+  </div>
+
+  <%# Upload panel %>
+  <div class="d-none" data-lato-input-signature-target="uploadPanel">
+    <input type="file"
+           accept="image/png,image/jpeg"
+           class="form-control form-control-sm"
+           data-lato-input-signature-target="uploadInput"
+           data-action="change->lato-input-signature#onUploadChange">
+    <img class="mt-2 border rounded d-none"
+         style="max-height: 120px; max-width: 100%; object-fit: contain;"
+         data-lato-input-signature-target="preview"
+         alt="<%= I18n.t('lato.signature_preview_alt') %>">
+  </div>
+
+  <%# Validation error %>
+  <% if has_error %>
+    <div class="invalid-feedback d-block mt-1">
+      <%= form.object.errors[key].first %>
+    </div>
+  <% end %>
+
+  <%# Clear button (solo nelle tab di editing) %>
+  <div class="d-flex justify-content-end mt-2" data-lato-input-signature-target="clearRow">
+    <button type="button"
+            class="btn btn-outline-secondary btn-sm"
+            style="font-size: 0.75rem;"
+            data-action="click->lato-input-signature#clearSignature">
+      <i class="bi bi-eraser"></i> <%= I18n.t('lato.signature_clear') %>
+    </button>
+  </div>
+
+</div>

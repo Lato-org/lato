@@ -95,6 +95,14 @@ it:
     dropzone_drag_and_drop_or_click: Trascina qui i file o clicca per caricare
     add_item: Aggiungi elemento
     remove_item: Rimuovi elemento
+    signature_draw: Disegna
+    signature_upload: Carica immagine
+    signature_draw_help: Disegna la tua firma nello spazio sopra
+    signature_clear: Cancella
+    signature_current: Firma attuale
+    signature_preview_alt: Anteprima firma
+    signature_edit: Modifica
+    signature_cancel_edit: Annulla modifica
 
     invitation_mailer:
       invite_mail_subject: Hai ricevuto un invito

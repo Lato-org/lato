@@ -135,6 +135,7 @@ Below is a list of available components with usage examples:
   <li><code>lato_form_item_input_datetime</code> renders a datetime input.</li>
   <li><code>lato_form_item_input_time</code> renders a time input.</li>
   <li><code>lato_form_item_input_color</code> renders a color input.</li>
+  <li><code>lato_form_item_input_signature</code> renders a signature input (draw on canvas or upload image).</li>
   <li><code>lato_form_submit</code> renders the submit button.</li>
 </ul>
 </p>
@@ -147,10 +148,50 @@ Below is a list of available components with usage examples:
 <%= render 'tutorial/components/form-example' %>
 </div>
 
-<h3>Nested attributes</h3>
+<h3>Signature input</h3>
 
 <p>
-Lato provides support for nested attributes in forms using the <code>lato_form_item_input_list</code> component.<br>
+The <code>lato_form_item_input_signature</code> component allows the user to provide a signature either by drawing it on a canvas or by uploading a PNG/JPEG image.<br>
+The result is stored as a standard Active Storage attachment on the model.<br>
+Parameters:<br>
+- <i>form</i>: the form builder object.<br>
+- <i>key</i>: the attribute name of the <code>has_one_attached</code> attachment (e.g. <code>:signature</code>).
+</p>
+
+<p>
+The model must declare the attachment:
+</p>
+
+<pre>
+class Product &#60; ApplicationRecord
+  has_one_attached :signature
+end
+</pre>
+
+<p>
+Usage in a form:
+</p>
+
+<pre>
+&#60;div class="mb-3"&#62;
+  &#60;%= lato_form_item_label form, :signature %&#62;
+  &#60;%= lato_form_item_input_signature form, :signature %&#62;
+&#60;/div&#62;
+</pre>
+
+<p>
+When an existing signature is already attached, a third tab <strong>Current signature</strong> is shown as the default active tab, displaying the current image.<br>
+The user can switch to the <strong>Draw</strong> or <strong>Upload image</strong> tabs to replace it.<br>
+If the user submits the form while staying on the "Current signature" tab, the existing attachment is preserved unchanged.
+</p>
+
+<p>
+The component is powered by the Stimulus controller <code>lato-input-signature</code> and requires no additional configuration.
+</p>
+
+<hr>
+
+<h3>Nested attributes</h3>
 This component allows you to easily manage collections of associated records within a parent form.
 </p>
 

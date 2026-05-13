@@ -93,6 +93,14 @@ fr:
     operation_failed_title: Échec de l'opération
     operation_failed_subtitle: Une erreur s'est produite lors de l'opération
     dropzone_drag_and_drop_or_click: Faites glisser et déposez les fichiers ici ou cliquez pour télécharger
+    signature_draw: Dessiner
+    signature_upload: Télécharger une image
+    signature_draw_help: Dessinez votre signature dans l'espace ci-dessus
+    signature_clear: Effacer
+    signature_current: Signature actuelle
+    signature_preview_alt: Aperçu de la signature
+    signature_edit: Modifier
+    signature_cancel_edit: Annuler la modification
     add_item: Ajouter un élément
     remove_item: Supprimer un élément
 

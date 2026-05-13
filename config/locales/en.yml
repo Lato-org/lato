@@ -93,6 +93,14 @@ en:
     dropzone_drag_and_drop_or_click: Drag and drop files here or click to upload
     add_item: Add item
     remove_item: Remove item
+    signature_draw: Draw
+    signature_upload: Upload image
+    signature_draw_help: Draw your signature in the space above
+    signature_clear: Clear
+    signature_current: Current signature
+    signature_preview_alt: Signature preview
+    signature_edit: Edit
+    signature_cancel_edit: Cancel edit
 
     invitation_mailer:
       invite_mail_subject: You received an invitation
