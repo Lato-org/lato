@@ -31,7 +31,7 @@ default_tab = existing_url ? 'current' : 'draw'
         <a href="#" class="nav-link py-1 px-2 <%= 'active' if default_tab == 'current' %>"
            data-lato-input-signature-target="currentTab"
            data-action="click->lato-input-signature#switchToCurrentTab">
-          <i class="bi bi-image"></i> <%= I18n.t('lato.signature_current') %>
+          <i class="bi bi-image"></i> <span class="d-none d-sm-inline"><%= I18n.t('lato.signature_current') %></span>
         </a>
       </li>
     <% end %>
@@ -39,14 +39,14 @@ default_tab = existing_url ? 'current' : 'draw'
       <a href="#" class="nav-link py-1 px-2 <%= 'active' if default_tab == 'draw' %>"
          data-lato-input-signature-target="drawTab"
          data-action="click->lato-input-signature#switchToDrawTab">
-        <i class="bi bi-pen"></i> <%= I18n.t('lato.signature_draw') %>
+        <i class="bi bi-pen"></i> <span class="d-none d-sm-inline"><%= I18n.t('lato.signature_draw') %></span>
       </a>
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link py-1 px-2"
          data-lato-input-signature-target="uploadTab"
          data-action="click->lato-input-signature#switchToUploadTab">
-        <i class="bi bi-upload"></i> <%= I18n.t('lato.signature_upload') %>
+        <i class="bi bi-upload"></i> <span class="d-none d-sm-inline"><%= I18n.t('lato.signature_upload') %></span>
       </a>
     </li>
   </ul>
