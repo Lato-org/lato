@@ -8,40 +8,44 @@ require 'json'
 PORT = 3000
 BASE_URL = "http://localhost:#{PORT}"
 OUTPUT_DIR = "./docs"
-LLM_DIR = "./docs/llm.txt"
+SKILL_DIR = "./docs/SKILL.md"
+DOCS_DIR = "./docs/documentation.txt"
 AUTH_EMAIL = 'admin@mail.com'
 AUTH_PASSWORD = 'Password1!'
 AUTH_GET_URL = "#{BASE_URL}/lato/authentication/signin"
 AUTH_POST_URL = "#{BASE_URL}/lato/authentication/signin_action"
 PAGES = [
-  { path: '/?generate_docs=1', name: 'index.html' },
-  # tutorial
-  { path: '/tutorial?generate_docs=1', name: 'tutorial.html', auth: true },
-  # configuration
-  { path: '/configuration?generate_docs=1', name: 'configuration.html', auth: true },
-  # customization
-  { path: '/customization?generate_docs=1', name: 'customization.html', auth: true },
-  # components
-  { path: '/components?generate_docs=1', name: 'components.html', auth: true },
-  # operations
-  { path: '/operations?generate_docs=1', name: 'operations.html', auth: true },
-  # actions
-  { path: '/actions?generate_docs=1', name: 'actions.html', auth: true },
-  # invitations
-  { path: '/invitations?generate_docs=1', name: 'invitations.html', auth: true },
-  # guide
-  { path: '/guide?generate_docs=1', name: 'guide.html', auth: true },
-  # crud
-  { path: '/crud?generate_docs=1', name: 'crud.html', auth: true },
-  # products
-  { path: '/products?generate_docs=1', name: 'products.html', auth: true },
+  { path: '/?generate_docs=1',            name: 'index.html',         title: 'Overview & Installation' },
+  { path: '/tutorial?generate_docs=1',     name: 'tutorial.html',      title: 'Tutorial',        auth: true },
+  { path: '/configuration?generate_docs=1',name: 'configuration.html', title: 'Configuration',   auth: true },
+  { path: '/customization?generate_docs=1',name: 'customization.html', title: 'Customization',   auth: true },
+  { path: '/components?generate_docs=1',   name: 'components.html',    title: 'Components',      auth: true },
+  { path: '/operations?generate_docs=1',   name: 'operations.html',    title: 'Operations',      auth: true },
+  { path: '/actions?generate_docs=1',      name: 'actions.html',       title: 'Actions',         auth: true },
+  { path: '/invitations?generate_docs=1',  name: 'invitations.html',   title: 'Invitations',     auth: true },
+  { path: '/guide?generate_docs=1',        name: 'guide.html',         title: 'Guide',           auth: true },
+  { path: '/crud?generate_docs=1',         name: 'crud.html',          title: 'CRUD Example',    auth: true },
+  { path: '/products?generate_docs=1',     name: 'products.html',      title: 'Products',        auth: true },
 ]
+
+SKILL_FRONTMATTER = <<~YAML
+  ---
+  name: lato
+  description: >
+    Use this skill when working with the Lato Rails gem (admin panel engine).
+    Provides full documentation: installation, configuration, authentication,
+    UI components, CRUD patterns, background operations, invitations, layout
+    customization and guides. USE FOR: installing lato, configuring lato,
+    lato components, lato forms, lato index table, lato operations, lato
+    invitations, lato authentication, lato layout, lato customization, lato CRUD.
+  ---
+YAML
 
 # Assicurati che la directory di output esista
 FileUtils.mkdir_p(OUTPUT_DIR) if !Dir.exist?(OUTPUT_DIR)
 
 # Svuota la directory di output da tutti i file e cartelle escluso CNAME (generato da github pages per collegamento dominio)
-exceptions = ['CNAME', 'AI.html']
+exceptions = ['CNAME']
 FileUtils.rm_rf(Dir.glob("#{OUTPUT_DIR}/*").reject { |f| exceptions.include?(File.basename(f)) })
 
 def download_page(page, http = nil, cookies = {})
@@ -265,38 +269,62 @@ PAGES.each do |page|
   save_file(page[:name], processed_html)
 end
 
-# Read all .html file on OUTPUT_DIR, for each file export the body content and append on a txt file used to train LLMs
-File.open(LLM_DIR, 'w') do |llm_file|
-  Dir.glob("#{OUTPUT_DIR}/*.html").each do |file_path|
-    next if File.basename(file_path).start_with?('AI.html') # skip AI.html
-    next if File.basename(file_path) == 'products.html' # skip products.html
+# Generate SKILL.md from all HTML pages
+File.open(SKILL_DIR, 'w') do |skill_file|
+  skill_file.print SKILL_FRONTMATTER
+  skill_file.puts
+  skill_file.puts '# Lato Rails Gem'
+  skill_file.puts
+  skill_file.puts 'Lato is a Rails engine that provides a fully-featured admin panel with '\
+                  'authentication, responsive UI (Bootstrap), background job operations, '\
+                  'invitation system, and rich UI components ready to use in any Rails 7+ app.'
+  skill_file.puts
+
+  pages = PAGES.reject { |p| %w[products.html].include?(p[:name]) }
+
+  pages.each do |page|
+    file_path = File.join(OUTPUT_DIR, page[:name])
+    next unless File.exist?(file_path)
 
     doc = Nokogiri::HTML(File.read(file_path))
     main = doc.at('main')
+    next unless main
 
-    # Rimuovo da main tutti i tag con classe .example
-    main.css('.example').each do |example|
-      example.remove
-    end
+    main.css('.example, .llm-ignore').each(&:remove)
 
-    # Rimuovo tutti i tag con classe .llm-ignore
-    main.css('.llm-ignore').each do |llm_ignore|
-      llm_ignore.remove
-    end
+    section_title = page[:title] || page[:name].sub('.html', '').capitalize
+    content = main.text.strip.gsub(/\s+/, ' ')
 
-    # Sostituisco tutti i link assoluti in testo (esempio <a href="https://google.com">Google</a> -> [Google](https://google.com))
+    skill_file.puts "\n## #{section_title}\n"
+    skill_file.puts content
+    skill_file.puts
+  end
+end
+puts "Salvato: #{SKILL_DIR}"
+
+# Generate documentation.txt (plain text, one section per page separated by -)
+File.open(DOCS_DIR, 'w') do |docs_file|
+  pages = PAGES.reject { |p| %w[products.html].include?(p[:name]) }
+
+  pages.each do |page|
+    file_path = File.join(OUTPUT_DIR, page[:name])
+    next unless File.exist?(file_path)
+
+    doc = Nokogiri::HTML(File.read(file_path))
+    main = doc.at('main')
+    next unless main
+
+    main.css('.example, .llm-ignore').each(&:remove)
+
     main.css('a').each do |link|
       href = link['href']
       next unless href&.start_with?('http://', 'https://', '//')
-
-      # Sostituisci il link con il formato Markdown
       link.replace("[#{link.text}](#{href})")
     end
 
-    # Estraggo il contenuto come testo
     content = main.text.strip.gsub(/\s+/, ' ')
-
-    llm_file.puts content
-    llm_file.puts "-"
+    docs_file.puts content
+    docs_file.puts "-"
   end
 end
+puts "Salvato: #{DOCS_DIR}"
