@@ -267,3 +267,58 @@ class MyJob < Lato::ApplicationJob
   end
 end
 </pre>
+
+<h3>Utility Methods</h3>
+
+<h4>Check if running inside an operation</h4>
+
+<p>
+The <code>operation?</code> method returns <code>true</code> if the job is running inside an operation context, <code>false</code> otherwise.<br>
+This is useful for writing jobs that can run both with and without operations:
+</p>
+
+<pre>
+class MyJob < Lato::ApplicationJob
+  def perform(params = {})
+    save_operation_output_message("Running inside operation") if operation?
+    # ... job logic works even without an operation
+  end
+end
+</pre>
+
+<h4>Clear operation logs</h4>
+
+<pre>
+class MyJob < Lato::ApplicationJob
+  def perform(params = {})
+    add_operation_log("Step 1 started")
+    clear_operation_logs # removes all previous logs
+    add_operation_log("Restarted from scratch")
+  end
+end
+</pre>
+
+<h3>Operation Query Methods</h3>
+
+<p>
+The <code>Lato::Operation</code> model provides several query methods to inspect an operation's state and output:
+</p>
+
+<pre>
+operation = Lato::Operation.find(id)
+
+# State checks
+operation.finished? # returns true if completed or failed
+
+# Output checks
+operation.output_message? # returns true if an output message is set
+operation.output_message  # returns the output message string
+
+operation.output_action?  # returns true if an output action is set
+operation.output_action   # returns the output action hash
+
+operation.output_error?   # returns true if an output error is set
+operation.output_error    # returns the output error string
+
+operation.output_file?    # returns true if an output file is attached
+</pre>

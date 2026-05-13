@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="z0Zy_s7p-jYgn5MjpEggtXBRIeCPB3kIPfIC196aDGWyWRYPBpuX6aHbByLostsrEdnVsFuYOWdVmBQJbPYLFA">
+<meta name="csrf-token" content="x_V7mWuP42_RCSIhsenzRWPeicOtQ9f0I23eBJW5irZsqS4cb03adtBRV30dXnBNSjRkOeYcyBjf3fmAJNS2RA">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -456,14 +456,14 @@ To limit the number of requests to a page, you can use the <code>limit_request</
 <pre>
 class TutorialController &lt; ApplicationController
   before_action :authenticate_session
-  before_action :limit_request, only: %i[index]
+  before_action :limit_requests, only: %i[index]
 
   def index; end
 end
 </pre>
 
 <p>
-The <code>limit_request</code> method accepts two parameters: <code>limit</code> (default: 10) and <code>time_window</code> (default: 10.minutes).<br>
+The <code>limit_requests</code> method accepts two parameters: <code>limit</code> (default: 10) and <code>time_window</code> (default: 10.minutes).<br>
 These parameters define the maximum number of requests a user can make within a given time window.
 </p>
 
@@ -502,6 +502,40 @@ end
 
 <p>
 <a target="_blank" class="llm-ignore" href="https://github.com/lato-org/lato/blob/main/app/models/lato/session.rb">Source code: Lato::Session</a>
+</p>
+
+<h2>Programmatic Session Management</h2>
+
+<p>
+The <code>Lato::Sessionable</code> concern also provides methods to programmatically create and destroy sessions, useful for custom authentication flows or testing:
+</p>
+
+<pre>
+class CustomController &lt; ApplicationController
+  def custom_login
+    user = Lato::User.find_by(email: params[:email])
+    # Create a session for the user
+    session_create(user.id)
+  end
+
+  def custom_logout
+    # Destroy the current session
+    session_destroy
+  end
+end
+</pre>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  <code>session_create(user_id)</code> sets the encrypted session cookie and refreshes the <code>@session</code> instance.<br>
+  <code>session_destroy</code> clears the encrypted session cookie.<br>
+  Both methods are provided by the <code>Lato::Sessionable</code> concern.
+  </p>
+</div>
+
+<p>
+<a target="_blank" class="llm-ignore" href="https://github.com/lato-org/lato/blob/main/app/controllers/concerns/lato/sessionable.rb">Source code: Lato::Sessionable</a>
 </p>
 
   </div>

@@ -39,6 +39,28 @@ Parameters:<br>
 &#60;% end %&#62;
 </pre>
 
+<h3>Navbar nav locales item</h3>
+
+<p>
+Component to render a locale-switcher dropdown in the navbar.<br>
+Parameters:<br>
+- <i>options</i> (optional): hash of options.<br>
+  - <i>flag</i> (default: true): if true, displays flag icons next to locale names.
+</p>
+
+<pre>
+&#60;%= lato_navbar_nav_locales_item %&#62;
+&#60;%= lato_navbar_nav_locales_item flag: false %&#62;
+</pre>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  The locale switcher automatically detects available locales from <code>I18n.available_locales</code> and renders a dropdown to switch between them.<br>
+  When the user changes locale, the <code>switch_locale</code> action on <code>Lato::ApplicationController</code> is triggered, which sets a cookie and redirects back.
+  </p>
+</div>
+
 <hr>
 
 <h2>Sidebar</h2>
@@ -445,6 +467,23 @@ end
   </p>
 </div>
 
+<h4>Adding dropdown actions</h4>
+
+<p>
+You can also add a dropdown menu of actions using the <code>:dropdown_actions</code> parameter.<br>
+This renders a button with a dropdown menu containing a list of actions.
+</p>
+
+<pre>
+&#60;%= lato_index Product.all.limit(5), dropdown_actions: {
+    icon: 'bi bi-three-dots-vertical',
+    actions: [
+      { path: export_products_path, icon: 'bi bi-download', title: 'Export CSV' },
+      { path: import_products_path, icon: 'bi bi-upload', title: 'Import CSV' },
+    ]
+  } %&#62;
+</pre>
+
 <h4>Adding row-specific actions</h4>
 
 <p>
@@ -473,6 +512,31 @@ end
 
 <div class="example bg-light p-3 mb-3">
 <%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %>
+</div>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  Instead of using per-model helper methods (like <code>product_lato_user_id</code>), you can also override column rendering globally by defining <code>lato_index_dynamic_label</code> and <code>lato_index_dynamic_value</code> methods in your <code>ApplicationHelper</code>:<br>
+  These methods receive a hash with <code>:column</code>, <code>:model_name</code>, <code>:record</code>, and <code>:value</code> keys, allowing you to centralize custom column rendering logic.
+  </p>
+<pre>
+module ApplicationHelper
+  def lato_index_dynamic_label(params = {})
+    # Return a custom label for specific columns
+    return 'Custom Label' if params[:column] == :my_column
+
+    super
+  end
+
+  def lato_index_dynamic_value(params = {})
+    # Return a custom value for specific columns
+    return "Custom: #{params[:value]}" if params[:column] == :my_column
+
+    super
+  end
+end
+</pre>
 </div>
 
 <h3>Index (back-end)</h3>

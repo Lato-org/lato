@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="Ff-vkfn7yu13E5G6nAbIbyiKpGUjEikqKbg_Ok4ykXRo4MtgMYmnMvZXBbvQ_DPxSQJQNfeNaUVB0ink_F6WBQ">
+<meta name="csrf-token" content="6-wMFcZ5C07XjDroRZAjbUn7xJ93-9HuH4x-jArP4u9AsFmQwrsyV9bUT7TpJ6BlYBEpZTykzgLjPFkIu6LeHQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -516,7 +516,7 @@ end
 
 <div class="example bg-light p-3 mb-3">
   <form data-lato-action-target="triggerSubmit" data-turbo-frame="lato_operation" data-controller="lato-form" enctype="multipart/form-data" action="/operations/create_operation_action?type=file_input" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="authenticity_token" value="6GB9bVReceNlf6wS6DhVPT15nX593FKO-34Hoh-YiPtLyRbp5t5038D-Rk18GVY0BDmGTwNgDqlFCbq8RCg5Fg">
+<input type="hidden" name="authenticity_token" value="nfkxz5ifuiqmOAu4aFn4Cl83fnPM7PmJ9_bO-aaGMfJ-4qzCIo6OGf3VCqLggAYGo9ZkMSm9CxgCkVHVExMebA">
     <div class="col mb-3">
       <label class="form-label" for="file">File</label>
       <input required="required" class="form-control" data-action=" change-&gt;lato-form#onInputChange" data-lato-form-target="input" type="file" name="file" id="file">
@@ -555,6 +555,61 @@ class MyJob &lt; Lato::ApplicationJob
     save_operation_output_message("You uploaded the file #{operation_input_file_attachment.filename}")
   end
 end
+</pre>
+
+<h3>Utility Methods</h3>
+
+<h4>Check if running inside an operation</h4>
+
+<p>
+The <code>operation?</code> method returns <code>true</code> if the job is running inside an operation context, <code>false</code> otherwise.<br>
+This is useful for writing jobs that can run both with and without operations:
+</p>
+
+<pre>
+class MyJob &lt; Lato::ApplicationJob
+  def perform(params = {})
+    save_operation_output_message("Running inside operation") if operation?
+    # ... job logic works even without an operation
+  end
+end
+</pre>
+
+<h4>Clear operation logs</h4>
+
+<pre>
+class MyJob &lt; Lato::ApplicationJob
+  def perform(params = {})
+    add_operation_log("Step 1 started")
+    clear_operation_logs # removes all previous logs
+    add_operation_log("Restarted from scratch")
+  end
+end
+</pre>
+
+<h3>Operation Query Methods</h3>
+
+<p>
+The <code>Lato::Operation</code> model provides several query methods to inspect an operation's state and output:
+</p>
+
+<pre>
+operation = Lato::Operation.find(id)
+
+# State checks
+operation.finished? # returns true if completed or failed
+
+# Output checks
+operation.output_message? # returns true if an output message is set
+operation.output_message  # returns the output message string
+
+operation.output_action?  # returns true if an output action is set
+operation.output_action   # returns the output action hash
+
+operation.output_error?   # returns true if an output error is set
+operation.output_error    # returns the output error string
+
+operation.output_file?    # returns true if an output file is attached
 </pre>
 
   </div>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="65FwMZ2ZgM_yGIdHLmCxeoDuCm3ttRlt0_jbwpGrA9mWjhTAVevtEHNcE0Zimkrk4Wb-PTkqWQK7ks0cI8cEqA">
+<meta name="csrf-token" content="S4Fs6I3b67EIhcwKd1zyVFhPTwiMAGESsPUr3Bl58q7g3TltiRnSqAnduVbb63FccaWi8sdffv5MRQxYqBTOXA">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -347,6 +347,7 @@ class TutorialController &lt; ApplicationController
     active_navbar(:tutorial) # sets active state on navbar item with key :tutorial
     page_title('Custom title') # sets the page title
     page_class('custom-class') # adds a CSS class to the body element
+    page_classes(%w[class-one class-two]) # replaces all body classes with the given array
   end
 end
 </pre>
@@ -367,8 +368,53 @@ end
 <p>
 Most layout content in Lato is defined via specific partials following the naming convention <code>_partial-name_content.html.erb</code>.<br>
 To customize these layout parts, override and edit the partials as desired.<br>
+</p>
+<p>
 These partials are automatically loaded into the main application via the <code>rails lato:install:application</code> command.
 </p>
+
+<p>
+Here is the complete list of overridable layout partials:
+</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Partial</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>_head_content.html.erb</code></td>
+      <td>Custom content inside the <code>&lt;head&gt;</code> tag (meta tags, fonts, etc.)</td>
+    </tr>
+    <tr>
+      <td><code>_foot_content.html.erb</code></td>
+      <td>Custom content at the end of the <code>&lt;body&gt;</code> tag (analytics, etc.)</td>
+    </tr>
+    <tr>
+      <td><code>_navbar-brand_content.html.erb</code></td>
+      <td>Navbar brand/logo area</td>
+    </tr>
+    <tr>
+      <td><code>_navbar-nav_content.html.erb</code></td>
+      <td>Navbar navigation items (right side of navbar)</td>
+    </tr>
+    <tr>
+      <td><code>_sidebar-nav_content.html.erb</code></td>
+      <td>Sidebar navigation items</td>
+    </tr>
+    <tr>
+      <td><code>_mailer-head_content.html.erb</code></td>
+      <td>Email template header content</td>
+    </tr>
+    <tr>
+      <td><code>_mailer-foot_content.html.erb</code></td>
+      <td>Email template footer content</td>
+    </tr>
+  </tbody>
+</table>
 
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Note</h4>

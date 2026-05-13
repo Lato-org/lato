@@ -35,3 +35,38 @@ Here are some examples of the operations you can perform with invitations:
 # deleting the invitation
 @invitation.destroy
 </pre>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  <b>Auto-email on creation:</b> When an invitation is created, the invite email is automatically sent via an <code>after_create</code> hook. You do not need to call <code>send_invite</code> manually on creation.
+  </p>
+  <p>
+  <b>Rate limiting:</b> The <code>send_invite</code> method enforces a 2-minute cooldown between emails. If called again before the cooldown expires, it will raise an error.
+  </p>
+  <p>
+  <b>Destruction guard:</b> Accepted invitations cannot be destroyed. A <code>before_destroy</code> hook prevents deletion if the invitation has already been accepted.
+  </p>
+  <p>
+  <b>Email uniqueness:</b> The invitation email is validated for uniqueness across all invitations. Additionally, a check ensures no <code>Lato::User</code> already exists with that email address.
+  </p>
+</div>
+
+<h3>Checking Invitation Status</h3>
+
+<p>
+The <code>Lato::Invitation</code> model provides methods to check invitation status:
+</p>
+
+<pre>
+@invitation = Lato::Invitation.find(id)
+
+# Check if the invitation has been accepted
+@invitation.accepted? # returns true/false
+
+# Access the inviter user
+@invitation.inviter_lato_user # returns the Lato::User who sent the invitation
+
+# Access the user who accepted (if accepted)
+@invitation.lato_user # returns the Lato::User who registered via this invitation
+</pre>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="IbMXHLNW89ZIu5Bgwjh4a7U5QL4c_iJIaDUbLgOGJClcrHPteySeCcn_BGGOwoP11LG07shhYicAXw3wseojWA">
+<meta name="csrf-token" content="HdhuOAZHIpHxP2i1aJS6AY6862jh6wDoVZpc7a6sG_O2hDu9AoUbiPBnHenEIzkJp1YGkqq0HwSpKntpH8EnAQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -320,6 +320,28 @@ Parameters:<br>
 &lt;% end %&gt;
 </pre>
 
+<h3>Navbar nav locales item</h3>
+
+<p>
+Component to render a locale-switcher dropdown in the navbar.<br>
+Parameters:<br>
+- <i>options</i> (optional): hash of options.<br>
+  - <i>flag</i> (default: true): if true, displays flag icons next to locale names.
+</p>
+
+<pre>
+&lt;%= lato_navbar_nav_locales_item %&gt;
+&lt;%= lato_navbar_nav_locales_item flag: false %&gt;
+</pre>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  The locale switcher automatically detects available locales from <code>I18n.available_locales</code> and renders a dropdown to switch between them.<br>
+  When the user changes locale, the <code>switch_locale</code> action on <code>Lato::ApplicationController</code> is triggered, which sets a cookie and redirects back.
+  </p>
+</div>
+
 <hr>
 
 <h2>Sidebar</h2>
@@ -572,7 +594,7 @@ user ||= @session.user
 
 <turbo-frame id="tutorial_form-example">
   <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="dtt_aQbkcFuFjBmkzbtFm9lnR-CkZjXNuyN5urFXPcruciqf_gDu6ZbmEam06qA_zgAdbOhh33yKPze4dDEHXg">
+<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="ZuAtLBVthbeB9okauNVdOHz1MLpVoKWBtSL6zvdkuUwBRdIpjnEW6GVyuXu8FCXuVrUuk6WFDj3PWlH46lQP1g">
     
     
 
@@ -1261,7 +1283,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
               </tr>
               <tr>
@@ -1275,7 +1297,7 @@ end
                     <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
               </tr>
               <tr>
@@ -1289,7 +1311,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
               </tr>
               <tr>
@@ -1303,7 +1325,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
               </tr>
               <tr>
@@ -1317,7 +1339,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
               </tr>
           </tbody>
@@ -1815,6 +1837,23 @@ end
   </p>
 </div>
 
+<h4>Adding dropdown actions</h4>
+
+<p>
+You can also add a dropdown menu of actions using the <code>:dropdown_actions</code> parameter.<br>
+This renders a button with a dropdown menu containing a list of actions.
+</p>
+
+<pre>
+&lt;%= lato_index Product.all.limit(5), dropdown_actions: {
+    icon: 'bi bi-three-dots-vertical',
+    actions: [
+      { path: export_products_path, icon: 'bi bi-download', title: 'Export CSV' },
+      { path: import_products_path, icon: 'bi bi-upload', title: 'Import CSV' },
+    ]
+  } %&gt;
+</pre>
+
 <h4>Adding row-specific actions</h4>
 
 <p>
@@ -1896,7 +1935,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1915,7 +1954,7 @@ end
                     <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1934,7 +1973,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1953,7 +1992,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1972,7 +2011,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 28 m
+                    22 h 57 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1998,6 +2037,31 @@ end
 
 </form>
 </turbo-frame>
+</div>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  Instead of using per-model helper methods (like <code>product_lato_user_id</code>), you can also override column rendering globally by defining <code>lato_index_dynamic_label</code> and <code>lato_index_dynamic_value</code> methods in your <code>ApplicationHelper</code>:<br>
+  These methods receive a hash with <code>:column</code>, <code>:model_name</code>, <code>:record</code>, and <code>:value</code> keys, allowing you to centralize custom column rendering logic.
+  </p>
+<pre>
+module ApplicationHelper
+  def lato_index_dynamic_label(params = {})
+    # Return a custom label for specific columns
+    return 'Custom Label' if params[:column] == :my_column
+
+    super
+  end
+
+  def lato_index_dynamic_value(params = {})
+    # Return a custom value for specific columns
+    return "Custom: #{params[:value]}" if params[:column] == :my_column
+
+    super
+  end
+end
+</pre>
 </div>
 
 <h3>Index (back-end)</h3>

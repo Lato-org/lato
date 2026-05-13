@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="rlnrs1-_8688xeASbfJgpD4mrWBZlsWvQ5TJEvMv-BzTRo9Cl82ecL2BdBMhCJs6X65ZMI0JhcAr_t_MQUP_bQ">
+<meta name="csrf-token" content="7r3KaVsblDlkwDZerzBFppaoAVZemp3H8wBuqTf4vDNF4Z_sX9mtIGWYQwIDh8auv0LsrBXFgisPsEkthpWAwQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -349,6 +349,32 @@ To trigger an action, simply add the attribute <code>data-lato-action-target="tr
   }
 %&gt;
 </pre>
+
+<h3>Triggering Actions from Forms</h3>
+
+<p>
+To open an action overlay when a form is submitted (instead of a link click), use the <code>triggerSubmit</code> target instead of <code>trigger</code>.<br>
+This is useful for displaying operation results or form submissions inside an overlay.
+</p>
+
+<pre>
+&lt;%= form_with url: my_action_path, data: {
+  lato_action_target: 'triggerSubmit',
+  turbo_frame: 'my_turbo_frame',
+  controller: 'lato-form'
+} do |form| %&gt;
+  &lt;!-- form fields --&gt;
+  &lt;%= lato_form_submit form, 'Submit' %&gt;
+&lt;% end %&gt;
+</pre>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  <code>triggerSubmit</code> intercepts the form submission and loads the response inside the action overlay instead of navigating away.<br>
+  Always include <code>controller: 'lato-form'</code> on the form to ensure proper Turbo/Lato integration.
+  </p>
+</div>
 
   </div>
 </div>

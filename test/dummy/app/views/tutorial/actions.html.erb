@@ -61,3 +61,29 @@ To trigger an action, simply add the attribute <code>data-lato-action-target="tr
   }
 %&#62;
 </pre>
+
+<h3>Triggering Actions from Forms</h3>
+
+<p>
+To open an action overlay when a form is submitted (instead of a link click), use the <code>triggerSubmit</code> target instead of <code>trigger</code>.<br>
+This is useful for displaying operation results or form submissions inside an overlay.
+</p>
+
+<pre>
+&#60;%= form_with url: my_action_path, data: {
+  lato_action_target: 'triggerSubmit',
+  turbo_frame: 'my_turbo_frame',
+  controller: 'lato-form'
+} do |form| %&#62;
+  &#60;!-- form fields --&#62;
+  &#60;%= lato_form_submit form, 'Submit' %&#62;
+&#60;% end %&#62;
+</pre>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  <code>triggerSubmit</code> intercepts the form submission and loads the response inside the action overlay instead of navigating away.<br>
+  Always include <code>controller: 'lato-form'</code> on the form to ensure proper Turbo/Lato integration.
+  </p>
+</div>
