@@ -18,7 +18,7 @@ module Lato
     test "show should response with success with session" do
       authenticate_user
 
-      get lato.account_url(id: @operation.id)
+      get lato.operation_url(id: @operation.id)
       assert_response :success
     end
 

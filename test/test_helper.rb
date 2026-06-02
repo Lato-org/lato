@@ -47,6 +47,7 @@ class ActionDispatch::IntegrationTest
 
   protected def authenticate_user(user = nil, password = 'Password1!')
     user ||= @user
+    Rails.cache.delete("Lato::Sessionable/limit_requests/authentication/signin_action/127.0.0.1")
 
     post lato.authentication_signin_action_url, params: { user: {
       email: user.email,

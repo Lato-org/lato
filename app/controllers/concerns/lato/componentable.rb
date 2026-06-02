@@ -20,14 +20,12 @@ module Lato
 
       # manage sort by parameter
       unless params["#{key}_sort_by"].blank?
-        sort_by_splitted = params["#{key}_sort_by"].split('|')
-        sort_by_column = sort_by_splitted.first
-        sort_by_order = sort_by_splitted.last
+        sort_by = parse_lato_index_sort_by(params["#{key}_sort_by"], @_lato_index[key][:sortable_columns])
 
-        if collection.respond_to?(:lato_index_order)
-          collection = collection.lato_index_order(sort_by_column.to_sym, sort_by_order.to_sym)
-        else
-          collection = collection.order("#{sort_by_column} #{sort_by_order}")
+        if sort_by && collection.respond_to?(:lato_index_order)
+          collection = collection.lato_index_order(sort_by[:column].to_sym, sort_by[:order].to_sym)
+        elsif sort_by
+          collection = collection.order(sort_by[:column] => sort_by[:order])
         end
       end
 
@@ -62,6 +60,19 @@ module Lato
       end
 
       collection
+    end
+
+    private
+
+    def parse_lato_index_sort_by(sort_by, sortable_columns)
+      sort_by_column, sort_by_order = sort_by.to_s.split("|", 2)
+      sort_by_column = sort_by_column.to_s
+      sort_by_order = sort_by_order.to_s.downcase
+
+      return unless sortable_columns.map(&:to_s).include?(sort_by_column)
+      return unless %w[asc desc].include?(sort_by_order)
+
+      { column: sort_by_column, order: sort_by_order }
     end
   end
 end
