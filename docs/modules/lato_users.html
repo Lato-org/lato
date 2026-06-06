@@ -4,9 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
-  <title>Lato - A Rails engine that includes what you need to build a new project!</title>
+  <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="eTY8BTHWDVVEfU8BP9nNoIqDhyKmzunJ76RA63nEWvReUtvzjEBVNCjbKnK6bWLOYkDBorfGnSSHR_9c6E1wBw">
+<meta name="csrf-token" content="QJivBa7t9lUfax2DmkOai3uqHpVhthO8Lw3UwzKIaAbqHRgDKCLnY-NLU4lH_X6zK3eeKEgInWooN4wXMEKrgw">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -104,11 +104,11 @@ document.addEventListener('turbo:load', () => {
 <link rel="modulepreload" href="/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js">
 <script type="module">import "application"</script>
 </head>
-<body class="controller-application action-index homepage " data-controller="lato-action lato-guide">
+<body class="controller-modules action-show  " data-controller="lato-action lato-guide">
   <header>
     <nav id="nav" class="navbar navbar-dark navbar-expand-lg fixed-top bg-primary shadow-sm px-md-3">
   <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="tutorial.html">
       <div class="d-flex align-items-center">
   <img src="/logo.jpeg" alt="" width="30" height="30" class="me-2 rounded">
   <span class="fw-bold">Lato</span>
@@ -140,174 +140,292 @@ document.addEventListener('turbo:load', () => {
 
   <div class="d-flex">
 
+      <aside>
+        <div class="d-flex flex-column h-100 overflow-y-auto p-3 bg-light border-end">
+  <ul class="nav nav-pills flex-column mb-auto">
+    
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" href="index.html">
+      
+  <i class="bi bi-house me-2"></i> Homepage
 
-    <main class="">
-      <div class="content px-md-3 py-3">
-  <div class="container-fluid">
-    <div class="container-fluid text-white min-vh-100">
-  <div class="row justify-content-center">
-    <div class="col-lg-10 col-xl-8">
-      <div class="py-5 text-center">
-        <h1 class="display-4 fw-bold mb-4 llm-ignore">Welcome to <span class="text-gradient-primary">Lato</span>
-</h1>
-        <p class="lead fs-3 mb-5 llm-ignore">Lato is a <strong>Rails Engine</strong> that offers a comprehensive <b>web application starter kit</b> with user management, authentication, and UI components <br>for Ruby on Rails</p>
-      </div>
 
-      <div class="row">
-        <div class="col-12">
-          <h2 class="h3 mb-4 text-center">This gem includes:</h2>
-          
-          <div class="row g-4 mb-5">
-            <div class="col-md-4">
-              <div class="card text-white h-100" style="background-color: rgba(255,255,255,0.1)">
-                <div class="card-body">
-                  <h5 class="card-title">User Management</h5>
-                  <p class="card-text">Full authentication system with signin, signup, password recovery, email validation, Google Authenticator MFA, and ETH wallet connection.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="card text-white h-100" style="background-color: rgba(255,255,255,0.1)">
-                <div class="card-body">
-                  <h5 class="card-title">Modern UI</h5>
-                  <p class="card-text">Web interface built with Bootstrap and Bootstrap Icons, featuring integrated UI components like data tables, forms, and modals.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="card text-white h-100" style="background-color: rgba(255,255,255,0.1)">
-                <div class="card-body">
-                  <h5 class="card-title">Stack Agnostic</h5>
-                  <p class="card-text">Works with different databases (PostgreSQL, MySQL, SQLite), job processors (Solid queue, Sidekiq, Delayed Job), and cache systems.</p>
-                </div>
-              </div>
-            </div>
+</a>  </li>
 
-            <div class="col-12">
-              <div class="card text-white" style="background-color: rgba(255,255,255,0.1)">
-                <div class="card-body">
-                  <h3 class="card-title">Customizable &amp; Extendable</h3>
-                  <p class="card-text">The gem is designed to be easily customizable and extendable. You can fully customize the UI and functionalities, add new features to your main application, or develop new engines to extend the panel.</p>
-                </div>
-              </div>
-            </div>
 
-            <div class="col-12">
-              <div class="card text-white" style="background-color: rgba(255,255,255,0.1)">
-                <div class="card-body">
-                  <h3 class="card-title">Modern Rails Features</h3>
-                  <p class="card-text">Ready to use with the latest Rails 7+ features like ESM import maps, Turbo and Stimulus. The front-end is responsive, mobile friendly and accessible.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" href="tutorial.html">
+      
+  <i class="bi bi-info-circle me-2"></i> Tutorial
 
-      <div class="row mb-5">
-        <div class="col-12">
-          <div class="card text-white" style="background-color: rgba(255,255,255,0.1)">
-            <div class="card-body">
-              <h3 class="card-title">Installation</h3>
-              
-              <h5 class="mt-4 mb-3">Add Dependencies</h5>
-              <p class="card-text mb-3">Add required dependencies to your application's Gemfile:</p>
-              <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code># Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails" # NOTE: Probably already installed in default rails 7+ project
 
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails" # NOTE: Probably already installed in default rails 7+ project
+</a>  </li>
 
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails" # NOTE: Probably already installed in default rails 7+ project
 
-# Use Sass to process CSS
-gem "sassc-rails"
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" href="configuration.html">
+      
+  <i class="bi bi-gear me-2"></i> Configuration
 
-# Use lato as application panel
-gem "lato"</code></pre>
-              </div>
 
-              <h5 class="mt-4 mb-3">Configure Asset Manifest</h5>
-              <p class="card-text mb-3">If not already present, add <strong>app/assets/config/manifest.js</strong> file with the following content:</p>
-              <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>//= link_tree ../images
-//= link_directory ../stylesheets .css
-//= link_tree ../../javascript .js
-//= link_tree ../../../vendor/javascript .js</code></pre>
-              </div>
+</a>  </li>
 
-              <h5 class="mt-4 mb-3">Install and Setup</h5>
-              <p class="card-text mb-3">Install gem and run required tasks:</p>
-              <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>$ bundle
-$ rails active_storage:install
-$ rails lato:install:application
-$ rails lato:install:migrations
-$ rails db:migrate</code></pre>
-              </div>
 
-              <h5 class="mt-4 mb-3">Configure Routes</h5>
-              <p class="card-text mb-3">Mount lato routes on the <strong>config/routes.rb</strong> file:</p>
-              <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>Rails.application.routes.draw do
-  mount Lato::Engine =&gt; "/lato"
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" href="customization.html">
+      
+  <i class="bi bi-brightness-high me-2"></i> Customization
 
-  # ....
-end</code></pre>
-              </div>
 
-              <h5 class="mt-4 mb-3">Import Styles</h5>
-              <p class="card-text mb-3">Import Lato Scss on <strong>app/assets/stylesheets/application.scss</strong> file:</p>
-              <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>@import 'lato/application';
+</a>  </li>
 
-// ....</code></pre>
-              </div>
 
-              <h5 class="mt-4 mb-3">Import JavaScript</h5>
-              <p class="card-text mb-3">Import Lato Js on <strong>app/javascript/application.js</strong> file:</p>
-              <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>import "lato/application";
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" href="components.html">
+      
+  <i class="bi bi-columns me-2"></i> Components
 
-// ....</code></pre>
-              </div>
 
-              <h5 class="mt-4 mb-3">Setup I18n</h5>
-              <p class="card-text mb-3">Setup I18n on the <strong>config/application.rb</strong> file:</p>
-              <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>module MyApplication
-  class Application &lt; Rails::Application
-    config.i18n.available_locales = [:it, :en]
-    config.i18n.default_locale = :it
+</a>  </li>
 
-    # ...
-  end
-end</code></pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="text-center pb-5">
-        <a class="btn btn-light btn-lg px-5" href="tutorial.html">Get Started with Tutorial</a>
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" href="operations.html">
+      
+  <i class="bi bi-pc-display-horizontal me-2"></i> Operations
+
+
+</a>  </li>
+
+
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" href="actions.html">
+      
+  <i class="bi bi-layout-three-columns me-2"></i> Actions
+
+
+</a>  </li>
+
+
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" href="invitations.html">
+      
+  <i class="bi bi-envelope-heart me-2"></i> Invitations
+
+
+</a>  </li>
+
+
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" href="guide.html">
+      
+  <i class="bi bi-book me-2"></i> Guide
+
+
+</a>  </li>
+
+
+  <!-- Menu con dropdown per children -->
+  <li class="nav-item border-bottom py-2">
+    <div class="nav-link position-relative dropdown">
+      <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' class="link-dark text-decoration-none dropdown-toggle d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#sidebar-nav-item-dropdown-crud" aria-expanded="false">
+        
+  <i class="bi bi-list me-2"></i> CRUD
+
+      </a>
+      
+      <div class="collapse " id="sidebar-nav-item-dropdown-crud">
+        <ul class="list-unstyled mt-2 border-start border-1 ps-2">
+            <li class="py-1">
+              <a class="nav-link py-1 link-dark" href="crud.html">
+                How to built
+</a>            </li>
+            <li class="py-1">
+              <a class="nav-link py-1 link-dark" href="products.html">
+                Example
+</a>            </li>
+        </ul>
       </div>
     </div>
-  </div>
+  </li>
+
+
+
+  <!-- Menu con dropdown per children -->
+  <li class="nav-item border-bottom py-2">
+    <div class="nav-link position-relative dropdown">
+      <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")' class="link-dark text-decoration-none dropdown-toggle d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#sidebar-nav-item-dropdown-modules" aria-expanded="true">
+        
+  <i class="bi bi-boxes me-2"></i> Modules
+
+      </a>
+      
+      <div class="collapse show" id="sidebar-nav-item-dropdown-modules">
+        <ul class="list-unstyled mt-2 border-start border-1 ps-2">
+            <li class="py-1">
+              <a class="nav-link py-1 active" href="modules/lato_users.html">
+                Lato Users
+</a>            </li>
+            <li class="py-1">
+              <a class="nav-link py-1 link-dark" href="modules/lato_settings.html">
+                Lato Settings
+</a>            </li>
+            <li class="py-1">
+              <a class="nav-link py-1 link-dark" href="modules/lato_storage.html">
+                Lato Storage
+</a>            </li>
+            <li class="py-1">
+              <a class="nav-link py-1 link-dark" href="modules/lato_spaces.html">
+                Lato Spaces
+</a>            </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+
+
+  <!-- Menu normale senza children -->
+  <li class="nav-item border-bottom py-2">
+    <a class="nav-link position-relative link-dark" target="_blank" href="https://github.com/Lato-org/lato">
+      
+  <i class="bi bi-github me-2"></i> GitHub
+
+
+        <i class="bi bi-arrow-up-right position-absolute end-0 top-50 translate-middle-y me-2" style="font-size: 0.75rem"></i>
+</a>  </li>
+
+  </ul>
+</div>
+      </aside>
+
+    <main class="layout_sidebar">
+      <div class="content px-md-3 py-3">
+  <div class="container-fluid">
+    <div class="lato-page-head border-bottom mb-3">
+    <ol class="breadcrumb mb-1">
+        <li class="breadcrumb-item">
+          <span>Modules</span>
+        </li>
+        <li class="breadcrumb-item">
+          <span>Lato Users</span>
+        </li>
+    </ol>
+
+  <h1>Lato Users</h1>
+
+  
 </div>
 
-<style>
-  .text-gradient-primary {
-    background: linear-gradient(90deg, #4cc9f0, #4361ee);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-</style>
+  <div class="alert alert-info mt-3 llm-ignore">
+    <p class="mb-0">
+      Source:
+      <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Lato-org/lato_users/refs/heads/main/test/dummy/app/views/application/documentation.html.erb">https://raw.githubusercontent.com/Lato-org/lato_users/refs/heads/main/test/dummy/app/views/application/documentation.html.erb</a>
+    </p>
+  </div>
+
+  
+
+<h2>How to use Lato Users</h2>
+
+<p>
+  <code>lato_users</code> adds a user management section to a Lato admin panel.
+  Use it when the application needs admins to create users, edit user data, manage invitations,
+  and handle account verification from the back office.
+</p>
+
+<h3>Installation</h3>
+
+<p>Add Lato Users to the application Gemfile:</p>
+
+<pre><code>gem "lato"
+gem "lato_users"</code></pre>
+
+<p>Install the engine and run migrations:</p>
+
+<pre><code>bundle
+rails lato_users:install:application
+rails lato_users:install:migrations
+rails db:migrate</code></pre>
+
+<p>Mount the engine in <code>config/routes.rb</code>:</p>
+
+<pre><code>Rails.application.routes.draw do
+  mount LatoUsers::Engine =&gt; "/lato-users"
+
+  # ...
+end</code></pre>
+
+<p>Import styles in <code>app/assets/stylesheets/application.scss</code>:</p>
+
+<pre><code>@import "lato_users/application";</code></pre>
+
+<p>Import JavaScript in <code>app/javascript/application.js</code>:</p>
+
+<pre><code>import "lato_users/application"</code></pre>
+
+<h3>Permissions</h3>
+
+<p>
+  Users must be logged into Lato and must have Lato Users admin permission enabled.
+  Grant permission from application seeds or from an existing admin account.
+</p>
+
+<pre><code>user = Lato::User.find_by(email: "admin@example.com")
+user.update!(lato_users_admin: true)</code></pre>
+
+<h3>What admins can do</h3>
+
+<ul>
+  <li>View all application users.</li>
+  <li>Create new users.</li>
+  <li>Edit user email, name, password, and available Lato admin permissions.</li>
+  <li>Verify or revoke email verification.</li>
+  <li>Send a new verification email.</li>
+  <li>Generate a new password for a user.</li>
+  <li>Delete users when allowed by the application data constraints.</li>
+  <li>Create and delete invitations.</li>
+</ul>
+
+<div class="alert alert-warning mt-3">
+  <p class="mb-0">
+    Admins cannot delete their own currently logged-in account from Lato Users.
+  </p>
+</div>
+
+<h3>Recommended setup</h3>
+
+<p>
+  Create at least one administrator in seeds and enable <code>lato_users_admin</code>.
+  This guarantees access to the user management panel after first deployment.
+</p>
+
+<pre><code>admin = Lato::User.find_or_create_by!(email: "admin@example.com") do |user|
+  user.first_name = "Admin"
+  user.last_name = "User"
+  user.password = "Password1!"
+  user.password_confirmation = "Password1!"
+  user.email_verified_at = Time.current
+end
+
+admin.update!(lato_users_admin: true)</code></pre>
+
+<h3>Invitations</h3>
+
+<p>
+  Use invitations when users should not self-register.
+  Admins can create invitations from the Lato Users panel. Invited people receive an email and complete account creation from the invitation link.
+</p>
+
+
   </div>
 </div>
 
@@ -328,6 +446,9 @@ end</code></pre>
 </div>
   </footer>
 
+    <button class="aside-opener shadow" data-controller="lato-aside-opener" data-action="click-&gt;lato-aside-opener#onClickToggle" aria-label="Toggle sidebar">
+  <i class="bi bi-layout-text-sidebar-reverse"></i>
+</button>
   
   
 <div class="modal fade" data-lato-action-target="modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">

@@ -41,6 +41,16 @@
   <i class="bi bi-list me-2"></i> CRUD
 <% end %>
 
+<%
+  module_items = LATO_MODULES.map do |key, config|
+    { key: key.to_sym, label: config[:label], path: main_app.module_documentation_path(key) }
+  end
+%>
+
+<%= lato_sidebar_nav_item :modules, "#", children: module_items do %>
+  <i class="bi bi-boxes me-2"></i> Modules
+<% end %>
+
 <%= lato_sidebar_nav_item :github, 'https://github.com/Lato-org/lato', external: true do %>
   <i class="bi bi-github me-2"></i> GitHub
 <% end %>

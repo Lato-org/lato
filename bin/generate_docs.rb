@@ -25,6 +25,11 @@ PAGES = [
   { path: '/invitations?generate_docs=1',  name: 'invitations.html',   title: 'Invitations',     auth: true },
   { path: '/guide?generate_docs=1',        name: 'guide.html',         title: 'Guide',           auth: true },
   { path: '/crud?generate_docs=1',         name: 'crud.html',          title: 'CRUD Example',    auth: true },
+  { path: '/modules/lato_users?generate_docs=1',    name: 'modules/lato_users.html',    title: 'Module: Lato Users',    auth: true },
+  { path: '/modules/lato_settings?generate_docs=1', name: 'modules/lato_settings.html', title: 'Module: Lato Settings', auth: true },
+  { path: '/modules/lato_storage?generate_docs=1',  name: 'modules/lato_storage.html',  title: 'Module: Lato Storage',  auth: true },
+  { path: '/modules/lato_spaces?generate_docs=1',   name: 'modules/lato_spaces.html',   title: 'Module: Lato Spaces',   auth: true },
+  # { path: '/modules/lato_cms?generate_docs=1',      name: 'modules/lato_cms.html',      title: 'Module: Lato CMS',      auth: true },
   { path: '/products?generate_docs=1',     name: 'products.html',      title: 'Products',        auth: true },
 ]
 
@@ -34,10 +39,11 @@ SKILL_FRONTMATTER = <<~YAML
   description: >
     Use this skill when working with the Lato Rails gem (admin panel engine).
     Provides full documentation: installation, configuration, authentication,
-    UI components, CRUD patterns, background operations, invitations, layout
-    customization and guides. USE FOR: installing lato, configuring lato,
+    UI components, CRUD patterns, background operations, invitations, modules,
+    layout customization and guides. USE FOR: installing lato, configuring lato,
     lato components, lato forms, lato index table, lato operations, lato
-    invitations, lato authentication, lato layout, lato customization, lato CRUD.
+    invitations, lato authentication, lato layout, lato customization, lato CRUD,
+    lato_users, lato_settings, lato_storage, lato_spaces, lato_cms.
   ---
 YAML
 

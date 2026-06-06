@@ -1,0 +1,19 @@
+<%= lato_page_head @module_config[:label], [
+  { label: "Modules" },
+  { label: @module_config[:label] }
+] %>
+
+<% if @module_documentation_error %>
+  <div class="alert alert-warning mt-3">
+    <p class="mb-0"><%= @module_documentation_error %></p>
+  </div>
+<% else %>
+  <div class="alert alert-info mt-3 llm-ignore">
+    <p class="mb-0">
+      Source:
+      <%= link_to @module_config[:raw_url], @module_config[:raw_url], target: "_blank", rel: "noopener" %>
+    </p>
+  </div>
+
+  <%= @module_documentation_html.html_safe %>
+<% end %>

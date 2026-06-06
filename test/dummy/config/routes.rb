@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   delete 'invitations/destroy_invite_action', to: 'tutorial#invitations_destroy_invite_action', as: :invitations_destroy_invite_action
   get 'guide', to: 'tutorial#guide', as: :guide
   get 'crud', to: 'tutorial#crud', as: :crud
+  get "modules/:id", to: "modules#show", as: :module_documentation
 
   # Products controller (Complete CRUD example)
   scope :products do
