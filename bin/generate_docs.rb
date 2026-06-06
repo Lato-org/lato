@@ -195,7 +195,7 @@ def download_asset(url, http, cookies)
   end
 end
 
-def process_html(html_content, http, cookies)
+def process_html(html_content, http, cookies, page = nil)
   doc = Nokogiri::HTML(html_content)
   
   # Processa i file CSS
@@ -247,15 +247,16 @@ def process_html(html_content, http, cookies)
   # Esempio: /customization -> ./customization.html
   # Altrimenti forza messaggio di errore
   pages_paths = PAGES.map { |page| page[:path].sub(/\?generate_docs=1$/, '') }
+  relative_prefix = page ? '../' * (File.dirname(page[:name]).split('/').reject { |part| part == '.' }.length) : ''
   doc.css('a').each do |link|
     href = link['href']
     next if href.nil? || href.empty? || href.start_with?('http://', 'https://', '//')
 
     # Se l'URL è relativo, aggiungi il BASE_URL
     if href == '/'
-      link['href'] = 'index.html'
+      link['href'] = "#{relative_prefix}index.html"
     elsif href.start_with?('/') && pages_paths.include?(href)
-      link['href'] = href[1..-1] + '.html'
+      link['href'] = "#{relative_prefix}#{href[1..-1]}.html"
     else
       link['href'] = 'javascript:alert("This link is not available in the documentation. To test the full functionality of Lato, install and run the gem locally.")'
     end
@@ -271,7 +272,7 @@ PAGES.each do |page|
   html_content, http, cookies = download_page(page, http, cookies)
   raise "Impossibile scaricare la pagina #{page[:path]}" unless html_content
 
-  processed_html = process_html(html_content, http, cookies)
+  processed_html = process_html(html_content, http, cookies, page)
   save_file(page[:name], processed_html)
 end
 
