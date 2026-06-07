@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "bcrypt"
   spec.add_dependency "bootstrap"
   spec.add_dependency "kaminari"
+  spec.add_dependency "local_time"
   spec.add_dependency "browser"
   spec.add_dependency "rqrcode"
   spec.add_dependency "rotp"

@@ -6,6 +6,8 @@ module Lato
     include Lato::Layoutable
     include Lato::Componentable
 
+    helper LocalTimeHelper
+
     around_action :catch_exceptions
 
     before_action :override_request_remote_ip

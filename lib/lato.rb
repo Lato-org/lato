@@ -1,4 +1,5 @@
 require "kaminari"
+require "local_time"
 require "bootstrap"
 require "browser"
 require "rotp"

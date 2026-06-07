@@ -1,22 +1,39 @@
 // Import turbo rails
-import "@hotwired/turbo-rails"
+import '@hotwired/turbo-rails'
 // Import bootstrap js
-import "bootstrap"
+import 'bootstrap'
 // Import controllers (stimulus rails)
-import "controllers"
+import 'controllers'
+// Import local time js
+import LocalTime from 'local-time'
+
+/**
+ * Setup local time to update time elements on page load and after turbo morph or frame render
+ */
+
+LocalTime.start()
+
+document.addEventListener('turbo:morph', () => {
+  LocalTime.run()
+})
+
+document.addEventListener('turbo:frame-render', () => {
+  LocalTime.run()
+})
 
 /**
  * Include service worker
  */
 
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/service-worker.js", { scope: "/" })
-  .then(() => navigator.serviceWorker.ready)
-  .then((registration) => {
-    const event = new CustomEvent("service-worker:ready", { detail: registration })
-    document.dispatchEvent(event)
-  })
-  .then(() => console.log("[App]", "Service worker registered! -> listen to 'service-worker:ready' document event to get the registration object"))
+  navigator.serviceWorker
+    .register('/service-worker.js', { scope: '/' })
+    .then(() => navigator.serviceWorker.ready)
+    .then((registration) => {
+      const event = new window.CustomEvent('service-worker:ready', { detail: registration })
+      document.dispatchEvent(event)
+    })
+    .then(() => window.console.log('[App]', 'Service worker registered! -> listen to \'service-worker:ready\' document event to get registration object'))
 }
 
 /**
@@ -24,7 +41,7 @@ if (navigator.serviceWorker) {
  * https://github.com/hotwired/turbo-rails/issues/440
  */
 
-document.addEventListener("turbo:frame-missing", event => {
+document.addEventListener('turbo:frame-missing', event => {
   event.preventDefault()
   event.detail.visit(event.detail.response)
 })
