@@ -7,7 +7,7 @@ export default class extends Controller {
 
   connect() {
     this.modal = new bootstrap.Modal(this.element)
-    Turbo.setConfirmMethod(this.customConfirm.bind(this))
+    Turbo.config.forms.confirm = this.customConfirm.bind(this)
 
     this.element.addEventListener('show.bs.modal', () => {
       this.element.style.zIndex = 2001
@@ -21,7 +21,7 @@ export default class extends Controller {
   }
 
   disconnect() {
-    Turbo.setConfirmMethod(window.confirm)
+    Turbo.config.forms.confirm = window.confirm
   }
 
   async customConfirm(message) {
