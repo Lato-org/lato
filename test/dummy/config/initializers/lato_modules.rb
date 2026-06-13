@@ -15,8 +15,8 @@ LATO_MODULES = {
     label: "Lato Spaces",
     raw_url: "https://raw.githubusercontent.com/Lato-org/lato_spaces/refs/heads/main/test/dummy/app/views/application/documentation.html.erb"
   },
-  # "lato_cms" => {
-  #   label: "Lato CMS",
-  #   raw_url: "https://raw.githubusercontent.com/Lato-org/lato_cms/refs/heads/main/test/dummy/app/views/application/documentation.html.erb"
-  # }
+  "lato_cms" => {
+    label: "Lato CMS",
+    raw_url: "https://raw.githubusercontent.com/Lato-org/lato_cms/refs/heads/main/test/dummy/app/views/application/documentation.html.erb"
+  }
 }.freeze

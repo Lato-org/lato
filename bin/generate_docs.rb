@@ -29,7 +29,7 @@ PAGES = [
   { path: '/modules/lato_settings?generate_docs=1', name: 'modules/lato_settings.html', title: 'Module: Lato Settings', auth: true },
   { path: '/modules/lato_storage?generate_docs=1',  name: 'modules/lato_storage.html',  title: 'Module: Lato Storage',  auth: true },
   { path: '/modules/lato_spaces?generate_docs=1',   name: 'modules/lato_spaces.html',   title: 'Module: Lato Spaces',   auth: true },
-  # { path: '/modules/lato_cms?generate_docs=1',      name: 'modules/lato_cms.html',      title: 'Module: Lato CMS',      auth: true },
+  { path: '/modules/lato_cms?generate_docs=1',      name: 'modules/lato_cms.html',      title: 'Module: Lato CMS',      auth: true },
   { path: '/products?generate_docs=1',     name: 'products.html',      title: 'Products',        auth: true },
 ]
 

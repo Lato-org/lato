@@ -34,6 +34,7 @@ The idea behind Lato is to create an eco-system of engines that can improve the 
 - [Lato Settings](https://github.com/Lato-org/lato_settings): manage application settings from the UI panel;
 - [Lato Storage](https://github.com/Lato-org/lato_storage): manage storage (Active Storage data) from the UI panel;
 - [Lato Users](https://github.com/Lato-org/lato_users): manage users from the UI panel;
+- [Lato CMS](https://github.com/Lato-org/lato_cms): manage web pages from the UI panel;
 
 ## Installation
 Add required dependencies to your application's Gemfile:
