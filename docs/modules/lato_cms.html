@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="gIlyF7QC3ZZ30KrdU9AM5ihqSw_bY0DYCQ-dEN2l43C0dH6KycKzExxjr4pDgroBkcmrx_tE5Y-03QiEamZ7xQ">
+<meta name="csrf-token" content="iz2flwlygWTjhm7z4HChv6FeJ0qfS1UB5oivIgb2pwXsWW5XFKpHZBoq5W32ifFUUpUmaLVBe8OmY4Z77pYlFg">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -331,9 +331,227 @@ document.addEventListener('turbo:load', () => {
   
 </div>
 
-  <div class="alert alert-warning mt-3">
-    <p class="mb-0">Documentation download failed: 404 Not Found</p>
+  <div class="alert alert-info mt-3 llm-ignore">
+    <p class="mb-0">
+      Source:
+      <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Lato-org/lato_cms/refs/heads/main/test/dummy/app/views/application/documentation.html.erb">https://raw.githubusercontent.com/Lato-org/lato_cms/refs/heads/main/test/dummy/app/views/application/documentation.html.erb</a>
+    </p>
   </div>
+
+  
+
+<h2>How to use Lato CMS</h2>
+
+<p>
+  <code>lato_cms</code> adds content management to a Lato admin panel.
+  Use it when admins need to create pages and edit structured content without changing application code.
+  Lato CMS works with Lato Spaces, so pages can be scoped to the selected group.
+</p>
+
+<h3>Installation</h3>
+
+<p>Add Lato CMS to the application Gemfile:</p>
+
+<pre><code>gem "lato"
+gem "lato_spaces"
+gem "lato_cms"</code></pre>
+
+<p>Install the engine and run migrations:</p>
+
+<pre><code>bundle
+rails lato_cms:install:application
+rails lato_cms:install:migrations
+rails db:migrate</code></pre>
+
+<p>Mount the engine in <code>config/routes.rb</code>:</p>
+
+<pre><code>Rails.application.routes.draw do
+  mount LatoCms::Engine =&gt; "/lato-cms"
+
+  # ...
+end</code></pre>
+
+<p>Import styles in <code>app/assets/stylesheets/application.scss</code>:</p>
+
+<pre><code>@import "lato_cms/application";</code></pre>
+
+<p>Import JavaScript in <code>app/javascript/application.js</code>:</p>
+
+<pre><code>import "lato_cms/application"</code></pre>
+
+<h3>Permissions</h3>
+
+<p>
+  Users must be logged into Lato, must have a selected Lato Spaces group,
+  and must have Lato CMS admin permission enabled.
+</p>
+
+<pre><code>user = Lato::User.find_by(email: "admin@example.com")
+user.update!(lato_cms_admin: true)</code></pre>
+
+<h3>Configuration</h3>
+
+<p>Configure available locales and template directory:</p>
+
+<pre><code>LatoCms.configure do |config|
+  config.locales = [:en, :it]
+  config.templates_path = "config/lato_cms"
+end</code></pre>
+
+<h3>Templates and components</h3>
+
+<p>
+  Templates define which content blocks are available on a page.
+  Components define the fields inside those blocks.
+  Both are YAML files stored in the application.
+  Template components are enabled by default, and each page can turn optional components on or off from the admin panel.
+</p>
+
+<pre><code>config/lato_cms/
+  templates/
+    homepage.yml
+    blog_post.yml
+  components/
+    hero.yml
+    content.yml</code></pre>
+
+<p>Generate new files with Rails tasks:</p>
+
+<pre><code>rails "lato_cms:generate:template[blog_post]"
+rails "lato_cms:generate:component[hero,title:string,subtitle:textarea,image:file]"</code></pre>
+
+<h3>Template example</h3>
+
+<pre><code># config/lato_cms/templates/homepage.yml
+id: homepage
+name: Homepage
+components:
+  hero_section:
+    component_id: hero
+    name: Hero Section
+    required: true
+  content_section:
+    component_id: content</code></pre>
+
+<h3>Optional and required components</h3>
+
+<p>
+  Components listed in a template are optional unless <code>required: true</code> is set.
+  Optional components show an enabled switch in the page editor. Admins can disable them for a specific page
+  without removing the component from the template.
+</p>
+
+<pre><code># config/lato_cms/templates/homepage.yml
+id: homepage
+name: Homepage
+components:
+  hero_section:
+    component_id: hero
+    name: Hero Section
+    required: true
+  banner_section:
+    component_id: banner
+    name: Promotional Banner
+  content_section:
+    component_id: content
+    name: Content</code></pre>
+
+<p>
+  In this example <code>hero_section</code> is always active and cannot be disabled.
+  <code>banner_section</code> and <code>content_section</code> can be enabled or disabled per page.
+  Disabled components are hidden in the editor, cannot be saved, and are not exposed when page fields are returned by the API.
+</p>
+
+<h3>Component example</h3>
+
+<pre><code># config/lato_cms/components/hero.yml
+id: hero
+name: Hero
+fields:
+  title:
+    name: Title
+    type: string
+    required: true
+  subtitle:
+    name: Subtitle
+    type: textarea
+  image:
+    name: Image
+    type: file
+    settings:
+      accept: "image/*"</code></pre>
+
+<h3>Supported field types</h3>
+
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Use for</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>string</code></td>
+        <td>Short text.</td>
+      </tr>
+      <tr>
+        <td><code>textarea</code></td>
+        <td>Multi-line plain text.</td>
+      </tr>
+      <tr>
+        <td><code>text</code></td>
+        <td>Long rich text or HTML content.</td>
+      </tr>
+      <tr>
+        <td><code>number</code></td>
+        <td>Numeric values.</td>
+      </tr>
+      <tr>
+        <td>
+<code>date</code> / <code>datetime</code>
+</td>
+        <td>Date and time values.</td>
+      </tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td>True/false values.</td>
+      </tr>
+      <tr>
+        <td>
+<code>select</code> / <code>multiselect</code>
+</td>
+        <td>One or more values from predefined options.</td>
+      </tr>
+      <tr>
+        <td><code>color</code></td>
+        <td>Color values.</td>
+      </tr>
+      <tr>
+        <td><code>json</code></td>
+        <td>Structured data.</td>
+      </tr>
+      <tr>
+        <td><code>file</code></td>
+        <td>Uploaded files through Active Storage.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>Using CMS content in the application</h3>
+
+<p>
+  Use Lato CMS pages as structured content records for public or private pages.
+  Field values are available in their parsed form, so numbers, booleans, dates, JSON values,
+  multi-select values, and files can be consumed directly by application views or serializers.
+</p>
+
+<pre><code>page = LatoCms::Page.find_by(permalink: "/homepage")
+title = page.fields.find_by(field_id: "title")&amp;.parsed_value
+image = page.fields.find_by(field_id: "image")&amp;.files&amp;.first</code></pre>
+
 
   </div>
 </div>
