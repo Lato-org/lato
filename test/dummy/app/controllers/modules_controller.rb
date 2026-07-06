@@ -30,7 +30,9 @@ class ModulesController < ApplicationController
     http.read_timeout = 10
 
     response = http.get(uri.request_uri)
-    return strip_erb(response.body) if response.code == "200"
+    # Net::HTTP returns the body as ASCII-8BIT; force UTF-8 so it can be
+    # concatenated into the UTF-8 view buffer without an encoding clash
+    return strip_erb(response.body.force_encoding("UTF-8")) if response.code == "200"
 
     @module_documentation_error = "Documentation download failed: #{response.code} #{response.message}"
     nil

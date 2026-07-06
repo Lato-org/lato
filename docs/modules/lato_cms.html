@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="iz2flwlygWTjhm7z4HChv6FeJ0qfS1UB5oivIgb2pwXsWW5XFKpHZBoq5W32ifFUUpUmaLVBe8OmY4Z77pYlFg">
+<meta name="csrf-token" content="Lzm8SysU0BooYctotSZdTwcXI69vOIcSnGbAmYxthAcojmPQdaNSiXEbNQkjYeI9wMcwYKXF8vFPPxxUdkvDZg">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -66,7 +66,7 @@ document.addEventListener('turbo:load', () => {
     "controllers/lato_input_signature_controller": "/assets/lato/controllers/lato_input_signature_controller-75999cb8a3b8fb88c88c17a5974ffb1ab558cdf55a15ea9aa5a35a6ef9996af6.js",
     "controllers/lato_network_controller": "/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js",
     "controllers/lato_operation_controller": "/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js",
-    "controllers/lato_tooltip_controller": "/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js",
+    "controllers/lato_tooltip_controller": "/assets/lato/controllers/lato_tooltip_controller-3a5af6dea34f47bb05a310fd22872e430e3f970b8851571f1f5c50db258aae68.js",
     "controllers/lato_webauthn_auth_controller": "/assets/lato/controllers/lato_webauthn_auth_controller-b6378add3dd4eb04b9fb9451dc82907d6c150345ee71d823a8673cb65a9442a8.js",
     "controllers/hello_controller": "/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js"
   }
@@ -101,7 +101,7 @@ document.addEventListener('turbo:load', () => {
 <link rel="modulepreload" href="/assets/lato/controllers/lato_input_signature_controller-75999cb8a3b8fb88c88c17a5974ffb1ab558cdf55a15ea9aa5a35a6ef9996af6.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_network_controller-662ea8fbd8d5a94d3ee2a56b21e88406fa23aaf6036cef0f77cce66ce0086304.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_operation_controller-8b0d95e0b5cde168781e64b19d0c7d84c4ac1f7984419e3faf051bc2f9f599bd.js">
-<link rel="modulepreload" href="/assets/lato/controllers/lato_tooltip_controller-00b907dc82b798c60949813ec2f35772c4336db3cc5e021b5f3413b648bae1b8.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_tooltip_controller-3a5af6dea34f47bb05a310fd22872e430e3f970b8851571f1f5c50db258aae68.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_webauthn_auth_controller-b6378add3dd4eb04b9fb9451dc82907d6c150345ee71d823a8673cb65a9442a8.js">
 <link rel="modulepreload" href="/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js">
 <script type="module">import "application"</script>
@@ -462,6 +462,34 @@ components:
   Disabled components are hidden in the editor, cannot be saved, and are not exposed when page fields are returned by the API.
 </p>
 
+<h3>Repeater components</h3>
+
+<p>
+  Add <code>repeater: true</code> to a template component when admins need to create multiple items with the same field set.
+  The API returns repeater fields as an ordered array of items.
+</p>
+
+<pre><code># config/lato_cms/templates/homepage.yml
+components:
+  feature_cards:
+    component_id: feature_card
+    name: Feature Cards
+    repeater: true
+    settings:
+      min: 1</code></pre>
+
+<pre><code># config/lato_cms/components/feature_card.yml
+id: feature_card
+name: Feature Card
+fields:
+  title:
+    name: Title
+    type: string
+    required: true
+  description:
+    name: Description
+    type: textarea</code></pre>
+
 <h3>Component example</h3>
 
 <pre><code># config/lato_cms/components/hero.yml
@@ -479,7 +507,12 @@ fields:
     name: Image
     type: file
     settings:
-      accept: "image/*"</code></pre>
+      accept: "image/*"
+  attachments:
+    name: Attachments
+    type: file
+    settings:
+      multiple: true</code></pre>
 
 <h3>Supported field types</h3>
 
@@ -534,11 +567,112 @@ fields:
       </tr>
       <tr>
         <td><code>file</code></td>
-        <td>Uploaded files through Active Storage.</td>
+        <td>Single file upload through Active Storage by default. Set <code>settings.multiple: true</code> to allow multiple files.</td>
+      </tr>
+      <tr>
+        <td><code>image</code></td>
+        <td>Single image upload through Active Storage. Optionally generates resized variants (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>).</td>
+      </tr>
+      <tr>
+        <td><code>gallery</code></td>
+        <td>Multiple sortable image uploads through Active Storage. Optionally generates resized variants (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>).</td>
+      </tr>
+      <tr>
+        <td><code>custom</code></td>
+        <td>Application-defined field rendered with a custom partial.</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<h3 id="image-sizes">Image sizes</h3>
+
+<p>
+  <code>image</code> and <code>gallery</code> fields can declare <code>settings.sizes</code> to generate
+  resized variants via <code>image_processing</code>. Each size produces an Active Storage variant that is
+  processed lazily on first request and exposed in the API under the attachment's <code>sizes</code> map.
+</p>
+
+<p>Each size accepts <code>width</code>, <code>height</code>, and a <code>resize</code> mode:</p>
+
+<ul>
+  <li>
+<code>limit</code> (default): scale down to fit within the bounds, never upscale, keep aspect ratio.</li>
+  <li>
+<code>fit</code>: scale to fit within the bounds, keep aspect ratio.</li>
+  <li>
+<code>fill</code>: crop to exactly <code>width</code>×<code>height</code>.</li>
+</ul>
+
+<pre><code># config/lato_cms/components/hero.yml
+id: hero
+name: Hero
+fields:
+  cover:
+    name: Cover
+    type: image
+    settings:
+      sizes:
+        thumb:
+          width: 150
+          height: 150
+          resize: fill
+        medium:
+          width: 800</code></pre>
+
+<p>The API response includes the generated variant URLs alongside the original:</p>
+
+<pre><code>{
+  "id": 12,
+  "filename": "cover.jpg",
+  "url": "/rails/active_storage/blobs/.../cover.jpg",
+  "sizes": {
+    "thumb": "/rails/active_storage/representations/.../cover.jpg",
+    "medium": "/rails/active_storage/representations/.../cover.jpg"
+  }
+}</code></pre>
+
+<h3>Custom fields</h3>
+
+<p>
+  Use <code>type: custom</code> when a component needs an editor that is not covered by built-in field types.
+  Set <code>render</code> to an application partial path. The partial receives <code>field_id</code>,
+  <code>field_config</code>, and <code>page_field</code> locals.
+</p>
+
+<pre><code># config/lato_cms/components/hero.yml
+id: hero
+name: Hero
+fields:
+  icon_note:
+    name: Icon note
+    type: custom
+    render: lato_cms/custom_fields/icon_note
+    required: false
+    settings:
+      placeholder: "Example: rocket|Hero launch section"</code></pre>
+
+<p>Create the partial in the host application:</p>
+
+<pre><code>&lt;%# app/views/lato_cms/custom_fields/_icon_note.html.erb %&gt;
+&lt;% settings = field_config["settings"] || {} %&gt;
+&lt;% current_value = page_field&amp;.value.to_s %&gt;
+
+&lt;label class="form-label" for="fields_&lt;%= field_id %&gt;_value"&gt;
+  &lt;%= field_config["name"] || field_id.humanize %&gt;
+&lt;/label&gt;
+
+&lt;input type="text"
+  class="form-control"
+  name="fields[&lt;%= field_id %&gt;][value]"
+  id="fields_&lt;%= field_id %&gt;_value"
+  value="&lt;%= current_value %&gt;"
+  placeholder="&lt;%= settings["placeholder"] %&gt;"&gt;</code></pre>
+
+<p>
+  Custom field values are saved like standard scalar fields when the input name is
+  <code>fields[FIELD_ID][value]</code>. Use <code>settings</code> for custom options consumed by the partial.
+</p>
 
 <h3>Using CMS content in the application</h3>
 
@@ -552,6 +686,33 @@ fields:
 title = page.fields.find_by(field_id: "title")&amp;.parsed_value
 image = page.fields.find_by(field_id: "image")&amp;.files&amp;.first</code></pre>
 
+<h3>Page translations</h3>
+
+<p>
+  Each page belongs to a single locale. From a page, the <em>Actions → Translations</em>
+  menu lets you link the corresponding pages in the other configured locales. Linked pages
+  form a translation group with at most one page per locale, and the link is
+  symmetric: linking A to B makes both aware of each other. On the page view, the
+  locale badge becomes a dropdown to jump to the same page in another language.
+</p>
+
+<p>
+  When a page has linked translations, each component header shows a <em>Clone</em>
+  dropdown. Picking a language copies that component's field values (and files) from
+  the corresponding translation, replacing the current ones after confirmation.</p>
+
+
+<p>Read a page's translations in the application or from the JSON API:</p>
+
+<pre><code>page = LatoCms::Page.find_by(permalink: "/homepage")
+
+# Sibling pages in the other locales
+page.translations               # =&gt; ActiveRecord::Relation of pages
+page.translation_for(:it)       # =&gt; the linked Italian page, or nil
+
+# In as_json / API output, translations are exposed as a locale =&gt; page map:
+# { "it" =&gt; { id:, permalink:, frontend_url: }, ... }</code></pre>
+
 
   </div>
 </div>
@@ -563,7 +724,7 @@ image = page.fields.find_by(field_id: "image")&amp;.files&amp;.first</code></pre
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.22.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.22.2 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

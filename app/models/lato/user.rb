@@ -140,7 +140,10 @@ module Lato
         Rails.logger.error(e)
       end
 
-      Lato::UserMailer.signin_success_mail(id, params[:ip_address]).deliver_later
+      # Send login notification email unless disabled via config
+      unless Lato.config.auth_disable_signin_success_mail
+        Lato::UserMailer.signin_success_mail(id, params[:ip_address]).deliver_later
+      end
 
       true
     end
