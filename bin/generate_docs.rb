@@ -293,7 +293,7 @@ File.open(SKILL_DIR, 'w') do |skill_file|
     file_path = File.join(OUTPUT_DIR, page[:name])
     next unless File.exist?(file_path)
 
-    doc = Nokogiri::HTML(File.read(file_path))
+    doc = Nokogiri::HTML(File.read(file_path), nil, "UTF-8")
     main = doc.at('main')
     next unless main
 
@@ -317,7 +317,7 @@ File.open(DOCS_DIR, 'w') do |docs_file|
     file_path = File.join(OUTPUT_DIR, page[:name])
     next unless File.exist?(file_path)
 
-    doc = Nokogiri::HTML(File.read(file_path))
+    doc = Nokogiri::HTML(File.read(file_path), nil, "UTF-8")
     main = doc.at('main')
     next unless main
 

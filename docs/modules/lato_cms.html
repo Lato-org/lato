@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="Lzm8SysU0BooYctotSZdTwcXI69vOIcSnGbAmYxthAcojmPQdaNSiXEbNQkjYeI9wMcwYKXF8vFPPxxUdkvDZg">
+<meta name="csrf-token" content="dp6k4UjyRTiwwIJT3JhyizbysjtQp9SqC0YIAs8GYJTupFqEOnnr4cDvaNC9CrXew05n9SOBOa-TQB0GaLxdoA">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -387,7 +387,7 @@ end</code></pre>
 </p>
 
 <pre><code>user = Lato::User.find_by(email: "admin@example.com")
-user.update!(lato_cms_admin: true)</code></pre>
+user.update!(lato_cms_admin_role: 1)</code></pre>
 
 <h3>Configuration</h3>
 
@@ -567,15 +567,19 @@ fields:
       </tr>
       <tr>
         <td><code>file</code></td>
-        <td>Single file upload through Active Storage by default. Set <code>settings.multiple: true</code> to allow multiple files.</td>
+        <td>One or more files picked from the <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>media library</a>. Set <code>settings.multiple: true</code> to allow more than one.</td>
       </tr>
       <tr>
         <td><code>image</code></td>
-        <td>Single image upload through Active Storage. Optionally generates resized variants (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>).</td>
+        <td>Single image picked from the <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>media library</a>. Optionally generates resized variants (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>).</td>
+      </tr>
+      <tr>
+        <td><code>video</code></td>
+        <td>Single video picked from the <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>media library</a>. Its poster image is generated once per media item (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Video poster</a>).</td>
       </tr>
       <tr>
         <td><code>gallery</code></td>
-        <td>Multiple sortable image uploads through Active Storage. Optionally generates resized variants (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>).</td>
+        <td>Multiple sortable images picked from the <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>media library</a>. Optionally generates resized variants (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>).</td>
       </tr>
       <tr>
         <td><code>custom</code></td>
@@ -584,6 +588,77 @@ fields:
     </tbody>
   </table>
 </div>
+
+<p>
+  Any field can declare <code>required: true</code>. For attachment fields
+  (<code>file</code>, <code>image</code>, <code>video</code>, <code>gallery</code>) this means the
+  field must keep at least one file: the editor blocks saving when the field would end up empty,
+  and the server rejects the save with an error otherwise.
+</p>
+
+<h3 id="media-library">Media library</h3>
+
+<p>
+  <code>file</code>, <code>image</code>, <code>video</code>, and <code>gallery</code> fields don't upload
+  straight into the field: admins pick from a shared <em>Media library</em> (<em>Media</em> in the sidebar),
+  scoped to the current Lato Spaces group like pages. Each field opens a picker overlay to search the
+  existing library or drag &amp; drop a new file; the same media item can be reused across any number of
+  fields and pages.
+</p>
+
+<p>
+  A media item's <code>name</code> and alt text are edited from the library's own edit form, not from the
+  upload dialog — on upload, <code>name</code> defaults to the filename. Replacing the underlying file
+  of an existing media item isn't supported: uploading a different file always creates a new media item, so
+  that changing what a shared media item points to never silently changes it everywhere it's already in use.
+  Deleting a media item still referenced by a field is blocked until it's removed from every field using it.
+</p>
+
+<p>
+  Alt text is translatable: it's only shown for image media, and the edit form has one tab per locale
+  configured in <code>LatoCms.config.locales</code>. Each locale's text is independent — leaving one
+  blank doesn't affect the others.
+</p>
+
+<pre><code>image = LatoCms::Media.find(12)
+image.alt_text(:en)              # =&gt; "A dog running on the beach"
+image.alt_text(:it)               # =&gt; nil, if the Italian tab was left blank
+image.alt_text_translations       # =&gt; { "en" =&gt; "A dog running on the beach" }</code></pre>
+
+<p>
+  <code>image.alt_text</code> without an explicit locale resolves against <code>I18n.locale</code>. When a
+  media item is read off a page's field (<code>page_field.attachments</code> in the JSON API), its alt text
+  resolves against that <strong>page's own locale</strong> instead, so a multi-locale API response always
+  gets the right language regardless of the server's current <code>I18n.locale</code>.
+</p>
+
+<h4>AI-generated alt text</h4>
+
+<p>
+  Configure an OpenAI-compatible endpoint to have alt text generated automatically:
+</p>
+
+<pre><code>LatoCms.configure do |config|
+  config.llm_api_url = "https://api.openai.com/v1"
+  config.llm_model = "gpt-4o-mini"
+  config.llm_api_key = Rails.application.credentials.dig(:openai, :api_key)
+end</code></pre>
+
+<p>
+  All three must be set for the feature to activate (it's off by default). Once configured, uploading a new
+  image queues a background job that sends it to the LLM and writes back an alt text translation for every
+  locale in <code>LatoCms.config.locales</code>, in one call. It only runs once, right after upload —
+  it never overwrites text an admin later edits by hand. Generation is best effort: any failure (LLM
+  unreachable, malformed response, ...) is logged and simply leaves the alt text as it was.
+</p>
+
+<p>
+  A <em>Regenerate with AI</em> button on the media edit form (shown only for images, and only when an LLM
+  is configured) re-runs generation on demand, overwriting the current text in every locale. Unlike the
+  automatic post-upload run, this one is triggered by an admin waiting on it, so it runs as a
+  <code>Lato::Operation</code> instead: the admin is taken to a live progress screen rather than the request
+  blocking (and potentially timing out) on the LLM call.
+</p>
 
 <h3 id="image-sizes">Image sizes</h3>
 
@@ -630,6 +705,37 @@ fields:
     "thumb": "/rails/active_storage/representations/.../cover.jpg",
     "medium": "/rails/active_storage/representations/.../cover.jpg"
   }
+}</code></pre>
+
+<h3 id="video-poster">Video poster</h3>
+
+<p>
+  After a video is uploaded to the media library, a background job generates a poster image from it
+  via Active Storage previews (requires <code>ffmpeg</code> on the server) and attaches it to that media
+  item — once per media item, regardless of how many fields or pages reuse it. Poster generation is
+  best effort: when <code>ffmpeg</code> is unavailable or preview fails, the upload still succeeds and the
+  video is exposed without a poster.
+</p>
+
+<pre><code># config/lato_cms/components/hero.yml
+id: hero
+name: Hero
+fields:
+  trailer:
+    name: Trailer
+    type: video
+    settings:
+      accept: "video/mp4"</code></pre>
+
+<p>The API response exposes the video attachment with its poster URL (<code>null</code> until the job runs):</p>
+
+<pre><code>{
+  "id": 12,
+  "filename": "trailer.mp4",
+  "content_type": "video/mp4",
+  "byte_size": 1048576,
+  "url": "/rails/active_storage/blobs/.../trailer.mp4",
+  "poster_url": "/rails/active_storage/blobs/.../trailer_poster.jpg"
 }</code></pre>
 
 <h3>Custom fields</h3>
@@ -684,7 +790,8 @@ fields:
 
 <pre><code>page = LatoCms::Page.find_by(permalink: "/homepage")
 title = page.fields.find_by(field_id: "title")&amp;.parsed_value
-image = page.fields.find_by(field_id: "image")&amp;.files&amp;.first</code></pre>
+image = page.fields.find_by(field_id: "image")&amp;.media&amp;.first
+image_url = image&amp;.url</code></pre>
 
 <h3>Page translations</h3>
 
@@ -698,9 +805,29 @@ image = page.fields.find_by(field_id: "image")&amp;.files&amp;.first</code></pre
 
 <p>
   When a page has linked translations, each component header shows a <em>Clone</em>
-  dropdown. Picking a language copies that component's field values (and files) from
-  the corresponding translation, replacing the current ones after confirmation.</p>
+  dropdown. Picking a language copies that component's field values from the
+  corresponding translation, replacing the current ones after confirmation; attachment
+  fields keep referencing the same Media (not duplicated).
+</p>
 
+<p>
+  When an LLM is <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>configured</a>, the dropdown also offers
+  <em>Clone &amp; translate</em>: same copy, but every <code>string</code>/<code>textarea</code>/<code>text</code>
+  field is additionally translated into the target page's locale with one batched LLM call
+  (HTML in <code>text</code> fields is preserved, only the visible text is translated).
+  Everything else — select/multiselect/boolean/number/date/color/json/custom values, and
+  media (including its alt text) — is left exactly as a plain clone would leave it: media
+  alt text is translated independently by its own per-locale generation, not as part of
+  cloning a page.
+</p>
+
+<p>
+  The clone itself is instant, as always. Only the translation step — the actual LLM call — runs as
+  a <code>Lato::Operation</code> (see the <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>alt text</a> section above), landing the
+  admin on a live progress screen instead of blocking the request. If the LLM call fails, the operation
+  reports the failure, but the fields are still cloned (just untranslated) since that part already
+  committed synchronously before the translation step ever started.
+</p>
 
 <p>Read a page's translations in the application or from the JSON API:</p>
 

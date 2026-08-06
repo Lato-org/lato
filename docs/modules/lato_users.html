@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="G294InvFB8gi3Sp3OCKlrz2Pa-U2YVRBxkGemOPat28c2Ke5JXKFW3un1BauZRrd-l94KvycIaIVGEJVGfzwDg">
+<meta name="csrf-token" content="why4EXU9SvNMGUdEUJ_6pOb0KZYSzyQJcHAwzRifmjBaJkZ0B7bkKjw2rccxDT3xE0j8WGHpyQzodiXJvyWnBA">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -387,6 +387,105 @@ end</code></pre>
 
 <pre><code>user = Lato::User.find_by(email: "admin@example.com")
 user.update!(lato_users_admin: true)</code></pre>
+
+<h3>Admin permissions in the user form</h3>
+
+<p>
+  The user form loads the available admin permissions automatically. Each Lato engine
+  (for example <code>lato_users</code>, <code>lato_spaces</code>, <code>lato_cms</code>)
+  adds its own permission column to the shared <code>Lato::User</code> table, and the form
+  discovers them by naming convention:
+</p>
+
+<ul>
+  <li>
+<code>lato_*_admin</code> — a boolean column, rendered as a checkbox (on/off permission).</li>
+  <li>
+<code>lato_*_admin_role</code> — an integer column, rendered as a select (a role with multiple levels).</li>
+</ul>
+
+<p>
+  No configuration is required in <code>lato_users</code>: install an engine that adds one of these
+  columns and its control appears in the form, gets permitted on create/update, and its label is taken
+  from the <code>Lato::User</code> attribute translations.
+</p>
+
+<h4>Role permissions (enum)</h4>
+
+<p>
+  For a role column, the owning engine provides the selectable options (label and value) by defining a
+  <code>Lato::User.&lt;column&gt;_options</code> class method that returns <code>[[label, value], ...]</code>.
+  <code>lato_users</code> calls it to build the select. For instance, <code>lato_cms</code> exposes its
+  roles through <code>Lato::User.lato_cms_admin_role_options</code>, so the CMS role appears as a dropdown
+  with the roles configured by that engine.
+</p>
+
+<p>
+  You can define your own role permission the same way, either from an engine or directly in the
+  application. The example below adds a <code>lato_shop_admin_role</code> with three levels.
+</p>
+
+<p><strong>1. Add the integer column</strong> to the shared <code>lato_users</code> table:</p>
+
+<pre><code># db/migrate/xxxxxxxxxxxxxx_add_shop_admin_role_to_lato_user.rb
+class AddShopAdminRoleToLatoUser &lt; ActiveRecord::Migration[8.1]
+  def change
+    add_column :lato_users, :lato_shop_admin_role, :integer, default: 0, null: false
+  end
+end</code></pre>
+
+<p>
+  <strong>2. Expose the options</strong> by reopening <code>Lato::User</code> and defining
+  <code>lato_shop_admin_role_options</code>. Wrap it in <code>to_prepare</code> so it survives code
+  reloading in development. The method must return an array of <code>[label, value]</code> pairs, and the
+  values must match the integers stored in the column:
+</p>
+
+<pre><code># config/initializers/lato_shop_roles.rb
+Rails.application.config.to_prepare do
+  Lato::User.class_eval do
+    def self.lato_shop_admin_role_options
+      [
+        [I18n.t("shop.roles.none"),    0],
+        [I18n.t("shop.roles.manager"), 1],
+        [I18n.t("shop.roles.owner"),   2]
+      ]
+    end
+  end
+end</code></pre>
+
+<p>
+  <strong>3. Add the labels</strong> to a locale file. The option labels come from the keys used above,
+  and the field label of the select comes from the <code>Lato::User</code> attribute translation:
+</p>
+
+<pre><code># config/locales/en.yml
+en:
+  shop:
+    roles:
+      none: No access
+      manager: Manager
+      owner: Owner
+  activerecord:
+    attributes:
+      lato/user:
+        lato_shop_admin_role: Shop role</code></pre>
+
+<p>
+  That is all. After running the migration the new role appears automatically as a select in the user
+  form, gets permitted on create and update, and its value is saved on the user record. No change to
+  <code>lato_users</code> is required. Reading the role back is a plain integer comparison:
+</p>
+
+<pre><code>user.lato_shop_admin_role         # =&gt; 0, 1 or 2
+user.lato_shop_admin_role &gt;= 1    # true when the user is at least a manager</code></pre>
+
+<div class="alert alert-info mt-3">
+  <p class="mb-0">
+    Keep <code>0</code> as the "no access" value: the form and permission checks treat any value greater
+    than zero as a granted role, mirroring how boolean permissions work.
+  </p>
+</div>
 
 <h3>What admins can do</h3>
 
