@@ -65,6 +65,18 @@ module Lato
       webauthn_id.present? && webauthn_public_key.present?
     end
 
+    # Serialization
+    ##
+
+    # Credentials and second factor secrets must never leave the server (e.g. through `render json: user`).
+    SENSITIVE_ATTRIBUTES = %w[password_digest authenticator_secret webauthn_id webauthn_public_key].freeze
+
+    def serializable_hash(options = nil)
+      options = (options || {}).dup
+      options[:except] = Array(options[:except]).map(&:to_s) | SENSITIVE_ATTRIBUTES
+      super(options)
+    end
+
     # Helpers
     ##
 
@@ -117,14 +129,11 @@ module Lato
     def signin(params)
       self.email = params[:email]
 
-      user = Lato::User.find_by(email: params[:email])
-      unless user
-        errors.add(:email, :not_correct)
-        return
-      end
-
-      unless user.authenticate(params[:password])
-        errors.add(:password, :not_correct)
+      # Same error and similar timing for unknown email and wrong password, so signin can not be used to enumerate users.
+      user = Lato::User.find_by(email: normalize_email(params[:email]))
+      authenticated = user ? user.authenticate(params[:password].to_s) : dummy_password_check(params[:password])
+      unless authenticated
+        errors.add(:base, :credentials_not_correct)
         return
       end
 
@@ -211,7 +220,7 @@ module Lato
         return
       end
 
-      unless email_verification_code == params[:code]
+      unless ActiveSupport::SecurityUtils.secure_compare(email_verification_code, params[:code].to_s)
         errors.add(:base, :email_verification_code_invalid)
         return
       end
@@ -223,42 +232,41 @@ module Lato
       true
     end
 
+    # NOTE: Always succeeds for a well formed email, registered or not, so the response can not be used to enumerate users.
     def request_recover_password(params)
-      user = Lato::User.find_by(email: params[:email])
-      unless user
-        errors.add(:email, :not_registered)
+      self.email = normalize_email(params[:email])
+      if email.blank?
+        errors.add(:email, :blank)
         return
       end
+
+      user = Lato::User.find_by(email: email)
+      return true unless user
+
+      # Per-user throttle: avoid mail bombing a victim, the previous code stays valid.
+      return true if user.c_password_update_semaphore
 
       code = SecureRandom.hex.upcase
-      delivery = Lato::UserMailer.password_update_mail(user.id, code).deliver_now
-      unless delivery
-        errors.add(:base, :email_sending_error)
-        return
-      end
+      user.c_password_update_code(code)
+      user.c_password_update_semaphore(true)
 
-      self.id = user.id
-      reload
-
-      c_password_update_code(code)
+      # Async delivery keeps response time independent from email existence.
+      Lato::UserMailer.password_update_mail(user.id, code).deliver_later
 
       true
     end
 
     def update_password(params)
-      password_update_code = c_password_update_code
+      password_update_code = new_record? ? nil : c_password_update_code
 
-      if password_update_code.blank?
-        errors.add(:base, :password_update_code_expired)
-        return
-      end
-
-      unless password_update_code == params[:code]
+      # Single error for missing, expired or wrong code: distinct messages would reveal which emails are registered.
+      if password_update_code.blank? || !ActiveSupport::SecurityUtils.secure_compare(password_update_code, params[:code].to_s)
         errors.add(:base, :password_update_code_invalid)
         return
       end
 
       c_password_update_code('')
+      c_password_update_semaphore(false)
 
       update(params.permit(:password, :password_confirmation).merge(
         authenticator_secret: nil, # Reset authenticator secret when password is updated
@@ -467,7 +475,33 @@ module Lato
       value
     end
 
+    def c_password_update_semaphore(value = nil)
+      cache_key = "Lato::User/c_password_update_semaphore/#{id}"
+      return Rails.cache.read(cache_key) if value.nil?
+
+      Rails.cache.write(cache_key, value, expires_in: 2.minutes)
+      value
+    end
+
     private
+
+    def normalize_email(value)
+      value.to_s.downcase.strip
+    end
+
+    # Spend the same bcrypt cost as a real check when the user does not exist.
+    def dummy_password_check(password)
+      BCrypt::Password.new(self.class.dummy_password_digest).is_password?(password.to_s)
+      false
+    end
+
+    # Same cost used by has_secure_password, so the dummy check takes as long as a real one.
+    def self.dummy_password_digest
+      @dummy_password_digest ||= BCrypt::Password.create(
+        SecureRandom.hex,
+        cost: ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+      )
+    end
 
     def webauthn_user_handle
       Digest::SHA256.digest("lato-user-#{id}")

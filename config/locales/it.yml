@@ -118,6 +118,7 @@ it:
     authentication_controller:
       verify_email_action_notice: Indirizzo email verificato correttamente
       update_password_action_notice: La tua password è stata aggiornata correttamente
+      recover_password_action_notice: Se l'email è registrata riceverai a breve un codice di verifica
 
   activerecord:
     attributes:
@@ -145,7 +146,8 @@ it:
               email_verification_code_expired: Il codice di verifica email risulta scaduto
               email_verification_code_invalid: Il codice di verifica email non risulta valido
               password_update_code_expired: Il codice di verifica risulta scaduto
-              password_update_code_invalid: Il codice di verifica non risulta valido
+              password_update_code_invalid: Il codice di verifica non risulta valido o è scaduto
+              credentials_not_correct: Email o password non corretti
               privacy_policy_invalid: Per accettare la privacy policy devi selezionare la checkbox di conferma
               terms_and_conditions_invalid: Per accettare i termini e condizioni devi selezionare la checkbox di conferma
               invitation_invalid: Invito non valido

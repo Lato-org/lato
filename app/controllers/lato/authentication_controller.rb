@@ -1,10 +1,11 @@
 module Lato
   class AuthenticationController < ApplicationController
-    before_action :limit_requests, only: %i[signin_action signup_action accept_invitation_action recover_password_action update_password_action]
+    before_action :limit_requests, only: %i[signin_action signup_action accept_invitation_action recover_password_action update_password_action verify_email_action authenticator_action webauthn_action]
     before_action :not_authenticate_session, only: %i[signin signin_action signup signup_action accept_invitation accept_invitation_action]
     before_action :authenticate_session, only: %i[signout signout_action]
 
-    before_action :find_user, only: %i[verify_email verify_email_action update_password update_password_action]
+    before_action :find_user, only: %i[verify_email verify_email_action]
+    before_action :find_recover_password_user, only: %i[update_password update_password_action]
     before_action :find_invitation, only: %i[accept_invitation accept_invitation_action]
     before_action :find_authentication_user, only: %i[authentication_method authentication_method_action webauthn webauthn_action]
 
@@ -33,8 +34,9 @@ module Lato
         ))
           redirect_path = determine_authentication_redirect(@user)
           if redirect_path
+            # Second factor still pending: expose only where to continue, not user data.
             format.html { redirect_to redirect_path }
-            format.json { render json: @user }
+            format.json { render json: { redirect: redirect_path } }
           else
             session_create(@user.id)
             format.html { redirect_to lato.root_path }
@@ -145,11 +147,14 @@ module Lato
 
     def recover_password_action
       @user = Lato::User.new
+      return unless verify_hcaptcha(:recover_password)
 
       respond_to do |format|
         if @user.request_recover_password(params.require(:user).permit(:email))
-          format.html { redirect_to lato.authentication_update_password_path(id: @user.id) }
-          format.json { render json: @user }
+          # Same response whether the email is registered or not: the user is tracked in session, not in the URL.
+          session[:recover_password_email] = @user.email
+          format.html { redirect_to lato.authentication_update_password_path, notice: I18n.t('lato.authentication_controller.recover_password_action_notice') }
+          format.json { render json: {} }
         else
           format.html { render :recover_password, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -164,10 +169,12 @@ module Lato
 
     def update_password_action
       respond_to do |format|
-        if @user.update_password(params.require(:user).permit(:code, :password, :password_confirmation))
+        if @recover_password_user.update_password(params.require(:user).permit(:code, :password, :password_confirmation))
+          session[:recover_password_email] = nil
           format.html { redirect_to lato.authentication_signin_path, notice: I18n.t('lato.authentication_controller.update_password_action_notice') }
-          format.json { render json: @user }
+          format.json { render json: {} }
         else
+          @user.errors.merge!(@recover_password_user.errors)
           format.html { render :update_password, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
@@ -281,6 +288,16 @@ module Lato
     def find_user
       @user = User.find_by(id: params[:id])
       respond_to_with_not_found unless @user
+    end
+
+    # Unknown emails get a blank user: the code check fails like for a wrong code, without revealing anything.
+    # Views always get a blank @user: a persisted record would change the rendered form (id, method) and leak existence.
+    def find_recover_password_user
+      email = session[:recover_password_email]
+      return redirect_to lato.authentication_recover_password_path if email.blank?
+
+      @recover_password_user = Lato::User.find_by(email: email) || Lato::User.new
+      @user = Lato::User.new
     end
 
     def find_invitation

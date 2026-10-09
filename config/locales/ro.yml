@@ -118,6 +118,7 @@ ro:
     authentication_controller:
       verify_email_action_notice: Adresa de email a fost verificată cu succes
       update_password_action_notice: Parola ta a fost actualizată cu succes
+      recover_password_action_notice: Dacă adresa de email este înregistrată, vei primi în curând un cod de verificare
 
   activerecord:
     attributes:
@@ -145,7 +146,8 @@ ro:
               email_verification_code_expired: Codul de verificare email a expirat
               email_verification_code_invalid: Codul de verificare email nu este valid
               password_update_code_expired: Codul de verificare a expirat
-              password_update_code_invalid: Codul de verificare nu este valid
+              password_update_code_invalid: Codul de verificare nu este valid sau a expirat
+              credentials_not_correct: Email sau parolă incorectă
               privacy_policy_invalid: Pentru a accepta politica de confidențialitate trebuie să bifezi căsuța de confirmare
               terms_and_conditions_invalid: Pentru a accepta termenii și condițiile trebuie să bifezi căsuța de confirmare
               invitation_invalid: Invitație nevalidă

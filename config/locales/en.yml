@@ -116,6 +116,7 @@ en:
     authentication_controller:
       verify_email_action_notice: Successfully verified email address
       update_password_action_notice: Your password has been successfully updated
+      recover_password_action_notice: If the email is registered you will receive a verification code shortly
 
   activerecord:
     attributes:
@@ -138,7 +139,8 @@ en:
               email_verification_code_expired: Email verification code has expired
               email_verification_code_invalid: Email verification code is invalid
               password_update_code_expired: Verification code has expired
-              password_update_code_invalid: Verification code is invalid
+              password_update_code_invalid: Verification code is invalid or expired
+              credentials_not_correct: Email or password not correct
               privacy_policy_invalid: To accept the privacy policy you must select the confirmation checkbox
               terms_and_conditions_invalid: To accept the terms and conditions you must select the confirmation checkbox
               web3_address_invalid: The address you send is not corretly signed

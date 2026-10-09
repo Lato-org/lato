@@ -10,7 +10,6 @@ module Lato
 
     around_action :catch_exceptions
 
-    before_action :override_request_remote_ip
     before_action :set_default_locale
 
     def index
@@ -38,13 +37,6 @@ module Lato
     end
 
     protected
-
-    # This method override the request remote ip with the X-Forwarded-For header if exists.
-    # This method is used to get the real ip of the user when the application is behind a proxy.
-    # For example if the application is behind a nginx proxy the request.remote_ip will be the ip of the proxy and not the ip of the user.
-    def override_request_remote_ip
-      request.remote_ip = request.headers['X-Forwarded-For'].split(',').first if request.headers['X-Forwarded-For']
-    end
 
     # This method set the default locale for the application.
     # The default locale is the locale of the user if exists, otherwise is the default locale of the application.

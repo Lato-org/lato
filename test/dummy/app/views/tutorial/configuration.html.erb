@@ -50,6 +50,7 @@ end
 <p>
   <a href="https://hcaptcha.com">HCaptcha</a> is a service that helps protect websites from spam and abuse by using advanced risk analysis techniques.
   By integrating HCaptcha into your application, you can add an extra layer of security to authentication forms.
+  When configured, it protects the signup and password recovery forms.
 </p>
 
 <pre>
@@ -57,6 +58,19 @@ Lato.configure do |config|
   config.hcaptcha_site_key = 'your-hcaptcha-site-key'
   config.hcaptcha_secret = 'your-hcaptcha-secret'
 end
+</pre>
+
+<h2>Requests Limit and Reverse Proxy</h2>
+
+<p>
+  Authentication actions (signin, signup, password recovery, email verification, second factor) are limited per client IP.
+  The client IP is read from <code>request.remote_ip</code>, so the application should run behind a reverse proxy (e.g. nginx, Kamal proxy, a load balancer) that appends the real client IP to the <code>X-Forwarded-For</code> header.
+  Proxies on private networks are trusted by default; if your proxy uses a public IP, add it to the trusted proxies:
+</p>
+
+<pre>
+# config/application.rb
+config.action_dispatch.trusted_proxies = ActionDispatch::RemoteIp::TRUSTED_PROXIES + [IPAddr.new('203.0.113.10')]
 </pre>
 
 <h2>Assets Configuration</h2>

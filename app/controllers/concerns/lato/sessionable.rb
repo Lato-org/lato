@@ -47,7 +47,13 @@ module Lato
     end
 
     def session_create(user_id)
-      cookies.encrypted[:lato_session] = { value: Lato::Session.generate_session_per_user(user_id), expires: Lato.config.session_lifetime.from_now }
+      # httponly keeps the cookie out of reach of injected scripts; secure avoids leaking it over plain HTTP.
+      cookies.encrypted[:lato_session] = {
+        value: Lato::Session.generate_session_per_user(user_id),
+        expires: Lato.config.session_lifetime.from_now,
+        httponly: true,
+        secure: request.ssl?
+      }
       @session = Lato::Session.new(cookies.encrypted[:lato_session])
 
       true

@@ -3,6 +3,8 @@ require "test_helper"
 module Lato
   class AuthenticationControllerTest < ActionDispatch::IntegrationTest
     setup do
+      # Rate limits and email semaphores live in cache: reset them to keep tests independent.
+      Rails.cache.clear
       @user = setup_lato_user
     end
 
@@ -47,6 +49,31 @@ module Lato
       assert_redirected_to lato.root_path
 
       assert_lato_session_cookie
+    end
+
+    test "signin_action should response with the same error for unknown email and wrong password" do
+      bodies = [['not.registered@mail.com', 'Password1!'], [@user.email, 'WrongPassword1!']].map do |email, password|
+        post lato.authentication_signin_action_url(format: :json), params: { user: { email: email, password: password } }
+        assert_response :unprocessable_entity
+        response.body
+      end
+      assert_equal bodies.first, bodies.last
+    end
+
+    test "signin_action should not expose user secrets in json response when second factor is pending" do
+      Lato.config.authenticator_connection = true
+      @user.generate_authenticator_secret
+
+      post lato.authentication_signin_action_url(format: :json), params: { user: { email: @user.email, password: 'Password1!' } }
+      assert_response :success
+      assert_equal({ 'redirect' => lato.authentication_authenticator_path }, JSON.parse(response.body))
+    ensure
+      Lato.config.authenticator_connection = false
+    end
+
+    test "signin_action should set an httponly session cookie" do
+      post lato.authentication_signin_action_url, params: { user: { email: @user.email, password: 'Password1!' } }
+      assert_match(/lato_session=[^\n]*httponly/i, Array(response.headers['Set-Cookie']).join("\n"))
     end
 
     # signup
@@ -179,66 +206,102 @@ module Lato
     # recover_password_action
     ##
 
-    test "recover_password_action should response with unprocessable_entity error if email not exists" do
-      post lato.authentication_recover_password_action_url, params: {
-        user: {
-          email: 'cocaina'
-        }
-      }
+    test "recover_password_action should response with unprocessable_entity error if email is blank" do
+      post lato.authentication_recover_password_action_url, params: { user: { email: '' } }
       assert_response :unprocessable_entity
     end
 
+    test "recover_password_action should response like a registered email if email not exists" do
+      assert_no_enqueued_emails do
+        post lato.authentication_recover_password_action_url, params: { user: { email: 'not.registered@mail.com' } }
+      end
+      assert_redirected_to lato.authentication_update_password_path
+    end
+
     test "recover_password_action should generate an password_update_code and send it via email to user" do
-      @user.c_password_update_code('')
-
-      post lato.authentication_recover_password_action_url, params: {
-        user: {
-          email: @user.email
-        }
-      }
-      assert_redirected_to lato.authentication_update_password_url(id: @user.id)
-
-      @user.reload
+      assert_enqueued_emails 1 do
+        post lato.authentication_recover_password_action_url, params: { user: { email: @user.email } }
+      end
+      assert_redirected_to lato.authentication_update_password_path
       assert_not_nil @user.c_password_update_code
-      assert_equal ActionMailer::Base.deliveries.count, 1
+    end
+
+    test "recover_password_action should send at most one email per user every 2 minutes" do
+      assert_enqueued_emails 1 do
+        2.times { post lato.authentication_recover_password_action_url, params: { user: { email: @user.email } } }
+      end
+    end
+
+    test "recover_password_action should not expose user data in json response" do
+      post lato.authentication_recover_password_action_url(format: :json), params: { user: { email: @user.email } }
+      assert_response :success
+      assert_equal({}, JSON.parse(response.body))
+    end
+
+    # Behind a reverse proxy the client controls the leftmost X-Forwarded-For values, the proxy appends the real IP.
+    test "recover_password_action should not let X-Forwarded-For bypass the requests limit" do
+      statuses = 12.times.map do |i|
+        post lato.authentication_recover_password_action_url, params: { user: { email: "user#{i}@mail.com" } }, headers: { 'X-Forwarded-For' => "203.0.113.#{i}, 198.51.100.1" }
+        response.status
+      end
+      assert_includes statuses, 429
     end
 
     # update_password
     ##
 
-    test "update_password should response with not_found error if user not exists" do
-      get lato.authentication_update_password_url(id: 9999999)
-      assert_response :not_found
+    test "update_password should redirect to recover_password without a recover request" do
+      get lato.authentication_update_password_url
+      assert_redirected_to lato.authentication_recover_password_path
     end
 
     test "update_password should response with success" do
-      get lato.authentication_update_password_url(id: @user.id)
+      request_recover_password(@user.email)
+      get lato.authentication_update_password_url
       assert_response :success
     end
 
     # update_password_action
     ##
 
-    test "update_password_action should response with not_found error if user not exists" do
-      patch lato.authentication_update_password_action_url(id: 9999999)
-      assert_response :not_found
+    test "update_password_action should redirect to recover_password without a recover request" do
+      patch lato.authentication_update_password_action_url
+      assert_redirected_to lato.authentication_recover_password_path
     end
 
     test "update_password_action should response with unprocessable_entity error if code is not valid" do
-      @user.c_password_update_code('')
+      request_recover_password(@user.email)
 
-      patch lato.authentication_update_password_action_url(id: @user.id), params: {
-        user: {
-          code: 'invalid_code'
-        }
-      }
+      patch lato.authentication_update_password_action_url, params: { user: { code: 'invalid_code' } }
       assert_response :unprocessable_entity
     end
 
+    test "update_password_action should response with the same error for registered and not registered emails" do
+      bodies = [@user.email, 'not.registered@mail.com'].map do |email|
+        request_recover_password(email)
+        patch lato.authentication_update_password_action_url(format: :json), params: { user: { code: 'invalid_code' } }
+        assert_response :unprocessable_entity
+        response.body
+      end
+      assert_equal bodies.first, bodies.last
+    end
+
+    test "update_password pages should render the same html for registered and not registered emails" do
+      pages = [@user.email, 'not.registered@mail.com'].map do |email|
+        request_recover_password(email)
+        get lato.authentication_update_password_url
+        form = without_csrf_tokens(response.body)
+        patch lato.authentication_update_password_action_url, params: { user: { code: 'invalid_code' } }
+        [form, without_csrf_tokens(response.body)]
+      end
+      assert_equal pages.first, pages.last
+    end
+
     test "update_password_action should update user password" do
+      request_recover_password(@user.email)
       @user.c_password_update_code('valid_code')
 
-      patch lato.authentication_update_password_action_url(id: @user.id), params: {
+      patch lato.authentication_update_password_action_url, params: {
         user: {
           code: 'valid_code',
           password: 'New password',
@@ -308,6 +371,14 @@ module Lato
     end
 
     private
+
+    def request_recover_password(email)
+      post lato.authentication_recover_password_action_url, params: { user: { email: email } }
+    end
+
+    def without_csrf_tokens(html)
+      html.gsub(/(name="authenticity_token" value|name="csrf-token" content)="[^"]*"/, '\1=""')
+    end
 
     def assert_lato_session_cookie
       jar = ActionDispatch::Cookies::CookieJar.build(request, cookies.to_hash)

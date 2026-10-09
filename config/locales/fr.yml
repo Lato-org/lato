@@ -118,6 +118,7 @@ fr:
     authentication_controller:
       verify_email_action_notice: Adresse e-mail vérifiée avec succès
       update_password_action_notice: Votre mot de passe a été mis à jour avec succès
+      recover_password_action_notice: Si l'adresse e-mail est enregistrée, vous recevrez bientôt un code de vérification
 
   activerecord:
     attributes:
@@ -145,7 +146,8 @@ fr:
               email_verification_code_expired: Le code de vérification de l'e-mail a expiré
               email_verification_code_invalid: Le code de vérification de l'e-mail n'est pas valide
               password_update_code_expired: Le code de vérification a expiré
-              password_update_code_invalid: Le code de vérification n'est pas valide
+              password_update_code_invalid: Le code de vérification n'est pas valide ou a expiré
+              credentials_not_correct: E-mail ou mot de passe incorrect
               privacy_policy_invalid: Pour accepter la politique de confidentialité, vous devez cocher la case de confirmation
               terms_and_conditions_invalid: Pour accepter les conditions générales, vous devez cocher la case de confirmation
               invitation_invalid: Invitation non valide
