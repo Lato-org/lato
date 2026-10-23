@@ -60,6 +60,15 @@ module Lato
       assert_equal bodies.first, bodies.last
     end
 
+    test "signin_action should not expose user secrets in json response" do
+      post lato.authentication_signin_action_url(format: :json), params: { user: { email: @user.email, password: 'Password1!' } }
+      assert_response :success
+
+      body = JSON.parse(response.body)
+      assert_equal @user.email, body['email']
+      Lato::User::SENSITIVE_ATTRIBUTES.each { |attribute| assert_not body.key?(attribute), "#{attribute} exposed" }
+    end
+
     test "signin_action should not expose user secrets in json response when second factor is pending" do
       Lato.config.authenticator_connection = true
       @user.generate_authenticator_secret
