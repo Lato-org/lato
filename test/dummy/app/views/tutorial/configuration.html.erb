@@ -42,6 +42,7 @@ Lato.configure do |config|
   config.auth_disable_authenticator = true # Disable Google Authenticator login
   config.auth_disable_webauthn = true # Disable WebAuthn login
   config.auth_disable_signin_success_mail = true # Disable login notification email
+  config.auth_recover_password_hourly_limit = 100 # Max password recovery emails sent per hour across all users, nil to disable (default: 100)
 end
 </pre>
 

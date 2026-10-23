@@ -232,6 +232,20 @@ module Lato
       end
     end
 
+    test "recover_password_action should stop sending emails when the hourly global limit is reached" do
+      Lato.config.auth_recover_password_hourly_limit = 1
+      other_user = @user.dup.tap { |u| u.email = 'other.user@mail.com' }
+      other_user.save!
+
+      assert_enqueued_emails 1 do
+        post lato.authentication_recover_password_action_url, params: { user: { email: @user.email } }
+        post lato.authentication_recover_password_action_url, params: { user: { email: other_user.email } }
+      end
+      assert_response :unprocessable_entity
+    ensure
+      Lato.config.auth_recover_password_hourly_limit = 100
+    end
+
     test "recover_password_action should not expose user data in json response" do
       post lato.authentication_recover_password_action_url(format: :json), params: { user: { email: @user.email } }
       assert_response :success

@@ -240,6 +240,12 @@ module Lato
         return
       end
 
+      # Global cap checked before user lookup: the error is the same for every email, so it reveals nothing.
+      if recover_password_hourly_limit_reached?
+        errors.add(:base, :password_update_global_limit)
+        return
+      end
+
       user = Lato::User.find_by(email: email)
       return true unless user
 
@@ -252,6 +258,7 @@ module Lato
 
       # Async delivery keeps response time independent from email existence.
       Lato::UserMailer.password_update_mail(user.id, code).deliver_later
+      Rails.cache.increment(recover_password_hourly_cache_key, 1, expires_in: 1.hour)
 
       true
     end
@@ -450,6 +457,19 @@ module Lato
 
     # Cache
     ##
+
+    # Fixed hourly window shared by all users: stops mass mailing when an attacker knows many registered emails.
+    def recover_password_hourly_cache_key
+      "Lato::User/recover_password_hourly_count/#{Time.now.utc.strftime('%Y%m%d%H')}"
+    end
+
+    def recover_password_hourly_limit_reached?
+      limit = Lato.config.auth_recover_password_hourly_limit
+      return false if limit.nil?
+
+      # raw: true reads counters written by increment on stores that keep them unserialized (Redis, Memcache).
+      Rails.cache.read(recover_password_hourly_cache_key, raw: true).to_i >= limit
+    end
 
     def c_email_verification_semaphore(value = nil)
       cache_key = "Lato::User/c_email_verification_semaphore/#{id}"
