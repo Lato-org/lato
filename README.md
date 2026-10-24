@@ -13,9 +13,24 @@ The gem is **agnostic to the application stack**. You can use it with different 
 
 The gem is designed to be easily **customizable and extendable**. You can fully customize the UI and the functionalities of the panel. You can also add new functionalities and components to the panel on the main application or develop new engines to extend the panel.
 
-The gem is ready to be used with the **latest Rails 7+** features like **[ESM import maps](https://github.com/rails/importmap-rails)**, **[Turbo](https://turbo.hotwired.dev/)** and **[Stimulus](https://stimulus.hotwired.dev)**. The front-end is designed to be responsive, mobile friendly and accessible.
+The gem is ready to be used with the **Rails 8.1.3.1 or later within the 8.1 series** features like **[ESM import maps](https://github.com/rails/importmap-rails)**, **[Turbo](https://turbo.hotwired.dev/)** and **[Stimulus](https://stimulus.hotwired.dev)**. The front-end is designed to be responsive, mobile friendly and accessible.
 
 <img src="./preview.gif" alt="Lato preview" width="100%">
+
+## Security upgrade
+
+Lato 3.25 requires Rails >= 8.1.3.1 and < 8.2. Install the new session migration before serving requests:
+
+```bash
+bundle exec rails lato:install:migrations
+bundle exec rails db:migrate
+```
+
+Sessions are stored as revocable token hashes in the database. Existing cookies require a fresh sign-in after upgrading. Signing out revokes the current device; changing or recovering a password revokes all devices. Password recovery preserves existing second factors.
+
+Account password, email, authentication factor, wallet, and account deletion changes require the current password plus an enrolled authenticator or security key. Authenticator enrollment requires confirmation with a valid code; an active authenticator's secret is never displayed again. API clients submit `user[current_password]` and, when enrolled, `user[current_authenticator_code]`. Security key clients first POST to `account/security_challenge`, then submit the assertion as `user[current_webauthn_credential]`. Enrollment continuations expire after five minutes and can only be used once.
+
+Extensions updating session attributes must call `session_update(extra_params)` to preserve the revocable session and secure cookie attributes.
 
 ## Full documentation
 

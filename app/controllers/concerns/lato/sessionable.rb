@@ -47,20 +47,33 @@ module Lato
     end
 
     def session_create(user_id)
-      # httponly keeps the cookie out of reach of injected scripts; secure avoids leaking it over plain HTTP.
+      @session&.destroy
+      reset_session
+      write_session_cookie(Lato::Session.generate_session_per_user(user_id))
+    end
+
+    def session_update(extra_params)
+      value = @session.update(extra_params)
+      return false unless value
+
+      write_session_cookie(value)
+    end
+
+    def write_session_cookie(value)
+      @session = Lato::Session.new(value)
       cookies.encrypted[:lato_session] = {
-        value: Lato::Session.generate_session_per_user(user_id),
-        expires: Lato.config.session_lifetime.from_now,
+        value: value,
+        expires: @session.expires_at,
         httponly: true,
         secure: request.ssl?
       }
-      @session = Lato::Session.new(cookies.encrypted[:lato_session])
-
       true
     end
 
     def session_destroy
-      cookies.encrypted[:lato_session] = nil
+      @session&.destroy
+      cookies.delete(:lato_session)
+      reset_session
 
       true
     end

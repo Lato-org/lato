@@ -40,6 +40,7 @@ Lato::Engine.routes.draw do
 
   scope :account do
     get '', to: 'account#index', as: :account
+    post 'security_challenge', to: 'account#security_challenge', as: :account_security_challenge
     patch 'update_user_action', to: 'account#update_user_action', as: :account_update_user_action
     patch 'update_authenticator_action', to: 'account#update_authenticator_action', as: :account_update_authenticator_action
     patch 'update_webauthn_action', to: 'account#update_webauthn_action', as: :account_update_webauthn_action

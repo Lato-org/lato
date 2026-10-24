@@ -91,6 +91,13 @@ Lato.configure do |config|
 end
 </pre>
 
+<div class="alert alert-info mt-3">
+  <p>Lato 3.25 requires Rails &gt;= 8.1.3.1 and &lt; 8.2. On upgrade, run <code>rails lato:install:migrations</code> and <code>rails db:migrate</code> before serving requests. Existing session cookies require a fresh sign-in.</p>
+  <p>Sessions use revocable database tokens. Signout revokes the current device. Password changes and recovery revoke every device; password recovery preserves existing second factors.</p>
+  <p>Sensitive account changes require the current password and an enrolled second factor. Authenticator enrollment requires a valid code before activation. Active authenticator secrets are not displayed. Enrollment continuations expire after five minutes.</p>
+  <p>Extensions must use <code>session_update(extra_params)</code> when changing session attributes so revocation and secure cookie options remain intact.</p>
+</div>
+
 <h2>Email Configuration</h2>
 
 <pre>

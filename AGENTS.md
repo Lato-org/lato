@@ -44,3 +44,9 @@ Lato is ecosystem of Rails engines for building admin panels with authentication
 - Keep Ruby strings double quoted.
 - Do not add implementation details to user documentation unless needed for usage.
 - Keep generated docs aligned with actual views and public APIs.
+
+## Security release baseline
+
+- Rails 8.1.3.1 or newer in the 8.1 series is required.
+- Run `ruby bin/publish.rb` from a named release branch after tests pass. It builds the exact version, commits changes, tags that commit, publishes to RubyGems, and pushes the branch and tag.
+- Applications using Active Storage with vips require libvips 8.13 or newer.

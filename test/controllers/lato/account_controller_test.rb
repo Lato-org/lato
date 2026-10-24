@@ -54,7 +54,8 @@ module Lato
       new_email = "#{@user.email}.update"
       patch lato.account_update_user_action_url, params: {
         user: {
-          email: new_email
+          email: new_email,
+          current_password: 'Password1!'
         }
       }
       assert_redirected_to lato.account_path
@@ -142,11 +143,12 @@ module Lato
 
       patch lato.account_update_password_action_url, params: {
         user: {
+          current_password: 'Password1!',
           password: 'New password',
           password_confirmation: 'New password'
         }
       }
-      assert_redirected_to lato.account_path
+      assert_redirected_to lato.authentication_signin_path
 
       @user.reload
       assert @user.authenticate('New password')
@@ -165,7 +167,8 @@ module Lato
 
       delete lato.account_destroy_action_url, params: {
         user: {
-          email_confirmation: @user.email
+          email_confirmation: @user.email,
+          current_password: 'Password1!'
         }
       }
       assert_redirected_to lato.root_path

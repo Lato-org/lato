@@ -21,6 +21,8 @@ module Lato
     # Relations
     ##
 
+    has_many :lato_session_records, class_name: "Lato::SessionRecord", foreign_key: :lato_user_id, dependent: :delete_all
+
     has_many :lato_operations, class_name: 'Lato::Operation', foreign_key: :lato_user_id, dependent: :nullify
     has_many :lato_invitations, class_name: 'Lato::Invitation', foreign_key: :lato_user_id, dependent: :nullify
     has_many :lato_invitations_as_inviter, class_name: 'Lato::Invitation', foreign_key: :inviter_lato_user_id, dependent: :nullify
@@ -44,6 +46,16 @@ module Lato
       self.email_verified_at = nil if email_changed?
       self.accepted_privacy_policy_version = Lato.config.legal_privacy_policy_version if accepted_privacy_policy_version_changed?
       self.accepted_terms_and_conditions_version = Lato.config.legal_terms_and_conditions_version if accepted_terms_and_conditions_version_changed?
+    end
+
+    after_update do
+      lato_session_records.delete_all if saved_change_to_password_digest?
+      if saved_change_to_email?
+        saved_change_to_email.each do |address|
+          Rails.cache.delete("Lato::User/c_email_verification_code/#{id}/#{Digest::SHA256.hexdigest(address.to_s)}")
+        end
+        c_email_verification_semaphore(false)
+      end
     end
 
     # Questions
@@ -86,17 +98,17 @@ module Lato
 
     def email_protected
       return email unless email.include?('@')
-  
+
       local_part, domain = email.split('@', 2)
-      
+
       # Keep first 2 characters of local part
       chars_to_keep = [local_part.length, 2].min
       protected_local = local_part[0, chars_to_keep] + '*' * [local_part.length - chars_to_keep, 0].max
-      
+
       # Keep domain as is or partially protect it
       chars_to_keep = [domain.length, 2].min
       protected_domain = domain[0, chars_to_keep] + '*' * [domain.length - chars_to_keep, 0].max
-      
+
       "#{protected_local}@#{protected_domain}"
     end
 
@@ -104,8 +116,8 @@ module Lato
       @gravatar_image_url ||= "https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=#{size}"
     end
 
-    def authenticator_qr_code_base64(size = 200)
-      "data:image/png;base64,#{Base64.strict_encode64(RQRCode::QRCode.new(ROTP::TOTP.new(authenticator_secret, :issuer => Lato.config.application_title).provisioning_uri(email).to_s).as_png(size: size, border_modules: 0).to_s)}"
+    def authenticator_qr_code_base64(size = 200, secret: authenticator_secret)
+      "data:image/png;base64,#{Base64.strict_encode64(RQRCode::QRCode.new(ROTP::TOTP.new(secret, :issuer => Lato.config.application_title).provisioning_uri(email).to_s).as_png(size: size, border_modules: 0).to_s)}"
     end
 
     # Operations
@@ -228,8 +240,10 @@ module Lato
       c_email_verification_code('')
       c_email_verification_semaphore(false)
 
-      update_column(:email_verified_at, Time.now)
-      true
+      # A token for a stale model instance must never verify a concurrently changed address.
+      verified = self.class.where(id: id, email: email).update_all(email_verified_at: Time.current) == 1
+      errors.add(:base, :email_verification_code_invalid) unless verified
+      verified
     end
 
     # NOTE: Always succeeds for a well formed email, registered or not, so the response can not be used to enumerate users.
@@ -268,11 +282,7 @@ module Lato
       c_password_update_code('')
       c_password_update_semaphore(false)
 
-      update(params.permit(:password, :password_confirmation).merge(
-        authenticator_secret: nil, # Reset authenticator secret when password is updated
-        webauthn_id: nil,          # Reset webauthn credential when password is updated
-        webauthn_public_key: nil   # Reset webauthn credential when password is updated
-      ))
+      update(params.permit(:password, :password_confirmation))
     end
 
     def update_accepted_privacy_policy_version(params)
@@ -396,16 +406,16 @@ module Lato
       end
 
       parsed_payload = JSON.parse(params[:webauthn_credential])
-      
+
       # Converti i campi da base64url a base64 standard per il gem webauthn
       parsed_payload['rawId'] = base64url_to_base64(parsed_payload['rawId'])
       parsed_payload['response']['clientDataJSON'] = base64url_to_base64(parsed_payload['response']['clientDataJSON'])
       parsed_payload['response']['authenticatorData'] = base64url_to_base64(parsed_payload['response']['authenticatorData'])
       parsed_payload['response']['signature'] = base64url_to_base64(parsed_payload['response']['signature'])
       parsed_payload['response']['userHandle'] = base64url_to_base64(parsed_payload['response']['userHandle']) if parsed_payload['response']['userHandle']
-      
+
       credential = WebAuthn::Credential.from_get(parsed_payload)
-      
+
       credential.verify(
         encoded_challenge,
         public_key: webauthn_public_key,
@@ -460,7 +470,7 @@ module Lato
     end
 
     def c_email_verification_code(value = nil)
-      cache_key = "Lato::User/c_email_verification_code/#{id}"
+      cache_key = "Lato::User/c_email_verification_code/#{id}/#{Digest::SHA256.hexdigest(email.to_s)}"
       return Rails.cache.read(cache_key) if value.nil?
 
       Rails.cache.write(cache_key, value, expires_in: 30.minutes)

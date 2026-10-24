@@ -3,7 +3,19 @@ module Lato
     before_action :authenticate_session
     before_action { active_navbar(:account) }
 
+    before_action :discard_expired_security_enrollment
+    before_action :limit_requests, only: %i[update_user_action update_password_action update_authenticator_action update_webauthn_action update_web3_action destroy_action security_challenge]
+    before_action :reauthenticate_sensitive_action, only: %i[update_user_action update_password_action update_authenticator_action update_webauthn_action update_web3_action destroy_action]
+
     def index; end
+
+    def security_challenge
+      return head :not_found unless @session.user.webauthn_enabled?
+
+      options = @session.user.webauthn_authentication_options
+      @session.set_security_challenge(options.challenge)
+      render json: options.as_json
+    end
 
     def update_user_action
       respond_to do |format|
@@ -20,25 +32,31 @@ module Lato
     def update_authenticator_action
       return respond_to_with_not_found unless Lato.config.authenticator_connection
 
-      if @session.user.authenticator_secret
-        respond_to do |format|
-          if @session.user.remove_authenticator_secret
-            format.html { redirect_to lato.account_path }
-            format.json { render json: @session.user }
-          else
-            format.html { render :index, status: :unprocessable_entity }
-            format.json { render json: @session.user.errors, status: :unprocessable_entity }
-          end
-        end
+      user = @session.user
+      if user.authenticator_enabled?
+        success = user.remove_authenticator_secret
+      elsif params.dig(:user, :authenticator_command) == "confirm"
+        pending = session.delete(:pending_authenticator_secret)
+        success = pending.present? && ROTP::TOTP.new(pending).verify(params.dig(:user, :authenticator_code).to_s)
+        success = user.update(authenticator_secret: pending) if success
+        user.errors.add(:base, :authenticator_code_invalid) unless success
+        @session.clear_security_continuation
       else
-        respond_to do |format|
-          if @session.user.generate_authenticator_secret
-            format.html { redirect_to lato.account_path }
-            format.json { render json: @session.user }
-          else
-            format.html { render :index, status: :unprocessable_entity }
-            format.json { render json: @session.user.errors, status: :unprocessable_entity }
-          end
+        session[:pending_authenticator_secret] = ROTP::Base32.random
+        grant_security_continuation
+        return respond_to do |format|
+          format.html { redirect_to lato.account_path }
+          format.json { render json: { secret: session[:pending_authenticator_secret] } }
+        end
+      end
+
+      respond_to do |format|
+        if success
+          format.html { redirect_to lato.account_path }
+          format.json { render json: user }
+        else
+          format.html { render :index, status: :unprocessable_entity }
+          format.json { render json: user.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -76,6 +94,7 @@ module Lato
             format.json { render json: @session.user.errors, status: :unprocessable_entity }
           end
         else
+          grant_security_continuation
           options = @session.user.webauthn_registration_options
           session[:webauthn_registration_challenge] = Base64.strict_encode64(options.challenge)
           session[:webauthn_registration_options] = options.as_json
@@ -119,6 +138,7 @@ module Lato
         end
       else
         respond_to do |format|
+          grant_security_continuation
           if session[:web3_nonce] = SecureRandom.hex(32)
             format.html { redirect_to lato.account_path }
             format.json { render json: @session.user }
@@ -145,8 +165,9 @@ module Lato
     def update_password_action
       respond_to do |format|
         if @session.user.update(params.require(:user).permit(:password, :password_confirmation))
-          format.html { redirect_to lato.account_path, notice: I18n.t('lato.account_controller.update_password_action_notice') }
-          format.json { render json: @session.user }
+          session_destroy
+          format.html { redirect_to lato.authentication_signin_path, notice: I18n.t('lato.account_controller.update_password_action_notice') }
+          format.json { render json: {} }
         else
           format.html { render :index, status: :unprocessable_entity }
           format.json { render json: @session.user.errors, status: :unprocessable_entity }
@@ -194,7 +215,58 @@ module Lato
 
     private
 
+    def discard_expired_security_enrollment
+      action = @session.security_continuation_action
+      session.delete(:pending_authenticator_secret) unless action == "update_authenticator_action"
+      unless action == "update_webauthn_action"
+        session.delete(:webauthn_registration_challenge)
+        session.delete(:webauthn_registration_options)
+      end
+      session.delete(:web3_nonce) unless action == "update_web3_action"
+    end
+
+    def reauthenticate_sensitive_action
+      if action_name == "update_user_action"
+        email = params.dig(:user, :email)
+        return if email.nil? || email.to_s.downcase.strip == @session.user.email
+      end
+      return if action_name == "update_webauthn_action" && params.dig(:user, :webauthn_command) == "cancel"
+
+      continuation = case action_name
+      when "update_authenticator_action"
+        params.dig(:user, :authenticator_command) == "confirm"
+      when "update_webauthn_action"
+        params.dig(:user, :webauthn_command) == "complete"
+      when "update_web3_action"
+        session[:web3_nonce].present?
+      end
+      return if continuation && @session.consume_security_continuation(action_name)
+
+      user = @session.user
+      password_valid = user.authenticate(params.dig(:user, :current_password).to_s)
+      factor_valid = if user.authenticator_enabled?
+        user.authenticator(authenticator_code: params.dig(:user, :current_authenticator_code).to_s)
+      elsif user.webauthn_enabled?
+        challenge = @session.take_security_challenge
+        user.webauthn_authentication({ webauthn_credential: params.dig(:user, :current_webauthn_credential) }, challenge)
+      else
+        true
+      end
+      return if password_valid && factor_valid
+
+      user.errors.add(:base, "Confirm your current password and enabled second factor to continue.")
+      respond_to do |format|
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: user.errors, status: :unprocessable_entity }
+      end
+    end
+
+    def grant_security_continuation
+      @session.grant_security_continuation(action_name)
+    end
+
     def reset_webauthn_registration_state
+      @session.clear_security_continuation
       session[:webauthn_registration_challenge] = nil
       session[:webauthn_registration_options] = nil
     end

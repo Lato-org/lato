@@ -99,7 +99,6 @@ def perform_login(http)
   doc = Nokogiri::HTML(auth_get_response.body)
   csrf_token = doc.at('meta[name="csrf-token"]')&.[]('content') || 
                doc.at('input[name="authenticity_token"]')&.[]('value')
-  puts "CSRF Token: #{csrf_token}"
   if csrf_token.nil?
     puts "Impossibile trovare il CSRF token"
     return {}
@@ -139,7 +138,6 @@ def perform_login(http)
         cookies[key] = value
       end
     end
-    puts "Cookies: #{cookies.inspect}"
     return cookies
   else
     puts "Errore durante il login: #{response.code}"
@@ -284,7 +282,7 @@ File.open(SKILL_DIR, 'w') do |skill_file|
   skill_file.puts
   skill_file.puts 'Lato is a Rails engine that provides a fully-featured admin panel with '\
                   'authentication, responsive UI (Bootstrap), background job operations, '\
-                  'invitation system, and rich UI components ready to use in any Rails 7+ app.'
+                  'invitation system, and rich UI components ready to use with Rails >= 8.1.3.1 and < 8.2.'
   skill_file.puts
 
   pages = PAGES.reject { |p| %w[products.html].include?(p[:name]) }

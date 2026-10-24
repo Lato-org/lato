@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="MAM6WQuzUwRm4El88xwDgF7RcEB9NM2uX20nPlFiiYhg00Cmz8DSTsRGUCBB4U3o2b_ajvgVII2YF9zw3Icn2Q">
+<meta name="csrf-token" content="GtNdQLSfjnHM0-KN1D3q6t-1S9eVVXmcx9E4U69wPNfq7y1k5gaTSQBTlf6c47SQ-uwzGp0_MVw-ItymTknayQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-7b88f1a75aec4517154900de0a8aa259772f50a757308fc4600991dfb9092c3c.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -48,6 +48,7 @@ document.addEventListener('turbo:load', () => {
     "controllers/application": "/assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js",
     "controllers": "/assets/controllers/index-78fbd01474398c3ea1bffd81ebe0dc0af5146c64dfdcbe64a0f4763f9840df28.js",
     "controllers/lato_account_form_user_controller": "/assets/lato/controllers/lato_account_form_user_controller-1a1852a64befc2ad913c250288ee4ab890db01f0401291dc34cd25612292a0fb.js",
+    "controllers/lato_account_security_controller": "/assets/lato/controllers/lato_account_security_controller-a398da64cbb279c9d919a4c8b8012b874051bd502826bd685ca8f8b7e3177dd8.js",
     "controllers/lato_account_webauthn_controller": "/assets/lato/controllers/lato_account_webauthn_controller-bea194f8b45b3f58f765b697bb0376fcbe6c6f9217358d0963385aa4b02c3b39.js",
     "controllers/lato_action_controller": "/assets/lato/controllers/lato_action_controller-14ff59e6247beb8b0559205fff4b14db13cde2d9b8b063dc212061ff3744e16e.js",
     "controllers/lato_aside_opener_controller": "/assets/lato/controllers/lato_aside_opener_controller-ca3c07fbc599e78c0fdd96ab833d51e1bf2f9281537b832968f5bcc7d694bb81.js",
@@ -83,6 +84,7 @@ document.addEventListener('turbo:load', () => {
 <link rel="modulepreload" href="/assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js">
 <link rel="modulepreload" href="/assets/controllers/index-78fbd01474398c3ea1bffd81ebe0dc0af5146c64dfdcbe64a0f4763f9840df28.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_account_form_user_controller-1a1852a64befc2ad913c250288ee4ab890db01f0401291dc34cd25612292a0fb.js">
+<link rel="modulepreload" href="/assets/lato/controllers/lato_account_security_controller-a398da64cbb279c9d919a4c8b8012b874051bd502826bd685ca8f8b7e3177dd8.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_account_webauthn_controller-bea194f8b45b3f58f765b697bb0376fcbe6c6f9217358d0963385aa4b02c3b39.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_action_controller-14ff59e6247beb8b0559205fff4b14db13cde2d9b8b063dc212061ff3744e16e.js">
 <link rel="modulepreload" href="/assets/lato/controllers/lato_aside_opener_controller-ca3c07fbc599e78c0fdd96ab833d51e1bf2f9281537b832968f5bcc7d694bb81.js">
@@ -634,7 +636,7 @@ user ||= @session.user
 
 <turbo-frame id="tutorial_form-example">
   <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="CNsEwuIoRxLvhJTV0UH9ISEfJdQow0YnmRz0FRZXfReIYV6N8jl5XK4tFZxG-9d-T4ojPxr11qyhkvV0z0M5Hw">
+<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="l3q8YvyT6U9e1IgrWdOjdSo35POTZfJP-XL2B9KLoa_DwKhb5yKVuYzgt2oTb82AZqGXdYfyObpbFBvuaQWJfA">
     
     
 
@@ -1323,7 +1325,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
               </tr>
               <tr>
@@ -1337,7 +1339,7 @@ end
                     <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
               </tr>
               <tr>
@@ -1351,7 +1353,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
               </tr>
               <tr>
@@ -1365,7 +1367,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
               </tr>
               <tr>
@@ -1379,7 +1381,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
               </tr>
           </tbody>
@@ -1975,7 +1977,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1994,7 +1996,7 @@ end
                     <span class="badge rounded-pill bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -2013,7 +2015,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -2032,7 +2034,7 @@ end
                     <span class="badge rounded-pill bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -2051,7 +2053,7 @@ end
                     <span class="badge rounded-pill bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    21 h 58 m
+                    02 h 13 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -5010,7 +5012,7 @@ This is useful when you don't need the total count of records, such as when disp
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.22.2 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.25.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

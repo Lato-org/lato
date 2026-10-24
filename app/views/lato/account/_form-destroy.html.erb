@@ -8,6 +8,7 @@ user ||= Lato::User.new
   <%= form_with model: user, url: lato.account_destroy_action_path, method: :delete, data: { turbo_frame: '_self', controller: 'lato-form' } do |form| %>
     <%= lato_form_notices class: %w[mb-3] %>
     <%= lato_form_errors user, class: %w[mb-3] %>
+    <%= render 'lato/account/security-confirmation', form: form, user: user %>
     
     <div class="mb-3">
       <%= lato_form_item_label form, :email_confirmation, I18n.t('lato.signup_email') %>

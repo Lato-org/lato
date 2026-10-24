@@ -1,0 +1,12 @@
+<div class="mb-3" data-controller="lato-account-security" data-lato-account-security-challenge-url-value="<%= lato.account_security_challenge_path %>" data-lato-account-security-webauthn-value="<%= user.webauthn_enabled? && !user.authenticator_enabled? %>">
+  <%= form.label :current_password, "Current password", class: "form-label" %>
+  <%= form.password_field :current_password, class: "form-control", autocomplete: "current-password" %>
+  <% if user.authenticator_enabled? %>
+    <%= form.label :current_authenticator_code, "Current authenticator code", class: "form-label mt-2" %>
+    <%= form.text_field :current_authenticator_code, value: nil, class: "form-control", autocomplete: "one-time-code", inputmode: "numeric" %>
+  <% elsif user.webauthn_enabled? %>
+    <%= form.hidden_field :current_webauthn_credential, value: nil, data: { lato_account_security_target: "credential" } %>
+    <p class="text-muted mt-2">Confirm with your registered security key when submitting.</p>
+  <% end %>
+  <p class="text-danger mt-2" data-lato-account-security-target="error" role="alert"></p>
+</div>

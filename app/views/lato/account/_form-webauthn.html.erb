@@ -16,6 +16,7 @@ end
   <%= form_with model: user, url: lato.account_update_webauthn_action_path, data: form_data do |form| %>
     <%= lato_form_notices class: %w[mb-3] %>
     <%= lato_form_errors user, class: %w[mb-3] %>
+    <%= render 'lato/account/security-confirmation', form: form, user: user if registration_options.blank? %>
 
     <% if user.webauthn_enabled? %>
       <div class="alert alert-success mb-3">
