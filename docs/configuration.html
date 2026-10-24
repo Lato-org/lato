@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="BQCZzn6S9lM_MdMLBwOUYPPSshraT_YfptWC4smWlKp9po8oKvSgPKWo45f0vPipe7Y02r80_n4_BlIa8zx3lA">
+<meta name="csrf-token" content="xxpaTSw2ats3cGT8fIjc998viVIlI5RiTtG8ZFUDZaa7g0Gv9IhfpFaGbt8yug0HnfsqBV5UEnOXpLIrYnokng">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -372,6 +372,7 @@ Lato.configure do |config|
   config.auth_disable_authenticator = true # Disable Google Authenticator login
   config.auth_disable_webauthn = true # Disable WebAuthn login
   config.auth_disable_signin_success_mail = true # Disable login notification email
+  config.auth_recover_password_hourly_limit = 100 # Max password recovery emails sent per hour across all users, nil to disable (default: 100)
 end
 </pre>
 
