@@ -140,6 +140,7 @@ en:
               email_verification_code_invalid: Email verification code is invalid
               password_update_code_expired: Verification code has expired
               password_update_code_invalid: Verification code is invalid or expired
+              password_update_global_limit: Too many password recovery requests, please retry later
               credentials_not_correct: Email or password not correct
               privacy_policy_invalid: To accept the privacy policy you must select the confirmation checkbox
               terms_and_conditions_invalid: To accept the terms and conditions you must select the confirmation checkbox

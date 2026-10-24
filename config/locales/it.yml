@@ -147,6 +147,7 @@ it:
               email_verification_code_invalid: Il codice di verifica email non risulta valido
               password_update_code_expired: Il codice di verifica risulta scaduto
               password_update_code_invalid: Il codice di verifica non risulta valido o è scaduto
+              password_update_global_limit: Troppe richieste di recupero password, riprova più tardi
               credentials_not_correct: Email o password non corretti
               privacy_policy_invalid: Per accettare la privacy policy devi selezionare la checkbox di conferma
               terms_and_conditions_invalid: Per accettare i termini e condizioni devi selezionare la checkbox di conferma

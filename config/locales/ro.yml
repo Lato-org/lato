@@ -147,6 +147,7 @@ ro:
               email_verification_code_invalid: Codul de verificare email nu este valid
               password_update_code_expired: Codul de verificare a expirat
               password_update_code_invalid: Codul de verificare nu este valid sau a expirat
+              password_update_global_limit: Prea multe cereri de recuperare a parolei, încearcă din nou mai târziu
               credentials_not_correct: Email sau parolă incorectă
               privacy_policy_invalid: Pentru a accepta politica de confidențialitate trebuie să bifezi căsuța de confirmare
               terms_and_conditions_invalid: Pentru a accepta termenii și condițiile trebuie să bifezi căsuța de confirmare

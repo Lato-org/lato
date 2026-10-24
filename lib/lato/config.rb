@@ -12,6 +12,9 @@ module Lato
     # Authentication configs
     attr_accessor :auth_disable_signup, :auth_disable_recover_password, :auth_disable_web3, :auth_disable_authenticator, :auth_disable_webauthn, :auth_disable_signin_success_mail
 
+    # Max password recovery emails sent per hour across all users (nil disables the cap)
+    attr_accessor :auth_recover_password_hourly_limit
+
     # Hcaptcha configs
     attr_accessor :hcaptcha_site_key, :hcaptcha_secret
 
@@ -49,6 +52,7 @@ module Lato
       @auth_disable_authenticator = false
       @auth_disable_webauthn = false
       @auth_disable_signin_success_mail = false
+      @auth_recover_password_hourly_limit = 100
 
       @hcaptcha_site_key = nil
       @hcaptcha_secret = nil
