@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="LtrB2O9lViVFFhpQj_iJAkaE9W1Vm1kkb_3Uwf0J0nvVxTHDdGAebhuHcqWWYO1ky3MAu9Jfd4NMc_zjNUl-wA">
+<meta name="csrf-token" content="MRMr2Yv4n6HxnMZhzKcbgEAvhsp29hJOnryWZ05aJo0wvX8iWQOapZCgSHS5wFRgknl4_de93GkgyGNOaS4DGg">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -352,6 +352,10 @@ document.addEventListener('turbo:load', () => {
 
 <h3>Installation</h3>
 
+<p>Requires Rails 8.1.3.1 or newer in the 8.1 series, Lato 3.25.0 or newer and Active Storage installed (<code>rails active_storage:install</code>); libvips 8.13 or newer if you use variants.
+Existing applications must run <code>rails lato:install:migrations</code> and <code>rails db:migrate</code>
+before deployment. Previous sessions are invalidated.</p>
+
 <p>Add Lato Storage to the application Gemfile:</p>
 
 <pre><code>gem "lato"
@@ -360,7 +364,6 @@ gem "lato_storage"</code></pre>
 <p>Install the engine and run migrations:</p>
 
 <pre><code>bundle
-rails lato_storage:install:application
 rails lato_storage:install:migrations
 rails db:migrate</code></pre>
 
@@ -380,11 +383,26 @@ end</code></pre>
 
 <pre><code>import "lato_storage/application"</code></pre>
 
+<p>Add a menu entry in the host <code>layouts/lato/_navbar-nav_content</code> or <code>_sidebar-nav_content</code> partials:</p>
+
+<pre><code>&lt;% if @session.user&amp;.lato_storage_admin %&gt;
+  &lt;%= lato_sidebar_nav_item :lato_storage, lato_storage.root_path do %&gt;
+    Storage
+  &lt;% end %&gt;
+&lt;% end %&gt;</code></pre>
+
 <h3>Permissions</h3>
 
 <p>
   Users must be logged into Lato and must have Lato Storage admin permission enabled.
 </p>
+
+<div class="alert alert-warning">
+  <p class="mb-0">
+    The permission grants visibility on the files of <strong>all</strong> models, users and groups. Give it only to super admins.
+    File links are signed, forced as download and expire after <code>blob_url_expires_in</code> (12 hours by default).
+  </p>
+</div>
 
 <pre><code>user = Lato::User.find_by(email: "admin@example.com")
 user.update!(lato_storage_admin: true)</code></pre>
@@ -408,7 +426,28 @@ user.update!(lato_storage_admin: true)</code></pre>
 
 <pre><code>LatoStorage.configure do |config|
   config.optimize_performances = true
+  config.blob_url_expires_in = 12.hours
 end</code></pre>
+
+<p>With optimization enabled:</p>
+
+<ul>
+  <li>counts are estimates (table statistics on MySQL and PostgreSQL, exact count on other databases);</li>
+  <li>total storage and content types are extrapolated from a sample of the last 5000 blobs;</li>
+  <li>the largest blobs card is hidden and lists skip the total count;</li>
+  <li>data is cached for 12 hours and the dashboard shows when it was last updated.</li>
+</ul>
+
+<p>
+  Data is computed by <code>LatoStorage::PreloadDashboardDataJob</code>. It requires a <code>Rails.cache</code> store shared between
+  web and worker processes and a real Active Job queue adapter. The first visit without cache computes the data synchronously;
+  while a calculation is running the dashboard shows a "computing" notice. Pre-warm it on a schedule, for example with Solid Queue:
+</p>
+
+<pre><code>lato_storage_preload:
+  class: LatoStorage::PreloadDashboardDataJob
+  args: [true]
+  schedule: every 6 hours</code></pre>
 
 <div class="alert alert-info mt-3">
   <p class="mb-0">
@@ -422,13 +461,22 @@ end</code></pre>
 <p>
   The cleaner action runs as a Lato operation, so admins can follow progress and result in the operation page.
   Use it to remove files that are no longer attached to application records.
+  It asks for confirmation and runs <code>purge_later</code> on every file without attachments created more than 12 hours ago,
+  so an Active Job worker is required. Empty folders of a local disk service are removed too. Only one cleanup every 10 minutes can be started.
 </p>
 
 <div class="alert alert-warning mt-3">
   <p class="mb-0">
-    Before running cleanup in production, verify backups, storage retention rules, and application-specific file usage.
+    Deletion is irreversible. Before running cleanup in production, verify backups, storage retention rules, and application-specific file usage.
   </p>
 </div>
+
+<h3>Security</h3>
+
+<p>
+  Keep the Rails defaults for <code>content_types_to_serve_as_binary</code> and <code>content_types_allowed_inline</code>:
+  user uploaded HTML or SVG files must never be served inline on the admin origin.
+</p>
 
 
   </div>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="4IhXSKQfPr2whvKsC95yOg_mJM5f323dzYCKwOWDdF1ZI2rChEehWbtaKHby9iExEt-6ddBbPRNAVhC5ILESNA">
+<meta name="csrf-token" content="nlBxzgumfzFGJMA4TAaZ8LKRustkUlFjpy5cE9-j6KyYK5urpkcG9cEDXPNspOv5oqhbsxZlXSlL04ORZM68dA">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -352,6 +352,10 @@ document.addEventListener('turbo:load', () => {
 
 <h3>Installation</h3>
 
+<p>Requires Rails 8.1.3.1 or newer in the 8.1 series and Lato 3.25.0 or newer.
+Existing applications must run <code>rails lato:install:migrations</code> and <code>rails db:migrate</code>
+before deployment. Previous sessions are invalidated.</p>
+
 <p>Add Lato Spaces to the application Gemfile:</p>
 
 <pre><code>gem "lato"
@@ -380,15 +384,16 @@ end</code></pre>
 
 <pre><code>import "lato_spaces/application"</code></pre>
 
-<h3>Permissions</h3>
+<p>Add a menu entry to the group selection page, for example in <code>app/views/layouts/lato/_navbar-nav_content.html.erb</code>:</p>
+
+<pre><code>&lt;%= lato_navbar_nav_item :lato_spaces, lato_spaces.root_path do %&gt;
+  Spaces
+&lt;% end %&gt;</code></pre>
 
 <p>
-  Users must be logged into Lato. Admin users can manage all groups.
-  Non-admin users can only access groups where they are members, based on configuration.
+  Upgrading from 3.2.0 or earlier: run <code>rails lato_spaces:install:migrations</code> and <code>rails db:migrate</code>.
+  The new migration removes duplicate memberships and associations, then adds unique indexes.
 </p>
-
-<pre><code>user = Lato::User.find_by(email: "admin@example.com")
-user.update!(lato_spaces_admin: true)</code></pre>
 
 <h3>Configuration</h3>
 
@@ -407,34 +412,155 @@ end</code></pre>
   <table class="table table-striped align-middle">
     <thead>
       <tr>
-        <th>Option</th>
-        <th>Use for</th>
+        <th scope="col">Option</th>
+        <th scope="col">Default</th>
+        <th scope="col">Use for</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>setgroup_redirect_path</code></td>
-        <td>Redirect users after they select a group.</td>
+        <td><code>nil</code></td>
+        <td>Name of a host application route helper without arguments (e.g. <code>:dashboard_path</code>). Users are redirected there after selecting a group. With <code>nil</code> they return to the Spaces page.</td>
       </tr>
       <tr>
         <td><code>setgroup_auto_after_login</code></td>
-        <td>Select a group automatically when possible.</td>
+        <td><code>false</code></td>
+        <td>Select a group automatically when the user opens the Spaces page without a selected group: the preferred group first, otherwise the first by name. Requires <code>setgroup_redirect_path</code>.</td>
+      </tr>
+      <tr>
+        <td><code>setgroup_auto_after_login_if_single</code></td>
+        <td><code>false</code></td>
+        <td>Same as above, only when the user belongs to exactly one group. Requires <code>setgroup_redirect_path</code>.</td>
+      </tr>
+      <tr>
+        <td><code>group_icon</code></td>
+        <td><code>"bi bi-people-fill"</code></td>
+        <td>Bootstrap Icons class shown on group cards.</td>
+      </tr>
+      <tr>
+        <td><code>group_params</code></td>
+        <td><code>%i[name]</code></td>
+        <td>Permitted group form params.</td>
+      </tr>
+      <tr>
+        <td><code>membership_params</code></td>
+        <td><code>%i[email]</code></td>
+        <td>Permitted membership form params.</td>
       </tr>
       <tr>
         <td><code>permit_group_creation</code></td>
-        <td>Allow non-admin users to create groups.</td>
+        <td><code>false</code></td>
+        <td>Allow non-admin users to create groups. The creator becomes the first member.</td>
       </tr>
       <tr>
         <td><code>permit_group_management</code></td>
-        <td>Allow non-admin users to manage their groups and members.</td>
+        <td><code>false</code></td>
+        <td>Allow non-admin members to manage their own groups (see permissions below).</td>
       </tr>
       <tr>
         <td><code>permit_group_preferred</code></td>
-        <td>Allow users to mark a preferred group.</td>
+        <td><code>false</code></td>
+        <td>Allow users to mark a preferred group. It is listed first and used by automatic selection.</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<p>
+  Automatic selection runs only when the user visits the Spaces page (<code>lato_spaces.root_path</code>),
+  so make the post-login flow land there.
+  Never permit <code>lato_user_id</code>, <code>lato_invitation_id</code> or <code>lato_spaces_group_id</code>
+  in <code>group_params</code> or <code>membership_params</code>.
+</p>
+
+<h3>Permissions</h3>
+
+<p>
+  Users must be logged into Lato. Users with <code>lato_spaces_admin</code> can select and manage all groups.
+  Other users can only select groups where they are current members.
+  Protected requests recheck membership and clear the selected group if access was revoked.
+</p>
+
+<pre><code>user = Lato::User.find_by(email: "admin@example.com")
+user.update!(lato_spaces_admin: true)</code></pre>
+
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Action</th>
+        <th scope="col">Admin</th>
+        <th scope="col">Member with <code>permit_group_management</code>
+</th>
+        <th scope="col">Member</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+<th scope="row">Select a group</th>
+<td>Any group, also from the group page</td>
+<td>Own groups</td>
+<td>Own groups</td>
+</tr>
+      <tr>
+<th scope="row">List all groups</th>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+      <tr>
+<th scope="row">Create groups</th>
+<td>Yes</td>
+<td>With <code>permit_group_creation</code>
+</td>
+<td>With <code>permit_group_creation</code>
+</td>
+</tr>
+      <tr>
+<th scope="row">Rename or delete a group</th>
+<td>Any group</td>
+<td>Own groups</td>
+<td>No</td>
+</tr>
+      <tr>
+<th scope="row">Add registered users</th>
+<td>Any group</td>
+<td>Own groups</td>
+<td>No</td>
+</tr>
+      <tr>
+<th scope="row">Invite unregistered emails</th>
+<td>Any group</td>
+<td>Own groups, only if Lato signup is enabled</td>
+<td>No</td>
+</tr>
+      <tr>
+<th scope="row">Remove members, resend invitations</th>
+<td>Any group</td>
+<td>Own groups, except the last registered member</td>
+<td>No</td>
+</tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+  Groups have no roles yet: with <code>permit_group_management</code> every member has the same powers,
+  including deleting the group and its data. Enable it only for trusted members.
+  Adding members and resending invitations are rate limited.
+</p>
+
+<h3>Invitations</h3>
+
+<ul>
+  <li>The email is normalized (stripped and downcased).</li>
+  <li>A registered user is added immediately. Non-admins see members by email; full names are shown to admins only.</li>
+  <li>An existing pending Lato invitation is reused; otherwise a new invitation is created and emailed.</li>
+  <li>When the invitation is accepted, the membership moves to the new user.</li>
+  <li>A user or invitation can belong to a group only once.</li>
+  <li>Lato invitations bypass <code>auth_disable_signup</code>: when signup is disabled only admins can invite unregistered emails.</li>
+</ul>
 
 <h3>What users can do</h3>
 
@@ -442,7 +568,7 @@ end</code></pre>
   <li>See available groups.</li>
   <li>Select the active group for the current session.</li>
   <li>Work only with data that belongs to the selected group.</li>
-  <li>Invite other users to a group when management is allowed.</li>
+  <li>Add or invite users to a group when management is allowed.</li>
   <li>Choose a preferred group when enabled.</li>
 </ul>
 
@@ -466,6 +592,19 @@ class ProjectsController &lt; ApplicationController
   end
 end</code></pre>
 
+<p><code>LatoSpaces::Groupable</code> adds these protected methods:</p>
+
+<ul>
+  <li>
+<code>authenticate_group</code>: checks that the selected group is still accessible. Otherwise it clears the selection and redirects to the Spaces page (HTML) or responds <code>403 Forbidden</code> (JSON).</li>
+  <li>
+<code>session_group_create(group_id)</code>: selects a group the user can access, returns <code>false</code> otherwise.</li>
+  <li>
+<code>session_group_destroy</code>: clears the selected group.</li>
+</ul>
+
+<p>Read <code>@session.get(:spaces_group_id)</code> only in controllers protected by <code>authenticate_group</code>.</p>
+
 <h3>Associating application data with groups</h3>
 
 <p>
@@ -476,7 +615,18 @@ end</code></pre>
   include LatoSpaces::Associable
 end</code></pre>
 
-<p>When records must always belong to exactly one group, add the stricter concerns:</p>
+<ul>
+  <li>
+<code>for_lato_spaces_group(group_id)</code>: records of a group (<code>nil</code> returns nothing; with an array of ids add <code>.distinct</code> to avoid duplicates).</li>
+  <li>
+<code>with_lato_spaces_groups</code> / <code>without_lato_spaces_groups</code>: records with or without groups.</li>
+  <li>
+<code>lato_spaces_group</code>, <code>lato_spaces_group_id</code>: first group of the record.</li>
+  <li>
+<code>add_to_lato_spaces_group(id)</code>, <code>remove_from_lato_spaces_group(id)</code>, <code>switch_lato_spaces_group(id)</code>: return <code>true</code> or <code>false</code> and add errors to the record on failure.</li>
+</ul>
+
+<p>When records must always belong to exactly one group, add the stricter concerns after <code>LatoSpaces::Associable</code>:</p>
 
 <pre><code>class Project &lt; ApplicationRecord
   include LatoSpaces::Associable
@@ -484,19 +634,31 @@ end</code></pre>
   include LatoSpaces::AssociableUnique
 end</code></pre>
 
-<p>Create records with the current selected group:</p>
+<ul>
+  <li>
+<code>AssociableRequired</code>: an existing <code>lato_spaces_group_id</code> is required on create. <strong>Destroying the association destroys the record</strong>: removing it from its group or deleting the group deletes it.</li>
+  <li>
+<code>AssociableUnique</code>: a record can belong to one group only.</li>
+  <li>Both only affect the models that include them.</li>
+</ul>
+
+<p>Create records with the current selected group, never with a group id from request params:</p>
 
 <pre><code>Project.create!(
   name: "Project 1",
   lato_spaces_group_id: @session.get(:spaces_group_id)
 )</code></pre>
 
+<p>Deleting a group removes its memberships and associations, and destroys every <code>AssociableRequired</code> record of the group.</p>
+
 <h3>Customizing group forms</h3>
 
 <p>
-  The install task copies overridable partials into the host application.
-  Edit those partials to add custom fields or extra information to group and membership pages.
-  If custom fields are added, also permit them in Lato Spaces configuration.
+  <code>rails lato_spaces:install:application</code> copies overridable partials into
+  <code>app/views/layouts/lato_spaces/</code> (<code>_group-form-extra_content</code>, <code>_membership-form-extra_content</code>,
+  <code>_group-informations_content</code>) and the <code>LatoSpacesMembershipApplication</code> model concern.
+  Edit them to add custom fields or extra information to group and membership pages.
+  Custom fields must also be permitted with <code>group_params</code> or <code>membership_params</code>.
 </p>
 
 

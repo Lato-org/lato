@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="v0yamgXLYnERc2BtNXx2YksijkeUDMSnjU0FAMdpMpfRM4d8r9acND5QJMvufoa4KcJxhko7NWcvNOXJDKGnRw">
+<meta name="csrf-token" content="FP-wUPwSwGuLD5znsf12XhQguqqqQ8fNbtkAu9DK7KaqWkt6SrHigw9v-4gpSxNrXmJJ2g--LJo4RojoDosbSg">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -353,26 +353,43 @@ document.addEventListener('turbo:load', () => {
 
 <h3>Installation</h3>
 
+<p>Requires Rails 8.1.3.1 or newer in the 8.1 series and Lato 3.25.0 or newer.
+Existing applications must run <code>rails lato:install:migrations</code> and <code>rails db:migrate</code>
+before deployment. Previous sessions are invalidated.</p>
+
 <p>Add Lato CMS to the application Gemfile:</p>
 
 <pre><code>gem "lato"
 gem "lato_spaces"
 gem "lato_cms"</code></pre>
 
-<p>Install the engine and run migrations:</p>
+<p>Install the engines and run migrations:</p>
 
 <pre><code>bundle
+rails lato_spaces:install:application
+rails lato_spaces:install:migrations
 rails lato_cms:install:application
 rails lato_cms:install:migrations
 rails db:migrate</code></pre>
 
-<p>Mount the engine in <code>config/routes.rb</code>:</p>
+<p>
+  <code>lato_cms:install:application</code> writes an example template and component into
+  <code>config.templates_path</code>.
+</p>
+
+<p>Mount both engines in <code>config/routes.rb</code>:</p>
 
 <pre><code>Rails.application.routes.draw do
+  mount LatoSpaces::Engine =&gt; "/lato-spaces"
   mount LatoCms::Engine =&gt; "/lato-cms"
 
   # ...
 end</code></pre>
+
+<p>
+  Lato CMS requires a selected Lato Spaces group: every CMS controller calls <code>authenticate_group</code>,
+  and pages and media are scoped to the selected group. Create a group and select it before using the CMS.
+</p>
 
 <p>Import styles in <code>app/assets/stylesheets/application.scss</code>:</p>
 
@@ -382,24 +399,144 @@ end</code></pre>
 
 <pre><code>import "lato_cms/application"</code></pre>
 
-<h3>Permissions</h3>
+<h3 id="permissions">Permissions</h3>
 
 <p>
-  Users must be logged into Lato, must have a selected Lato Spaces group,
-  and must have Lato CMS admin permission enabled.
+  Users must be logged into Lato, must have a selected Lato Spaces group, and must have a Lato CMS role.
+  The role is stored in the <code>lato_cms_admin_role</code> column of <code>Lato::User</code> and the available
+  roles come from <code>config.admin_roles</code> (default <code>{ none: 0, operator: 1, admin: 2 }</code>).
 </p>
 
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Can</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+<code>operator</code> (1)</td>
+        <td>
+          Access the CMS, edit page fields, enable or disable components, clone components (including
+          <em>Clone &amp; translate</em> when an LLM is configured), upload media and edit its metadata,
+          <em>Regenerate with AI</em>, export the sitemap.
+        </td>
+      </tr>
+      <tr>
+        <td>
+<code>admin</code> (2)</td>
+        <td>
+          Everything an operator can do, plus create and update page settings (title, permalink, frontend URL,
+          template), delete pages, manage translation links, replace media files, and delete media.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <pre><code>user = Lato::User.find_by(email: "admin@example.com")
-user.update!(lato_cms_admin_role: 1)</code></pre>
+user.update!(lato_cms_admin_role: 2)</code></pre>
 
-<h3>Configuration</h3>
+<p>
+  Expensive operations (sitemap export, clone component, regenerate media text) are rate limited to
+  10 requests per user per minute. The counter lives in <code>Rails.cache</code>: a memory store limits
+  each process separately and a null store disables the limit.
+</p>
 
-<p>Configure available locales and template directory:</p>
+<h3 id="configuration">Configuration</h3>
 
 <pre><code>LatoCms.configure do |config|
   config.locales = [:en, :it]
   config.templates_path = "config/lato_cms"
+  config.media_url_mode = :redirect
+  config.media_max_file_size = 50.megabytes
 end</code></pre>
+
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>locales</code></td>
+        <td><code>[:en]</code></td>
+        <td>Locales available for pages and for media alt text and title.</td>
+      </tr>
+      <tr>
+        <td><code>templates_path</code></td>
+        <td><code>"config/lato_cms"</code></td>
+        <td>Templates are read from <code>&lt;path&gt;/templates/*.yml</code>, components from <code>&lt;path&gt;/components/*.yml</code>.</td>
+      </tr>
+      <tr>
+        <td><code>admin_roles</code></td>
+        <td><code>{ none: 0, operator: 1, admin: 2 }</code></td>
+        <td>Role map for <code>lato_cms_admin_role</code>. See <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Permissions</a>.</td>
+      </tr>
+      <tr>
+        <td><code>media_url_mode</code></td>
+        <td><code>:redirect</code></td>
+        <td>
+<code>:redirect</code> or <code>:proxy</code>. See the README for when to use <code>:proxy</code>.</td>
+      </tr>
+      <tr>
+        <td><code>media_allowed_content_types</code></td>
+        <td><code>LatoCms::Config::DEFAULT_MEDIA_ALLOWED_CONTENT_TYPES</code></td>
+        <td>
+          Allowed upload content types. A trailing <code>*</code> matches any subtype and <code>nil</code> allows everything.
+          Checked on the server against the content type Active Storage identifies. The default list is
+          <code>image/*</code>, <code>video/*</code>, <code>audio/*</code>, <code>application/pdf</code>, <code>text/plain</code>,
+          <code>text/csv</code>, <code>application/zip</code>, legacy Word/Excel/PowerPoint types,
+          <code>application/vnd.openxmlformats-officedocument.*</code> and <code>application/vnd.oasis.opendocument.*</code>.
+          HTML is excluded on purpose.
+        </td>
+      </tr>
+      <tr>
+        <td><code>media_max_file_size</code></td>
+        <td><code>100.megabytes</code></td>
+        <td>Maximum upload size. <code>nil</code> means no limit.</td>
+      </tr>
+      <tr>
+        <td>
+<code>llm_api_url</code>, <code>llm_model</code>, <code>llm_api_key</code>
+</td>
+        <td><code>nil</code></td>
+        <td>OpenAI-compatible endpoint. All three are required to enable <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>LLM features</a>. An <code>http</code> URL to a non-local host logs a warning, because the API key travels in clear.</td>
+      </tr>
+      <tr>
+        <td>
+<code>llm_generate_alt_text</code>, <code>llm_generate_title</code>
+</td>
+        <td><code>true</code></td>
+        <td>Which media attributes the LLM generates.</td>
+      </tr>
+      <tr>
+        <td>
+<code>llm_alt_text_prompt</code>, <code>llm_title_prompt</code>
+</td>
+        <td><code>nil</code></td>
+        <td>Custom prompts. Placeholders: <code>{languages}</code>, <code>{urls}</code>.</td>
+      </tr>
+      <tr>
+        <td><code>llm_max_image_size</code></td>
+        <td><code>20.megabytes</code></td>
+        <td>Larger images are not sent to the LLM, because the whole file is read in memory and base64-encoded.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+  Uploaded SVG and HTML files are served as attachments thanks to the Active Storage defaults
+  (<code>content_types_to_serve_as_binary</code>). Lato CMS relies on this: do not change those defaults.
+</p>
 
 <h3>Templates and components</h3>
 
@@ -421,9 +558,22 @@ end</code></pre>
 <p>Generate new files with Rails tasks:</p>
 
 <pre><code>rails "lato_cms:generate:template[blog_post]"
-rails "lato_cms:generate:component[hero,title:string,subtitle:textarea,image:file]"</code></pre>
+rails "lato_cms:generate:component[hero,title:string,subtitle:textarea,image:image]"
+rails "lato_cms:generate:custom_field[icon_note]"</code></pre>
+
+<p>
+  The component generator accepts every built-in field type (including <code>image</code>, <code>video</code>
+  and <code>gallery</code>) and aborts with an error on an unsupported one. It does not accept <code>custom</code>,
+  which needs a <code>render</code> path: use the custom field generator instead (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Custom fields</a>).
+</p>
 
 <h3>Template example</h3>
+
+<p>
+  A template component accepts <code>component_id</code>, <code>name</code>, <code>required: true</code>
+  (the component cannot be disabled) and <code>repeater: true</code> (alias <code>repeatable</code>) with
+  <code>settings.min</code> and <code>settings.max</code> item counts.
+</p>
 
 <pre><code># config/lato_cms/templates/homepage.yml
 id: homepage
@@ -508,9 +658,7 @@ fields:
     type: textarea
   image:
     name: Image
-    type: file
-    settings:
-      accept: "image/*"
+    type: image
   attachments:
     name: Attachments
     type: file
@@ -525,68 +673,115 @@ fields:
       <tr>
         <th>Type</th>
         <th>Use for</th>
+        <th>Settings</th>
+        <th><code>parsed_value</code></th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>string</code></td>
         <td>Short text.</td>
+        <td>
+<code>placeholder</code>, <code>maxlength</code>, <code>minlength</code>, <code>pattern</code>
+</td>
+        <td>String</td>
       </tr>
       <tr>
         <td><code>textarea</code></td>
         <td>Multi-line plain text.</td>
+        <td>
+<code>rows</code>, <code>placeholder</code>, <code>maxlength</code>
+</td>
+        <td>String</td>
       </tr>
       <tr>
         <td><code>text</code></td>
-        <td>Long rich text or HTML content.</td>
+        <td>Rich HTML with common formatting, links, and images. Scripts, event handlers, unsafe URLs, and unsupported markup are removed on save and output, including existing content and AI translations. Use <code>parsed_value</code> instead of rendering the raw database <code>value</code> as HTML.</td>
+        <td>None.</td>
+        <td>Sanitized HTML string</td>
       </tr>
       <tr>
         <td><code>number</code></td>
         <td>Numeric values.</td>
+        <td>
+<code>min</code>, <code>max</code>, <code>step</code>, <code>placeholder</code>
+</td>
+        <td>Integer or Float</td>
       </tr>
       <tr>
         <td>
 <code>date</code> / <code>datetime</code>
 </td>
         <td>Date and time values.</td>
+        <td>
+<code>min</code>, <code>max</code>
+</td>
+        <td>
+<code>Date</code> / <code>DateTime</code>
+</td>
       </tr>
       <tr>
         <td><code>boolean</code></td>
         <td>True/false values.</td>
+        <td>None.</td>
+        <td>
+<code>true</code> / <code>false</code>
+</td>
       </tr>
       <tr>
         <td>
 <code>select</code> / <code>multiselect</code>
 </td>
         <td>One or more values from predefined options.</td>
+        <td>
+<code>options</code>: a list of strings or of <code>{ value:, label: }</code> pairs.</td>
+        <td>String / Array</td>
       </tr>
       <tr>
         <td><code>color</code></td>
         <td>Color values.</td>
+        <td>None.</td>
+        <td>String</td>
       </tr>
       <tr>
         <td><code>json</code></td>
         <td>Structured data.</td>
+        <td>
+<code>rows</code>, <code>placeholder</code>
+</td>
+        <td>Parsed object</td>
       </tr>
       <tr>
         <td><code>file</code></td>
         <td>One or more files picked from the <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>media library</a>. Set <code>settings.multiple: true</code> to allow more than one.</td>
+        <td><code>multiple</code></td>
+        <td>Media attachments</td>
       </tr>
       <tr>
         <td><code>image</code></td>
         <td>Single image picked from the <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>media library</a>. Optionally generates resized variants (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>).</td>
+        <td>
+<code>sizes</code> (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>)</td>
+        <td>Media attachments</td>
       </tr>
       <tr>
         <td><code>video</code></td>
         <td>Single video picked from the <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>media library</a>. Its poster image is generated once per media item (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Video poster</a>).</td>
+        <td>None.</td>
+        <td>Media attachment with poster</td>
       </tr>
       <tr>
         <td><code>gallery</code></td>
         <td>Multiple sortable images picked from the <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>media library</a>. Optionally generates resized variants (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>).</td>
+        <td>
+<code>sizes</code> (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Image sizes</a>)</td>
+        <td>Media attachments</td>
       </tr>
       <tr>
         <td><code>custom</code></td>
         <td>Application-defined field rendered with a custom partial.</td>
+        <td>Any key, read by your partial. Requires <code>render</code>.</td>
+        <td>String</td>
       </tr>
     </tbody>
   </table>
@@ -597,6 +792,26 @@ fields:
   (<code>file</code>, <code>image</code>, <code>video</code>, <code>gallery</code>) this means the
   field must keep at least one file: the editor blocks saving when the field would end up empty,
   and the server rejects the save with an error otherwise.
+</p>
+
+<h4>Server-side validation</h4>
+
+<ul>
+  <li>
+<code>required</code> is enforced for scalar fields: a blank value is refused.</li>
+  <li>
+<code>select</code> and <code>multiselect</code> values must be among the declared options.</li>
+  <li>
+<code>number</code> values must be numeric, <code>color</code> values must be <code>#rgb</code> or <code>#rrggbb</code>, <code>date</code> and <code>datetime</code> values must parse.</li>
+  <li>An untouched <code>color</code> field is saved empty (not <code>#000000</code>), and a non-required color can be cleared.</li>
+  <li>Field types are resolved from the template and component YAML on the server; the component id sent by the browser is ignored. Saving a template component or a field that is not in the page template is refused (422).</li>
+  <li>Changing the template of a page hides the fields saved under the old one. The page settings form warns about it.</li>
+</ul>
+
+<p>
+  <code>text</code> HTML is sanitized on save and on output with an allowlist of tags
+  (<code>LatoCms::PageField::RICH_TEXT_TAGS</code>) and attributes (<code>RICH_TEXT_ATTRIBUTES</code>).
+  The <code>style</code> attribute is reduced to <code>text-align</code>.
 </p>
 
 <h3 id="media-library">Media library</h3>
@@ -612,7 +827,10 @@ fields:
 <p>
   A media item's <code>name</code>, alt text and title are edited from the library's own edit form, not from the
   upload dialog — on upload, <code>name</code> defaults to the filename.
-  Deleting a media item still referenced by a field is blocked until it's removed from every field using it.
+  Uploads are checked on the server against <code>media_allowed_content_types</code> and <code>media_max_file_size</code>
+  (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Configuration</a>).
+  Deleting a media item still referenced by a field is refused until it's removed from every field using it.
+  An admin can force the deletion (the delete endpoint accepts <code>force=true</code>): the media is then removed from every field that used it.
 </p>
 
 <p>
@@ -624,8 +842,7 @@ fields:
 
 <p>
   The library index shows how many page fields reference each media item, and filters list only the unused
-  ones (the only ones that can be deleted — the delete action is inert while a media is still
-  referenced) or those still missing an alt text or a title in at least one configured locale (alt text only
+  ones (the only ones that can be deleted without force) or those still missing an alt text or a title in at least one configured locale (alt text only
   applies to images; a title is editable on any media type). Each media item also has a detail page: a read-only summary (preview, name, alt text and title
   per locale) plus the list of pages using it, with a link to each one and the fields involved.
 </p>
@@ -726,6 +943,23 @@ end</code></pre>
   progress screen rather than the request blocking (and potentially timing out) on the LLM call.
 </p>
 
+<h4 id="llm-security">LLM features and prompt injection</h4>
+
+<p>
+  With an LLM configured, Lato CMS generates alt text and titles for images (automatically after upload and with
+  <em>Regenerate with AI</em>) and offers <em>Clone &amp; translate</em> for component text fields
+  (<code>string</code>, <code>textarea</code>, <code>text</code>).
+  Instructions are sent as the system message, and editor content is sent as delimited data
+  (<code>&lt;data&gt;...&lt;/data&gt;</code>) in the user message. Generated media texts are capped at 500 characters
+  and translated <code>text</code> fields go through the rich text sanitizer.
+</p>
+
+<p>
+  <strong>Residual risk:</strong> an LLM can still be steered by the content it reads, for example text inside an image or a field.
+  Review generated alt text, titles and translations, and enable LLM features only with trusted editors.
+  Images larger than <code>llm_max_image_size</code> are not sent to the LLM.
+</p>
+
 <h3 id="image-sizes">Image sizes</h3>
 
 <p>
@@ -792,9 +1026,7 @@ name: Hero
 fields:
   trailer:
     name: Trailer
-    type: video
-    settings:
-      accept: "video/mp4"</code></pre>
+    type: video</code></pre>
 
 <p>The API response exposes the video attachment with its poster URL (<code>null</code> until the job runs):</p>
 
@@ -810,12 +1042,18 @@ fields:
   "poster_url": "/rails/active_storage/blobs/.../trailer_poster.jpg"
 }</code></pre>
 
-<h3>Custom fields</h3>
+<h3 id="custom-fields">Custom fields</h3>
 
 <p>
   Use <code>type: custom</code> when a component needs an editor that is not covered by built-in field types.
-  Set <code>render</code> to an application partial path. The partial receives <code>field_id</code>,
-  <code>field_config</code>, and <code>page_field</code> locals.
+  Generate a partial in the host application:
+</p>
+
+<pre><code>rails "lato_cms:generate:custom_field[icon_note]"</code></pre>
+
+<p>
+  This creates <code>app/views/lato_cms/custom_fields/_icon_note.html.erb</code>. Reference it with
+  <code>render</code> in the component:
 </p>
 
 <pre><code># config/lato_cms/components/hero.yml
@@ -830,26 +1068,32 @@ fields:
     settings:
       placeholder: "Example: rocket|Hero launch section"</code></pre>
 
-<p>Create the partial in the host application:</p>
+<p>
+  The partial receives the locals <code>field_id</code>, <code>field_config</code>, <code>page_field</code>,
+  <code>input_name_prefix</code>, <code>dom_id_prefix</code> and <code>persisted_field_id</code>.
+  Build input names and ids with the helpers <code>lato_cms_field_input_name</code> and
+  <code>lato_cms_field_dom_id</code>, so the field also works inside repeaters, where both carry an item prefix:
+</p>
 
 <pre><code>&lt;%# app/views/lato_cms/custom_fields/_icon_note.html.erb %&gt;
 &lt;% settings = field_config["settings"] || {} %&gt;
 &lt;% current_value = page_field&amp;.value.to_s %&gt;
+&lt;% input_name = lato_cms_field_input_name(field_id, input_name_prefix: local_assigns[:input_name_prefix]) %&gt;
+&lt;% input_id = lato_cms_field_dom_id(field_id, dom_id_prefix: local_assigns[:dom_id_prefix]) %&gt;
 
-&lt;label class="form-label" for="fields_&lt;%= field_id %&gt;_value"&gt;
+&lt;label class="form-label" for="&lt;%= input_id %&gt;"&gt;
   &lt;%= field_config["name"] || field_id.humanize %&gt;
 &lt;/label&gt;
 
 &lt;input type="text"
   class="form-control"
-  name="fields[&lt;%= field_id %&gt;][value]"
-  id="fields_&lt;%= field_id %&gt;_value"
+  name="&lt;%= input_name %&gt;"
+  id="&lt;%= input_id %&gt;"
   value="&lt;%= current_value %&gt;"
   placeholder="&lt;%= settings["placeholder"] %&gt;"&gt;</code></pre>
 
 <p>
-  Custom field values are saved like standard scalar fields when the input name is
-  <code>fields[FIELD_ID][value]</code>. Use <code>settings</code> for custom options consumed by the partial.
+  Custom field values are saved like standard scalar fields. Use <code>settings</code> for custom options consumed by the partial.
 </p>
 
 <h3>Using CMS content in the application</h3>
@@ -860,10 +1104,17 @@ fields:
   multi-select values, and files can be consumed directly by application views or serializers.
 </p>
 
-<pre><code>page = LatoCms::Page.find_by(permalink: "/homepage")
-title = page.fields.find_by(field_id: "title")&amp;.parsed_value
-image = page.fields.find_by(field_id: "image")&amp;.media&amp;.first
-image_url = image&amp;.url</code></pre>
+<p>
+  Scope pages by group and pick fields by template component, because the same field id can exist in several components.
+</p>
+
+<pre><code>page = LatoCms::Page.for_lato_spaces_group(group_id).find_by!(permalink: "/home")
+title = page.fields.find_by(template_component_id: "hero_section", field_id: "title")&amp;.parsed_value
+image = page.fields.find_by(template_component_id: "hero_section", field_id: "image")&amp;.media&amp;.first
+image_url = image&amp;.url
+
+# Or the whole page, as served by the JSON API
+page.as_json(include_fields: true)</code></pre>
 
 <h3>Page translations</h3>
 
@@ -911,6 +1162,58 @@ page.translation_for(:it)       # =&gt; the linked Italian page, or nil
 
 # In as_json / API output, translations are exposed as a locale =&gt; page map:
 # { "it" =&gt; { id:, permalink:, frontend_url: }, ... }</code></pre>
+
+<h3 id="public-api">Public JSON API</h3>
+
+<div class="alert alert-warning">
+  <strong>Exposure warning.</strong> The API is public and unauthenticated, keyed by sequential group ids,
+  and has no draft or published state. Every page and media URL of every group is readable by anyone who can
+  reach the endpoint, and signed blob URLs in redirect mode do not expire. <code>group_id</code> selects content;
+  it is not an authorization token. Protect the endpoint at the host level (do not expose the route publicly,
+  add a reverse proxy rule, or use Rack middleware and rate limiting) until per-group tokens and a publish state exist.
+</div>
+
+<pre><code>GET /lato-cms/api/pages?group_id=ID&amp;locale=xx
+GET /lato-cms/api/pages/:id_or_permalink?group_id=ID</code></pre>
+
+<p>
+  The first call lists pages without fields (<code>locale</code> is optional). The second returns one page with its fields.
+  A missing <code>group_id</code> returns 400 and an unknown page returns 404.
+</p>
+
+<p>
+  A page has <code>id</code>, <code>title</code>, <code>permalink</code>, <code>locale</code>, <code>template_id</code>,
+  <code>template_name</code>, <code>frontend_url</code> (only <code>http</code>/<code>https</code> values are exposed, otherwise <code>null</code>),
+  <code>translations</code> (<code>locale =&gt; { id, permalink, frontend_url }</code>), <code>created_at</code> and <code>updated_at</code>.
+  The show response adds <code>fields</code>, keyed by template component id, with <code>{ component_id, name, fields }</code>.
+  Only enabled components are included.
+</p>
+
+<ul>
+  <li>Regular component: <code>fields</code> is a hash of <code>field_id =&gt; { id, field_id, field_type, field_name, required, value, attachments }</code>.</li>
+  <li>Repeater component: <code>fields</code> is an ordered array of <code>{ id, fields }</code> items.</li>
+  <li>Attachments: <code>media_id</code>, <code>name</code>, <code>alt_text</code>, <code>title</code>, <code>filename</code>, <code>content_type</code>, <code>byte_size</code>, <code>url</code>. Images and galleries add <code>sizes</code>, videos add <code>poster_url</code>.</li>
+</ul>
+
+<h3 id="sitemap-export">Sitemap export</h3>
+
+<p>
+  From the pages index, <em>Actions → Export sitemap (CSV)</em> runs an operation that produces a CSV with the columns
+  <code>locale</code>, <code>title</code>, <code>permalink</code> and <code>frontend_url</code> for all pages of the current group.
+  Cells starting with <code>=</code>, <code>+</code>, <code>-</code>, <code>@</code>, a tab or a carriage return are prefixed with an
+  apostrophe to prevent formula injection. The export is rate limited (see <a href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Permissions</a>).
+</p>
+
+<h3 id="accessibility">Accessibility notes</h3>
+
+<ul>
+  <li>
+    <kbd>Esc</kbd> returns to the pages list only when no modal or dropdown is open and focus is not in a field.
+    When there are unsaved component edits it asks for confirmation first.
+  </li>
+  <li>Leaving the editor with unsaved changes asks for confirmation.</li>
+  <li>Media picker items and gallery reordering (<em>move before</em> / <em>move after</em> buttons) work with the keyboard.</li>
+</ul>
 
 
   </div>

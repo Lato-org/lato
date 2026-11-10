@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="z8zoq6m17oV8t_PgFVzwo6HbOVEaoha8iB6lks8pOoCBkWQhFCaUF8FAj85ChO4Rp4uOOhrVVG_VKEG9lqk4-g">
+<meta name="csrf-token" content="n48EfUd7bZyhObz5KNu1IhDhgrbhvevxOmE5s4BS4LjZkw1MdsFkNqXr5bvowhCF7yx_kZak6CMlnTk9WmvMVg">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -353,6 +353,12 @@ document.addEventListener('turbo:load', () => {
 
 <h3>Installation</h3>
 
+<p>Requires Rails 8.1.3.1 or newer in the 8.1 series and Lato 3.25.0 or newer.
+Existing applications must run <code>rails lato:install:migrations</code> and <code>rails db:migrate</code>
+before deployment. Previous sessions are invalidated.</p>
+
+<p>Values, keys, and labels are displayed as plain text. HTML is escaped, including existing saved settings.</p>
+
 <p>Add Lato Settings to the application Gemfile:</p>
 
 <pre><code>gem "lato"
@@ -361,9 +367,13 @@ gem "lato_settings"</code></pre>
 <p>Install the engine and run migrations:</p>
 
 <pre><code>bundle
-rails lato_settings:install:application
+rails lato:install:migrations
 rails lato_settings:install:migrations
 rails db:migrate</code></pre>
+
+<p>
+  <code>rails lato_settings:install:application</code> exists for consistency with other Lato engines but does nothing: it is not required.
+</p>
 
 <p>Mount the engine in <code>config/routes.rb</code>:</p>
 
@@ -394,17 +404,17 @@ user.update!(lato_settings_admin: true)</code></pre>
 
 <ul>
   <li>Create settings.</li>
-  <li>Edit setting values.</li>
+  <li>Edit setting values, labels, and descriptions (the key and type cannot be changed after creation).</li>
   <li>Delete optional settings.</li>
-  <li>Read labels and descriptions to understand each setting purpose.</li>
+  <li>Read labels and descriptions to understand each setting purpose; the list shows type and required badge.</li>
   <li>Use type-specific inputs for text, numbers, dates, and select values.</li>
 </ul>
 
 <h3>Reading settings in application code</h3>
 
 <p>
-  Read values with <code>LatoSettings.get(key, default = nil)</code>.
-  If the setting does not exist, the method returns the default value.
+  Read values with <code>LatoSettings.get(key, default = nil)</code>. The key is case-insensitive.
+  If the setting does not exist, or its stored value can't be converted to its type, the method returns the default value.
 </p>
 
 <pre><code>site_name = LatoSettings.get("site_name", "Default site")
@@ -456,11 +466,100 @@ launch_date = LatoSettings.get("launch_date")</code></pre>
   </table>
 </div>
 
+<h3>Returned types</h3>
+
+<ul>
+  <li>
+<code>string</code>, <code>text</code>: <code>String</code>
+</li>
+  <li>
+<code>integer</code>: <code>Integer</code>
+</li>
+  <li>
+<code>number</code>: <code>Float</code>
+</li>
+  <li>
+<code>date</code>: <code>Date</code>
+</li>
+  <li>
+<code>select</code>: <code>String</code>, one of the allowed values</li>
+</ul>
+
+<p>A value is required and is validated against its type (and options) when saved.</p>
+
+<h3>Options</h3>
+
+<p>
+  Each setting can have an <code>options</code> hash. It can be set from seeds or the console only: the admin panel can't edit it.
+</p>
+
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+<th>Option</th>
+<th>Used by</th>
+<th>Meaning</th>
+</tr>
+    </thead>
+    <tbody>
+      <tr>
+<td>
+<code>min</code>, <code>max</code>
+</td>
+<td>integer, number, date</td>
+<td>Inclusive bounds (dates as <code>YYYY-MM-DD</code>).</td>
+</tr>
+      <tr>
+<td><code>step</code></td>
+<td>integer, number</td>
+<td>Value must be <code>min + n * step</code> (min defaults to 0).</td>
+</tr>
+      <tr>
+<td><code>values</code></td>
+<td>select</td>
+<td>Array of allowed values, compared as strings.</td>
+</tr>
+    </tbody>
+  </table>
+</div>
+
+<pre><code>LatoSettings::Setting.find_or_create_by!(key: "items_per_page") do |setting|
+  setting.label = "Items per page"
+  setting.typology = :integer
+  setting.value = 25
+  setting.options = { min: 1, max: 100, step: 1 }
+end
+
+LatoSettings::Setting.find_or_create_by!(key: "theme") do |setting|
+  setting.label = "Theme"
+  setting.typology = :select
+  setting.value = "light"
+  setting.options = { values: %w[light dark] }
+end</code></pre>
+
+<h3>Caching</h3>
+
+<p>
+  Values are cached for 1 minute in <code>Rails.cache</code> and in a per-process memo.
+  Saving or destroying a setting clears the cache. After changes that skip callbacks
+  (<code>update_all</code>, raw SQL, other applications) call <code>LatoSettings.reset_cache</code>.
+  In production with several processes or hosts, configure a shared cache store (Redis, Memcached, Solid Cache);
+  with a per-process store, other processes see changes only after the 1 minute TTL.
+</p>
+
+<h3>Security</h3>
+
+<p>
+  Values are stored as plain text in the database and in the cache: do not store secrets such as API keys or passwords.
+  The engine filters <code>setting.value</code> from request logs.
+</p>
+
 <h3>Initial settings</h3>
 
 <p>
   Create important settings in seeds, then let admins edit values from the panel.
-  Mark a setting as required when it must not be deleted from the UI.
+  Mark a setting as required when it must not be deleted (required settings can still be edited).
 </p>
 
 <pre><code>LatoSettings::Setting.find_or_create_by!(key: "site_name") do |setting|
@@ -475,6 +574,8 @@ end</code></pre>
 
 <p>
   Use clear lowercase keys with underscores, such as <code>site_name</code>, <code>items_per_page</code>, or <code>launch_date</code>.
+  Keys are normalized when created (<code>Site Name</code> becomes <code>site_name</code>; accents are transliterated and other characters become <code>_</code>)
+  and cannot be changed afterwards.
 </p>
 
 

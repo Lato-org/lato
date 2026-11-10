@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="vj6yTspdUxkN8MOho0n4K1-GiUElqFdhMX0sjMLJNuePMpGSBjJz2OshHriDGPqQCWalmrQm1GnwZame2iZrwg">
+<meta name="csrf-token" content="eB4vDVDRWIGFmIHDmY_DwDkG43p94awrVnyNT6gNe5SzjEkCiFMjiHFrDA1jXgeOVle-Ci7Q5JuefbpLkQ8iMw">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -353,15 +353,24 @@ document.addEventListener('turbo:load', () => {
 
 <h3>Installation</h3>
 
+<p>Requires Rails 8.1.3.1 or newer in the 8.1 series and Lato 3.25.0 or newer.
+Existing applications must run <code>rails lato:install:migrations</code> (Lato session records) and <code>rails db:migrate</code>
+before deployment. Previous sessions are invalidated.</p>
+
+<p>
+  The host application also needs a configured Action Mailer (verification and invitation emails) and a working
+  <code>Rails.cache</code> store (email semaphores and verification codes). Password parameters must be filtered
+  from logs (<code>config.filter_parameters</code> including <code>:passw</code>).
+</p>
+
 <p>Add Lato Users to the application Gemfile:</p>
 
 <pre><code>gem "lato"
 gem "lato_users"</code></pre>
 
-<p>Install the engine and run migrations:</p>
+<p>Install the gem and its migration (adds the <code>lato_users_admin</code> column). <code>rails lato_users:install:application</code> is a no-op and is not required:</p>
 
 <pre><code>bundle
-rails lato_users:install:application
 rails lato_users:install:migrations
 rails db:migrate</code></pre>
 
@@ -381,6 +390,19 @@ end</code></pre>
 
 <pre><code>import "lato_users/application"</code></pre>
 
+<p>Add the menu entry, visible only to admins (the engine activates <code>:lato_users</code> on its pages):</p>
+
+<pre><code>&lt;% if @session.user&amp;.lato_users_admin %&gt;
+  &lt;%= lato_navbar_nav_item :lato_users, lato_users.root_path do %&gt;Users&lt;% end %&gt;
+&lt;% end %&gt;</code></pre>
+
+<p>
+  Routes under the mount path: <code>/</code> (redirects to users), <code>users</code>
+  (with <code>resend_verification_email</code>, <code>manual_verify_email</code>,
+  <code>revoke_email_verification</code>, <code>force_update_password</code>) and
+  <code>invitations</code> (with <code>resend</code>).
+</p>
+
 <h3>Permissions</h3>
 
 <p>
@@ -390,6 +412,16 @@ end</code></pre>
 
 <pre><code>user = Lato::User.find_by(email: "admin@example.com")
 user.update!(lato_users_admin: true)</code></pre>
+
+<div class="alert alert-warning">
+  <p class="mb-0">
+    <code>lato_users_admin</code> is effectively a super-admin permission: it can grant any other engine's
+    admin permission (<code>lato_settings_admin</code>, <code>lato_spaces_admin</code>, <code>lato_storage_admin</code>,
+    <code>lato_cms_admin_role</code>, ...) to any user. Admins cannot remove their own <code>lato_users_admin</code>,
+    and the last users admin can be neither demoted nor deleted. Non-admin requests are redirected to the Lato root
+    (<code>403</code> for non-HTML formats).
+  </p>
+</div>
 
 <h3>Admin permissions in the user form</h3>
 
@@ -409,8 +441,9 @@ user.update!(lato_users_admin: true)</code></pre>
 
 <p>
   No configuration is required in <code>lato_users</code>: install an engine that adds one of these
-  columns and its control appears in the form, gets permitted on create/update, and its label is taken
-  from the <code>Lato::User</code> attribute translations.
+  columns and its control appears in the form and gets permitted on create/update. Its label is taken from
+  the <code>activerecord.attributes.lato/user.&lt;column&gt;</code> translation (provided by this gem for the
+  official engines, otherwise add it yourself).
 </p>
 
 <h4>Role permissions (enum)</h4>
@@ -418,7 +451,7 @@ user.update!(lato_users_admin: true)</code></pre>
 <p>
   For a role column, the owning engine provides the selectable options (label and value) by defining a
   <code>Lato::User.&lt;column&gt;_options</code> class method that returns <code>[[label, value], ...]</code>.
-  <code>lato_users</code> calls it to build the select. For instance, <code>lato_cms</code> exposes its
+  <code>lato_users</code> calls it to build the select and rejects submitted values that are not in the options. For instance, <code>lato_cms</code> exposes its
   roles through <code>Lato::User.lato_cms_admin_role_options</code>, so the CMS role appears as a dropdown
   with the roles configured by that engine.
 </p>
@@ -495,17 +528,24 @@ user.lato_shop_admin_role &gt;= 1    # true when the user is at least a manager<
 <ul>
   <li>View all application users.</li>
   <li>Create new users.</li>
-  <li>Edit user email, name, password, and available Lato admin permissions.</li>
+  <li>Edit user email, name, and available Lato admin permissions. Changing the email of another user revokes that user's sessions.</li>
   <li>Verify or revoke email verification.</li>
   <li>Send a new verification email.</li>
-  <li>Generate a new password for a user.</li>
+  <li>Set a password when creating a user, or force a new random password later. It is shown once in the response, never stored in flash or session, and all the user sessions are revoked.</li>
   <li>Delete users when allowed by the application data constraints.</li>
-  <li>Create and delete invitations.</li>
+  <li>Create, resend and delete invitations.</li>
 </ul>
 
 <div class="alert alert-warning mt-3">
   <p class="mb-0">
     Admins cannot delete their own currently logged-in account from Lato Users.
+  </p>
+</div>
+
+<div class="alert alert-info mt-3">
+  <p class="mb-0">
+    Users created by an admin are saved with the current privacy policy and terms versions, because
+    <code>Lato::User</code> requires them. Passwords cannot be changed from the edit form. There is no audit log of admin actions.
   </p>
 </div>
 
@@ -531,6 +571,8 @@ admin.update!(lato_users_admin: true)</code></pre>
 <p>
   Use invitations when users should not self-register.
   Admins can create invitations from the Lato Users panel. Invited people receive an email and complete account creation from the invitation link.
+  Accepted invitations cannot be deleted, emails already registered are rejected, and Lato limits sending to one email every 2 minutes per invitation.
+  If delivery fails the invitation is kept and the panel says so: use Resend to try again.
 </p>
 
 
