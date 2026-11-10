@@ -1,5 +1,28 @@
 en:
   lato:
+    close: "Close"
+    notice_title: "Notification"
+    alert_title: "Error"
+    sort_ascending: "Sort by %{column} ascending"
+    sort_descending: "Sort by %{column} descending"
+    password_requirements: "At least %{count} characters."
+    too_many_requests: "Too many requests, please wait %{minutes} minutes to retry."
+    hcaptcha_missing: "Please complete the captcha verification."
+    hcaptcha_failed: "Captcha verification failed, please retry."
+    security_confirmation_required: "Confirm your current password and enabled second factor to continue."
+    current_password: "Current password"
+    current_authenticator_code: "Current authenticator code"
+    security_key_confirmation_help: "Confirm with your registered security key when submitting."
+    confirm_authenticator_code: "Confirm authenticator code"
+    authenticator_qr_code_alt: "Authenticator enrollment QR code"
+    authenticator_manual_key: "Or enter this key manually in your authenticator app"
+    connecting: "Connecting..."
+    back_to_account: "Back to your account"
+    network_offline: "You are offline"
+    network_online: "You are online"
+    toggle_sidebar: "Toggle sidebar"
+    skip_to_content: "Skip to main content"
+    copied: "Copied to clipboard"
     account: Account
     signout: Logout
     signin: Login
@@ -144,6 +167,7 @@ en:
               credentials_not_correct: Email or password not correct
               privacy_policy_invalid: To accept the privacy policy you must select the confirmation checkbox
               terms_and_conditions_invalid: To accept the terms and conditions you must select the confirmation checkbox
+              invitation_invalid: Invalid invitation
               web3_address_invalid: The address you send is not corretly signed
               web3_connection_error: Impossible to connect the wallet
               authenticator_code_invalid: The code you inserted is not correct
@@ -153,6 +177,8 @@ en:
               webauthn_authentication_failed: Passkey authentication failed. Please try again or use another method.
             password:
               not_correct: not correct
+            password_confirmation:
+              confirmation: does not match the password
             email:
               taken: already used with another account
               not_registered: not registered
@@ -163,8 +189,14 @@ en:
               inclusion: not accepted
             web3_address:
               not_correct: not correct
+        lato/operation:
+          attributes:
+            base:
+              start_error: "Unable to start the job"
         lato/invitation:
           attributes:
+            email:
+              taken: "already used by another user"
             base:
               already_accepted: Invitation already accepted
               email_sending_error:  Unable to send mail

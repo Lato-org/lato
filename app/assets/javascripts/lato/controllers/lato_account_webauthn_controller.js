@@ -83,11 +83,14 @@ export default class extends Controller {
 
   showError(message) {
     if (this.hasStatusTarget) {
-      this.statusTarget.innerHTML = `
-        <div class="alert alert-danger">
-          <h4 class="alert-heading">${message}</h4>
-        </div>
-      `
+      const alert = document.createElement('div')
+      alert.className = 'alert alert-danger'
+      alert.setAttribute('role', 'alert')
+      const heading = document.createElement('h4')
+      heading.className = 'alert-heading'
+      heading.textContent = message
+      alert.appendChild(heading)
+      this.statusTarget.replaceChildren(alert)
     }
   }
 }

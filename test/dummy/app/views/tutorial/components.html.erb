@@ -132,6 +132,16 @@ There are also some extra parameters to customize the menu item:<br>
 <% end %>
 </div>
 
+<div class="alert alert-warning mt-3">
+  <h4 class="alert-heading">Title escaping</h4>
+  <p>
+  The page head title is HTML-escaped. To render HTML in the title, pass an <code>html_safe</code> string and make sure it never contains user data:
+  </p>
+<pre>
+&#60;%= lato_page_head safe_join(['Orders ', content_tag(:small, 'beta')]) %&#62;
+</pre>
+</div>
+
 <hr>
 
 <h2>Form</h2>
@@ -148,7 +158,7 @@ Below is a list of available components with usage examples:
   <li><code>lato_form_item_input_number</code> renders a number input.</li>
   <li><code>lato_form_item_input_email</code> renders an email input.</li>
   <li><code>lato_form_item_input_password</code> renders a password input.</li>
-  <li><code>lato_form_item_input_check</code> renders a checkbox input.</li>
+  <li><code>lato_form_item_input_check</code> renders a checkbox input. The label is escaped unless it is <code>html_safe</code>, and its <code>for</code> attribute matches the checkbox id.</li>
   <li><code>lato_form_item_input_select</code> renders a select input.</li>
   <li><code>lato_form_item_input_file</code> renders a file input.</li>
   <li><code>lato_form_item_input_file_dropzone</code> renders a file input with drag-and-drop support.</li>
@@ -434,6 +444,15 @@ end
  } %>
 </div>
 
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Notes</h4>
+  <p>
+  Custom and dropdown actions use their <code>:title</code> as the default <code>aria-label</code>: always pass <code>title:</code> for icon-only actions.
+  Sort buttons have accessible names and the active sorted column exposes <code>aria-sort</code>.
+  Searching resets the pagination to the first page, and LIKE wildcards (<code>%</code>, <code>_</code>) typed in the search are escaped.
+  </p>
+</div>
+
 <h4>Adding in-page actions</h4>
 
 <pre>
@@ -487,7 +506,7 @@ This renders a button with a dropdown menu containing a list of actions.
 <h4>Adding row-specific actions</h4>
 
 <p>
-Row-specific actions can be added through custom columns (as shown above).<br>
+Row-specific actions can be added through custom columns (as shown above). <code>Lato::User</code> and <code>Lato::Invitation</code> define <code>attr_accessor :actions</code> so that an <code>actions</code> column can be used in their indexes.<br>
 These actions can also be opened in-page via overlays using <code>data-lato-index-target="action"</code> and <code>data-turbo-frame="turbo-frame-ID"</code>.
 </p>
 

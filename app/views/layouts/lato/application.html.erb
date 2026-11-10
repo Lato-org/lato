@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
-  <title><%= @layout_page_title %></title>
+  <title><%= @layout_page_title.presence || Lato.config.application_title %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -27,6 +27,7 @@
   class="controller-<%= controller_name %> action-<%= action_name %> <%= @layout_body_classes.join(' ') %> <%= cookies[:lato_aside_hidden] == 'true' ? 'aside-hidden' : '' %>"
   data-controller="lato-action lato-guide"
 >
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 p-2 bg-white" style="z-index: 2100;" href="#main"><%= I18n.t('lato.skip_to_content') %></a>
   <header>
     <%= render 'layouts/lato/navbar' %>
   </header>
@@ -39,7 +40,7 @@
       </aside>
     <% end %>
 
-    <main class="<%= @layout_sidebar ? 'layout_sidebar' : '' %>">
+    <main id="main" tabindex="-1" class="<%= @layout_sidebar ? 'layout_sidebar' : '' %>">
       <%= render 'layouts/lato/content' %>
     </main>
   </div>

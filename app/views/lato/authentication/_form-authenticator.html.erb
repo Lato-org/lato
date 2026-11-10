@@ -10,11 +10,11 @@ user ||= Lato::User.new
     <%= lato_form_errors user, class: %w[mb-3] %>
 
     <div class="mb-3 text-center">
-      <p><%= raw I18n.t('lato.authenticator_code_help', email: h(user.email_protected)) %></p>
+      <%= form.label :authenticator_code, raw(I18n.t('lato.authenticator_code_help', email: h(user.email_protected))), class: 'form-label' %>
     </div>
     
     <div class="mb-3">
-      <%= lato_form_item_input_text form, :authenticator_code, required: true %>
+      <%= lato_form_item_input_text form, :authenticator_code, required: true, autocomplete: 'one-time-code', inputmode: 'numeric', pattern: '[0-9]{6}', maxlength: 6, autofocus: true %>
     </div>
 
     <div>

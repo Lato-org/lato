@@ -23,7 +23,7 @@ module Lato
     # be sure that email is not already used by another user
     before_create do
       if Lato::User.find_by(email: email)
-        errors.add(:email, 'is already used by another user')
+        errors.add(:email, :taken)
         throw :abort
       end
     end

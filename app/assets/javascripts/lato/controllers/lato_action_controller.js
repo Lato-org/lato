@@ -17,6 +17,7 @@ export default class extends Controller {
   connect() {
     this.bsModals = []
     this.usedModals = []
+    this.returnFocusElements = []
 
     this.modalTargets.forEach((modalTarget, index) => {
       this.bsModals.push(new bootstrap.Modal(modalTarget))
@@ -39,10 +40,16 @@ export default class extends Controller {
           }
         }, 1)
       })
+      // Programmatic show() does not restore focus like data-bs-toggle does: give it back to the trigger.
+      modalTarget.addEventListener('hidden.bs.modal', () => {
+        const element = this.returnFocusElements[index]
+        this.returnFocusElements[index] = null
+        if (element && element.isConnected) element.focus()
+      })
       modalTarget.addEventListener('hide.bs.modal', () => {
         setTimeout(() => {
           this.usedModals = this.usedModals.filter((i) => i != index)
-          this.modalBodyTargets[index].innerHTML = ''
+          this.modalBodyTargets[index].replaceChildren()
         }, 500)
       })
     })
@@ -56,12 +63,12 @@ export default class extends Controller {
 
     // clean modalTitle content
     this.modalTitleTargets.forEach((modalTitleTarget) => {
-      modalTitleTarget.innerHTML = ''
+      modalTitleTarget.textContent = ''
     })
 
     // clean modalBody content
     this.modalBodyTargets.forEach((modalBodyTarget) => {
-      modalBodyTarget.innerHTML = ''
+      modalBodyTarget.replaceChildren()
     })
   }
 
@@ -108,19 +115,22 @@ export default class extends Controller {
     const index = this.getFreeModalIndex()
 
     if (options.turboFrame && options.turboFrame != '_top') {
-      this.modalBodyTargets[index].innerHTML = `
-      <turbo-frame id="${options.turboFrame}">
-      <div class="placeholder-glow">
-        ${Array(options.actionRows).fill().map(() => `<span class="placeholder placeholder-lg col-12"></span>`).join('')}
-      </div>
-      </turbo-frame>
-      `
-
-      if (options.actionTitle) {
-        this.modalTitleTargets[index].innerHTML = options.actionTitle
-      } else {
-        this.modalTitleTargets[index].innerHTML = ''
+      // Build nodes instead of HTML strings: frame id and title come from element attributes.
+      const turboFrame = document.createElement('turbo-frame')
+      turboFrame.id = options.turboFrame
+      turboFrame.setAttribute('aria-busy', 'true')
+      turboFrame.addEventListener('turbo:frame-load', () => turboFrame.removeAttribute('aria-busy'), { once: true })
+      const placeholder = document.createElement('div')
+      placeholder.className = 'placeholder-glow'
+      for (let i = 0; i < options.actionRows; i++) {
+        const row = document.createElement('span')
+        row.className = 'placeholder placeholder-lg col-12'
+        placeholder.appendChild(row)
       }
+      turboFrame.appendChild(placeholder)
+      this.modalBodyTargets[index].replaceChildren(turboFrame)
+
+      this.modalTitleTargets[index].textContent = options.actionTitle || ''
 
       if (options.actionSize) {
         this.modalDialogTargets[index].classList.remove('modal-md')
@@ -130,6 +140,7 @@ export default class extends Controller {
         this.modalDialogTargets[index].classList.add(`modal-${options.actionSize}`)
       }
 
+      this.returnFocusElements[index] = document.activeElement
       this.bsModals[index].show()
     }
   }

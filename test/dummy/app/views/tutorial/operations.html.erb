@@ -18,19 +18,20 @@ Operations are handled by several components:
 
 <p>
 The easiest way to convert a Job into an operation is to simply make the Job a subclass of <code>Lato::ApplicationJob</code>.<br>
-Additionally, the <code>perform()</code> method must accept a single Hash parameter called <code>params</code>.
+Additionally, the <code>perform()</code> method must accept a single Hash parameter called <code>params</code>.<br>
+Only classes inheriting from <code>Lato::ApplicationJob</code> can be started as operations: <code>Lato::Operation#start</code> ignores any other class.
 </p>
 
 <pre>
 # Before
-def MyJob < ApplicationJob
+class MyJob < ApplicationJob
   def perform(hello)
     puts hello
   end
 end
 
 # After
-def MyJob < Lato::ApplicationJob
+class MyJob < Lato::ApplicationJob
   def perform(params = {})
     puts params['hello']
   end
@@ -158,6 +159,13 @@ class MyJob < Lato::ApplicationJob
   end
 end
 </pre>
+
+<div class="alert alert-info mt-3">
+  <h4 class="alert-heading">Note</h4>
+  <p>
+  The output action link is rendered only when it is a relative path (starting with <code>/</code>) or an <code>http(s)</code> URL; any other value (e.g. <code>javascript:</code>) is rendered as <code>#</code>.
+  </p>
+</div>
 
 <h4>Show execution error</h4>
 
@@ -321,4 +329,35 @@ operation.output_error?   # returns true if an output error is set
 operation.output_error    # returns the output error string
 
 operation.output_file?    # returns true if an output file is attached
+</pre>
+
+<h3>Maintenance Jobs</h3>
+
+<p>
+Lato includes two cleanup jobs. They are not scheduled automatically: schedule them in your application.
+</p>
+
+<ul>
+  <li><code>Lato::LatoOperationsCleanerJob</code> deletes operations that are not running and are older than 12 hours.</li>
+  <li><code>Lato::ActiveStorageCleanerJob</code> purges unattached Active Storage blobs older than 12 hours and removes empty folders of the Disk service. Pass <code>min_age_hours</code> to change the age, e.g. <code>Lato::ActiveStorageCleanerJob.perform_later(min_age_hours: 24)</code>.</li>
+</ul>
+
+<p>Example with Solid Queue recurring tasks:</p>
+
+<pre>
+# config/recurring.yml
+production:
+  lato_operations_cleaner:
+    class: Lato::LatoOperationsCleanerJob
+    schedule: every day at 3am
+  lato_active_storage_cleaner:
+    class: Lato::ActiveStorageCleanerJob
+    schedule: every day at 4am
+</pre>
+
+<p>Without a recurring scheduler, call them from cron:</p>
+
+<pre>
+0 3 * * * cd /app && bin/rails runner 'Lato::LatoOperationsCleanerJob.perform_later'
+0 4 * * * cd /app && bin/rails runner 'Lato::ActiveStorageCleanerJob.perform_later'
 </pre>

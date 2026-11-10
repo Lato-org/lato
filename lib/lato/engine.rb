@@ -17,6 +17,11 @@ module Lato
     end
 
     config.after_initialize do
+      # Recovery codes, verification codes and rate limits live in Rails.cache: a null store silently disables them.
+      if Rails.env.production? && Rails.cache.is_a?(ActiveSupport::Cache::NullStore)
+        Rails.logger.warn("[Lato] Rails.cache is a NullStore: password recovery, email verification and rate limiting will not work. Configure a shared cache store (Redis, Solid Cache, Memcache).")
+      end
+
       if Lato.config.webauthn_connection
         WebAuthn.configure do |config|
           config.allowed_origins = Lato.config.webauthn_origin.is_a?(Array) ? Lato.config.webauthn_origin : [Lato.config.webauthn_origin]

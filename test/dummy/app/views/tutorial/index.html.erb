@@ -166,7 +166,7 @@ end
 <h3>Limiting the Number of Requests</h3>
 
 <p>
-To limit the number of requests to a page, you can use the <code>limit_request</code> method:
+To limit the number of requests to a page, you can use the <code>limit_requests</code> method:
 </p>
 
 <pre>
@@ -180,7 +180,8 @@ end
 
 <p>
 The <code>limit_requests</code> method accepts two parameters: <code>limit</code> (default: 10) and <code>time_window</code> (default: 10.minutes).<br>
-These parameters define the maximum number of requests a user can make within a given time window.
+These parameters define the maximum number of requests allowed per client IP and action within the time window: exactly <code>limit</code> requests pass, the next one receives an HTTP 429 response (message <code>lato.too_many_requests</code>).<br>
+Counters use <code>Rails.cache.increment</code>, so the limit requires a persistent cache shared across processes (Redis, Solid Cache, Memcached). See the <%= link_to 'configuration', configuration_path %> page.
 </p>
 
 <p>
@@ -209,7 +210,7 @@ end
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Notes</h4>
   <p>
-  Using <code>@session.user_id</code> instead of <code>@session.user.id</code> avoids triggering a query on the users table, improving performance!
+  Using <code>@session.user_id</code> instead of <code>@session.user.id</code> avoids loading the user from the users table. Session validity is still checked with a query on <code>lato_session_records</code>.
   </p>
   <p>
   <code>@session.valid?</code> lets you check whether the user is logged in or not.
@@ -230,6 +231,8 @@ The <code>Lato::Sessionable</code> concern also provides methods to programmatic
 class CustomController < ApplicationController
   def custom_login
     user = Lato::User.find_by(email: params[:email])
+    return head :unauthorized unless user&.authenticate(params[:password])
+
     # Create a session for the user
     session_create(user.id)
   end
@@ -244,8 +247,9 @@ end
 <div class="alert alert-info mt-3">
   <h4 class="alert-heading">Notes</h4>
   <p>
-  <code>session_create(user_id)</code> sets the encrypted session cookie and refreshes the <code>@session</code> instance.<br>
-  <code>session_destroy</code> clears the encrypted session cookie.<br>
+  <code>session_create(user_id)</code> creates the <code>Lato::SessionRecord</code> database row, calls <code>reset_session</code>, sets the encrypted session cookie and refreshes the <code>@session</code> instance.<br>
+  <code>session_destroy</code> revokes the <code>Lato::SessionRecord</code> row, calls <code>reset_session</code> and clears the session cookie.<br>
+  Never create a session from an unauthenticated identifier such as an email alone: always verify the credentials first.<br>
   Both methods are provided by the <code>Lato::Sessionable</code> concern.
   </p>
 </div>
@@ -253,3 +257,27 @@ end
 <p>
 <%= link_to 'Source code: Lato::Sessionable', 'https://github.com/lato-org/lato/blob/main/app/controllers/concerns/lato/sessionable.rb', target: '_blank', class: 'llm-ignore' %>
 </p>
+
+<h2>Engine Routes</h2>
+
+<p>
+The engine exposes the following public routes (use them with the mount prefix helper, e.g. <code>lato.account_path</code>):
+</p>
+
+<table class="table table-sm">
+  <thead>
+    <tr><th>Helper</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>lato.root_path</code></td><td>Engine root</td></tr>
+    <tr><td><code>lato.authentication_signin_path</code></td><td>Signin page</td></tr>
+    <tr><td><code>lato.authentication_signup_path</code></td><td>Signup page</td></tr>
+    <tr><td><code>lato.authentication_recover_password_path</code></td><td>Password recovery page</td></tr>
+    <tr><td><code>lato.authentication_accept_invitation_path</code></td><td>Invitation acceptance page</td></tr>
+    <tr><td><code>lato.account_path</code></td><td>Account management page</td></tr>
+    <tr><td><code>lato.operation_path(id)</code></td><td>Operation detail page</td></tr>
+    <tr><td><code>lato.switch_locale_path(locale:)</code></td><td>Change locale (POST)</td></tr>
+    <tr><td><code>lato.operations_show_path(id)</code></td><td>Deprecated legacy route, use <code>operation_path</code></td></tr>
+    <tr><td><code>lato.switch_locale_get_path(locale:)</code></td><td>Deprecated: changes state via GET, use the POST <code>switch_locale_path</code></td></tr>
+  </tbody>
+</table>

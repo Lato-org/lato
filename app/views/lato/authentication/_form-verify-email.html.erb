@@ -10,13 +10,14 @@ code ||= nil
   <%= form_with model: user, url: lato.authentication_verify_email_action_path(id: user.id), class: 'text-center', data: { turbo_frame: '_self' } do |form| %>
     <% if code %>
       <%= form.hidden_field :code, value: code %>
-      <button type="submit" style="display: none;"></button>
+      <%# Visible fallback when JavaScript is disabled or blocked by CSP. %>
+      <button type="submit" class="btn btn-primary"><%= I18n.t('lato.verify_email') %></button>
       <script>document.getElementById('authentication_form_verify_email').querySelector('button[type="submit"]').click()</script>
     <% else %>
       <%= lato_form_notices class: %w[mb-3], fixed: true %>
       <%= lato_form_errors user, class: %w[mb-3], fixed: true %>
 
-      <%= link_to 'Torna all tuo account', lato.account_path, class: %w[btn btn-primary] %>
+      <%= link_to I18n.t('lato.back_to_account'), lato.account_path, class: %w[btn btn-primary] %>
     <% end %>
   <% end %>
 <% end %>

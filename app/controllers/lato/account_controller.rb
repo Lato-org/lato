@@ -37,8 +37,9 @@ module Lato
         success = user.remove_authenticator_secret
       elsif params.dig(:user, :authenticator_command) == "confirm"
         pending = session.delete(:pending_authenticator_secret)
-        success = pending.present? && ROTP::TOTP.new(pending).verify(params.dig(:user, :authenticator_code).to_s)
-        success = user.update(authenticator_secret: pending) if success
+        used_at = pending.present? && ROTP::TOTP.new(pending).verify(params.dig(:user, :authenticator_code).to_s, drift_behind: 15)
+        # Store the enrollment code timestamp so the same code can not be replayed for the first login.
+        success = used_at ? user.update(authenticator_secret: pending, authenticator_last_used_at: Time.at(used_at)) : false
         user.errors.add(:base, :authenticator_code_invalid) unless success
         @session.clear_security_continuation
       else
@@ -126,12 +127,10 @@ module Lato
         end
       elsif session[:web3_nonce]
         respond_to do |format|
-          if @session.user.add_web3_connection(params.require(:user).permit(:web3_address, :web3_signed_nonce).merge(web3_nonce: session[:web3_nonce]))
-            session[:web3_nonce] = nil
+          if @session.user.add_web3_connection(params.require(:user).permit(:web3_address, :web3_signed_nonce).merge(web3_nonce: web3_message_consume))
             format.html { redirect_to lato.account_path }
             format.json { render json: @session.user }
           else
-            session[:web3_nonce] = nil
             format.html { render :index, status: :unprocessable_entity }
             format.json { render json: @session.user.errors, status: :unprocessable_entity }
           end
@@ -139,7 +138,7 @@ module Lato
       else
         respond_to do |format|
           grant_security_continuation
-          if session[:web3_nonce] = SecureRandom.hex(32)
+          if web3_message_generate('connect your wallet')
             format.html { redirect_to lato.account_path }
             format.json { render json: @session.user }
           else
@@ -222,7 +221,10 @@ module Lato
         session.delete(:webauthn_registration_challenge)
         session.delete(:webauthn_registration_options)
       end
-      session.delete(:web3_nonce) unless action == "update_web3_action"
+      return if action == "update_web3_action"
+
+      session.delete(:web3_nonce)
+      session.delete(:web3_nonce_expires_at)
     end
 
     def reauthenticate_sensitive_action
@@ -254,7 +256,7 @@ module Lato
       end
       return if password_valid && factor_valid
 
-      user.errors.add(:base, "Confirm your current password and enabled second factor to continue.")
+      user.errors.add(:base, I18n.t('lato.security_confirmation_required'))
       respond_to do |format|
         format.html { render :index, status: :unprocessable_entity }
         format.json { render json: user.errors, status: :unprocessable_entity }

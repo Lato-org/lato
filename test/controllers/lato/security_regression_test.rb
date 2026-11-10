@@ -158,7 +158,12 @@ module Lato
       patch lato.account_update_authenticator_action_url(format: :json), params: { user: { current_password: "Password1!" } }
       assert_response :unprocessable_entity
       assert_equal secret, @user.reload.authenticator_secret
+      # The enrollment code is already used: a new time step is needed.
       patch lato.account_update_authenticator_action_url(format: :json), params: { user: { current_password: "Password1!", current_authenticator_code: ROTP::TOTP.new(secret).now } }
+      assert_response :unprocessable_entity
+      travel 31.seconds do
+        patch lato.account_update_authenticator_action_url(format: :json), params: { user: { current_password: "Password1!", current_authenticator_code: ROTP::TOTP.new(secret).now } }
+      end
       assert_response :success
       assert_nil @user.reload.authenticator_secret
     end

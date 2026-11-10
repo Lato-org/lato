@@ -15,6 +15,9 @@ module Lato
     # Max password recovery emails sent per hour across all users (nil disables the cap)
     attr_accessor :auth_recover_password_hourly_limit
 
+    # Minimum password length, checked whenever a password is set
+    attr_accessor :auth_password_min_length
+
     # Hcaptcha configs
     attr_accessor :hcaptcha_site_key, :hcaptcha_secret
 
@@ -53,6 +56,7 @@ module Lato
       @auth_disable_webauthn = false
       @auth_disable_signin_success_mail = false
       @auth_recover_password_hourly_limit = 100
+      @auth_password_min_length = 8
 
       @hcaptcha_site_key = nil
       @hcaptcha_secret = nil

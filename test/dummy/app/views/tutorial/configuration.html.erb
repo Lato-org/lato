@@ -43,8 +43,13 @@ Lato.configure do |config|
   config.auth_disable_webauthn = true # Disable WebAuthn login
   config.auth_disable_signin_success_mail = true # Disable login notification email
   config.auth_recover_password_hourly_limit = 100 # Max password recovery emails sent per hour across all users, nil to disable (default: 100)
+  config.auth_password_min_length = 8 # Minimum password length (default: 8)
 end
 </pre>
+
+<p>
+  <code>auth_password_min_length</code> is validated whenever a password is set (signup, invitation, password recovery and password change), and the signup and password forms display the requirement.
+</p>
 
 <h2>HCaptcha Configuration</h2>
 
@@ -64,7 +69,24 @@ end
 <h2>Requests Limit and Reverse Proxy</h2>
 
 <p>
-  Authentication actions (signin, signup, password recovery, email verification, second factor) are limited per client IP.
+  Authentication actions (signin, web3 signin, signup, password recovery, email verification, second factor) are limited per client IP and action.
+  By default <code>limit_requests(limit = 10, time_window = 10.minutes)</code> allows exactly 10 requests per IP and action in each window; the 11th request receives an HTTP 429 response (message <code>lato.too_many_requests</code>).
+  Signin also has a per-account limit: after 10 failed attempts in 15 minutes the email is blocked, from any IP, until the window passes. A successful signin resets the counter.
+  Second factor (authenticator and WebAuthn) attempts are counted per user as well.
+  Trade-off: an attacker who knows an email address can temporarily lock that account out of signin.
+</p>
+
+<div class="alert alert-warning">
+  <h4 class="alert-heading">Shared cache required</h4>
+  <p>
+    Rate limits, password recovery codes, email verification codes and semaphores are stored in <code>Rails.cache</code>.
+    Use a persistent cache shared across processes (Redis, Solid Cache, Memcached).
+    With <code>:null_store</code> rate limits are disabled and password recovery never works; with <code>:memory_store</code> and multiple processes limits are per process.
+    In production Lato logs a warning at boot if <code>Rails.cache</code> is a <code>NullStore</code>.
+  </p>
+</div>
+
+<p>
   The client IP is read from <code>request.remote_ip</code>, so the application should run behind a reverse proxy (e.g. nginx, Kamal proxy, a load balancer) that appends the real client IP to the <code>X-Forwarded-For</code> header.
   Proxies on private networks are trusted by default; if your proxy uses a public IP, add it to the trusted proxies:
 </p>
@@ -87,10 +109,15 @@ end
 
 <pre>
 Lato.configure do |config|
-  config.session_lifetime = 5.days # Lifetime of session cookies
+  config.session_lifetime = 5.days # Absolute lifetime of the session cookie and of the session database record (default: 30 days)
   config.session_root_path = :tutorial_path # Path to redirect users after login/signup
 end
 </pre>
+
+<p>
+  <code>session_lifetime</code> is an absolute lifetime: it is not renewed on activity and there is no idle timeout.
+  The session cookie is <code>httponly</code>, <code>same_site: :lax</code>, and <code>secure</code> only when the request is SSL, so set <code>config.force_ssl = true</code> in production.
+</p>
 
 <div class="alert alert-info mt-3">
   <p>Lato 3.25 requires Rails &gt;= 8.1.3.1 and &lt; 8.2. On upgrade, run <code>rails lato:install:migrations</code> and <code>rails db:migrate</code> before serving requests. Existing session cookies require a fresh sign-in.</p>
@@ -124,9 +151,9 @@ end
 
 <pre>
 Lato.configure do |config|
-  config.legal_privacy_policy_url = 'http:/domain.com/privacy' # Privacy policy URL
+  config.legal_privacy_policy_url = 'https://domain.com/privacy' # Privacy policy URL
   config.legal_privacy_policy_version = 32 # Version number of the active privacy policy
-  config.legal_terms_and_conditions_url = 'http:/domain.com/terms' # Terms and conditions URL
+  config.legal_terms_and_conditions_url = 'https://domain.com/terms' # Terms and conditions URL
   config.legal_terms_and_conditions_version = 32 # Version number of the active terms and conditions
 end
 </pre>
@@ -159,6 +186,59 @@ Lato.configure do |config|
   config.webauthn_rp_name = 'Lato Example App' # Relying Party name for WebAuthn
 end
 </pre>
+
+<h3>WebAuthn</h3>
+
+<p>
+  <code>webauthn_origin</code> accepts a string or an array of origins. In production use HTTPS origins; the relying party id is derived from the origin.
+</p>
+
+<pre>
+Lato.configure do |config|
+  config.webauthn_origin = ['https://app.example.com', 'https://www.example.com']
+end
+</pre>
+
+<p>
+  The signature counter is persisted and a non-increasing counter is rejected to detect cloned authenticators.
+  Limitations: each user can register one credential, there are no backup codes, and user verification is not required.
+</p>
+
+<h3>Authenticator (TOTP)</h3>
+
+<p>
+  A code can be used only once (replay protection) and a drift of 15 seconds behind is accepted.
+  The pending second factor step after the password expires after 10 minutes and is dropped after 5 wrong codes; the user must sign in again.
+  The authenticator secret is stored in clear in the database, consider Active Record encryption for production.
+</p>
+
+<h3>Web3</h3>
+
+<p>
+  Web3 requires the host application to add <code>gem "eth"</code> to its Gemfile; it is not a runtime dependency of Lato.
+  The signed message is a text bound to host, purpose, nonce and issue time:
+</p>
+
+<pre>
+example.com wants you to sign in with your Ethereum account.
+
+URI: https://example.com
+Nonce: ...
+Issued At: ...
+</pre>
+
+<p>
+  The nonce is single use and expires after 5 minutes. This is not a full SIWE (EIP-4361) implementation. Web3 signin pages require the user to be signed out.
+  The browser loads <code>ethers</code> 5.7.2 from cdnjs with a dynamic <code>import()</code>: the version is pinned but without Subresource Integrity (<code>import()</code> cannot carry an integrity attribute).
+  Applications that need strict supply-chain control should vendor the library.
+</p>
+
+<h2>Security</h2>
+
+<p>
+  Web3 and email verification views use inline scripts, so a Content Security Policy needs <code>unsafe-inline</code> or nonces for those pages.
+  See the "Production security checklist" in the <%= link_to 'README', 'https://github.com/lato-org/lato#production-security-checklist', target: '_blank' %> for the full list (force SSL, shared cache, session lifetime, cleaner jobs, invitations, secrets at rest).
+</p>
 
 <p>
 <%= link_to 'Source code: Lato::User', 'https://github.com/lato-org/lato/blob/main/app/models/lato/user.rb', target: '_blank', class: 'llm-ignore' %>

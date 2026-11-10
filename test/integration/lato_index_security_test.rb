@@ -18,4 +18,19 @@ class LatoIndexSecurityTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+  test "sort buttons have accessible names and active column exposes aria-sort" do
+    get "/products", params: { default_sort_by: "code|ASC" }
+
+    assert_response :success
+    assert_select "button[name$=\"_sort_by\"][aria-label]"
+    assert_select "th[aria-sort=ascending]", count: 1
+  end
+
+  test "search form does not reflect routing params as hidden fields" do
+    get "/products"
+
+    assert_select "form input[type=hidden][name=controller]", count: 0
+    assert_select "form input[type=hidden][name=action]", count: 0
+  end
 end

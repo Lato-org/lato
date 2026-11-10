@@ -24,14 +24,15 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", ">= 8.1.3.1", "< 8.2"
   spec.add_dependency "rails-i18n"
-  spec.add_dependency "bcrypt"
-  spec.add_dependency "bootstrap"
+  spec.add_dependency "bcrypt", "~> 3.1"
+  spec.add_dependency "bootstrap", ">= 5.0", "< 6"
   spec.add_dependency "kaminari"
   spec.add_dependency "local_time"
   spec.add_dependency "browser"
   spec.add_dependency "rqrcode"
-  spec.add_dependency "rotp"
-  spec.add_dependency "webauthn"
+  spec.add_dependency "rotp", "~> 6.0"
+  spec.add_dependency "webauthn", "~> 3.0"
 
+  # Optional at runtime: host apps enabling web3_connection must add gem "eth" to their Gemfile.
   spec.add_development_dependency "eth"
 end

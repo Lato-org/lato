@@ -42,7 +42,10 @@ Here are some examples of the operations you can perform with invitations:
   <b>Auto-email on creation:</b> When an invitation is created, the invite email is automatically sent via an <code>after_create</code> hook. You do not need to call <code>send_invite</code> manually on creation.
   </p>
   <p>
-  <b>Rate limiting:</b> The <code>send_invite</code> method enforces a 2-minute cooldown between emails. If called again before the cooldown expires, it will raise an error.
+  <b>Rate limiting:</b> The <code>send_invite</code> method enforces a 2-minute cooldown between emails. If called again before the cooldown expires, it returns <code>false</code> and adds an <code>:email_sending_limit</code> error to <code>errors[:base]</code>.
+  </p>
+  <p>
+  <b>Expiration:</b> Invitations do not expire. Destroy pending invitations that are no longer needed.
   </p>
   <p>
   <b>Destruction guard:</b> Accepted invitations cannot be destroyed. A <code>before_destroy</code> hook prevents deletion if the invitation has already been accepted.

@@ -86,4 +86,8 @@ This is useful for displaying operation results or form submissions inside an ov
   <code>triggerSubmit</code> intercepts the form submission and loads the response inside the action overlay instead of navigating away.<br>
   Always include <code>controller: 'lato-form'</code> on the form to ensure proper Turbo/Lato integration.
   </p>
+  <p>
+  <code>data-action-title</code> and <code>data-turbo-confirm</code> messages are inserted as plain text, never as HTML.
+  The confirm modal resolves as cancelled when dismissed with ESC, the backdrop or the close button, and focus returns to the trigger when it closes.
+  </p>
 </div>

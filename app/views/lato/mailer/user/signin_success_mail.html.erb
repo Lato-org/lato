@@ -1,4 +1,4 @@
-<% if I18n.locale == 'en' %>
+<% if I18n.locale.to_s != 'it' %>
 
 An access to your <b><%= Lato.config.application_title %></b> account has been made with the IP address <b><%= @ip_address %></b>.
 <br><br>

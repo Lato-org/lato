@@ -2,6 +2,29 @@
 
 it:
   lato:
+    close: "Chiudi"
+    notice_title: "Notifica"
+    alert_title: "Errore"
+    sort_ascending: "Ordina per %{column} crescente"
+    sort_descending: "Ordina per %{column} decrescente"
+    password_requirements: "Almeno %{count} caratteri."
+    too_many_requests: "Troppe richieste, attendi %{minutes} minuti prima di riprovare."
+    hcaptcha_missing: "Completa la verifica captcha."
+    hcaptcha_failed: "Verifica captcha non riuscita, riprova."
+    security_confirmation_required: "Conferma la password attuale e il secondo fattore attivo per continuare."
+    current_password: "Password attuale"
+    current_authenticator_code: "Codice authenticator attuale"
+    security_key_confirmation_help: "Conferma con la tua chiave di sicurezza registrata al momento dell'invio."
+    confirm_authenticator_code: "Conferma codice authenticator"
+    authenticator_qr_code_alt: "Codice QR per configurare l'authenticator"
+    authenticator_manual_key: "Oppure inserisci manualmente questa chiave nella tua app authenticator"
+    connecting: "Connessione in corso..."
+    back_to_account: "Torna al tuo account"
+    network_offline: "Sei offline"
+    network_online: "Sei online"
+    toggle_sidebar: "Mostra/nascondi barra laterale"
+    skip_to_content: "Vai al contenuto principale"
+    copied: "Copiato negli appunti"
     account: Account
     signout: Esci
     signin: Accedi
@@ -173,8 +196,14 @@ it:
               inclusion: non accettati
             web3_address:
               not_correct: non corretto
+        lato/operation:
+          attributes:
+            base:
+              start_error: "Impossibile eseguire il job"
         lato/invitation:
           attributes:
+            email:
+              taken: "gi\u00E0 utilizzata da un altro utente"
             base:
               already_accepted: Invito già accettato dall'utente
               email_sending_error: Impossibile inviare mail

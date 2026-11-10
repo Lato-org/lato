@@ -32,18 +32,46 @@ module Lato
 
     def limit_requests(limit = 10, time_window = 10.minutes)
       cache_key = "Lato::Sessionable/limit_requests/#{controller_name}/#{action_name}/#{request.remote_ip}"
-      attempts = Rails.cache.read(cache_key) || 0
-      
-      attempts += 1
-      Rails.cache.write(cache_key, attempts, expires_in: time_window)
-      return true unless attempts >= limit
+      # increment is atomic on shared stores, so parallel requests can not slip past the limit.
+      attempts = Rails.cache.increment(cache_key, 1, expires_in: time_window).to_i
+      return true if attempts <= limit
 
-      respond_to do |format|
-        format.html { render plain: "Too many requests, please wait #{time_window.to_i / 60} minutes to retry.", status: :too_many_requests }
-        format.json { render json: {}, status: :too_many_requests }
-      end
-
+      respond_to_too_many_requests(time_window)
       false
+    end
+
+    # Per-account throttle on failed attempts: complements the per-IP limit against distributed brute force.
+    ACCOUNT_LIMIT_ATTEMPTS = 10
+    ACCOUNT_LIMIT_TIME_WINDOW = 15.minutes
+
+    def account_limit_reached?(identifier)
+      return false if identifier.blank?
+
+      reached = Rails.cache.read(account_limit_cache_key(identifier), raw: true).to_i >= ACCOUNT_LIMIT_ATTEMPTS
+      respond_to_too_many_requests(ACCOUNT_LIMIT_TIME_WINDOW) if reached
+      reached
+    end
+
+    def account_limit_track_failure(identifier)
+      return if identifier.blank?
+
+      Rails.cache.increment(account_limit_cache_key(identifier), 1, expires_in: ACCOUNT_LIMIT_TIME_WINDOW)
+    end
+
+    def account_limit_reset(identifier)
+      Rails.cache.delete(account_limit_cache_key(identifier)) if identifier.present?
+    end
+
+    def account_limit_cache_key(identifier)
+      "Lato::Sessionable/account_limit/#{Digest::SHA256.hexdigest(identifier.to_s.downcase.strip)}"
+    end
+
+    def respond_to_too_many_requests(time_window)
+      message = I18n.t('lato.too_many_requests', minutes: (time_window.to_i / 60.0).ceil)
+      respond_to do |format|
+        format.html { render plain: message, status: :too_many_requests }
+        format.json { render json: { error: message }, status: :too_many_requests }
+      end
     end
 
     def session_create(user_id)
@@ -65,7 +93,8 @@ module Lato
         value: value,
         expires: @session.expires_at,
         httponly: true,
-        secure: request.ssl?
+        secure: request.ssl?,
+        same_site: :lax
       }
       true
     end

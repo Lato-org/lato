@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_24_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_10_000000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -113,6 +113,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_24_000000) do
     t.string "web3_address"
     t.string "webauthn_id"
     t.text "webauthn_public_key"
+    t.datetime "authenticator_last_used_at"
+    t.integer "webauthn_sign_count", default: 0, null: false
     t.index ["email"], name: "index_lato_users_on_email", unique: true
   end
 

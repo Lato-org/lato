@@ -9,12 +9,16 @@
       <%= lato_form_submit form, I18n.t('lato.account_authenticator_disable'), class: %w[btn-danger] %>
     <% elsif session[:pending_authenticator_secret].present? %>
       <div class="text-center mb-3">
-        <img class="shadow-sm rounded" alt="Authenticator enrollment QR code" src="<%= user.authenticator_qr_code_base64(secret: session[:pending_authenticator_secret]) %>" />
+        <img class="shadow-sm rounded" alt="<%= I18n.t('lato.authenticator_qr_code_alt') %>" src="<%= user.authenticator_qr_code_base64(secret: session[:pending_authenticator_secret]) %>" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="account_form-authenticator__manual-key"><%= I18n.t('lato.authenticator_manual_key') %></label>
+        <input type="text" class="form-control font-monospace" id="account_form-authenticator__manual-key" value="<%= session[:pending_authenticator_secret] %>" readonly>
       </div>
       <%= form.hidden_field :authenticator_command, value: "confirm" %>
-      <%= form.label :authenticator_code, "Confirm authenticator code", class: "form-label" %>
+      <%= form.label :authenticator_code, I18n.t('lato.confirm_authenticator_code'), class: "form-label" %>
       <%= form.text_field :authenticator_code, value: nil, required: true, class: "form-control mb-3", autocomplete: "one-time-code", inputmode: "numeric" %>
-      <%= lato_form_submit form, "Confirm", class: %w[btn-primary] %>
+      <%= lato_form_submit form, I18n.t('lato.confirm'), class: %w[btn-primary] %>
     <% else %>
       <div class="alert alert-light"><%= raw I18n.t('lato.account_authenticator_start_description') %></div>
       <%= render 'lato/account/security-confirmation', form: form, user: user %>

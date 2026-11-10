@@ -2,6 +2,29 @@
 
 ro:
   lato:
+    close: "\u00CEnchide"
+    notice_title: "Notificare"
+    alert_title: "Eroare"
+    sort_ascending: "Sorteaz\u0103 dup\u0103 %{column} cresc\u0103tor"
+    sort_descending: "Sorteaz\u0103 dup\u0103 %{column} descresc\u0103tor"
+    password_requirements: "Cel pu\u021Bin %{count} caractere."
+    too_many_requests: "Prea multe cereri, a\u0219tepta\u021Bi %{minutes} minute \u00EEnainte de a re\u00EEncerca."
+    hcaptcha_missing: "Completa\u021Bi verificarea captcha."
+    hcaptcha_failed: "Verificarea captcha a e\u0219uat, re\u00EEncerca\u021Bi."
+    security_confirmation_required: "Confirma\u021Bi parola curent\u0103 \u0219i al doilea factor activ pentru a continua."
+    current_password: "Parola curent\u0103"
+    current_authenticator_code: "Codul authenticator curent"
+    security_key_confirmation_help: "Confirma\u021Bi cu cheia de securitate \u00EEnregistrat\u0103 la trimitere."
+    confirm_authenticator_code: "Confirma\u021Bi codul authenticator"
+    authenticator_qr_code_alt: "Cod QR pentru configurarea authenticator"
+    authenticator_manual_key: "Sau introduce\u021Bi manual aceast\u0103 cheie \u00EEn aplica\u021Bia authenticator"
+    connecting: "Se conecteaz\u0103..."
+    back_to_account: "\u00CEnapoi la contul t\u0103u"
+    network_offline: "Sunte\u021Bi offline"
+    network_online: "Sunte\u021Bi online"
+    toggle_sidebar: "Afi\u0219eaz\u0103/ascunde bara lateral\u0103"
+    skip_to_content: "Salt la con\u021Binutul principal"
+    copied: "Copiat \u00EEn clipboard"
     account: Cont
     signout: Deconectare
     signin: Conectare
@@ -173,8 +196,14 @@ ro:
               inclusion: neacceptați
             web3_address:
               not_correct: incorect
+        lato/operation:
+          attributes:
+            base:
+              start_error: "Imposibil de pornit jobul"
         lato/invitation:
           attributes:
+            email:
+              taken: "deja folosit de alt utilizator"
             base:
               already_accepted: Invitația deja acceptată de utilizator
               email_sending_error: Imposibil să se trimită email-ul

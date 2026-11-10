@@ -9,9 +9,10 @@ total_pages = collection.empty? ? params["#{key}_page"]&.to_i : 999_999_999 if s
 
 <%= turbo_frame_tag "lato_index_#{key}_#{model_name_underscore}", class: "lato-index #{browser.device.mobile? ? 'lato-index-mob' : 'lato-index-desk'}" do %>
 
-  <%= form_tag request.path, method: :get, data: { controller: 'lato-form lato-index', turbo_frame: '_self' } do %>
+  <%= form_tag request.path, method: :get, data: { controller: 'lato-form lato-index', lato_index_key_value: key, turbo_frame: '_self' } do %>
     <%= hidden_field_tag :key, key %>
-    <% params.each do |k, v| %>
+    <% params.except(:controller, :action, :key).each do |k, v| %>
+      <% next unless v.is_a?(String) %>
       <%= hidden_field_tag k, v %>
     <% end %>
 
@@ -33,7 +34,7 @@ total_pages = collection.empty? ? params["#{key}_page"]&.to_i : 999_999_999 if s
         <% if custom_actions.any? %>
           <div class="btn-group ms-2">
             <% custom_actions.each do |action_key, action_params| %>
-              <%= link_to action_params[:path], { class: 'btn btn-primary' }.merge(action_params) do %>
+              <%= link_to action_params[:path], { class: 'btn btn-primary', 'aria-label': action_params[:title] }.merge(action_params) do %>
                 <i class="<%= action_params[:icon] %>"></i>
               <% end %>
             <% end %>
@@ -42,7 +43,7 @@ total_pages = collection.empty? ? params["#{key}_page"]&.to_i : 999_999_999 if s
 
         <% if dropdown_actions %>
           <div class="dropdown ms-2">
-            <%= content_tag :button, { class: 'btn btn-primary dropdown-toggle', 'data-bs-toggle': 'dropdown' }.merge(dropdown_actions) do %>
+            <%= content_tag :button, { class: 'btn btn-primary dropdown-toggle', 'data-bs-toggle': 'dropdown', 'aria-label': dropdown_actions[:title] }.merge(dropdown_actions) do %>
               <i class="<%= dropdown_actions[:icon] %>"></i>
             <% end %>
             <ul class="dropdown-menu">
@@ -109,28 +110,32 @@ total_pages = collection.empty? ? params["#{key}_page"]&.to_i : 999_999_999 if s
           <thead>
             <tr class="align-middle">
               <% columns.each do |column| %>
-                <th scope="col" class="lato-index-desk-col-label lato-index-desk-col-label-<%= column %>">
+                <% column_label = collection_test_istance.respond_to?(column) ? collection.model.human_attribute_name(column) : lato_index_dynamic_label({
+                  key: key,
+                  model_name: model_name,
+                  column: column
+                }) %>
+                <% sort_direction = sortable_columns.include?(column) ? { "#{column}|ASC" => 'ascending', "#{column}|DESC" => 'descending' }[params["#{key}_sort_by"]] : nil %>
+                <%= content_tag :th, scope: 'col', class: "lato-index-desk-col-label lato-index-desk-col-label-#{column}", 'aria-sort': sort_direction do %>
                   <div class="d-flex align-items-center justify-content-between">
-                    <span><%= collection_test_istance.respond_to?(column) ? collection.model.human_attribute_name(column) : lato_index_dynamic_label({
-                      key: key,
-                      model_name: model_name,
-                      column: column
-                    }) %></span>
+                    <span><%= column_label %></span>
                     <% if sortable_columns.include?(column) %>
                       <div class="btn-group ms-3 lato-index-col-sort">
-                        <div class="position-relative btn btn-sm <%= params["#{key}_sort_by"] == "#{column}|ASC" ? 'btn-primary' : 'btn-outline-primary' %>">
-                          <input type="submit" name="<%= "#{key}_sort_by" %>" value="<%= column %>|ASC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
-                          <i class="bi bi-sort-up"></i>
-                        </div>
-
-                        <div class="position-relative btn btn-sm <%= params["#{key}_sort_by"] == "#{column}|DESC" ? 'btn-primary' : 'btn-outline-primary' %>">
-                          <input type="submit" name="<%= "#{key}_sort_by" %>" value="<%= column %>|DESC" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0">
-                          <i class="bi bi-sort-down"></i>
-                        </div>
+                        <% [['ASC', 'ascending', 'bi-sort-up'], ['DESC', 'descending', 'bi-sort-down']].each do |direction, direction_name, icon| %>
+                          <% active = params["#{key}_sort_by"] == "#{column}|#{direction}" %>
+                          <button
+                            type="submit"
+                            name="<%= "#{key}_sort_by" %>"
+                            value="<%= column %>|<%= direction %>"
+                            class="btn btn-sm <%= active ? 'btn-primary' : 'btn-outline-primary' %>"
+                            aria-label="<%= I18n.t("lato.sort_#{direction_name}", column: strip_tags(column_label.to_s)) %>"
+                            aria-pressed="<%= active %>"
+                          ><i class="bi <%= icon %>" aria-hidden="true"></i></button>
+                        <% end %>
                       </div>
                     <% end %>
                   </div>
-                </th>
+                <% end %>
               <% end %>
             </tr>
           </thead>

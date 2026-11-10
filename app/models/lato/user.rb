@@ -17,6 +17,7 @@ module Lato
     validates :accepted_terms_and_conditions_version, presence: true
     validates :web3_address, uniqueness: true, allow_blank: true
     validates :webauthn_id, uniqueness: true, allow_blank: true
+    validate :validate_password_length, unless: -> { password.nil? }
 
     # Relations
     ##
@@ -174,16 +175,22 @@ module Lato
 
       self.web3_address = params[:web3_address]
 
-      user = Lato::User.find_by(web3_address: params[:web3_address].downcase)
+      user = Lato::User.find_by(web3_address: params[:web3_address].to_s.downcase)
       unless user
         errors.add(:web3_address, :not_correct)
+        return
+      end
+
+      # Missing or expired challenge message.
+      if params[:web3_nonce].blank?
+        errors.add(:base, :web3_address_invalid)
         return
       end
 
       signature_pubkey = Eth::Signature.personal_recover(params[:web3_nonce], params[:web3_signed_nonce])
       signature_address = Eth::Util.public_key_to_address signature_pubkey
       unless signature_address.to_s.downcase == params[:web3_address].downcase
-        errors.add(:web3_signed_nonce, :not_correct)
+        errors.add(:base, :web3_address_invalid)
         return
       end
 
@@ -339,6 +346,11 @@ module Lato
     def add_web3_connection(params)
       depends_on('eth')
 
+      if params[:web3_nonce].blank?
+        errors.add(:base, :web3_address_invalid)
+        return
+      end
+
       signature_pubkey = Eth::Signature.personal_recover(params[:web3_nonce], params[:web3_signed_nonce])
       signature_address = Eth::Util.public_key_to_address signature_pubkey
       unless signature_address.to_s.downcase == params[:web3_address].downcase
@@ -391,7 +403,8 @@ module Lato
 
       update(
         webauthn_id: Base64.strict_encode64(credential.raw_id),
-        webauthn_public_key: credential.public_key
+        webauthn_public_key: credential.public_key,
+        webauthn_sign_count: credential.sign_count.to_i
       )
     rescue JSON::ParserError, WebAuthn::Error => e
       Rails.logger.error(e)
@@ -423,11 +436,13 @@ module Lato
 
       credential = WebAuthn::Credential.from_get(parsed_payload)
 
+      # A counter that does not grow (raises SignCountVerificationError) reveals a cloned authenticator.
       credential.verify(
         encoded_challenge,
         public_key: webauthn_public_key,
-        sign_count: 0
+        sign_count: webauthn_sign_count.to_i
       )
+      update_column(:webauthn_sign_count, credential.sign_count.to_i)
 
       true
     rescue JSON::ParserError, WebAuthn::Error => e
@@ -440,28 +455,38 @@ module Lato
     def remove_webauthn_credential
       update(
         webauthn_id: nil,
-        webauthn_public_key: nil
+        webauthn_public_key: nil,
+        webauthn_sign_count: 0
       )
     end
 
     def generate_authenticator_secret
-      update(authenticator_secret: ROTP::Base32.random)
+      update(authenticator_secret: ROTP::Base32.random, authenticator_last_used_at: nil)
     end
 
     def remove_authenticator_secret
-      update(authenticator_secret: nil)
+      update(authenticator_secret: nil, authenticator_last_used_at: nil)
     end
 
     def authenticator(params)
       return false unless authenticator_enabled?
 
       totp = ROTP::TOTP.new(authenticator_secret)
-      result = totp.verify(params[:authenticator_code])
-      unless result
+      # after: rejects codes of an already used time step, so an observed code can not be replayed.
+      used_at = totp.verify(params[:authenticator_code].to_s, after: authenticator_last_used_at&.to_i, drift_behind: 15)
+      used_at = Time.at(used_at) if used_at
+
+      # Conditional update: of two concurrent requests with the same code only one can claim it.
+      claimed = used_at && self.class.where(id: id)
+        .where('authenticator_last_used_at IS NULL OR authenticator_last_used_at < ?', used_at)
+        .update_all(authenticator_last_used_at: used_at) == 1
+      unless claimed
         errors.add(:base, :authenticator_code_invalid)
         return
       end
 
+      self.authenticator_last_used_at = used_at
+      clear_attribute_change(:authenticator_last_used_at)
       true
     end
 
@@ -514,6 +539,11 @@ module Lato
     end
 
     private
+
+    def validate_password_length
+      minimum = Lato.config.auth_password_min_length.to_i
+      errors.add(:password, :too_short, count: minimum) if password.to_s.length < minimum
+    end
 
     def normalize_email(value)
       value.to_s.downcase.strip

@@ -39,7 +39,7 @@
                 <div class="card-body">
                   <div class="fs-2 mb-2 llm-ignore"><i class="bi bi-shield-lock"></i></div>
                   <h5 class="card-title">User Management</h5>
-                  <p class="card-text">Full authentication system with signin, signup, password recovery, email validation, Google Authenticator MFA, and ETH wallet connection.</p>
+                  <p class="card-text">Full authentication system with signin, signup, password recovery, email validation, Google Authenticator and WebAuthn (passkeys) MFA, and ETH wallet connection.</p>
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@
                 <div class="card-body">
                   <div class="fs-2 mb-2 llm-ignore"><i class="bi bi-rocket-takeoff"></i></div>
                   <h5 class="card-title">Modern Rails Features</h5>
-                  <p class="card-text">Ready to use with the latest Rails 7+ features like ESM import maps, Turbo and Stimulus. The front-end is responsive, mobile friendly and accessible.</p>
+                  <p class="card-text">Ready to use with Rails 8.1 (&gt;= 8.1.3.1, &lt; 8.2) features like ESM import maps, Turbo and Stimulus. The front-end is responsive and mobile friendly, with accessibility improvements in progress.</p>
                 </div>
               </div>
             </div>
@@ -192,13 +192,13 @@
               <p class="card-text mb-3">Add required dependencies to your application's Gemfile:</p>
               <div class="bg-dark p-3 rounded mb-4">
                 <pre class="text-light mb-0"><code># Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails" # NOTE: Probably already installed in default rails 7+ project
+gem "importmap-rails" # NOTE: Probably already installed in default Rails 8 project
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails" # NOTE: Probably already installed in default rails 7+ project
+gem "turbo-rails" # NOTE: Probably already installed in default Rails 8 project
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails" # NOTE: Probably already installed in default rails 7+ project
+gem "stimulus-rails" # NOTE: Probably already installed in default Rails 8 project
 
 # Use Sass to process CSS
 gem "sassc-rails"
@@ -206,6 +206,7 @@ gem "sassc-rails"
 # Use lato as application panel
 gem "lato"</code></pre>
               </div>
+              <p class="card-text mb-4">Lato stores rate limits and verification codes in <code>Rails.cache</code>: use a persistent cache shared across processes (Redis, Solid Cache, Memcached). Wallet login (Web3) also requires <code>gem "eth"</code> in your Gemfile.</p>
 
               <h5 class="mt-4 mb-3">Configure Asset Manifest</h5>
               <p class="card-text mb-3">If not already present, add <strong>app/assets/config/manifest.js</strong> file with the following content:</p>
@@ -264,6 +265,7 @@ end</code></pre>
   end
 end</code></pre>
               </div>
+              <p class="card-text mb-4">Lato ships translations for <code>it</code>, <code>en</code>, <code>fr</code> and <code>ro</code>. Any key can be overridden in your application locale files. Emails are available in Italian and English (other locales receive English).</p>
             </div>
           </div>
         </div>

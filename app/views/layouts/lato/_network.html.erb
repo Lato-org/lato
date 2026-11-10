@@ -1,4 +1,4 @@
-<div class="fixed-bottom p-3 d-none" data-controller="lato-network">
-  <span class="badge rounded-pill text-bg-danger fs-6 d-none" data-lato-network-target="offline">You are offline</span>
-  <span class="badge rounded-pill text-bg-success fs-6 d-none" data-lato-network-target="online">You are online</span>
+<div class="fixed-bottom p-3 d-none" data-controller="lato-network" role="status" aria-live="polite">
+  <span class="badge rounded-pill text-bg-danger fs-6 d-none" data-lato-network-target="offline"><%= I18n.t('lato.network_offline') %></span>
+  <span class="badge rounded-pill text-bg-success fs-6 d-none" data-lato-network-target="online"><%= I18n.t('lato.network_online') %></span>
 </div>

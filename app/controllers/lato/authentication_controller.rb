@@ -1,13 +1,13 @@
 module Lato
   class AuthenticationController < ApplicationController
-    before_action :limit_requests, only: %i[signin_action signup_action accept_invitation_action recover_password_action update_password_action verify_email_action authenticator_action webauthn_action]
-    before_action :not_authenticate_session, only: %i[signin signin_action signup signup_action accept_invitation accept_invitation_action]
+    before_action :limit_requests, only: %i[signin_action signup_action accept_invitation_action recover_password_action update_password_action verify_email_action authenticator_action webauthn_action web3_signin_action]
+    before_action :not_authenticate_session, only: %i[signin signin_action web3_signin web3_signin_action signup signup_action accept_invitation accept_invitation_action]
     before_action :authenticate_session, only: %i[signout signout_action]
 
     before_action :find_user, only: %i[verify_email verify_email_action]
     before_action :find_recover_password_user, only: %i[update_password update_password_action]
     before_action :find_invitation, only: %i[accept_invitation accept_invitation_action]
-    before_action :find_authentication_user, only: %i[authentication_method authentication_method_action webauthn webauthn_action]
+    before_action :find_authentication_user, only: %i[authentication_method authentication_method_action authenticator authenticator_action webauthn webauthn_action]
 
     before_action :lock_signup_if_disabled, only: %i[signup signup_action]
     before_action :lock_recover_password_if_disabled, only: %i[recover_password recover_password_action update_password update_password_action]
@@ -26,12 +26,15 @@ module Lato
 
     def signin_action
       @user = Lato::User.new
+      signin_params = params.require(:user).permit(:email, :password)
+      return if account_limit_reached?(signin_params[:email])
 
       respond_to do |format|
-        if @user.signin(params.require(:user).permit(:email, :password).merge(
+        if @user.signin(signin_params.merge(
           ip_address: request.remote_ip,
           user_agent: request.user_agent
         ))
+          account_limit_reset(signin_params[:email])
           redirect_path = determine_authentication_redirect(@user)
           if redirect_path
             # Second factor still pending: expose only where to continue, not user data.
@@ -43,6 +46,7 @@ module Lato
             format.json { render json: @user }
           end
         else
+          account_limit_track_failure(signin_params[:email])
           format.html { render :signin, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
@@ -51,7 +55,7 @@ module Lato
 
     def web3_signin
       @user = Lato::User.new
-      session[:web3_nonce] = SecureRandom.hex(32)
+      web3_message_generate('sign in')
     end
 
     def web3_signin_action
@@ -61,20 +65,18 @@ module Lato
         if @user.web3_signin(params.require(:user).permit(:web3_address, :web3_signed_nonce).merge(
           ip_address: request.remote_ip,
           user_agent: request.user_agent,
-          web3_nonce: session[:web3_nonce]
+          web3_nonce: web3_message_consume
         ))
-          session[:web3_nonce] = nil
           redirect_path = determine_authentication_redirect(@user)
           if redirect_path
             format.html { redirect_to redirect_path }
-            format.json { render json: @user }
+            format.json { render json: { redirect: redirect_path } }
           else
             session_create(@user.id)
             format.html { redirect_to lato.root_path }
             format.json { render json: @user }
           end
         else
-          session[:web3_nonce] = nil
           format.html { render :web3_signin, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
@@ -232,22 +234,19 @@ module Lato
     # Authenticator
     ##
 
-    def authenticator
-      @user = Lato::User.find_by_id(session[:authentication_user_id])
-      return respond_to_with_not_found unless @user
-    end
+    def authenticator; end
 
     def authenticator_action
-      @user = Lato::User.find_by_id(session[:authentication_user_id])
-
       respond_to do |format|
         if @user.authenticator(params.require(:user).permit(:authenticator_code))
+          account_limit_reset(authentication_limit_identifier)
           clear_authentication_session
           session_create(@user.id)
 
           format.html { redirect_to lato.root_path }
           format.json { render json: @user }
         else
+          track_authentication_failure
           format.html { render :authenticator, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
@@ -265,12 +264,14 @@ module Lato
     def webauthn_action
       respond_to do |format|
         if @user.webauthn_authentication(params.require(:user).permit(:webauthn_credential), session[:webauthn_challenge])
+          account_limit_reset(authentication_limit_identifier)
           clear_authentication_session
           session_create(@user.id)
 
           format.html { redirect_to lato.root_path }
           format.json { render json: @user }
         else
+          track_authentication_failure
           @options = @user.webauthn_authentication_options
           session[:webauthn_challenge] = @options.challenge
           format.html { render :webauthn, status: :unprocessable_entity }
@@ -305,9 +306,30 @@ module Lato
       respond_to_with_not_found unless @invitation
     end
 
+    # Pending second factor state lives in the session cookie: it expires and allows a few attempts only.
+    AUTHENTICATION_PENDING_LIFETIME = 10.minutes
+    AUTHENTICATION_PENDING_MAX_ATTEMPTS = 5
+
     def find_authentication_user
-      @user = Lato::User.find_by_id(session[:authentication_user_id])
-      respond_to_with_not_found unless @user
+      expired = session[:authentication_expires_at].to_i < Time.current.to_i
+      @user = Lato::User.find_by_id(session[:authentication_user_id]) unless expired
+      unless @user
+        clear_authentication_session
+        return respond_to_with_not_found
+      end
+
+      account_limit_reached?(authentication_limit_identifier)
+    end
+
+    def authentication_limit_identifier
+      "second_factor/#{@user.id}"
+    end
+
+    # Counted both in the session and per user in cache, so replaying an older cookie does not reset the budget.
+    def track_authentication_failure
+      account_limit_track_failure(authentication_limit_identifier)
+      session[:authentication_attempts] = session[:authentication_attempts].to_i + 1
+      clear_authentication_session if session[:authentication_attempts] >= AUTHENTICATION_PENDING_MAX_ATTEMPTS
     end
 
     def determine_authentication_redirect(user)
@@ -317,6 +339,8 @@ module Lato
       return nil unless authenticator_enabled || webauthn_enabled
 
       session[:authentication_user_id] = user.id
+      session[:authentication_expires_at] = AUTHENTICATION_PENDING_LIFETIME.from_now.to_i
+      session[:authentication_attempts] = 0
 
       if authenticator_enabled && webauthn_enabled
         lato.authentication_authentication_method_path
@@ -329,6 +353,8 @@ module Lato
 
     def clear_authentication_session
       session[:authentication_user_id] = nil
+      session[:authentication_expires_at] = nil
+      session[:authentication_attempts] = nil
       session[:authentication_method] = nil
       session[:webauthn_challenge] = nil
     end
@@ -372,35 +398,44 @@ module Lato
 
       hcaptcha_response = params["h-captcha-response"]
       if hcaptcha_response.blank?
-        @user.errors.add(:base, "hCaptcha response is missing")
-        respond_to do |format|
-          format.html { render render_key, status: :unprocessable_entity }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
-        return false
+        return respond_to_hcaptcha_error(render_key, I18n.t('lato.hcaptcha_missing'))
       end
 
-      require 'net/http'
-      require 'uri'
-      require 'json'
-      uri = URI.parse("https://hcaptcha.com/siteverify")
-      response = Net::HTTP.post_form(uri, {
-        "secret" => Lato.config.hcaptcha_secret,
-        "response" => hcaptcha_response,
-        "remoteip" => request.remote_ip
-      })
-      result = JSON.parse(response.body)
-      Rails.logger.info("[hCaptcha] Verification result: #{result}")
-      unless result["success"]
-        @user.errors.add(:base, "hCaptcha verification failed")
-        respond_to do |format|
-          format.html { render render_key, status: :unprocessable_entity }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
-        return false
+      unless hcaptcha_verified?(hcaptcha_response)
+        return respond_to_hcaptcha_error(render_key, I18n.t('lato.hcaptcha_failed'))
       end
 
       true
+    end
+
+    # Short timeouts: a slow hCaptcha must not hold server threads. Any network or parsing error counts as failure.
+    def hcaptcha_verified?(hcaptcha_response)
+      require 'net/http'
+      require 'json'
+
+      uri = URI.parse("https://hcaptcha.com/siteverify")
+      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 3, read_timeout: 5) do |http|
+        http.post(uri.path, URI.encode_www_form(
+          "secret" => Lato.config.hcaptcha_secret,
+          "response" => hcaptcha_response,
+          "remoteip" => request.remote_ip
+        ), "Content-Type" => "application/x-www-form-urlencoded")
+      end
+      result = JSON.parse(response.body)
+      Rails.logger.info("[hCaptcha] Verification success: #{result['success'].inspect}")
+      result["success"] == true
+    rescue StandardError => e
+      Rails.logger.error("[hCaptcha] Verification error: #{e.class}")
+      false
+    end
+
+    def respond_to_hcaptcha_error(render_key, message)
+      @user.errors.add(:base, message)
+      respond_to do |format|
+        format.html { render render_key, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+      false
     end
   end
 end

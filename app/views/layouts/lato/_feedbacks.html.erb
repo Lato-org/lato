@@ -1,11 +1,11 @@
 <div class="toast-container">
   <% if notice %>
     <div class="position-fixed end-0 bottom-0 p-3" style="z-index: 11;">
-      <div data-controller="lato-feedback" id="feedbackNotice" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+      <div data-controller="lato-feedback" id="feedbackNotice" class="toast hide" role="status" aria-live="polite" aria-atomic="true">
         <div class="toast-header">
-          <i class="bi bi-check-circle-fill text-success me-2"></i>
-          <strong class="me-auto"><%= I18n.t('lato.operation_completed') %></strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+          <strong class="me-auto"><%= I18n.t('lato.notice_title') %></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="<%= I18n.t('lato.close') %>"></button>
         </div>
         <div class="toast-body">
           <%= notice %>
@@ -16,11 +16,12 @@
 
   <% if alert %>
     <div class="position-fixed end-0 bottom-0 p-3" style="z-index: 11;">
-      <div data-controller="lato-feedback" id="feedbackAlert" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+      <%# Errors stay visible until dismissed: auto hiding gives no time to read them. %>
+      <div data-controller="lato-feedback" id="feedbackAlert" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
         <div class="toast-header">
-          <i class="bi bi-check-circle-fill text-danger me-2"></i>
-          <strong class="me-auto"><%= I18n.t('lato.operation_failed') %></strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          <i class="bi bi-exclamation-triangle-fill text-danger me-2" aria-hidden="true"></i>
+          <strong class="me-auto"><%= I18n.t('lato.alert_title') %></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="<%= I18n.t('lato.close') %>"></button>
         </div>
         <div class="toast-body">
           <%= alert %>

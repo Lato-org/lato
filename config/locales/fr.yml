@@ -2,6 +2,29 @@
 
 fr:
   lato:
+    close: "Fermer"
+    notice_title: "Notification"
+    alert_title: "Erreur"
+    sort_ascending: "Trier par %{column} croissant"
+    sort_descending: "Trier par %{column} d\u00E9croissant"
+    password_requirements: "Au moins %{count} caract\u00E8res."
+    too_many_requests: "Trop de requ\u00EAtes, veuillez attendre %{minutes} minutes avant de r\u00E9essayer."
+    hcaptcha_missing: "Veuillez compl\u00E9ter la v\u00E9rification captcha."
+    hcaptcha_failed: "La v\u00E9rification captcha a \u00E9chou\u00E9, veuillez r\u00E9essayer."
+    security_confirmation_required: "Confirmez votre mot de passe actuel et le second facteur activ\u00E9 pour continuer."
+    current_password: "Mot de passe actuel"
+    current_authenticator_code: "Code authenticator actuel"
+    security_key_confirmation_help: "Confirmez avec votre cl\u00E9 de s\u00E9curit\u00E9 enregistr\u00E9e lors de l'envoi."
+    confirm_authenticator_code: "Confirmer le code authenticator"
+    authenticator_qr_code_alt: "QR code de configuration de l'authenticator"
+    authenticator_manual_key: "Ou saisissez cette cl\u00E9 manuellement dans votre application authenticator"
+    connecting: "Connexion en cours..."
+    back_to_account: "Retour \u00E0 votre compte"
+    network_offline: "Vous \u00EAtes hors ligne"
+    network_online: "Vous \u00EAtes en ligne"
+    toggle_sidebar: "Afficher/masquer la barre lat\u00E9rale"
+    skip_to_content: "Aller au contenu principal"
+    copied: "Copi\u00E9 dans le presse-papiers"
     account: Compte
     signout: Déconnexion
     signin: Connexion
@@ -173,8 +196,14 @@ fr:
               inclusion: non acceptées
             web3_address:
               not_correct: incorrect
+        lato/operation:
+          attributes:
+            base:
+              start_error: "Impossible de lancer le job"
         lato/invitation:
           attributes:
+            email:
+              taken: "d\u00E9j\u00E0 utilis\u00E9e par un autre utilisateur"
             base:
               already_accepted: Invitation déjà acceptée par l'utilisateur
               email_sending_error: Impossible d'envoyer l'e-mail

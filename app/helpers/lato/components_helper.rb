@@ -106,13 +106,37 @@ module Lato
       # setup classes
       options[:class] ||= []
       options[:class].push(classes)
-      options[:class].push('is-invalid') if form.object && form.object.errors[key] && form.object.errors[key].any?
+      if _lato_form_errors?(form, key)
+        options[:class].push('is-invalid')
+        options[:aria] ||= {}
+        options[:aria][:invalid] = true
+        options[:aria][:describedby] = [options[:aria][:describedby], _lato_form_feedback_id(form, key)].compact.join(' ')
+      end
 
       # setup stimulus
       options[:data] ||= {}
       options[:data][:action] ||= ''
       options[:data][:action] += " #{action_change_event}->lato-form#onInputChange"
       options[:data][:lato_form_target] = 'input'
+    end
+
+    def _lato_form_errors?(form, key)
+      form.object.respond_to?(:errors) && form.object.errors[key].any?
+    end
+
+    def _lato_form_feedback_id(form, key)
+      form.field_id(key, :feedback)
+    end
+
+    # Inline error message linked to the input through aria-describedby.
+    def _lato_form_input_feedback(form, key)
+      return ''.html_safe unless _lato_form_errors?(form, key)
+
+      content_tag :div, form.object.errors[key].to_sentence, id: _lato_form_feedback_id(form, key), class: 'invalid-feedback'
+    end
+
+    def _lato_form_input_with_feedback(form, key)
+      yield + _lato_form_input_feedback(form, key)
     end
 
     def lato_form_notices(options = {})
@@ -134,6 +158,7 @@ module Lato
       options[:class] ||= []
       options[:class] += %w[alert alert-danger]
       options[:class] += %w[alert-dismissible fade show] unless options[:fixed]
+      options[:role] ||= 'alert'
 
       errors_list = content_tag(:ul, class: %w[mb-0 ps-3]) do
         instance.errors.collect do |error|
@@ -158,48 +183,48 @@ module Lato
     def lato_form_item_input_text(form, key, options = {})
       _lato_form_input_options(form, key, options, :keyup, 'form-control')
 
-      form.text_field key, options
+      _lato_form_input_with_feedback(form, key) { form.text_field key, options }
     end
 
     def lato_form_item_input_number(form, key, options = {})
       _lato_form_input_options(form, key, options, :keyup, 'form-control')
 
-      form.number_field key, options
+      _lato_form_input_with_feedback(form, key) { form.number_field key, options }
     end
 
     def lato_form_item_input_email(form, key, options = {})
       _lato_form_input_options(form, key, options, :keyup, 'form-control')
 
-      form.email_field key, options
+      _lato_form_input_with_feedback(form, key) { form.email_field key, options }
     end
 
     def lato_form_item_input_password(form, key, options = {})
       _lato_form_input_options(form, key, options, :keyup, 'form-control')
 
-      form.password_field key, options
+      _lato_form_input_with_feedback(form, key) { form.password_field key, options }
     end
 
     def lato_form_item_input_check(form, key, label, options = {})
       _lato_form_input_options(form, key, options, :change, 'form-check-input')
 
-      # TO-DO: Trovare il modo di calcolare l'id dato da rails a check_input_tag e metterlo nell'attributo :for di check_label_tag
-
+      # The label is escaped unless the caller passes an html_safe string (e.g. a translation with a trusted link).
       content_tag :div, class: 'form-check' do
         concat form.check_box(key, options)
-        concat label_tag(key, raw(label), class: 'form-check-label')
+        concat form.label(key, label, class: 'form-check-label', for: options[:id] || form.field_id(key))
+        concat _lato_form_input_feedback(form, key)
       end
     end
 
     def lato_form_item_input_select(form, key, select_options = [], options = {})
       _lato_form_input_options(form, key, options, :change, 'form-control')
 
-      form.select key, select_options, {}, options
+      _lato_form_input_with_feedback(form, key) { form.select key, select_options, {}, options }
     end
 
     def lato_form_item_input_file(form, key, options = {})
       _lato_form_input_options(form, key, options, :change, 'form-control')
 
-      form.file_field key, options
+      _lato_form_input_with_feedback(form, key) { form.file_field key, options }
     end
 
     def lato_form_item_input_file_dropzone(form, key, options = {})
@@ -211,25 +236,25 @@ module Lato
     def lato_form_item_input_textarea(form, key, options = {})
       _lato_form_input_options(form, key, options, :keyup, 'form-control')
 
-      form.text_area key, options
+      _lato_form_input_with_feedback(form, key) { form.text_area key, options }
     end
 
     def lato_form_item_input_date(form, key, options = {})
       _lato_form_input_options(form, key, options, :change, 'form-control')
 
-      form.date_field key, options
+      _lato_form_input_with_feedback(form, key) { form.date_field key, options }
     end
 
     def lato_form_item_input_datetime(form, key, options = {})
       _lato_form_input_options(form, key, options, :change, 'form-control')
 
-      form.datetime_field key, options
+      _lato_form_input_with_feedback(form, key) { form.datetime_field key, options }
     end
 
     def lato_form_item_input_time(form, key, options = {})
       _lato_form_input_options(form, key, options, :change, 'form-control')
 
-      form.time_field key, options
+      _lato_form_input_with_feedback(form, key) { form.time_field key, options }
     end
 
     def lato_form_item_input_color(form, key, options = {})
@@ -237,7 +262,7 @@ module Lato
       options[:class] ||= []
       options[:class].push('lato-form-item-input-color')
       
-      form.color_field key, options
+      _lato_form_input_with_feedback(form, key) { form.color_field key, options }
     end
 
     def lato_form_item_input_list(form, key, partial, partial_params = {})
@@ -270,7 +295,8 @@ module Lato
       image_url ||= image_path('lato/user-150x150.jpg')
 
       content_tag :div, class: 'd-flex align-items-center' do
-        concat content_tag :div, '', class: 'border border-2 rounded-circle me-2', style: "background-position: center; background-size: cover; background-repeat: no-repeat; background-image: url(#{image_url}); width: 30px; height: 30px;"
+        # An img attribute is escaped, while a url() inside inline CSS could be broken out of by a crafted image URL.
+        concat image_tag(image_url, alt: '', width: 30, height: 30, class: 'border border-2 rounded-circle me-2', style: 'object-fit: cover;')
         concat content_tag :small, label, class: 'text-black'
       end
     end

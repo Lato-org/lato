@@ -30,6 +30,7 @@ export default class extends Controller {
   // This event is used to remove the Bootstrap invalid class from the input when the user starts typing.
   onInputChange(e) {
     e.target.classList.remove('is-invalid')
+    e.target.removeAttribute('aria-invalid')
   }
 
   // NOTE: You can use this method to submit the form from outside the form or from custom DOM actions.

@@ -35,14 +35,7 @@ module Lato
         if collection.respond_to?(:lato_index_search)
           collection = collection.lato_index_search(search)
         else
-          query = @_lato_index[key][:searchable_columns].map do |key|
-            if collection.column_for_attribute(key).type == :string || collection.column_for_attribute(key).type == :text
-              "LOWER(#{key}) LIKE :search"
-            else
-              "CAST(#{key} AS TEXT) LIKE :search"
-            end
-          end
-          collection = collection.where(query.join(' OR '), search: "%#{search.downcase.strip}%")
+          collection = collection.where(lato_index_search_condition(collection, @_lato_index[key][:searchable_columns], search))
         end
       end
 
@@ -63,6 +56,25 @@ module Lato
     end
 
     private
+
+    # Built with Arel so columns are quoted and the CAST type fits the adapter (MySQL has no CAST AS TEXT).
+    # LIKE wildcards typed by the user are escaped, so "%" and "_" match literally.
+    def lato_index_search_condition(collection, columns, search)
+      escape_character = '!'
+      pattern = "%#{ActiveRecord::Base.sanitize_sql_like(search.downcase.strip, escape_character)}%"
+      cast_type = collection.connection.adapter_name.match?(/mysql|trilogy/i) ? 'CHAR' : 'TEXT'
+      table = collection.arel_table
+
+      columns.map do |column|
+        attribute = table[column]
+        value = if %i[string text].include?(collection.column_for_attribute(column).type)
+          Arel::Nodes::NamedFunction.new('LOWER', [attribute])
+        else
+          Arel::Nodes::NamedFunction.new('CAST', [attribute.as(Arel.sql(cast_type))])
+        end
+        value.matches(pattern, escape_character)
+      end.reduce(:or)
+    end
 
     def parse_lato_index_sort_by(sort_by, sortable_columns)
       sort_by_column, sort_by_order = sort_by.to_s.split("|", 2)

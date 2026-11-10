@@ -11,12 +11,12 @@ user ||= Lato::User.new
     
     <div class="mb-3">
       <%= lato_form_item_label form, :email %>
-      <%= lato_form_item_input_email form, :email, required: true %>
+      <%= lato_form_item_input_email form, :email, required: true, autocomplete: 'username' %>
     </div>
 
     <div class="mb-3">
       <%= lato_form_item_label form, :password %>
-      <%= lato_form_item_input_password form, :password, required: true %>
+      <%= lato_form_item_input_password form, :password, required: true, autocomplete: 'current-password' %>
     </div>
 
     <div>

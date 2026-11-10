@@ -138,6 +138,28 @@ Here is the complete list of overridable layout partials:
 <%= link_to 'Source code: partials directory', 'https://github.com/lato-org/lato/tree/main/app/views/layouts/lato', target: '_blank', class: 'llm-ignore' %>
 </p>
 
+<h2>Extending the User Model</h2>
+
+<p>
+<code>rails lato:install:application</code> copies the <code>LatoUserApplication</code> concern to <b>app/models/concerns/lato_user_application.rb</b> (only if it does not exist yet).<br>
+The concern is included in <code>Lato::User</code>: use it to add relations, scopes and methods to the user model of your application.
+</p>
+
+<pre>
+module LatoUserApplication
+  extend ActiveSupport::Concern
+
+  included do
+    has_many :products, dependent: :destroy
+    scope :with_products, -> { joins(:products).distinct }
+  end
+
+  def display_name
+    "#{first_name} #{last_name}".strip.presence || email
+  end
+end
+</pre>
+
 <h2>Page CSS Customization</h2>
 
 <p>

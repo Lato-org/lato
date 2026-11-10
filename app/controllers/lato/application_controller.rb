@@ -46,9 +46,33 @@ module Lato
 
     def respond_to_redirect_same_page(notice = nil)
       respond_to do |format|
-        format.html { redirect_to request.referer, notice: notice }
+        # Never follow a Referer pointing to another host (open redirect).
+        format.html { redirect_back_or_to lato.root_path, allow_other_host: false, notice: notice }
         format.json { render json: {} }
       end
+    end
+
+    # Web3 challenge: the signed text binds the signature to this host, a purpose and a short lifetime,
+    # so a signature collected by another site can not be replayed here.
+    WEB3_MESSAGE_LIFETIME = 5.minutes
+
+    def web3_message_generate(purpose)
+      session[:web3_nonce] = [
+        "#{request.host} wants you to #{purpose} with your Ethereum account.",
+        "",
+        "URI: #{request.base_url}",
+        "Nonce: #{SecureRandom.hex(16)}",
+        "Issued At: #{Time.current.utc.iso8601}"
+      ].join("\n")
+      session[:web3_nonce_expires_at] = WEB3_MESSAGE_LIFETIME.from_now.to_i
+      session[:web3_nonce]
+    end
+
+    # Single use: the message is removed from the session whatever the outcome.
+    def web3_message_consume
+      message = session.delete(:web3_nonce)
+      expires_at = session.delete(:web3_nonce_expires_at).to_i
+      message if message.present? && Time.current.to_i <= expires_at
     end
 
     def respond_to_with_offline

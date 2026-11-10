@@ -73,9 +73,13 @@ module Lato
 
     def start
       begin
-        active_job_name.constantize.perform_later(active_job_input.merge(_operation_id: id))
+        # Only operation jobs can be started: active_job_name may come from request params in host apps.
+        job_class = active_job_name.to_s.safe_constantize
+        raise ArgumentError, "#{active_job_name} is not a Lato::ApplicationJob" unless job_class.is_a?(Class) && job_class < Lato::ApplicationJob
+
+        job_class.perform_later(active_job_input.merge(_operation_id: id))
       rescue StandardError
-        errors.add(:base, 'Impossibile eseguire il job')
+        errors.add(:base, :start_error)
         return false
       end
 

@@ -9,6 +9,7 @@ unless has_children
     class: ['nav-link position-relative', (active ? 'active' : 'link-dark')].join(' '),
   }
   link_to_options[:target] = '_blank' if external
+  link_to_options[:aria] = { current: 'page' } if active
 end
 
 %>
@@ -28,7 +29,7 @@ end
         <ul class="list-unstyled mt-2 border-start border-1 ps-2">
           <% children.each do |child| %>
             <li class="py-1">
-              <%= link_to child[:path], class: ['nav-link py-1', (active == child[:key] ? 'active' : 'link-dark')].join(' ') do %>
+              <%= link_to child[:path], class: ['nav-link py-1', (active == child[:key] ? 'active' : 'link-dark')].join(' '), aria: { current: ('page' if active == child[:key]) } do %>
                 <%= child[:label] %>
               <% end %>
             </li>
