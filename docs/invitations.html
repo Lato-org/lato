@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="s2ryzSheSuaLgGrwWdSUfDhsgoxN7g9s-9O2OwUm6JPqi4rKF6vPbQv3yGS9fS1Lif_4_ijuAovPV-OhIv5tJA">
+<meta name="csrf-token" content="8gJKim72b5dpkAeKXX6JDgBeKVwdprfjOmaW8G4Uz6FmiGWR2-FhDTzw87v5UEPl7VZCcsP8dBT7Z8V8qjb82w">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-d657e8de054c36e3cfea15316e2845c2b502501054890c55be955f088269b92a.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -348,7 +348,7 @@ Through an invitation, it is possible to:
 
 <turbo-frame id="tutorial_form-invitation">
   <form data-turbo-frame="_top" data-controller="lato-form" action="/invitations/create_invite_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="authenticity_token" value="UNEY_BM18gwLgXzN6mk5jMa-3vpKMJzqQzH_odjLFCEQRlQduG1rOZ3HTc2zzswC4tEyTJg-bsKmhCTIs9vtag">
+<input type="hidden" name="authenticity_token" value="ZiQQsYCdsaBRiUzg_8qzxcPH506YFkimxiAk5--SZY-95DM6Q8IBwaoKdgdqe3T8gXX4yUsj2VAOShwfyGoJfw">
     
     
 
@@ -420,7 +420,7 @@ Through an invitation, it is possible to:
 Here are some examples of the operations you can perform with invitations:
 </p>
 
-<pre>
+<pre tabindex="0">
 # creating an invitation (and automatically sending the invite email)
 @invitation = Lato::Invitation.create(params.require(:invitation).permit(:email).merge(inviter_lato_user_id: @session.user_id))
 
@@ -432,7 +432,7 @@ Here are some examples of the operations you can perform with invitations:
 </pre>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Notes</h4>
+  <h2 class="h4 alert-heading">Notes</h2>
   <p>
   <b>Auto-email on creation:</b> When an invitation is created, the invite email is automatically sent via an <code>after_create</code> hook. You do not need to call <code>send_invite</code> manually on creation.
   </p>
@@ -450,13 +450,13 @@ Here are some examples of the operations you can perform with invitations:
   </p>
 </div>
 
-<h3>Checking Invitation Status</h3>
+<h2 class="h3">Checking Invitation Status</h2>
 
 <p>
 The <code>Lato::Invitation</code> model provides methods to check invitation status:
 </p>
 
-<pre>
+<pre tabindex="0">
 @invitation = Lato::Invitation.find(id)
 
 # Check if the invitation has been accepted
@@ -479,7 +479,7 @@ The <code>Lato::Invitation</code> model provides methods to check invitation sta
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.26.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.26.1 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

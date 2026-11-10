@@ -27,6 +27,15 @@ class LatoIndexSecurityTest < ActionDispatch::IntegrationTest
     assert_select "th[aria-sort=ascending]", count: 1
   end
 
+  test "pagination landmark has a collection specific label" do
+    30.times { |i| Product.create!(code: "P#{i}", status: :created, lato_user: @user) }
+    get "/products"
+
+    assert_response :success
+    assert_select "nav.pagination[aria-label=?]", I18n.t("lato.pagination_label", name: Product.model_name.human(count: 2))
+    assert_select "nav[aria-label=pager]", count: 0
+  end
+
   test "search form does not reflect routing params as hidden fields" do
     get "/products"
 

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="KTR-b-A8HBKdJfVVg2UINPS_gc2G6MkihZjukTi3pFkIUfYYQalPfHxvcOVCDxCoknZv_uBeXbExFlvD8FOHBA">
+<meta name="csrf-token" content="w55-jHM4Q752hX9dlmbOCE8DDcccViXM0Toxjcj0NUSg6OjXV-zCUBI5U225RMVuqh633e8OwE58oSHkqpd3nQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-d657e8de054c36e3cfea15316e2845c2b502501054890c55be955f088269b92a.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -357,7 +357,7 @@ Parameters:<br>
 - <i>&amp;block</i>: block of HTML to render inside the menu item.
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_navbar_nav_item :account, lato.account_path do %&gt;
   Account
 &lt;% end %&gt;
@@ -372,7 +372,7 @@ Parameters:<br>
   - <i>flag</i> (default: true): if true, displays flag icons next to locale names.
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_navbar_nav_locales_item %&gt;
 &lt;%= lato_navbar_nav_locales_item flag: false %&gt;
 </pre>
@@ -405,7 +405,7 @@ There are also some extra parameters to customize the menu item:<br>
 - <i>children</i> (default: nil): an array of hashes representing submenu items. Each hash should contain the keys <code>:key</code>, <code>:label</code>, and <code>:path</code>. If this parameter is provided, the menu item will have a collapsible submenu.
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_sidebar_nav_item :account, lato.account_path do %&gt;
   Account
 &lt;% end %&gt;
@@ -428,7 +428,7 @@ There are also some extra parameters to customize the menu item:<br>
 
 <h3>Page head</h3>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_page_head 'Page title' %&gt;
 </pre>
 
@@ -441,7 +441,7 @@ There are also some extra parameters to customize the menu item:<br>
 </div>
 </div>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_page_head 'Page title', [{ label: 'Title 1', path: main_app.page_path }, { label: 'Title 2' }] %&gt;
 </pre>
 
@@ -462,7 +462,7 @@ There are also some extra parameters to customize the menu item:<br>
 </div>
 </div>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_page_head 'Page title' do %&gt;
   &lt;p class="lead"&gt;Welcome to this page&lt;/p&gt;
 &lt;% end %&gt;
@@ -480,11 +480,11 @@ There are also some extra parameters to customize the menu item:<br>
 </div>
 
 <div class="alert alert-warning mt-3">
-  <h4 class="alert-heading">Title escaping</h4>
+  <h2 class="h4 alert-heading">Title escaping</h2>
   <p>
   The page head title is HTML-escaped. To render HTML in the title, pass an <code>html_safe</code> string and make sure it never contains user data:
   </p>
-<pre>
+<pre tabindex="0">
 &lt;%= lato_page_head safe_join(['Orders ', content_tag(:small, 'beta')]) %&gt;
 </pre>
 </div>
@@ -538,7 +538,7 @@ Below is a list of available components with usage examples:
 </ul>
 
 
-<pre>
+<pre tabindex="0">
 &lt;%
 
 user ||= @session.user
@@ -647,7 +647,7 @@ user ||= @session.user
 
 <turbo-frame id="tutorial_form-example">
   <form data-turbo-frame="_self" data-controller="lato-form" enctype="multipart/form-data" action="/components/update_user_action" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="NCoOtsypH4CKaqdZKTEANrnNFbA1Fph_KleQ5KdvngmccOzmF5IsqY6K8wpz8vl37dXS9FwGKvCWgbmbw07PIQ">
+<input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="KZAAO38SOLOLZ40689iZeG3sr0w9G1bXRJN9AFD1n8pYDzPuLIEKerC3eukyPA5NcqLVkfHS7BY5Y4PfGh_gpw">
     
     
 
@@ -768,7 +768,7 @@ Parameters:<br>
 The model must declare the attachment:
 </p>
 
-<pre>
+<pre tabindex="0">
 class Product &lt; ApplicationRecord
   has_one_attached :signature
 end
@@ -778,7 +778,7 @@ end
 Usage in a form:
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;div class="mb-3"&gt;
   &lt;%= lato_form_item_label form, :signature %&gt;
   &lt;%= lato_form_item_input_signature form, :signature %&gt;
@@ -821,7 +821,7 @@ The <code>lato_form_item_input_list</code> component requires three parameters:<
   Other hidden fields (such as the item ID) and the remove button are automatically handled by the component.
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_form_item_input_list(form, :product_items, 'products/input_list_product_item') %&gt;
 </pre>
 
@@ -842,7 +842,7 @@ The <code>lato_form_item_input_list</code> component requires three parameters:<
 The <code>lato_data_badge</code> component allows easy rendering of badges with different styles.
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_data_badge "badge primary", "primary" %&gt;
 &lt;%= lato_data_badge "badge secondary", "secondary" %&gt;
 &lt;%= lato_data_badge "badge info", "info" %&gt;
@@ -854,14 +854,14 @@ The <code>lato_data_badge</code> component allows easy rendering of badges with 
 </pre>
 
 <div class="example bg-light p-3 mb-3">
-<span class="badge rounded-pill bg-primary">badge primary</span>
-<span class="badge rounded-pill bg-secondary">badge secondary</span>
-<span class="badge rounded-pill bg-info">badge info</span>
-<span class="badge rounded-pill bg-success">badge success</span>
-<span class="badge rounded-pill bg-warning">badge warning</span>
-<span class="badge rounded-pill bg-danger">badge danger</span>
-<span class="badge rounded-pill bg-light">badge light</span>
-<span class="badge rounded-pill bg-dark">badge dark</span>
+<span class="badge rounded-pill text-bg-primary">badge primary</span>
+<span class="badge rounded-pill text-bg-secondary">badge secondary</span>
+<span class="badge rounded-pill text-bg-info">badge info</span>
+<span class="badge rounded-pill text-bg-success">badge success</span>
+<span class="badge rounded-pill text-bg-warning">badge warning</span>
+<span class="badge rounded-pill text-bg-danger">badge danger</span>
+<span class="badge rounded-pill text-bg-light">badge light</span>
+<span class="badge rounded-pill text-bg-dark">badge dark</span>
 </div>
 
 <h3>Data user</h3>
@@ -870,7 +870,7 @@ The <code>lato_data_badge</code> component allows easy rendering of badges with 
 The <code>lato_data_user</code> component allows easy rendering of user information with avatar and full name.
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_data_user("Mr. Wolf") %&gt;
 &lt;%= lato_data_user("Ms. White", "https://i.pravatar.cc/40?img=5") %&gt;
 </pre>
@@ -899,7 +899,7 @@ The <code>lato_index</code> component allows easy visualization of database reco
 The simplest way to use the component is to pass it an <code>ActiveRecord</code> collection:
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index Product.all.limit(5) %&gt;
 </pre>
 
@@ -967,7 +967,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -992,7 +992,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1017,7 +1017,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1042,7 +1042,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1067,7 +1067,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1099,7 +1099,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
 Columns can be customized using the <code>:columns</code> parameter:
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index Product.all.limit(5), columns: %i[id code status] %&gt;
 </pre>
 
@@ -1140,7 +1140,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     S9337696Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
               </tr>
               <tr>
@@ -1151,7 +1151,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     T0052098A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
               </tr>
               <tr>
@@ -1162,7 +1162,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     S6785040H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
               </tr>
               <tr>
@@ -1173,7 +1173,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     S6824314I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
               </tr>
               <tr>
@@ -1184,7 +1184,7 @@ Columns can be customized using the <code>:columns</code> parameter:
                     S6539172D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
               </tr>
           </tbody>
@@ -1213,7 +1213,7 @@ Columns can be customized using the <code>:columns</code> parameter:
   Column titles can be customized using Rails translation files.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 en:
   activerecord:
     attributes:
@@ -1230,7 +1230,7 @@ You can customize column content by creating helper methods with the format <cod
 For example, to customize the output of the :lato_user_id column, define the following helper in <code>ProductsHelper</code>:
 </p>
 
-<pre>
+<pre tabindex="0">
 class ProductsHelper
   def product_lato_user_id(product)
     product.lato_user.full_name
@@ -1245,7 +1245,7 @@ To add custom columns, declare a method in the model that provides the value.<br
 For example, after adding a <code>lifetime</code> method to the <code>Product</code> model, you can use the <code>:lifetime</code> column:
 </p>
 
-<pre>
+<pre tabindex="0">
 class Product &lt; ApplicationRecord
   def lifetime
     Time.now - created_at
@@ -1253,7 +1253,7 @@ class Product &lt; ApplicationRecord
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 class ProductsHelper
   def product_lifetime(product)
     Time.at(product.lifetime).utc.strftime('%H h %M m')
@@ -1261,7 +1261,7 @@ class ProductsHelper
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime] %&gt;
 </pre>
 
@@ -1306,10 +1306,10 @@ end
                     S9337696Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
               </tr>
               <tr>
@@ -1320,10 +1320,10 @@ end
                     T0052098A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
               </tr>
               <tr>
@@ -1334,10 +1334,10 @@ end
                     S6785040H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
               </tr>
               <tr>
@@ -1348,10 +1348,10 @@ end
                     S6824314I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
               </tr>
               <tr>
@@ -1362,10 +1362,10 @@ end
                     S6539172D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
               </tr>
           </tbody>
@@ -1396,7 +1396,7 @@ end
   <p>
   To add columns that don't map to real attributes, use <code>attr_accessor :column_name</code> instead of defining a method in the model:
   </p>
-<pre>
+<pre tabindex="0">
 class Product &lt; ApplicationRecord
   attr_accessor :lifetime
 end
@@ -1405,7 +1405,7 @@ end
 
 <h4>Adding actions</h4>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index Product.all.limit(5), custom_actions: {
     create: {
       path: products_create_path,
@@ -1489,7 +1489,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1514,7 +1514,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1539,7 +1539,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1564,7 +1564,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1589,7 +1589,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1626,7 +1626,7 @@ end
 
 <h4>Adding in-page actions</h4>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index Product.all.limit(5), custom_actions: {
     create: {
       path: products_create_path,
@@ -1711,7 +1711,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1736,7 +1736,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1761,7 +1761,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1786,7 +1786,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1811,7 +1811,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -1851,7 +1851,7 @@ You can also add a dropdown menu of actions using the <code>:dropdown_actions</c
 This renders a button with a dropdown menu containing a list of actions.
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index Product.all.limit(5), dropdown_actions: {
     icon: 'bi bi-three-dots-vertical',
     actions: [
@@ -1868,7 +1868,7 @@ Row-specific actions can be added through custom columns (as shown above). <code
 These actions can also be opened in-page via overlays using <code>data-lato-index-target="action"</code> and <code>data-turbo-frame="turbo-frame-ID"</code>.
 </p>
 
-<pre>
+<pre tabindex="0">
 class ProductsHelper
   def product_actions(product)
     content_tag(:div, class: 'btn-group btn-group-sm') do
@@ -1883,7 +1883,7 @@ class ProductsHelper
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %&gt;
 </pre>
 
@@ -1932,10 +1932,10 @@ end
                     S9337696Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1951,10 +1951,10 @@ end
                     T0052098A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1970,10 +1970,10 @@ end
                     S6785040H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -1989,10 +1989,10 @@ end
                     S6824314I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -2008,10 +2008,10 @@ end
                     S6539172D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lifetime">
-                    05 h 26 m
+                    06 h 08 m
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-actions">
                     <div class="btn-group btn-group-sm">
@@ -2045,7 +2045,7 @@ end
   Instead of using per-model helper methods (like <code>product_lato_user_id</code>), you can also override column rendering globally by defining <code>lato_index_dynamic_label</code> and <code>lato_index_dynamic_value</code> methods in your <code>ApplicationHelper</code>:<br>
   These methods receive a hash with <code>:column</code>, <code>:model_name</code>, <code>:record</code>, and <code>:value</code> keys, allowing you to centralize custom column rendering logic.
   </p>
-<pre>
+<pre tabindex="0">
 module ApplicationHelper
   def lato_index_dynamic_label(params = {})
     # Return a custom label for specific columns
@@ -2070,13 +2070,13 @@ end
 To make the index fully interactive, use the <code>lato_index_collection</code> function from the <code>Lato::Componentable</code> concern in the controller.
 </p>
 
-<pre>
+<pre tabindex="0">
 def index
   @products = lato_index_collection(Product.all, pagination: true)
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index @products %&gt;
 </pre>
 
@@ -2144,7 +2144,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2169,7 +2169,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2194,7 +2194,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2219,7 +2219,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2244,7 +2244,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2269,7 +2269,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2294,7 +2294,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2319,7 +2319,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2344,7 +2344,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2369,7 +2369,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2394,7 +2394,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2419,7 +2419,7 @@ end
                     S6824314I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-05-13 05:41:09 UTC
@@ -2444,7 +2444,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2469,7 +2469,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2494,7 +2494,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2519,7 +2519,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2544,7 +2544,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2569,7 +2569,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2594,7 +2594,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2619,7 +2619,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2644,7 +2644,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2669,7 +2669,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2694,7 +2694,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2719,7 +2719,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2744,7 +2744,7 @@ end
                      - 
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-updated_at">
                     2026-01-28 08:17:48 UTC
@@ -2755,7 +2755,7 @@ end
             <tr>
               <td colspan="7">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>  <nav class="pagination" role="navigation" aria-label="pager">
+                    <div>  <nav class="pagination" role="navigation" aria-label="Pagination: Products">
     
     
         <span class="page current">
@@ -2800,7 +2800,7 @@ end
 
 <h4>Customizing columns</h4>
 
-<pre>
+<pre tabindex="0">
 def index
   @products_columns = lato_index_collection(
     Product.all,
@@ -2810,7 +2810,7 @@ def index
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index @products_columns %&gt;
 </pre>
 
@@ -2848,7 +2848,7 @@ end
                     S9337696Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     1
@@ -2859,7 +2859,7 @@ end
                     T0052098A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     2
@@ -2870,7 +2870,7 @@ end
                     S6785040H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     3
@@ -2881,7 +2881,7 @@ end
                     S6824314I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     4
@@ -2892,7 +2892,7 @@ end
                     S6539172D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     5
@@ -2903,7 +2903,7 @@ end
                     S7372180F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     6
@@ -2914,7 +2914,7 @@ end
                     S6777963J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     7
@@ -2925,7 +2925,7 @@ end
                     S7095994A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     8
@@ -2936,7 +2936,7 @@ end
                     S9099670C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     9
@@ -2947,7 +2947,7 @@ end
                     S6197945Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     10
@@ -2958,7 +2958,7 @@ end
                     S9962322E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     11
@@ -2969,7 +2969,7 @@ end
                     S6176883A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     12
@@ -2980,7 +2980,7 @@ end
                     S7935518F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     13
@@ -2991,7 +2991,7 @@ end
                     T0770719Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     14
@@ -3002,7 +3002,7 @@ end
                     S7377088B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     15
@@ -3013,7 +3013,7 @@ end
                     S7796849J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     16
@@ -3024,7 +3024,7 @@ end
                     S8122192H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     17
@@ -3035,7 +3035,7 @@ end
                     S6376764F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     18
@@ -3046,7 +3046,7 @@ end
                     T0120571J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     19
@@ -3057,7 +3057,7 @@ end
                     T0724637J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     20
@@ -3068,7 +3068,7 @@ end
                     S9314416C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     21
@@ -3079,7 +3079,7 @@ end
                     S9226151D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     22
@@ -3090,7 +3090,7 @@ end
                     S7321057G
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     23
@@ -3101,7 +3101,7 @@ end
                     S8819727E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     24
@@ -3112,7 +3112,7 @@ end
                     S9329523D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     25
@@ -3123,7 +3123,7 @@ end
             <tr>
               <td colspan="3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>  <nav class="pagination" role="navigation" aria-label="pager">
+                    <div>  <nav class="pagination" role="navigation" aria-label="Pagination: Products columns">
     
     
         <span class="page current">
@@ -3172,7 +3172,7 @@ end
 Users can choose how many items to display per page using a selector enabled via the <code>:pagination_options</code> parameter in <code>lato_index_collection</code>.
 </p>
 
-<pre>
+<pre tabindex="0">
 def index
   @products_pagination_options = lato_index_collection(
     Product.all,
@@ -3183,7 +3183,7 @@ def index
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index @products_pagination_options, pagination_options: [10,20,50,100] %&gt;
 </pre>
 
@@ -3221,7 +3221,7 @@ end
                     S9337696Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     1
@@ -3232,7 +3232,7 @@ end
                     T0052098A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     2
@@ -3243,7 +3243,7 @@ end
                     S6785040H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     3
@@ -3254,7 +3254,7 @@ end
                     S6824314I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     4
@@ -3265,7 +3265,7 @@ end
                     S6539172D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     5
@@ -3276,7 +3276,7 @@ end
                     S7372180F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     6
@@ -3287,7 +3287,7 @@ end
                     S6777963J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     7
@@ -3298,7 +3298,7 @@ end
                     S7095994A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     8
@@ -3309,7 +3309,7 @@ end
                     S9099670C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     9
@@ -3320,7 +3320,7 @@ end
                     S6197945Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-id">
                     10
@@ -3331,7 +3331,7 @@ end
             <tr>
               <td colspan="3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>  <nav class="pagination" role="navigation" aria-label="pager">
+                    <div>  <nav class="pagination" role="navigation" aria-label="Pagination: Products pagination options">
     
     
         <span class="page current">
@@ -3396,7 +3396,7 @@ end
 
 <h4>Making columns sortable</h4>
 
-<pre>
+<pre tabindex="0">
 def index
   @products_sortable_columns = lato_index_collection(
     Product.all,
@@ -3407,7 +3407,7 @@ def index
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index @products_sortable_columns %&gt;
 </pre>
 
@@ -3457,7 +3457,7 @@ end
                     S9337696Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3470,7 +3470,7 @@ end
                     T0052098A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3483,7 +3483,7 @@ end
                     S6785040H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3496,7 +3496,7 @@ end
                     S6824314I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3509,7 +3509,7 @@ end
                     S6539172D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3522,7 +3522,7 @@ end
                     S7372180F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3535,7 +3535,7 @@ end
                     S6777963J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3548,7 +3548,7 @@ end
                     S7095994A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3561,7 +3561,7 @@ end
                     S9099670C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3574,7 +3574,7 @@ end
                     S6197945Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3587,7 +3587,7 @@ end
                     S9962322E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3600,7 +3600,7 @@ end
                     S6176883A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3613,7 +3613,7 @@ end
                     S7935518F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3626,7 +3626,7 @@ end
                     T0770719Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3639,7 +3639,7 @@ end
                     S7377088B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3652,7 +3652,7 @@ end
                     S7796849J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3665,7 +3665,7 @@ end
                     S8122192H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3678,7 +3678,7 @@ end
                     S6376764F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3691,7 +3691,7 @@ end
                     T0120571J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3704,7 +3704,7 @@ end
                     T0724637J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3717,7 +3717,7 @@ end
                     S9314416C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3730,7 +3730,7 @@ end
                     S9226151D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3743,7 +3743,7 @@ end
                     S7321057G
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3756,7 +3756,7 @@ end
                     S8819727E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3769,7 +3769,7 @@ end
                     S9329523D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3782,7 +3782,7 @@ end
             <tr>
               <td colspan="3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>  <nav class="pagination" role="navigation" aria-label="pager">
+                    <div>  <nav class="pagination" role="navigation" aria-label="Pagination: Products sortable columns">
     
     
         <span class="page current">
@@ -3831,7 +3831,7 @@ end
   To customize sorting logic, define the <code>lato_index_order</code> scope inside the model.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 class Product &lt; ApplicationRecord
   belongs_to :lato_user, class_name: 'Lato::User'
 
@@ -3850,7 +3850,7 @@ end
   To set a default sorting column, use the <code>default_sort_by</code> option in the <code>lato_index_collection</code> method.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 def index
   @products_default_sort = lato_index_collection(
     Product.all,
@@ -3866,7 +3866,7 @@ end
 
 <h4>Making columns searchable</h4>
 
-<pre>
+<pre tabindex="0">
 def index
   @products_searchable_columns = lato_index_collection(
     Product.all,
@@ -3878,7 +3878,7 @@ def index
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index @products_searchable_columns %&gt;
 </pre>
 
@@ -3936,7 +3936,7 @@ end
                     S9337696Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3949,7 +3949,7 @@ end
                     T0052098A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3962,7 +3962,7 @@ end
                     S6785040H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3975,7 +3975,7 @@ end
                     S6824314I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -3988,7 +3988,7 @@ end
                     S6539172D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4001,7 +4001,7 @@ end
                     S7372180F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4014,7 +4014,7 @@ end
                     S6777963J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4027,7 +4027,7 @@ end
                     S7095994A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4040,7 +4040,7 @@ end
                     S9099670C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4053,7 +4053,7 @@ end
                     S6197945Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4066,7 +4066,7 @@ end
                     S9962322E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4079,7 +4079,7 @@ end
                     S6176883A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4092,7 +4092,7 @@ end
                     S7935518F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4105,7 +4105,7 @@ end
                     T0770719Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4118,7 +4118,7 @@ end
                     S7377088B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4131,7 +4131,7 @@ end
                     S7796849J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4144,7 +4144,7 @@ end
                     S8122192H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4157,7 +4157,7 @@ end
                     S6376764F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4170,7 +4170,7 @@ end
                     T0120571J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4183,7 +4183,7 @@ end
                     T0724637J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4196,7 +4196,7 @@ end
                     S9314416C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4209,7 +4209,7 @@ end
                     S9226151D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4222,7 +4222,7 @@ end
                     S7321057G
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4235,7 +4235,7 @@ end
                     S8819727E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4248,7 +4248,7 @@ end
                     S9329523D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4261,7 +4261,7 @@ end
             <tr>
               <td colspan="3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>  <nav class="pagination" role="navigation" aria-label="pager">
+                    <div>  <nav class="pagination" role="navigation" aria-label="Pagination: Products searchable columns">
     
     
         <span class="page current">
@@ -4310,7 +4310,7 @@ end
   To customize search logic, define the <code>lato_index_search</code> scope inside the model.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 class Product &lt; ApplicationRecord
   belongs_to :lato_user, class_name: 'Lato::User'
 
@@ -4332,7 +4332,7 @@ For large tables, you can skip the total count to improve performance by setting
 This is useful when you don't need the total count of records, such as when displaying a large collection.
 </p> 
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_index @products_skip_total_count_columns, skip_total_count: true %&gt;
 </pre>
 
@@ -4390,7 +4390,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S9337696Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4403,7 +4403,7 @@ This is useful when you don't need the total count of records, such as when disp
                     T0052098A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4416,7 +4416,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S6785040H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4429,7 +4429,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S6824314I
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4442,7 +4442,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S6539172D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4455,7 +4455,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S7372180F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4468,7 +4468,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S6777963J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4481,7 +4481,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S7095994A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4494,7 +4494,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S9099670C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4507,7 +4507,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S6197945Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4520,7 +4520,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S9962322E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4533,7 +4533,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S6176883A
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4546,7 +4546,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S7935518F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4559,7 +4559,7 @@ This is useful when you don't need the total count of records, such as when disp
                     T0770719Z
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4572,7 +4572,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S7377088B
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4585,7 +4585,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S7796849J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4598,7 +4598,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S8122192H
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4611,7 +4611,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S6376764F
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4624,7 +4624,7 @@ This is useful when you don't need the total count of records, such as when disp
                     T0120571J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4637,7 +4637,7 @@ This is useful when you don't need the total count of records, such as when disp
                     T0724637J
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-primary">In progress</span>
+                    <span class="badge rounded-pill text-bg-primary">In progress</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4650,7 +4650,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S9314416C
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-success">Completed</span>
+                    <span class="badge rounded-pill text-bg-success">Completed</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4663,7 +4663,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S9226151D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-danger">Cancelled</span>
+                    <span class="badge rounded-pill text-bg-danger">Cancelled</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4676,7 +4676,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S7321057G
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4689,7 +4689,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S8819727E
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4702,7 +4702,7 @@ This is useful when you don't need the total count of records, such as when disp
                     S9329523D
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-status">
-                    <span class="badge rounded-pill bg-warning">Created</span>
+                    <span class="badge rounded-pill text-bg-warning">Created</span>
                   </td>
                   <td class="lato-index-desk-col-value lato-index-desk-col-value-lato_user_id">
                     <div class="d-flex align-items-center">
@@ -4715,7 +4715,7 @@ This is useful when you don't need the total count of records, such as when disp
             <tr>
               <td colspan="3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>  <nav class="pagination" role="navigation" aria-label="pager">
+                    <div>  <nav class="pagination" role="navigation" aria-label="Pagination: Products skip total count columns">
     
     
         <span class="page current">
@@ -4773,7 +4773,7 @@ This is useful when you don't need the total count of records, such as when disp
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.26.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.26.1 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="SOKFs8Z9WP4yvLeOuZXanzofcG3Y2875Vp5ppFZJ_VMFTzXrn_KNFuEHPmE7tKvvX3FzBM0FMtyIWdvbS5mEuw">
+<meta name="csrf-token" content="AXWsGP9St37wicA1tqXaZdG3BlSPS8AY9M5ElZLaGJWX17kIEY96JjdjKhOLZay8NZUxGuGAmfHyOS_XLf1mEQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-d657e8de054c36e3cfea15316e2845c2b502501054890c55be955f088269b92a.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -358,19 +358,19 @@ before deployment. Previous sessions are invalidated.</p>
 
 <p>Add Lato Spaces to the application Gemfile:</p>
 
-<pre><code>gem "lato"
+<pre tabindex="0"><code>gem "lato"
 gem "lato_spaces"</code></pre>
 
 <p>Install the engine and run migrations:</p>
 
-<pre><code>bundle
+<pre tabindex="0"><code>bundle
 rails lato_spaces:install:application
 rails lato_spaces:install:migrations
 rails db:migrate</code></pre>
 
 <p>Mount the engine in <code>config/routes.rb</code>:</p>
 
-<pre><code>Rails.application.routes.draw do
+<pre tabindex="0"><code>Rails.application.routes.draw do
   mount LatoSpaces::Engine =&gt; "/lato-spaces"
 
   # ...
@@ -378,15 +378,15 @@ end</code></pre>
 
 <p>Import styles in <code>app/assets/stylesheets/application.scss</code>:</p>
 
-<pre><code>@import "lato_spaces/application";</code></pre>
+<pre tabindex="0"><code>@import "lato_spaces/application";</code></pre>
 
 <p>Import JavaScript in <code>app/javascript/application.js</code>:</p>
 
-<pre><code>import "lato_spaces/application"</code></pre>
+<pre tabindex="0"><code>import "lato_spaces/application"</code></pre>
 
 <p>Add a menu entry to the group selection page, for example in <code>app/views/layouts/lato/_navbar-nav_content.html.erb</code>:</p>
 
-<pre><code>&lt;%= lato_navbar_nav_item :lato_spaces, lato_spaces.root_path do %&gt;
+<pre tabindex="0"><code>&lt;%= lato_navbar_nav_item :lato_spaces, lato_spaces.root_path do %&gt;
   Spaces
 &lt;% end %&gt;</code></pre>
 
@@ -399,7 +399,7 @@ end</code></pre>
 
 <p>Configure group behavior in an initializer:</p>
 
-<pre><code>LatoSpaces.configure do |config|
+<pre tabindex="0"><code>LatoSpaces.configure do |config|
   config.setgroup_redirect_path = :dashboard_path
   config.setgroup_auto_after_login = false
   config.setgroup_auto_after_login_if_single = true
@@ -482,7 +482,7 @@ end</code></pre>
   Protected requests recheck membership and clear the selected group if access was revoked.
 </p>
 
-<pre><code>user = Lato::User.find_by(email: "admin@example.com")
+<pre tabindex="0"><code>user = Lato::User.find_by(email: "admin@example.com")
 user.update!(lato_spaces_admin: true)</code></pre>
 
 <div class="table-responsive">
@@ -579,7 +579,7 @@ user.update!(lato_spaces_admin: true)</code></pre>
   then require both Lato authentication and group selection.
 </p>
 
-<pre><code>class ApplicationController &lt; Lato::ApplicationController
+<pre tabindex="0"><code>class ApplicationController &lt; Lato::ApplicationController
   include LatoSpaces::Groupable
 end
 
@@ -611,7 +611,7 @@ end</code></pre>
   Add Lato Spaces associations to application records that must belong to one or more groups.
 </p>
 
-<pre><code>class Project &lt; ApplicationRecord
+<pre tabindex="0"><code>class Project &lt; ApplicationRecord
   include LatoSpaces::Associable
 end</code></pre>
 
@@ -628,7 +628,7 @@ end</code></pre>
 
 <p>When records must always belong to exactly one group, add the stricter concerns after <code>LatoSpaces::Associable</code>:</p>
 
-<pre><code>class Project &lt; ApplicationRecord
+<pre tabindex="0"><code>class Project &lt; ApplicationRecord
   include LatoSpaces::Associable
   include LatoSpaces::AssociableRequired
   include LatoSpaces::AssociableUnique
@@ -644,7 +644,7 @@ end</code></pre>
 
 <p>Create records with the current selected group, never with a group id from request params:</p>
 
-<pre><code>Project.create!(
+<pre tabindex="0"><code>Project.create!(
   name: "Project 1",
   lato_spaces_group_id: @session.get(:spaces_group_id)
 )</code></pre>
@@ -672,7 +672,7 @@ end</code></pre>
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.26.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.26.1 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

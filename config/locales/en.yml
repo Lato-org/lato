@@ -5,6 +5,7 @@ en:
     alert_title: "Error"
     sort_ascending: "Sort by %{column} ascending"
     sort_descending: "Sort by %{column} descending"
+    pagination_label: "Pagination: %{name}"
     password_requirements: "At least %{count} characters."
     too_many_requests: "Too many requests, please wait %{minutes} minutes to retry."
     hcaptcha_missing: "Please complete the captcha verification."

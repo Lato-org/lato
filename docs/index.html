@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato - A Rails engine that includes what you need to build a new project!</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="sUAv2eQW59JKMMw2aj003i2IrglqqNZxzzAa6AzlMiRtRAn9gb_Q_A_NfQdMRYCal00CWre3iyIAD3z27j7ZPA">
+<meta name="csrf-token" content="vMA6hR-M2Z7wdp436cB0XtqFGDjGUfjwyVEgpq9gQcnDljeC89ViERyFvIArSmg_DXFXEa9guJNkIev3s3dEqQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-d657e8de054c36e3cfea15316e2845c2b502501054890c55be955f088269b92a.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -190,7 +190,7 @@ document.addEventListener('turbo:load', () => {
               <div class="card text-white h-100 glass-card">
                 <div class="card-body">
                   <div class="fs-2 mb-2 llm-ignore"><i class="bi bi-shield-lock"></i></div>
-                  <h5 class="card-title">User Management</h5>
+                  <h3 class="h5 card-title">User Management</h3>
                   <p class="card-text">Full authentication system with signin, signup, password recovery, email validation, Google Authenticator and WebAuthn (passkeys) MFA, and ETH wallet connection.</p>
                 </div>
               </div>
@@ -200,7 +200,7 @@ document.addEventListener('turbo:load', () => {
               <div class="card text-white h-100 glass-card">
                 <div class="card-body">
                   <div class="fs-2 mb-2 llm-ignore"><i class="bi bi-columns-gap"></i></div>
-                  <h5 class="card-title">Modern UI</h5>
+                  <h3 class="h5 card-title">Modern UI</h3>
                   <p class="card-text">Web interface built with Bootstrap and Bootstrap Icons, featuring integrated UI components like data tables, forms, and modals.</p>
                 </div>
               </div>
@@ -210,28 +210,38 @@ document.addEventListener('turbo:load', () => {
               <div class="card text-white h-100 glass-card">
                 <div class="card-body">
                   <div class="fs-2 mb-2 llm-ignore"><i class="bi bi-gear"></i></div>
-                  <h5 class="card-title">Stack Agnostic</h5>
+                  <h3 class="h5 card-title">Stack Agnostic</h3>
                   <p class="card-text">Works with different databases (PostgreSQL, MySQL, SQLite), job processors (Solid queue, Sidekiq, Delayed Job), and cache systems.</p>
                 </div>
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="card text-white h-100 glass-card">
                 <div class="card-body">
                   <div class="fs-2 mb-2 llm-ignore"><i class="bi bi-palette"></i></div>
-                  <h5 class="card-title">Customizable &amp; Extendable</h5>
+                  <h3 class="h5 card-title">Customizable &amp; Extendable</h3>
                   <p class="card-text">The gem is designed to be easily customizable and extendable. You can fully customize the UI and functionalities, add new features to your main application, or develop new engines to extend the panel.</p>
                 </div>
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="card text-white h-100 glass-card">
                 <div class="card-body">
                   <div class="fs-2 mb-2 llm-ignore"><i class="bi bi-rocket-takeoff"></i></div>
-                  <h5 class="card-title">Modern Rails Features</h5>
-                  <p class="card-text">Ready to use with Rails 8.1 (&gt;= 8.1.3.1, &lt; 8.2) features like ESM import maps, Turbo and Stimulus. The front-end is responsive and mobile friendly, with accessibility improvements in progress.</p>
+                  <h3 class="h5 card-title">Modern Rails Features</h3>
+                  <p class="card-text">Ready to use with Rails 8.1 (&gt;= 8.1.3.1, &lt; 8.2) features like ESM import maps, Turbo and Stimulus. The front-end is responsive and mobile friendly.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card text-white h-100 glass-card">
+                <div class="card-body">
+                  <div class="fs-2 mb-2 llm-ignore"><i class="bi bi-universal-access" aria-hidden="true"></i></div>
+                  <h3 class="h5 card-title">Accessible by Design</h3>
+                  <p class="card-text">Keyboard friendly, screen reader aware components audited with axe-core against WCAG 2.2 AA rules. Accessibility comes built in, not as an afterthought.</p>
                 </div>
               </div>
             </div>
@@ -271,6 +281,47 @@ document.addEventListener('turbo:load', () => {
         </div>
       </div>
 
+      <!-- Accessibility -->
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="h3 mb-1">Accessibility built in</h2>
+          <p class="text-white-50 mb-4">Every panel you build with Lato inherits these behaviours, with no extra work.</p>
+        </div>
+        <div class="col-lg-10 mx-auto">
+          <div class="card text-white glass-card">
+            <div class="card-body p-4">
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <h3 class="h6 fw-bold">Forms that explain themselves</h3>
+                  <p class="mb-0">Every input has a real label. Validation errors mark the field with <code>aria-invalid</code> and are linked to it, so screen readers announce what went wrong and where.</p>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="h6 fw-bold">Full keyboard navigation</h3>
+                  <p class="mb-0">A skip link jumps to the content. Confirmation modals work with Enter and Escape and give focus back to the button that opened them.</p>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="h6 fw-bold">Data tables for everyone</h3>
+                  <p class="mb-0">Sort buttons have accessible names and the sorted column exposes <code>aria-sort</code>. Every pagination landmark has its own label, and controls meet the WCAG 2.2 minimum target size.</p>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="h6 fw-bold">Feedback that is heard</h3>
+                  <p class="mb-0">Notifications and status changes are announced through live regions, and error messages stay on screen until dismissed. Badges choose readable text colors automatically.</p>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="h6 fw-bold">Authentication done right</h3>
+                  <p class="mb-0">Sign-in and sign-up use proper <code>autocomplete</code> hints, so password managers work out of the box. One-time codes get the numeric keyboard and <code>one-time-code</code> autofill.</p>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="h6 fw-bold">Measured, not just promised</h3>
+                  <p class="mb-0">Core pages (authentication, account, index tables, forms, modals) report zero automated violations with axe-core on WCAG 2.2 AA rules. The interface is translated into English, Italian, French and Romanian.</p>
+                </div>
+              </div>
+              <p class="small text-white-50 mt-4 mb-0">Automated audits catch many issues but cannot prove full WCAG conformance: manual testing with assistive technologies is still recommended for your application, especially if you customize colors.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Ecosystem -->
       <div class="row mb-5 llm-ignore">
         <div class="col-12 text-center">
@@ -283,7 +334,7 @@ document.addEventListener('turbo:load', () => {
               <a href="https://github.com/Lato-org/lato_spaces" class="text-decoration-none">
                 <div class="card text-white h-100 glass-card glass-card-link">
                   <div class="card-body py-3">
-                    <h6 class="card-title mb-1">Lato Spaces</h6>
+                    <h3 class="h6 card-title mb-1">Lato Spaces</h3>
                     <p class="card-text small text-white-50 mb-0">Multi-workspace with invitations and roles</p>
                   </div>
                 </div>
@@ -293,7 +344,7 @@ document.addEventListener('turbo:load', () => {
               <a href="https://github.com/Lato-org/lato_settings" class="text-decoration-none">
                 <div class="card text-white h-100 glass-card glass-card-link">
                   <div class="card-body py-3">
-                    <h6 class="card-title mb-1">Lato Settings</h6>
+                    <h3 class="h6 card-title mb-1">Lato Settings</h3>
                     <p class="card-text small text-white-50 mb-0">Application settings from the UI</p>
                   </div>
                 </div>
@@ -303,7 +354,7 @@ document.addEventListener('turbo:load', () => {
               <a href="https://github.com/Lato-org/lato_storage" class="text-decoration-none">
                 <div class="card text-white h-100 glass-card glass-card-link">
                   <div class="card-body py-3">
-                    <h6 class="card-title mb-1">Lato Storage</h6>
+                    <h3 class="h6 card-title mb-1">Lato Storage</h3>
                     <p class="card-text small text-white-50 mb-0">Active Storage management</p>
                   </div>
                 </div>
@@ -313,7 +364,7 @@ document.addEventListener('turbo:load', () => {
               <a href="https://github.com/Lato-org/lato_users" class="text-decoration-none">
                 <div class="card text-white h-100 glass-card glass-card-link">
                   <div class="card-body py-3">
-                    <h6 class="card-title mb-1">Lato Users</h6>
+                    <h3 class="h6 card-title mb-1">Lato Users</h3>
                     <p class="card-text small text-white-50 mb-0">Users management from the panel</p>
                   </div>
                 </div>
@@ -323,7 +374,7 @@ document.addEventListener('turbo:load', () => {
               <a href="https://github.com/Lato-org/lato_cms" class="text-decoration-none">
                 <div class="card text-white h-100 glass-card glass-card-link">
                   <div class="card-body py-3">
-                    <h6 class="card-title mb-1">Lato CMS</h6>
+                    <h3 class="h6 card-title mb-1">Lato CMS</h3>
                     <p class="card-text small text-white-50 mb-0">Web pages management</p>
                   </div>
                 </div>
@@ -340,10 +391,10 @@ document.addEventListener('turbo:load', () => {
             <div class="card-body">
               <h3 class="card-title">Installation</h3>
 
-              <h5 class="mt-4 mb-3">Add Dependencies</h5>
+              <h4 class="h5 mt-4 mb-3">Add Dependencies</h4>
               <p class="card-text mb-3">Add required dependencies to your application's Gemfile:</p>
               <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code># Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+                <pre tabindex="0" class="text-light mb-0"><code># Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails" # NOTE: Probably already installed in default Rails 8 project
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
@@ -360,55 +411,55 @@ gem "lato"</code></pre>
               </div>
               <p class="card-text mb-4">Lato stores rate limits and verification codes in <code>Rails.cache</code>: use a persistent cache shared across processes (Redis, Solid Cache, Memcached). Wallet login (Web3) also requires <code>gem "eth"</code> in your Gemfile.</p>
 
-              <h5 class="mt-4 mb-3">Configure Asset Manifest</h5>
+              <h4 class="h5 mt-4 mb-3">Configure Asset Manifest</h4>
               <p class="card-text mb-3">If not already present, add <strong>app/assets/config/manifest.js</strong> file with the following content:</p>
               <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>//= link_tree ../images
+                <pre tabindex="0" class="text-light mb-0"><code>//= link_tree ../images
 //= link_directory ../stylesheets .css
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js</code></pre>
               </div>
 
-              <h5 class="mt-4 mb-3">Install and Setup</h5>
+              <h4 class="h5 mt-4 mb-3">Install and Setup</h4>
               <p class="card-text mb-3">Install gem and run required tasks:</p>
               <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>$ bundle
+                <pre tabindex="0" class="text-light mb-0"><code>$ bundle
 $ rails active_storage:install
 $ rails lato:install:application
 $ rails lato:install:migrations
 $ rails db:migrate</code></pre>
               </div>
 
-              <h5 class="mt-4 mb-3">Configure Routes</h5>
+              <h4 class="h5 mt-4 mb-3">Configure Routes</h4>
               <p class="card-text mb-3">Mount lato routes on the <strong>config/routes.rb</strong> file:</p>
               <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>Rails.application.routes.draw do
+                <pre tabindex="0" class="text-light mb-0"><code>Rails.application.routes.draw do
   mount Lato::Engine =&gt; "/lato"
 
   # ....
 end</code></pre>
               </div>
 
-              <h5 class="mt-4 mb-3">Import Styles</h5>
+              <h4 class="h5 mt-4 mb-3">Import Styles</h4>
               <p class="card-text mb-3">Import Lato Scss on <strong>app/assets/stylesheets/application.scss</strong> file:</p>
               <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>@import 'lato/application';
+                <pre tabindex="0" class="text-light mb-0"><code>@import 'lato/application';
 
 // ....</code></pre>
               </div>
 
-              <h5 class="mt-4 mb-3">Import JavaScript</h5>
+              <h4 class="h5 mt-4 mb-3">Import JavaScript</h4>
               <p class="card-text mb-3">Import Lato Js on <strong>app/javascript/application.js</strong> file:</p>
               <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>import "lato/application";
+                <pre tabindex="0" class="text-light mb-0"><code>import "lato/application";
 
 // ....</code></pre>
               </div>
 
-              <h5 class="mt-4 mb-3">Setup I18n</h5>
+              <h4 class="h5 mt-4 mb-3">Setup I18n</h4>
               <p class="card-text mb-3">Setup I18n on the <strong>config/application.rb</strong> file:</p>
               <div class="bg-dark p-3 rounded mb-4">
-                <pre class="text-light mb-0"><code>module MyApplication
+                <pre tabindex="0" class="text-light mb-0"><code>module MyApplication
   class Application &lt; Rails::Application
     config.i18n.available_locales = [:it, :en]
     config.i18n.default_locale = :it
@@ -495,7 +546,7 @@ end</code></pre>
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.26.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.26.1 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

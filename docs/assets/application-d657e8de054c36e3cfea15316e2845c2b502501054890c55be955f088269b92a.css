@@ -14804,37 +14804,51 @@ textarea.form-control-lg {
   margin: 0 4px;
 }
 
-/* line 41, ../../app/assets/stylesheets/lato/application.scss */
+/* line 42, ../../app/assets/stylesheets/lato/application.scss */
+.pagination > span > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+/* line 51, ../../app/assets/stylesheets/lato/application.scss */
+.alert code {
+  color: inherit;
+}
+
+/* line 55, ../../app/assets/stylesheets/lato/application.scss */
 .pagination .current {
   font-weight: bold;
 }
 
 /** Custom style */
-/* line 47, ../../app/assets/stylesheets/lato/application.scss */
+/* line 61, ../../app/assets/stylesheets/lato/application.scss */
 main {
   width: 100%;
 }
 
-/* line 50, ../../app/assets/stylesheets/lato/application.scss */
+/* line 64, ../../app/assets/stylesheets/lato/application.scss */
 main.layout_sidebar {
   width: calc(100% - 280px);
 }
 
 @media screen and (max-width: 1024px) {
-  /* line 50, ../../app/assets/stylesheets/lato/application.scss */
+  /* line 64, ../../app/assets/stylesheets/lato/application.scss */
   main.layout_sidebar {
     width: 100%;
   }
 }
 
 @media screen and (min-width: 1025px) {
-  /* line 58, ../../app/assets/stylesheets/lato/application.scss */
+  /* line 72, ../../app/assets/stylesheets/lato/application.scss */
   .aside-hidden main.layout_sidebar {
     width: 100%;
   }
 }
 
-/* line 65, ../../app/assets/stylesheets/lato/application.scss */
+/* line 79, ../../app/assets/stylesheets/lato/application.scss */
 aside {
   width: 280px;
   max-height: 100vh;
@@ -14842,26 +14856,26 @@ aside {
   top: 0;
 }
 
-/* line 71, ../../app/assets/stylesheets/lato/application.scss */
+/* line 85, ../../app/assets/stylesheets/lato/application.scss */
 aside .dropdown-toggle::after {
   position: absolute;
   right: 0.5rem;
 }
 
 @media screen and (min-width: 1025px) {
-  /* line 77, ../../app/assets/stylesheets/lato/application.scss */
+  /* line 91, ../../app/assets/stylesheets/lato/application.scss */
   .aside-hidden aside {
     display: none;
   }
 }
 
-/* line 83, ../../app/assets/stylesheets/lato/application.scss */
+/* line 97, ../../app/assets/stylesheets/lato/application.scss */
 main, aside {
   padding-top: 54px;
   min-height: 100vh;
 }
 
-/* line 88, ../../app/assets/stylesheets/lato/application.scss */
+/* line 102, ../../app/assets/stylesheets/lato/application.scss */
 .aside-opener {
   display: flex;
   position: fixed;
@@ -14881,7 +14895,7 @@ main, aside {
 }
 
 @media screen and (max-width: 1024px) {
-  /* line 88, ../../app/assets/stylesheets/lato/application.scss */
+  /* line 102, ../../app/assets/stylesheets/lato/application.scss */
   .aside-opener {
     left: initial;
     right: 15px;
@@ -14889,7 +14903,7 @@ main, aside {
 }
 
 @media screen and (max-width: 1024px) {
-  /* line 112, ../../app/assets/stylesheets/lato/application.scss */
+  /* line 126, ../../app/assets/stylesheets/lato/application.scss */
   aside {
     position: fixed;
     bottom: 0;
@@ -14901,29 +14915,31 @@ main, aside {
     transform: translateX(-100%);
     transition: transform 0.35s ease-in-out;
   }
-  /* line 123, ../../app/assets/stylesheets/lato/application.scss */
+  /* line 137, ../../app/assets/stylesheets/lato/application.scss */
   aside > div {
     width: 280px;
     overflow-y: auto;
   }
-  /* line 128, ../../app/assets/stylesheets/lato/application.scss */
+  /* line 142, ../../app/assets/stylesheets/lato/application.scss */
   .aside-open aside {
     transform: translateX(0);
   }
 }
 
-/* line 136, ../../app/assets/stylesheets/lato/application.scss */
+/* line 150, ../../app/assets/stylesheets/lato/application.scss */
 .lato-index .table th, .lato-index .table td {
   vertical-align: middle;
 }
 
-/* line 143, ../../app/assets/stylesheets/lato/application.scss */
+/* line 157, ../../app/assets/stylesheets/lato/application.scss */
 .lato-index-col-sort .btn {
   font-size: 12px;
   padding: 0.15rem 0.3rem;
+  min-width: 25px;
+  min-height: 24px;
 }
 
-/* line 149, ../../app/assets/stylesheets/lato/application.scss */
+/* line 166, ../../app/assets/stylesheets/lato/application.scss */
 .lato-spin {
   animation: spin 1s linear infinite;
 }
@@ -14937,7 +14953,7 @@ main, aside {
   }
 }
 
-/* line 161, ../../app/assets/stylesheets/lato/application.scss */
+/* line 178, ../../app/assets/stylesheets/lato/application.scss */
 .lato-form-item-input-color {
   width: 100%;
   min-height: 38px;
@@ -14945,11 +14961,11 @@ main, aside {
 
 /** Print style */
 @media print {
-  /* line 169, ../../app/assets/stylesheets/lato/application.scss */
+  /* line 186, ../../app/assets/stylesheets/lato/application.scss */
   header, aside, footer {
     display: none !important;
   }
-  /* line 173, ../../app/assets/stylesheets/lato/application.scss */
+  /* line 190, ../../app/assets/stylesheets/lato/application.scss */
   main {
     padding-top: 0 !important;
     width: 100% !important;

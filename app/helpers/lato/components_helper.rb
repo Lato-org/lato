@@ -284,11 +284,20 @@ module Lato
       form.submit label, options
     end
 
+    # Kaminari labels every paginator "pager": several index tables on one page would expose
+    # identical navigation landmarks, so each one gets a label from its index key (unique per page).
+    def lato_index_paginate(collection, key, **options)
+      name = key.to_s == 'default' ? collection.model.model_name.human(count: 2) : key.to_s.humanize
+      label = I18n.t('lato.pagination_label', name: name)
+      paginate(collection, param_name: "#{key}_page", **options)
+        .to_str.sub('aria-label="pager"', "aria-label=\"#{ERB::Util.html_escape(label)}\"").html_safe
+    end
+
     # Data
     ##
 
     def lato_data_badge(label, color = 'primary')
-      content_tag :span, label, class: "badge rounded-pill bg-#{color}"
+      content_tag :span, label, class: "badge rounded-pill text-bg-#{color}"
     end
 
     def lato_data_user(label, image_url = nil)

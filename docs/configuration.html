@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="6wgosKNuOt3JLcM8fSg1etGD3ZWZfq3d8vU7fMS7rM2DUnuOBEeNlgrXc1JswxHEZgNx7_VmxwEDcRYR3OV_fw">
+<meta name="csrf-token" content="nr4eLQFZ32Jd_fLcrLW2mRL0DXV4tai3w3elRRyZCuJjGODYhY7SuvF-vqwB9EsWVvNM19jmGR-b8GEiusOm_A">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-d657e8de054c36e3cfea15316e2845c2b502501054890c55be955f088269b92a.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -339,7 +339,7 @@ Lato's configuration is managed by the <code>Lato::Config</code> class and can b
 To override the default settings, create an initializer and add the following code:
 </p>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.application_title = 'Lato example app'
   config.session_root_path = :tutorial_path
@@ -353,7 +353,7 @@ end
 
 <h2>Application Configuration</h2>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.application_title = 'Lato example app' # Application title
   config.application_version = '1.0.0' # Application version (default: '1.0.0')
@@ -365,7 +365,7 @@ end
 
 <h2>Authentication Configuration</h2>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.auth_disable_signup = true # Disable user self-signup
   config.auth_disable_recover_password = true # Disable password recovery
@@ -390,7 +390,7 @@ end
   When configured, it protects the signup and password recovery forms.
 </p>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.hcaptcha_site_key = 'your-hcaptcha-site-key'
   config.hcaptcha_secret = 'your-hcaptcha-secret'
@@ -408,7 +408,7 @@ end
 </p>
 
 <div class="alert alert-warning">
-  <h4 class="alert-heading">Shared cache required</h4>
+  <h3 class="h4 alert-heading">Shared cache required</h3>
   <p>
     Rate limits, password recovery codes, email verification codes and semaphores are stored in <code>Rails.cache</code>.
     Use a persistent cache shared across processes (Redis, Solid Cache, Memcached).
@@ -422,14 +422,14 @@ end
   Proxies on private networks are trusted by default; if your proxy uses a public IP, add it to the trusted proxies:
 </p>
 
-<pre>
+<pre tabindex="0">
 # config/application.rb
 config.action_dispatch.trusted_proxies = ActionDispatch::RemoteIp::TRUSTED_PROXIES + [IPAddr.new('203.0.113.10')]
 </pre>
 
 <h2>Assets Configuration</h2>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.assets_stylesheet_entry = 'application' # CSS file for Lato styling (default: application.scss)
   config.assets_importmap_entry = 'application' # JS entry point for Lato (default: application.js)
@@ -438,7 +438,7 @@ end
 
 <h2>Session Management Configuration</h2>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.session_lifetime = 5.days # Absolute lifetime of the session cookie and of the session database record (default: 30 days)
   config.session_root_path = :tutorial_path # Path to redirect users after login/signup
@@ -459,19 +459,19 @@ end
 
 <h2>Email Configuration</h2>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.email_from = 'demo@mail.com' # Sender email address for notifications
 end
 </pre>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h3 class="h4 alert-heading">Note</h3>
   <p>
   The <code>email_from</code> setting can include a display name using the format <i>"Name" &lt;example@domain.com&gt;</i>.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.email_from = '"Company name" &lt;demo@mail.com&gt;'
 end
@@ -480,7 +480,7 @@ end
 
 <h2>Legal Information Configuration</h2>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.legal_privacy_policy_url = 'https://domain.com/privacy' # Privacy policy URL
   config.legal_privacy_policy_version = 32 # Version number of the active privacy policy
@@ -490,7 +490,7 @@ end
 </pre>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h3 class="h4 alert-heading">Note</h3>
   <p>
   Lato tracks which version of the privacy policy and terms the user has accepted.<br>
   If the logged-in user has accepted a version lower than the one configured via <code>legal_privacy_policy_version</code> or <code>legal_terms_and_conditions_version</code>, a prompt will appear in the account management page to accept the new policies.
@@ -499,7 +499,7 @@ end
   To check whether a user has accepted the latest policy versions, use the <code>valid_accepted_privacy_policy_version?</code> and <code>valid_accepted_terms_and_conditions_version?</code> methods on instances of the <code>Lato::User</code> model.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 user = Lato::User.all.first
 throw "Privacy policy not accepted" unless user.valid_accepted_privacy_policy_version?
 throw "Terms and conditions not accepted" unless user.valid_accepted_terms_and_conditions_version?
@@ -508,7 +508,7 @@ throw "Terms and conditions not accepted" unless user.valid_accepted_terms_and_c
 
 <h2>Account Connection Configuration</h2>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.web3_connection = true # Allow users to link a Web3 wallet to their account
   config.authenticator_connection = true # Allow users to link Google Authenticator to their account
@@ -524,7 +524,7 @@ end
   <code>webauthn_origin</code> accepts a string or an array of origins. In production use HTTPS origins; the relying party id is derived from the origin.
 </p>
 
-<pre>
+<pre tabindex="0">
 Lato.configure do |config|
   config.webauthn_origin = ['https://app.example.com', 'https://www.example.com']
 end
@@ -550,7 +550,7 @@ end
   The signed message is a text bound to host, purpose, nonce and issue time:
 </p>
 
-<pre>
+<pre tabindex="0">
 example.com wants you to sign in with your Ethereum account.
 
 URI: https://example.com
@@ -585,7 +585,7 @@ Issued At: ...
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.26.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.26.1 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

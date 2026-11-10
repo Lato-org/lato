@@ -7,6 +7,7 @@ ro:
     alert_title: "Eroare"
     sort_ascending: "Sorteaz\u0103 dup\u0103 %{column} cresc\u0103tor"
     sort_descending: "Sorteaz\u0103 dup\u0103 %{column} descresc\u0103tor"
+    pagination_label: "Paginare: %{name}"
     password_requirements: "Cel pu\u021Bin %{count} caractere."
     too_many_requests: "Prea multe cereri, a\u0219tepta\u021Bi %{minutes} minute \u00EEnainte de a re\u00EEncerca."
     hcaptcha_missing: "Completa\u021Bi verificarea captcha."

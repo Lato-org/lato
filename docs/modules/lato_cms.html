@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="bNE6WXqMdQbA55QO9gT40LvMuVTCiIjD7FV5lbzIz3a1bk5WoS9viBNN3ts_Aqycr-7tsVVIe9JhpVA5NXXE7w">
+<meta name="csrf-token" content="5tMWb7CXObSO7GE19tUdIbkyzS4aqV9m3V3fZf5YUZHqtw2pys_TZOOTXGnZTNX7GPGZj-neg-Z7cu5Rr2McPw">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-d657e8de054c36e3cfea15316e2845c2b502501054890c55be955f088269b92a.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -359,13 +359,13 @@ before deployment. Previous sessions are invalidated.</p>
 
 <p>Add Lato CMS to the application Gemfile:</p>
 
-<pre><code>gem "lato"
+<pre tabindex="0"><code>gem "lato"
 gem "lato_spaces"
 gem "lato_cms"</code></pre>
 
 <p>Install the engines and run migrations:</p>
 
-<pre><code>bundle
+<pre tabindex="0"><code>bundle
 rails lato_spaces:install:application
 rails lato_spaces:install:migrations
 rails lato_cms:install:application
@@ -379,7 +379,7 @@ rails db:migrate</code></pre>
 
 <p>Mount both engines in <code>config/routes.rb</code>:</p>
 
-<pre><code>Rails.application.routes.draw do
+<pre tabindex="0"><code>Rails.application.routes.draw do
   mount LatoSpaces::Engine =&gt; "/lato-spaces"
   mount LatoCms::Engine =&gt; "/lato-cms"
 
@@ -393,11 +393,11 @@ end</code></pre>
 
 <p>Import styles in <code>app/assets/stylesheets/application.scss</code>:</p>
 
-<pre><code>@import "lato_cms/application";</code></pre>
+<pre tabindex="0"><code>@import "lato_cms/application";</code></pre>
 
 <p>Import JavaScript in <code>app/javascript/application.js</code>:</p>
 
-<pre><code>import "lato_cms/application"</code></pre>
+<pre tabindex="0"><code>import "lato_cms/application"</code></pre>
 
 <h3 id="permissions">Permissions</h3>
 
@@ -437,7 +437,7 @@ end</code></pre>
   </table>
 </div>
 
-<pre><code>user = Lato::User.find_by(email: "admin@example.com")
+<pre tabindex="0"><code>user = Lato::User.find_by(email: "admin@example.com")
 user.update!(lato_cms_admin_role: 2)</code></pre>
 
 <p>
@@ -448,7 +448,7 @@ user.update!(lato_cms_admin_role: 2)</code></pre>
 
 <h3 id="configuration">Configuration</h3>
 
-<pre><code>LatoCms.configure do |config|
+<pre tabindex="0"><code>LatoCms.configure do |config|
   config.locales = [:en, :it]
   config.templates_path = "config/lato_cms"
   config.media_url_mode = :redirect
@@ -547,7 +547,7 @@ end</code></pre>
   Template components are enabled by default, and each page can turn optional components on or off from the admin panel.
 </p>
 
-<pre><code>config/lato_cms/
+<pre tabindex="0"><code>config/lato_cms/
   templates/
     homepage.yml
     blog_post.yml
@@ -557,7 +557,7 @@ end</code></pre>
 
 <p>Generate new files with Rails tasks:</p>
 
-<pre><code>rails "lato_cms:generate:template[blog_post]"
+<pre tabindex="0"><code>rails "lato_cms:generate:template[blog_post]"
 rails "lato_cms:generate:component[hero,title:string,subtitle:textarea,image:image]"
 rails "lato_cms:generate:custom_field[icon_note]"</code></pre>
 
@@ -575,7 +575,7 @@ rails "lato_cms:generate:custom_field[icon_note]"</code></pre>
   <code>settings.min</code> and <code>settings.max</code> item counts.
 </p>
 
-<pre><code># config/lato_cms/templates/homepage.yml
+<pre tabindex="0"><code># config/lato_cms/templates/homepage.yml
 id: homepage
 name: Homepage
 components:
@@ -594,7 +594,7 @@ components:
   without removing the component from the template.
 </p>
 
-<pre><code># config/lato_cms/templates/homepage.yml
+<pre tabindex="0"><code># config/lato_cms/templates/homepage.yml
 id: homepage
 name: Homepage
 components:
@@ -622,7 +622,7 @@ components:
   The API returns repeater fields as an ordered array of items.
 </p>
 
-<pre><code># config/lato_cms/templates/homepage.yml
+<pre tabindex="0"><code># config/lato_cms/templates/homepage.yml
 components:
   feature_cards:
     component_id: feature_card
@@ -631,7 +631,7 @@ components:
     settings:
       min: 1</code></pre>
 
-<pre><code># config/lato_cms/components/feature_card.yml
+<pre tabindex="0"><code># config/lato_cms/components/feature_card.yml
 id: feature_card
 name: Feature Card
 fields:
@@ -645,7 +645,7 @@ fields:
 
 <h3>Component example</h3>
 
-<pre><code># config/lato_cms/components/hero.yml
+<pre tabindex="0"><code># config/lato_cms/components/hero.yml
 id: hero
 name: Hero
 fields:
@@ -865,7 +865,7 @@ fields:
   Each locale's text is independent — leaving one blank doesn't affect the others.
 </p>
 
-<pre><code>image = LatoCms::Media.find(12)
+<pre tabindex="0"><code>image = LatoCms::Media.find(12)
 image.alt_text(:en)              # =&gt; "A dog running on the beach"
 image.alt_text(:it)               # =&gt; nil, if the Italian tab was left blank
 image.alt_text_translations       # =&gt; { "en" =&gt; "A dog running on the beach" }
@@ -886,7 +886,7 @@ image.title_translations          # =&gt; { "en" =&gt; "Dog on the beach", "it" 
   Configure an OpenAI-compatible endpoint to have alt text and title generated automatically:
 </p>
 
-<pre><code>LatoCms.configure do |config|
+<pre tabindex="0"><code>LatoCms.configure do |config|
   config.llm_api_url = "https://api.openai.com/v1"
   config.llm_model = "gpt-4o-mini"
   config.llm_api_key = Rails.application.credentials.dig(:openai, :api_key)
@@ -979,7 +979,7 @@ end</code></pre>
 <code>fill</code>: crop to exactly <code>width</code>×<code>height</code>.</li>
 </ul>
 
-<pre><code># config/lato_cms/components/hero.yml
+<pre tabindex="0"><code># config/lato_cms/components/hero.yml
 id: hero
 name: Hero
 fields:
@@ -997,7 +997,7 @@ fields:
 
 <p>The API response includes the generated variant URLs alongside the original:</p>
 
-<pre><code>{
+<pre tabindex="0"><code>{
   "media_id": 12,
   "name": "cover.jpg",
   "alt_text": "A dog running on the beach",
@@ -1020,7 +1020,7 @@ fields:
   video is exposed without a poster.
 </p>
 
-<pre><code># config/lato_cms/components/hero.yml
+<pre tabindex="0"><code># config/lato_cms/components/hero.yml
 id: hero
 name: Hero
 fields:
@@ -1030,7 +1030,7 @@ fields:
 
 <p>The API response exposes the video attachment with its poster URL (<code>null</code> until the job runs):</p>
 
-<pre><code>{
+<pre tabindex="0"><code>{
   "media_id": 12,
   "name": "trailer.mp4",
   "alt_text": null,
@@ -1049,14 +1049,14 @@ fields:
   Generate a partial in the host application:
 </p>
 
-<pre><code>rails "lato_cms:generate:custom_field[icon_note]"</code></pre>
+<pre tabindex="0"><code>rails "lato_cms:generate:custom_field[icon_note]"</code></pre>
 
 <p>
   This creates <code>app/views/lato_cms/custom_fields/_icon_note.html.erb</code>. Reference it with
   <code>render</code> in the component:
 </p>
 
-<pre><code># config/lato_cms/components/hero.yml
+<pre tabindex="0"><code># config/lato_cms/components/hero.yml
 id: hero
 name: Hero
 fields:
@@ -1075,7 +1075,7 @@ fields:
   <code>lato_cms_field_dom_id</code>, so the field also works inside repeaters, where both carry an item prefix:
 </p>
 
-<pre><code>&lt;%# app/views/lato_cms/custom_fields/_icon_note.html.erb %&gt;
+<pre tabindex="0"><code>&lt;%# app/views/lato_cms/custom_fields/_icon_note.html.erb %&gt;
 &lt;% settings = field_config["settings"] || {} %&gt;
 &lt;% current_value = page_field&amp;.value.to_s %&gt;
 &lt;% input_name = lato_cms_field_input_name(field_id, input_name_prefix: local_assigns[:input_name_prefix]) %&gt;
@@ -1108,7 +1108,7 @@ fields:
   Scope pages by group and pick fields by template component, because the same field id can exist in several components.
 </p>
 
-<pre><code>page = LatoCms::Page.for_lato_spaces_group(group_id).find_by!(permalink: "/home")
+<pre tabindex="0"><code>page = LatoCms::Page.for_lato_spaces_group(group_id).find_by!(permalink: "/home")
 title = page.fields.find_by(template_component_id: "hero_section", field_id: "title")&amp;.parsed_value
 image = page.fields.find_by(template_component_id: "hero_section", field_id: "image")&amp;.media&amp;.first
 image_url = image&amp;.url
@@ -1154,7 +1154,7 @@ page.as_json(include_fields: true)</code></pre>
 
 <p>Read a page's translations in the application or from the JSON API:</p>
 
-<pre><code>page = LatoCms::Page.find_by(permalink: "/homepage")
+<pre tabindex="0"><code>page = LatoCms::Page.find_by(permalink: "/homepage")
 
 # Sibling pages in the other locales
 page.translations               # =&gt; ActiveRecord::Relation of pages
@@ -1173,7 +1173,7 @@ page.translation_for(:it)       # =&gt; the linked Italian page, or nil
   add a reverse proxy rule, or use Rack middleware and rate limiting) until per-group tokens and a publish state exist.
 </div>
 
-<pre><code>GET /lato-cms/api/pages?group_id=ID&amp;locale=xx
+<pre tabindex="0"><code>GET /lato-cms/api/pages?group_id=ID&amp;locale=xx
 GET /lato-cms/api/pages/:id_or_permalink?group_id=ID</code></pre>
 
 <p>
@@ -1226,7 +1226,7 @@ GET /lato-cms/api/pages/:id_or_permalink?group_id=ID</code></pre>
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.26.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.26.1 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

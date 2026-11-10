@@ -29,7 +29,7 @@
 
     <% if operation.completed_status? %>
       <div class="text-center">
-        <div class="fs-1 text-success">
+        <div class="fs-1 text-success-emphasis">
           <i class="bi bi-check-circle"></i>
         </div>
         <h2><%= I18n.t('lato.operation_completed_title') %></h2>
@@ -40,7 +40,7 @@
         <% end %>
 
         <% if operation.output_message? %>
-          <p class="text-success fw-bold">
+          <p class="text-success-emphasis fw-bold">
             <%= operation.output_message %>
           </p>
         <% end %>

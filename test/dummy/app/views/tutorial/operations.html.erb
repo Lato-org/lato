@@ -14,7 +14,7 @@ Operations are handled by several components:
   <li>The <code>lato_operation</code> component allows displaying the operation status in the front-end.</li>
 </ul>
 
-<h3>Converting a Job into an Operation</h3>
+<h2 class="h3">Converting a Job into an Operation</h2>
 
 <p>
 The easiest way to convert a Job into an operation is to simply make the Job a subclass of <code>Lato::ApplicationJob</code>.<br>
@@ -22,7 +22,7 @@ Additionally, the <code>perform()</code> method must accept a single Hash parame
 Only classes inheriting from <code>Lato::ApplicationJob</code> can be started as operations: <code>Lato::Operation#start</code> ignores any other class.
 </p>
 
-<pre>
+<pre tabindex="0">
 # Before
 class MyJob < ApplicationJob
   def perform(hello)
@@ -38,14 +38,14 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h3>Generating an Operation</h3>
+<h2 class="h3">Generating an Operation</h2>
 
 <p>
 Operations can be generated using the <code>generate</code> method of the <code>Lato::Operation</code> model.<br>
 Creating an operation requires three parameters: the name of the job to execute, a Hash of parameters to pass, and the ID of the user requesting the operation.
 </p>
 
-<pre>
+<pre tabindex="0">
 operation = Lato::Operation.generate('ExportProductsJob', { product_ids: [1, 2, 3] }, @session.user_id)
 </pre>
 
@@ -54,7 +54,7 @@ Once generated, the operation must be started using the <code>start</code> metho
 Here is an example controller that starts an operation:
 </p>
 
-<pre>
+<pre tabindex="0">
 class CustomController < ApplicationController
   def create_operation_action
     @operation = Lato::Operation.generate('OperationExampleJob', {}, @session.user_id)
@@ -72,7 +72,7 @@ class CustomController < ApplicationController
 end
 </pre>
 
-<h3>Displaying the Outcome of an Operation</h3>
+<h2 class="h3">Displaying the Outcome of an Operation</h2>
 
 <p>
 Each operation can be viewed at the route <code>lato.operation_path(operation_id)</code>.<br>
@@ -85,7 +85,7 @@ The operation view, handled via the <code>lato_operation</code> component, shows
 Use the link below to try out an operation:
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= link_to 'Generate Operation',
   main_app.custom_create_operation_action_path,
   data: { turbo_method: :post }
@@ -95,12 +95,12 @@ Use the link below to try out an operation:
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path, data: { turbo_method: :post }, class: 'llm-ignore' %>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Notes</h4>
+  <h3 class="h4 alert-heading">Notes</h3>
   <p>
   To display the result of an operation directly in-page, you can use <code>lato_action_controller</code> features.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 &#60;%= link_to 'Generate Operation',
   main_app.custom_create_operation_action_path,
   data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }
@@ -109,20 +109,20 @@ Use the link below to try out an operation:
 <%= link_to 'Generate Operation with Success', main_app.operations_create_operation_action_path, data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </div>
 
-<h3>Handling Operation Outputs</h3>
+<h2 class="h3">Handling Operation Outputs</h2>
 
 <p>
 An operation's output can be handled directly within the Job using a series of helper methods.<br>
 These functions can also be called even if the Job is executed without using the <code>Lato::Operation</code> model.
 </p>
 
-<h4>Set an output message</h4>
+<h3 class="h4">Set an output message</h3>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'success'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     save_operation_output_message("Operation succeeded with this message")
@@ -130,13 +130,13 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an output file</h4>
+<h3 class="h4">Set an output file</h3>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'file'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     file_path = Rails.root.join('tmp', 'myfile.csv')
@@ -145,13 +145,13 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an output action</h4>
+<h3 class="h4">Set an output action</h3>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'success_action'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     save_operation_output_message("Custom operation success message and action")
@@ -161,19 +161,19 @@ end
 </pre>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h3 class="h4 alert-heading">Note</h3>
   <p>
   The output action link is rendered only when it is a relative path (starting with <code>/</code>) or an <code>http(s)</code> URL; any other value (e.g. <code>javascript:</code>) is rendered as <code>#</code>.
   </p>
 </div>
 
-<h4>Show execution error</h4>
+<h3 class="h4">Show execution error</h3>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'failed'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     raise "This is the operation error message"
@@ -181,13 +181,13 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Update progress percentage</h4>
+<h3 class="h4">Update progress percentage</h3>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'percentage'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     10.times do |index|
@@ -198,13 +198,13 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Add logs during operation execution</h4>
+<h3 class="h4">Add logs during operation execution</h3>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'logs_add'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     10.times do |index|
@@ -215,13 +215,13 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Replace logs during operation execution</h4>
+<h3 class="h4">Replace logs during operation execution</h3>
 
 <p>
 <%= link_to 'Generate Operation', main_app.operations_create_operation_action_path(type: 'logs_replace'), data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }, class: 'llm-ignore' %>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     10.times do |index|
@@ -232,7 +232,7 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an input file</h4>
+<h3 class="h4">Set an input file</h3>
 
 <div class="example bg-light p-3 mb-3">
   <%= form_with url: main_app.operations_create_operation_action_path(type: 'file_input'), data: { lato_action_target: 'triggerSubmit', turbo_frame: 'lato_operation', controller: 'lato-form' } do |form| %>
@@ -247,7 +247,7 @@ end
   <% end %>
 </div>
 
-<pre>
+<pre tabindex="0">
 &#60;%= form_with
   url: create_operation_action_path(type: 'file_input'),
   data: {
@@ -259,7 +259,7 @@ end
 ...
 </pre>
 
-<pre>
+<pre tabindex="0">
 class CustomController < ApplicationController
   def create_operation_action
     @operation = Lato::Operation.generate('OperationExampleJob', {}, @session.user_id, params[:file])
@@ -268,7 +268,7 @@ class CustomController < ApplicationController
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     save_operation_output_message("You uploaded the file #{operation_input_file_attachment.filename}")
@@ -276,16 +276,16 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h3>Utility Methods</h3>
+<h2 class="h3">Utility Methods</h2>
 
-<h4>Check if running inside an operation</h4>
+<h3 class="h4">Check if running inside an operation</h3>
 
 <p>
 The <code>operation?</code> method returns <code>true</code> if the job is running inside an operation context, <code>false</code> otherwise.<br>
 This is useful for writing jobs that can run both with and without operations:
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     save_operation_output_message("Running inside operation") if operation?
@@ -294,9 +294,9 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h4>Clear operation logs</h4>
+<h3 class="h4">Clear operation logs</h3>
 
-<pre>
+<pre tabindex="0">
 class MyJob < Lato::ApplicationJob
   def perform(params = {})
     add_operation_log("Step 1 started")
@@ -306,13 +306,13 @@ class MyJob < Lato::ApplicationJob
 end
 </pre>
 
-<h3>Operation Query Methods</h3>
+<h2 class="h3">Operation Query Methods</h2>
 
 <p>
 The <code>Lato::Operation</code> model provides several query methods to inspect an operation's state and output:
 </p>
 
-<pre>
+<pre tabindex="0">
 operation = Lato::Operation.find(id)
 
 # State checks
@@ -331,7 +331,7 @@ operation.output_error    # returns the output error string
 operation.output_file?    # returns true if an output file is attached
 </pre>
 
-<h3>Maintenance Jobs</h3>
+<h2 class="h3">Maintenance Jobs</h2>
 
 <p>
 Lato includes two cleanup jobs. They are not scheduled automatically: schedule them in your application.
@@ -344,7 +344,7 @@ Lato includes two cleanup jobs. They are not scheduled automatically: schedule t
 
 <p>Example with Solid Queue recurring tasks:</p>
 
-<pre>
+<pre tabindex="0">
 # config/recurring.yml
 production:
   lato_operations_cleaner:
@@ -357,7 +357,7 @@ production:
 
 <p>Without a recurring scheduler, call them from cron:</p>
 
-<pre>
+<pre tabindex="0">
 0 3 * * * cd /app && bin/rails runner 'Lato::LatoOperationsCleanerJob.perform_later'
 0 4 * * * cd /app && bin/rails runner 'Lato::ActiveStorageCleanerJob.perform_later'
 </pre>

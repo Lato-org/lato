@@ -25,7 +25,7 @@ Through an invitation, it is possible to:
 Here are some examples of the operations you can perform with invitations:
 </p>
 
-<pre>
+<pre tabindex="0">
 # creating an invitation (and automatically sending the invite email)
 @invitation = Lato::Invitation.create(params.require(:invitation).permit(:email).merge(inviter_lato_user_id: @session.user_id))
 
@@ -37,7 +37,7 @@ Here are some examples of the operations you can perform with invitations:
 </pre>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Notes</h4>
+  <h2 class="h4 alert-heading">Notes</h2>
   <p>
   <b>Auto-email on creation:</b> When an invitation is created, the invite email is automatically sent via an <code>after_create</code> hook. You do not need to call <code>send_invite</code> manually on creation.
   </p>
@@ -55,13 +55,13 @@ Here are some examples of the operations you can perform with invitations:
   </p>
 </div>
 
-<h3>Checking Invitation Status</h3>
+<h2 class="h3">Checking Invitation Status</h2>
 
 <p>
 The <code>Lato::Invitation</code> model provides methods to check invitation status:
 </p>
 
-<pre>
+<pre tabindex="0">
 @invitation = Lato::Invitation.find(id)
 
 # Check if the invitation has been accepted

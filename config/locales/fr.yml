@@ -7,6 +7,7 @@ fr:
     alert_title: "Erreur"
     sort_ascending: "Trier par %{column} croissant"
     sort_descending: "Trier par %{column} d\u00E9croissant"
+    pagination_label: "Pagination : %{name}"
     password_requirements: "Au moins %{count} caract\u00E8res."
     too_many_requests: "Trop de requ\u00EAtes, veuillez attendre %{minutes} minutes avant de r\u00E9essayer."
     hcaptcha_missing: "Veuillez compl\u00E9ter la v\u00E9rification captcha."

@@ -46,5 +46,9 @@ module Lato
       assert_not_includes html, "background-image"
       assert_equal "https://example.com/a.png); background:url(//evil", Nokogiri::HTML.fragment(html).at_css("img")["src"]
     end
+
+    test "data badge picks a contrasting text color" do
+      assert_includes lato_data_badge("Ok", "warning"), "text-bg-warning"
+    end
   end
 end

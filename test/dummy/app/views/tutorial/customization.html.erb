@@ -22,7 +22,7 @@ The layout is composed of the following UI elements: <b>navbar</b>, <b>content</
 To override the default classes, you can create an initializer with the following code:
 </p>
 
-<pre>
+<pre tabindex="0">
 Lato.bootstrap do |btstrap|
   btstrap.navbar = 'navbar-light navbar-expand-lg fixed-top bg-light shadow-sm px-3'
   btstrap.navbar_container = 'container-fluid'
@@ -50,7 +50,7 @@ Lato’s layout behavior can be customized using methods provided by the <code>L
 This concern offers a set of useful functions. Here’s an example:
 </p>
 
-<pre>
+<pre tabindex="0">
 class TutorialController < ApplicationController
   def index
     hide_sidebar # hides the sidebar
@@ -65,7 +65,7 @@ end
 </pre>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h3 class="h4 alert-heading">Note</h3>
   <p>
   All <code>Lato::Layoutable</code> methods can also be used inside controller <code>before_action</code> callbacks.
   </p>
@@ -128,7 +128,7 @@ Here is the complete list of overridable layout partials:
 </table>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h3 class="h4 alert-heading">Note</h3>
   <p>
   This same partial-based approach is used for email templates (see <code>_mailer-head_content.html.erb</code> and <code>_mailer-foot_content.html.erb</code>).
   </p>
@@ -145,7 +145,7 @@ Here is the complete list of overridable layout partials:
 The concern is included in <code>Lato::User</code>: use it to add relations, scopes and methods to the user model of your application.
 </p>
 
-<pre>
+<pre tabindex="0">
 module LatoUserApplication
   extend ActiveSupport::Concern
 

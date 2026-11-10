@@ -7,6 +7,7 @@ it:
     alert_title: "Errore"
     sort_ascending: "Ordina per %{column} crescente"
     sort_descending: "Ordina per %{column} decrescente"
+    pagination_label: "Paginazione: %{name}"
     password_requirements: "Almeno %{count} caratteri."
     too_many_requests: "Troppe richieste, attendi %{minutes} minuti prima di riprovare."
     hcaptcha_missing: "Completa la verifica captcha."

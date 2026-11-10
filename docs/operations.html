@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="61nnXVAEGyQ-IAwdaARu7BUAA2JdQnt2Tw6pSkcMuxI5t03CbvBUqY-NkrDOZJPPULVcfChmIVKYHOLJi4BYmQ">
+<meta name="csrf-token" content="4af73hTjvfE-znQpWFd2_txQ7xkpk3uOe5oRL6BNskMjHMi6OULh9JK7txB123DX0BwZv_DTas4KpgOhRv8UAA">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-d657e8de054c36e3cfea15316e2845c2b502501054890c55be955f088269b92a.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -345,7 +345,7 @@ Operations are handled by several components:
   <li>The <code>lato_operation</code> component allows displaying the operation status in the front-end.</li>
 </ul>
 
-<h3>Converting a Job into an Operation</h3>
+<h2 class="h3">Converting a Job into an Operation</h2>
 
 <p>
 The easiest way to convert a Job into an operation is to simply make the Job a subclass of <code>Lato::ApplicationJob</code>.<br>
@@ -353,7 +353,7 @@ Additionally, the <code>perform()</code> method must accept a single Hash parame
 Only classes inheriting from <code>Lato::ApplicationJob</code> can be started as operations: <code>Lato::Operation#start</code> ignores any other class.
 </p>
 
-<pre>
+<pre tabindex="0">
 # Before
 class MyJob &lt; ApplicationJob
   def perform(hello)
@@ -369,14 +369,14 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h3>Generating an Operation</h3>
+<h2 class="h3">Generating an Operation</h2>
 
 <p>
 Operations can be generated using the <code>generate</code> method of the <code>Lato::Operation</code> model.<br>
 Creating an operation requires three parameters: the name of the job to execute, a Hash of parameters to pass, and the ID of the user requesting the operation.
 </p>
 
-<pre>
+<pre tabindex="0">
 operation = Lato::Operation.generate('ExportProductsJob', { product_ids: [1, 2, 3] }, @session.user_id)
 </pre>
 
@@ -385,7 +385,7 @@ Once generated, the operation must be started using the <code>start</code> metho
 Here is an example controller that starts an operation:
 </p>
 
-<pre>
+<pre tabindex="0">
 class CustomController &lt; ApplicationController
   def create_operation_action
     @operation = Lato::Operation.generate('OperationExampleJob', {}, @session.user_id)
@@ -403,7 +403,7 @@ class CustomController &lt; ApplicationController
 end
 </pre>
 
-<h3>Displaying the Outcome of an Operation</h3>
+<h2 class="h3">Displaying the Outcome of an Operation</h2>
 
 <p>
 Each operation can be viewed at the route <code>lato.operation_path(operation_id)</code>.<br>
@@ -416,7 +416,7 @@ The operation view, handled via the <code>lato_operation</code> component, shows
 Use the link below to try out an operation:
 </p>
 
-<pre>
+<pre tabindex="0">
 &lt;%= link_to 'Generate Operation',
   main_app.custom_create_operation_action_path,
   data: { turbo_method: :post }
@@ -426,12 +426,12 @@ Use the link below to try out an operation:
 <a data-turbo-method="GET" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Notes</h4>
+  <h3 class="h4 alert-heading">Notes</h3>
   <p>
   To display the result of an operation directly in-page, you can use <code>lato_action_controller</code> features.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 &lt;%= link_to 'Generate Operation',
   main_app.custom_create_operation_action_path,
   data: { lato_action_target: 'trigger', turbo_method: :post, turbo_frame: 'lato_operation' }
@@ -440,20 +440,20 @@ Use the link below to try out an operation:
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation with Success</a>
 </div>
 
-<h3>Handling Operation Outputs</h3>
+<h2 class="h3">Handling Operation Outputs</h2>
 
 <p>
 An operation's output can be handled directly within the Job using a series of helper methods.<br>
 These functions can also be called even if the Job is executed without using the <code>Lato::Operation</code> model.
 </p>
 
-<h4>Set an output message</h4>
+<h3 class="h4">Set an output message</h3>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     save_operation_output_message("Operation succeeded with this message")
@@ -461,13 +461,13 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an output file</h4>
+<h3 class="h4">Set an output file</h3>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     file_path = Rails.root.join('tmp', 'myfile.csv')
@@ -476,13 +476,13 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an output action</h4>
+<h3 class="h4">Set an output action</h3>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     save_operation_output_message("Custom operation success message and action")
@@ -492,19 +492,19 @@ end
 </pre>
 
 <div class="alert alert-info mt-3">
-  <h4 class="alert-heading">Note</h4>
+  <h3 class="h4 alert-heading">Note</h3>
   <p>
   The output action link is rendered only when it is a relative path (starting with <code>/</code>) or an <code>http(s)</code> URL; any other value (e.g. <code>javascript:</code>) is rendered as <code>#</code>.
   </p>
 </div>
 
-<h4>Show execution error</h4>
+<h3 class="h4">Show execution error</h3>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     raise "This is the operation error message"
@@ -512,13 +512,13 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Update progress percentage</h4>
+<h3 class="h4">Update progress percentage</h3>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     10.times do |index|
@@ -529,13 +529,13 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Add logs during operation execution</h4>
+<h3 class="h4">Add logs during operation execution</h3>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     10.times do |index|
@@ -546,13 +546,13 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Replace logs during operation execution</h4>
+<h3 class="h4">Replace logs during operation execution</h3>
 
 <p>
 <a data-lato-action-target="trigger" data-turbo-method="GET" data-turbo-frame="lato_operation" class="llm-ignore" href='javascript:alert("This%20link%20is%20not%20available%20in%20the%20documentation.%20To%20test%20the%20full%20functionality%20of%20Lato,%20install%20and%20run%20the%20gem%20locally.")'>Generate Operation</a>
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     10.times do |index|
@@ -563,11 +563,11 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Set an input file</h4>
+<h3 class="h4">Set an input file</h3>
 
 <div class="example bg-light p-3 mb-3">
   <form data-lato-action-target="triggerSubmit" data-turbo-frame="lato_operation" data-controller="lato-form" enctype="multipart/form-data" action="/operations/create_operation_action?type=file_input" accept-charset="UTF-8" method="GET">
-<input type="hidden" name="authenticity_token" value="Q4TnnpkA70G-AG4pgUPQ9jbUHhnaFzL1xxdv1H00QL5csFh-zm8O9AWB2evT1_1Bm-LbUWVZBFqspjyzcw2x0g">
+<input type="hidden" name="authenticity_token" value="0_IJvjhPZnDGdRLtgsUUih64I_nQ4SnaYBK6fTMjzgqT4Go-xEE8IIPTRhjWnyaHLVNeWuEAkOJ6h3X0YBcDjg">
     <div class="col mb-3">
       <label class="form-label" for="file">File</label>
       <input required="required" class="form-control" data-action=" change-&gt;lato-form#onInputChange" data-lato-form-target="input" type="file" name="file" id="file">
@@ -579,7 +579,7 @@ end
 </form>
 </div>
 
-<pre>
+<pre tabindex="0">
 &lt;%= form_with
   url: create_operation_action_path(type: 'file_input'),
   data: {
@@ -591,7 +591,7 @@ end
 ...
 </pre>
 
-<pre>
+<pre tabindex="0">
 class CustomController &lt; ApplicationController
   def create_operation_action
     @operation = Lato::Operation.generate('OperationExampleJob', {}, @session.user_id, params[:file])
@@ -600,7 +600,7 @@ class CustomController &lt; ApplicationController
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     save_operation_output_message("You uploaded the file #{operation_input_file_attachment.filename}")
@@ -608,16 +608,16 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h3>Utility Methods</h3>
+<h2 class="h3">Utility Methods</h2>
 
-<h4>Check if running inside an operation</h4>
+<h3 class="h4">Check if running inside an operation</h3>
 
 <p>
 The <code>operation?</code> method returns <code>true</code> if the job is running inside an operation context, <code>false</code> otherwise.<br>
 This is useful for writing jobs that can run both with and without operations:
 </p>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     save_operation_output_message("Running inside operation") if operation?
@@ -626,9 +626,9 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h4>Clear operation logs</h4>
+<h3 class="h4">Clear operation logs</h3>
 
-<pre>
+<pre tabindex="0">
 class MyJob &lt; Lato::ApplicationJob
   def perform(params = {})
     add_operation_log("Step 1 started")
@@ -638,13 +638,13 @@ class MyJob &lt; Lato::ApplicationJob
 end
 </pre>
 
-<h3>Operation Query Methods</h3>
+<h2 class="h3">Operation Query Methods</h2>
 
 <p>
 The <code>Lato::Operation</code> model provides several query methods to inspect an operation's state and output:
 </p>
 
-<pre>
+<pre tabindex="0">
 operation = Lato::Operation.find(id)
 
 # State checks
@@ -663,7 +663,7 @@ operation.output_error    # returns the output error string
 operation.output_file?    # returns true if an output file is attached
 </pre>
 
-<h3>Maintenance Jobs</h3>
+<h2 class="h3">Maintenance Jobs</h2>
 
 <p>
 Lato includes two cleanup jobs. They are not scheduled automatically: schedule them in your application.
@@ -678,7 +678,7 @@ Lato includes two cleanup jobs. They are not scheduled automatically: schedule t
 
 <p>Example with Solid Queue recurring tasks:</p>
 
-<pre>
+<pre tabindex="0">
 # config/recurring.yml
 production:
   lato_operations_cleaner:
@@ -691,7 +691,7 @@ production:
 
 <p>Without a recurring scheduler, call them from cron:</p>
 
-<pre>
+<pre tabindex="0">
 0 3 * * * cd /app &amp;&amp; bin/rails runner 'Lato::LatoOperationsCleanerJob.perform_later'
 0 4 * * * cd /app &amp;&amp; bin/rails runner 'Lato::ActiveStorageCleanerJob.perform_later'
 </pre>
@@ -706,7 +706,7 @@ production:
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.26.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.26.1 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

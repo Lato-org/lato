@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="fPQAo1pxuazXAbhnB2DIxG0BG84g5Cjt7A9dDv__f57ikmBQYl5Tw12rSpP1bLrSK49hh79qanxlnsoDnBf2qg">
+<meta name="csrf-token" content="fuvWvBEfgpP6i9reIaTYE0g2Fe_UDlJ5J4XvhC31fxbXdh08RhT7A1LwWZ35XVYXjDE3Mbpr95U3AYnajHjSlA">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-d657e8de054c36e3cfea15316e2845c2b502501054890c55be955f088269b92a.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -365,18 +365,18 @@ before deployment. Previous sessions are invalidated.</p>
 
 <p>Add Lato Users to the application Gemfile:</p>
 
-<pre><code>gem "lato"
+<pre tabindex="0"><code>gem "lato"
 gem "lato_users"</code></pre>
 
 <p>Install the gem and its migration (adds the <code>lato_users_admin</code> column). <code>rails lato_users:install:application</code> is a no-op and is not required:</p>
 
-<pre><code>bundle
+<pre tabindex="0"><code>bundle
 rails lato_users:install:migrations
 rails db:migrate</code></pre>
 
 <p>Mount the engine in <code>config/routes.rb</code>:</p>
 
-<pre><code>Rails.application.routes.draw do
+<pre tabindex="0"><code>Rails.application.routes.draw do
   mount LatoUsers::Engine =&gt; "/lato-users"
 
   # ...
@@ -384,15 +384,15 @@ end</code></pre>
 
 <p>Import styles in <code>app/assets/stylesheets/application.scss</code>:</p>
 
-<pre><code>@import "lato_users/application";</code></pre>
+<pre tabindex="0"><code>@import "lato_users/application";</code></pre>
 
 <p>Import JavaScript in <code>app/javascript/application.js</code>:</p>
 
-<pre><code>import "lato_users/application"</code></pre>
+<pre tabindex="0"><code>import "lato_users/application"</code></pre>
 
 <p>Add the menu entry, visible only to admins (the engine activates <code>:lato_users</code> on its pages):</p>
 
-<pre><code>&lt;% if @session.user&amp;.lato_users_admin %&gt;
+<pre tabindex="0"><code>&lt;% if @session.user&amp;.lato_users_admin %&gt;
   &lt;%= lato_navbar_nav_item :lato_users, lato_users.root_path do %&gt;Users&lt;% end %&gt;
 &lt;% end %&gt;</code></pre>
 
@@ -410,7 +410,7 @@ end</code></pre>
   Grant permission from application seeds or from an existing admin account.
 </p>
 
-<pre><code>user = Lato::User.find_by(email: "admin@example.com")
+<pre tabindex="0"><code>user = Lato::User.find_by(email: "admin@example.com")
 user.update!(lato_users_admin: true)</code></pre>
 
 <div class="alert alert-warning">
@@ -463,7 +463,7 @@ user.update!(lato_users_admin: true)</code></pre>
 
 <p><strong>1. Add the integer column</strong> to the shared <code>lato_users</code> table:</p>
 
-<pre><code># db/migrate/xxxxxxxxxxxxxx_add_shop_admin_role_to_lato_user.rb
+<pre tabindex="0"><code># db/migrate/xxxxxxxxxxxxxx_add_shop_admin_role_to_lato_user.rb
 class AddShopAdminRoleToLatoUser &lt; ActiveRecord::Migration[8.1]
   def change
     add_column :lato_users, :lato_shop_admin_role, :integer, default: 0, null: false
@@ -477,7 +477,7 @@ end</code></pre>
   values must match the integers stored in the column:
 </p>
 
-<pre><code># config/initializers/lato_shop_roles.rb
+<pre tabindex="0"><code># config/initializers/lato_shop_roles.rb
 Rails.application.config.to_prepare do
   Lato::User.class_eval do
     def self.lato_shop_admin_role_options
@@ -495,7 +495,7 @@ end</code></pre>
   and the field label of the select comes from the <code>Lato::User</code> attribute translation:
 </p>
 
-<pre><code># config/locales/en.yml
+<pre tabindex="0"><code># config/locales/en.yml
 en:
   shop:
     roles:
@@ -513,7 +513,7 @@ en:
   <code>lato_users</code> is required. Reading the role back is a plain integer comparison:
 </p>
 
-<pre><code>user.lato_shop_admin_role         # =&gt; 0, 1 or 2
+<pre tabindex="0"><code>user.lato_shop_admin_role         # =&gt; 0, 1 or 2
 user.lato_shop_admin_role &gt;= 1    # true when the user is at least a manager</code></pre>
 
 <div class="alert alert-info mt-3">
@@ -556,7 +556,7 @@ user.lato_shop_admin_role &gt;= 1    # true when the user is at least a manager<
   This guarantees access to the user management panel after first deployment.
 </p>
 
-<pre><code>admin = Lato::User.find_or_create_by!(email: "admin@example.com") do |user|
+<pre tabindex="0"><code>admin = Lato::User.find_or_create_by!(email: "admin@example.com") do |user|
   user.first_name = "Admin"
   user.last_name = "User"
   user.password = "Password1!"
@@ -586,7 +586,7 @@ admin.update!(lato_users_admin: true)</code></pre>
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.26.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.26.1 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

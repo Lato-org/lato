@@ -47,7 +47,8 @@ class ActionDispatch::IntegrationTest
 
   protected def authenticate_user(user = nil, password = 'Password1!')
     user ||= @user
-    Rails.cache.delete("Lato::Sessionable/limit_requests/authentication/signin_action/127.0.0.1")
+    # Login throttling counters (per IP and per account) live in the cache: reset them so test order does not matter.
+    Rails.cache.clear
 
     post lato.authentication_signin_action_url, params: { user: {
       email: user.email,

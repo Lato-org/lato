@@ -38,6 +38,20 @@ $tooltip-max-width: 300px;
   margin: 0 4px;
 }
 
+// WCAG 2.2 target size (2.5.8): interactive targets of at least 24x24px.
+.pagination > span > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+// Bootstrap's pink code color fails contrast on tinted alert backgrounds.
+.alert code {
+  color: inherit;
+}
+
 .pagination .current {
   font-weight: bold;
 }
@@ -143,6 +157,9 @@ main, aside {
   .btn {
     font-size: 12px;
     padding: 0.15rem 0.3rem;
+    // 25px: btn-group overlaps adjacent buttons by 1px, the visible target must stay >= 24px (WCAG 2.5.8)
+    min-width: 25px;
+    min-height: 24px;
   }
 }
 

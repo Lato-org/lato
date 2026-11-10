@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,interactive-widget=resizes-content">
   <title>Lato</title>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="D1f09U9bVMsg-iyDE2f5VZndLAbSmBEFNHhBKf9ireQR5UdyUnKy2GZrHsFYfhL8V1ldCRDL8vked3MpBa8Xaw">
+<meta name="csrf-token" content="olEMg9sVX3O8l3wHNFP5tXU-KzhqxaBAHneFycercc9E8kPSB8zZvJ5OwVWa_Q0JQmJRA69pyuA-RYi5cjrLEQ">
   
 
   <meta name="turbo-refresh-method" content="morph">
@@ -33,7 +33,7 @@ document.addEventListener('turbo:load', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   
-  <link rel="stylesheet" href="/assets/application-e1121374f61f366b6bd4f72c3629a1e107dcfb7781b62e3be5d3a3dc19269a1c.css" media="all">
+  <link rel="stylesheet" href="/assets/application-d657e8de054c36e3cfea15316e2845c2b502501054890c55be955f088269b92a.css" media="all">
   <script type="importmap" data-turbo-track="reload">{
   "imports": {
     "lato/application": "/assets/lato/application-c216e3c6bcf51b52fadc73e36942e59010ffc95ec9d706d1867efdcefbfc9aa9.js",
@@ -341,7 +341,7 @@ This section illustrates how to build a full CRUD interface using Lato features.
 
 <h2>Model</h2>
 
-<pre>
+<pre tabindex="0">
 class Product &lt; ApplicationRecord
   enum :status, {
     created: 0,
@@ -406,7 +406,7 @@ end
 
 <h2>Controller</h2>
 
-<pre>
+<pre tabindex="0">
 class ProductsController &lt; ApplicationController
   before_action :authenticate_session
   before_action { active_sidebar(:products) }
@@ -516,7 +516,7 @@ end
 
 <h3>Index</h3>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_page_head 'Products', [
   { label: 'Products' }
 ] %&gt;
@@ -578,7 +578,7 @@ end
 
 <h3>Create</h3>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_page_head 'New product', [
   { label: 'Products', path: products_path },
   { label: 'New product' }
@@ -596,7 +596,7 @@ end
 
 <h3>Update</h3>
 
-<pre>
+<pre tabindex="0">
 &lt;%= lato_page_head 'Edit product', [
   { label: 'Products', path: products_path },
   { label: 'Edit product' }
@@ -614,7 +614,7 @@ end
 
 <h3>Partial Form</h3>
 
-<pre>
+<pre tabindex="0">
 &lt;%
 
 product ||= Product.new
@@ -656,7 +656,7 @@ product ||= Product.new
 
 <h2>Helpers</h2>
 
-<pre>
+<pre tabindex="0">
 module ProductsHelper
   def product_status(product)
     lato_data_badge(Product.human_attribute_name("status.#{product.status}"), product.status_color)
@@ -701,7 +701,7 @@ end
     <div class="footer bg-light px-md-3 py-2 border-top" style="font-size: 14px;">
   <div class="container-fluid text-center text-muted d-md-flex justify-content-between p-3">
     <div>
-      v3.26.0 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
+      v3.26.1 - © 2026 - <a target="_blank" href="https://github.com/lato-org">Lato Team</a>
     </div>
     <div class="mt-2 mt-md-0">
       <a href="https://github.com/Lato-org">Privacy policy</a> -

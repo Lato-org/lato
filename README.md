@@ -8,6 +8,7 @@ This gem includes:
 - User management with **full authentication system** (signin, signup, recover password, email validation, Google Authenticator and WebAuthn/passkey multi-factor authentication, ETH wallet connection) and **account management** (user settings, password change, email change, etc.);
 - **Web interface** built with [Bootstrap](https://getbootstrap.com/) and [Bootstrap Icons](https://icons.getbootstrap.com/);
 - **UI components integrated with Rails** (data tables, forms, modals, async job executions etc.);
+- **Accessibility built in**: labelled form fields with linked error messages, keyboard friendly modals with focus return, skip link, `aria-sort` on tables, live regions for feedback and WCAG 2.2 target sizes. Core pages report zero axe-core violations on WCAG 2.2 AA rules;
 
 The gem is **agnostic to the application stack**. You can use it with different databases (PostgreSQL, MySQL, SQLite), different Job processors (Solid queue, Sidekiq, Delayed Job, etc.), different cache systems (Redis, Memcached, etc.).
 

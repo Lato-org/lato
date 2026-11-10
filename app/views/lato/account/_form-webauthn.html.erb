@@ -20,7 +20,7 @@ end
 
     <% if user.webauthn_enabled? %>
       <div class="alert alert-success mb-3">
-        <h4 class="alert-heading"><%= I18n.t('lato.account_webauthn_ready_title') %></h4>
+        <h3 class="alert-heading h4"><%= I18n.t('lato.account_webauthn_ready_title') %></h3>
         <p class="mb-0">
           <%= raw I18n.t('lato.account_webauthn_ready_description') %>
         </p>
@@ -36,7 +36,7 @@ end
       <%= form.hidden_field :webauthn_credential, data: { lato_account_webauthn_target: 'credentialInput' } %>
 
       <div class="alert alert-light mb-3" data-lato-account-webauthn-target="status">
-        <h4 class="alert-heading"><%= I18n.t('lato.account_webauthn_in_progress_title') %></h4>
+        <h3 class="alert-heading h4"><%= I18n.t('lato.account_webauthn_in_progress_title') %></h3>
         <p class="mb-0">
           <%= raw I18n.t('lato.account_webauthn_in_progress_description') %>
         </p>
@@ -53,7 +53,7 @@ end
       </div>
     <% else %>
       <div class="alert alert-light mb-0">
-        <h4 class="alert-heading"><%= I18n.t('lato.account_webauthn_start_title') %></h4>
+        <h3 class="alert-heading h4"><%= I18n.t('lato.account_webauthn_start_title') %></h3>
         <p>
           <%= raw I18n.t('lato.account_webauthn_start_description') %>
         </p>

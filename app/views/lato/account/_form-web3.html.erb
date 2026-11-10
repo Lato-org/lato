@@ -30,7 +30,7 @@ user ||= Lato::User.new
       </div>
     <% elsif session[:web3_nonce] %>
       <div class="alert alert-light mb-0">
-        <h4 class="alert-heading" role="status"><%= I18n.t('lato.connecting') %></h4>
+        <h3 class="alert-heading h4" role="status"><%= I18n.t('lato.connecting') %></h3>
         <div class="progress" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
         </div>
@@ -73,7 +73,7 @@ user ||= Lato::User.new
       </script>
     <% else %>
       <div class="alert alert-light mb-0">
-        <h4 class="alert-heading"><%= I18n.t('lato.account_web3_start_title') %></h4>
+        <h3 class="alert-heading h4"><%= I18n.t('lato.account_web3_start_title') %></h3>
         <p>
           <%= raw I18n.t('lato.account_web3_start_description') %>
         </p>

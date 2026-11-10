@@ -45,5 +45,7 @@ class ModulesController < ApplicationController
     content
       .gsub(/<%=\s*lato_page_head[\s\S]*?%>/, "")
       .gsub(/<%[\s\S]*?%>/, "")
+      # Scrollable code blocks must be keyboard-reachable (WCAG 2.1.1)
+      .gsub(/<pre(?![^>]*tabindex)/, '<pre tabindex="0"')
   end
 end

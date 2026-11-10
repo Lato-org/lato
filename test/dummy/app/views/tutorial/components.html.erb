@@ -33,7 +33,7 @@ Parameters:<br>
 - <i>&block</i>: block of HTML to render inside the menu item.
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_navbar_nav_item :account, lato.account_path do %&#62;
   Account
 &#60;% end %&#62;
@@ -48,7 +48,7 @@ Parameters:<br>
   - <i>flag</i> (default: true): if true, displays flag icons next to locale names.
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_navbar_nav_locales_item %&#62;
 &#60;%= lato_navbar_nav_locales_item flag: false %&#62;
 </pre>
@@ -81,7 +81,7 @@ There are also some extra parameters to customize the menu item:<br>
 - <i>children</i> (default: nil): an array of hashes representing submenu items. Each hash should contain the keys <code>:key</code>, <code>:label</code>, and <code>:path</code>. If this parameter is provided, the menu item will have a collapsible submenu.
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_sidebar_nav_item :account, lato.account_path do %&#62;
   Account
 &#60;% end %&#62;
@@ -104,7 +104,7 @@ There are also some extra parameters to customize the menu item:<br>
 
 <h3>Page head</h3>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_page_head 'Page title' %&#62;
 </pre>
 
@@ -112,7 +112,7 @@ There are also some extra parameters to customize the menu item:<br>
 <%= lato_page_head 'Page title' %>
 </div>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_page_head 'Page title', [{ label: 'Title 1', path: main_app.page_path }, { label: 'Title 2' }] %&#62;
 </pre>
 
@@ -120,7 +120,7 @@ There are also some extra parameters to customize the menu item:<br>
 <%= lato_page_head 'Page title', [{ label: 'Title 1', path: '#' }, { label: 'Title 2' }] %>
 </div>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_page_head 'Page title' do %&#62;
   &#60p class="lead"&#62;Welcome to this page&#60/p&#62;
 &#60;% end %&#62;
@@ -133,11 +133,11 @@ There are also some extra parameters to customize the menu item:<br>
 </div>
 
 <div class="alert alert-warning mt-3">
-  <h4 class="alert-heading">Title escaping</h4>
+  <h2 class="h4 alert-heading">Title escaping</h2>
   <p>
   The page head title is HTML-escaped. To render HTML in the title, pass an <code>html_safe</code> string and make sure it never contains user data:
   </p>
-<pre>
+<pre tabindex="0">
 &#60;%= lato_page_head safe_join(['Orders ', content_tag(:small, 'beta')]) %&#62;
 </pre>
 </div>
@@ -172,7 +172,7 @@ Below is a list of available components with usage examples:
 </ul>
 </p>
 
-<pre>
+<pre tabindex="0">
 <%= component_code('form-example') %>
 </pre>
 
@@ -194,7 +194,7 @@ Parameters:<br>
 The model must declare the attachment:
 </p>
 
-<pre>
+<pre tabindex="0">
 class Product &#60; ApplicationRecord
   has_one_attached :signature
 end
@@ -204,7 +204,7 @@ end
 Usage in a form:
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;div class="mb-3"&#62;
   &#60;%= lato_form_item_label form, :signature %&#62;
   &#60;%= lato_form_item_input_signature form, :signature %&#62;
@@ -247,7 +247,7 @@ The <code>lato_form_item_input_list</code> component requires three parameters:<
   Other hidden fields (such as the item ID) and the remove button are automatically handled by the component.
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_form_item_input_list(form, :product_items, 'products/input_list_product_item') %&#62;
 </pre>
 
@@ -268,7 +268,7 @@ The <code>lato_form_item_input_list</code> component requires three parameters:<
 The <code>lato_data_badge</code> component allows easy rendering of badges with different styles.
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_data_badge "badge primary", "primary" %&#62;
 &#60;%= lato_data_badge "badge secondary", "secondary" %&#62;
 &#60;%= lato_data_badge "badge info", "info" %&#62;
@@ -296,7 +296,7 @@ The <code>lato_data_badge</code> component allows easy rendering of badges with 
 The <code>lato_data_user</code> component allows easy rendering of user information with avatar and full name.
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_data_user("Mr. Wolf") %&#62;
 &#60;%= lato_data_user("Ms. White", "https://i.pravatar.cc/40?img=5") %&#62;
 </pre>
@@ -321,7 +321,7 @@ The <code>lato_index</code> component allows easy visualization of database reco
 The simplest way to use the component is to pass it an <code>ActiveRecord</code> collection:
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index Product.all.limit(5) %&#62;
 </pre>
 
@@ -335,7 +335,7 @@ The simplest way to use the component is to pass it an <code>ActiveRecord</code>
 Columns can be customized using the <code>:columns</code> parameter:
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index Product.all.limit(5), columns: %i[id code status] %&#62;
 </pre>
 
@@ -349,7 +349,7 @@ Columns can be customized using the <code>:columns</code> parameter:
   Column titles can be customized using Rails translation files.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 en:
   activerecord:
     attributes:
@@ -366,7 +366,7 @@ You can customize column content by creating helper methods with the format <cod
 For example, to customize the output of the :lato_user_id column, define the following helper in <code>ProductsHelper</code>:
 </p>
 
-<pre>
+<pre tabindex="0">
 class ProductsHelper
   def product_lato_user_id(product)
     product.lato_user.full_name
@@ -381,7 +381,7 @@ To add custom columns, declare a method in the model that provides the value.<br
 For example, after adding a <code>lifetime</code> method to the <code>Product</code> model, you can use the <code>:lifetime</code> column:
 </p>
 
-<pre>
+<pre tabindex="0">
 class Product < ApplicationRecord
   def lifetime
     Time.now - created_at
@@ -389,7 +389,7 @@ class Product < ApplicationRecord
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 class ProductsHelper
   def product_lifetime(product)
     Time.at(product.lifetime).utc.strftime('%H h %M m')
@@ -397,7 +397,7 @@ class ProductsHelper
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime] %&#62;
 </pre>
 
@@ -413,7 +413,7 @@ end
   <p>
   To add columns that don't map to real attributes, use <code>attr_accessor :column_name</code> instead of defining a method in the model:
   </p>
-<pre>
+<pre tabindex="0">
 class Product < ApplicationRecord
   attr_accessor :lifetime
 end
@@ -422,7 +422,7 @@ end
 
 <h4>Adding actions</h4>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index Product.all.limit(5), custom_actions: {
     create: {
       path: products_create_path,
@@ -455,7 +455,7 @@ end
 
 <h4>Adding in-page actions</h4>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index Product.all.limit(5), custom_actions: {
     create: {
       path: products_create_path,
@@ -493,7 +493,7 @@ You can also add a dropdown menu of actions using the <code>:dropdown_actions</c
 This renders a button with a dropdown menu containing a list of actions.
 </p>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index Product.all.limit(5), dropdown_actions: {
     icon: 'bi bi-three-dots-vertical',
     actions: [
@@ -510,7 +510,7 @@ Row-specific actions can be added through custom columns (as shown above). <code
 These actions can also be opened in-page via overlays using <code>data-lato-index-target="action"</code> and <code>data-turbo-frame="turbo-frame-ID"</code>.
 </p>
 
-<pre>
+<pre tabindex="0">
 class ProductsHelper
   def product_actions(product)
     content_tag(:div, class: 'btn-group btn-group-sm') do
@@ -525,7 +525,7 @@ class ProductsHelper
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index Product.all.limit(5), columns: %i[id code status lifetime actions] %&#62;
 </pre>
 
@@ -539,7 +539,7 @@ end
   Instead of using per-model helper methods (like <code>product_lato_user_id</code>), you can also override column rendering globally by defining <code>lato_index_dynamic_label</code> and <code>lato_index_dynamic_value</code> methods in your <code>ApplicationHelper</code>:<br>
   These methods receive a hash with <code>:column</code>, <code>:model_name</code>, <code>:record</code>, and <code>:value</code> keys, allowing you to centralize custom column rendering logic.
   </p>
-<pre>
+<pre tabindex="0">
 module ApplicationHelper
   def lato_index_dynamic_label(params = {})
     # Return a custom label for specific columns
@@ -564,13 +564,13 @@ end
 To make the index fully interactive, use the <code>lato_index_collection</code> function from the <code>Lato::Componentable</code> concern in the controller.
 </p>
 
-<pre>
+<pre tabindex="0">
 def index
   @products = lato_index_collection(Product.all, pagination: true)
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index @products %&#62;
 </pre>
 
@@ -580,7 +580,7 @@ end
 
 <h4>Customizing columns</h4>
 
-<pre>
+<pre tabindex="0">
 def index
   @products_columns = lato_index_collection(
     Product.all,
@@ -590,7 +590,7 @@ def index
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index @products_columns %&#62;
 </pre>
 
@@ -604,7 +604,7 @@ end
 Users can choose how many items to display per page using a selector enabled via the <code>:pagination_options</code> parameter in <code>lato_index_collection</code>.
 </p>
 
-<pre>
+<pre tabindex="0">
 def index
   @products_pagination_options = lato_index_collection(
     Product.all,
@@ -615,7 +615,7 @@ def index
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index @products_pagination_options, pagination_options: [10,20,50,100] %&#62;
 </pre>
 
@@ -625,7 +625,7 @@ end
 
 <h4>Making columns sortable</h4>
 
-<pre>
+<pre tabindex="0">
 def index
   @products_sortable_columns = lato_index_collection(
     Product.all,
@@ -636,7 +636,7 @@ def index
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index @products_sortable_columns %&#62;
 </pre>
 
@@ -650,7 +650,7 @@ end
   To customize sorting logic, define the <code>lato_index_order</code> scope inside the model.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 class Product < ApplicationRecord
   belongs_to :lato_user, class_name: 'Lato::User'
 
@@ -669,7 +669,7 @@ end
   To set a default sorting column, use the <code>default_sort_by</code> option in the <code>lato_index_collection</code> method.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 def index
   @products_default_sort = lato_index_collection(
     Product.all,
@@ -685,7 +685,7 @@ end
 
 <h4>Making columns searchable</h4>
 
-<pre>
+<pre tabindex="0">
 def index
   @products_searchable_columns = lato_index_collection(
     Product.all,
@@ -697,7 +697,7 @@ def index
 end
 </pre>
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index @products_searchable_columns %&#62;
 </pre>
 
@@ -711,7 +711,7 @@ end
   To customize search logic, define the <code>lato_index_search</code> scope inside the model.<br>
   Example:
   </p>
-<pre>
+<pre tabindex="0">
 class Product < ApplicationRecord
   belongs_to :lato_user, class_name: 'Lato::User'
 
@@ -733,7 +733,7 @@ For large tables, you can skip the total count to improve performance by setting
 This is useful when you don't need the total count of records, such as when displaying a large collection.
 </p> 
 
-<pre>
+<pre tabindex="0">
 &#60;%= lato_index @products_skip_total_count_columns, skip_total_count: true %&#62;
 </pre>
 
