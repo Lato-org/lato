@@ -44,6 +44,7 @@ Lato.configure do |config|
   config.auth_disable_signin_success_mail = true # Disable login notification email
   config.auth_recover_password_hourly_limit = 100 # Max password recovery emails sent per hour across all users, nil to disable (default: 100)
   config.auth_password_min_length = 8 # Minimum password length (default: 8)
+  config.invitation_lifetime = 7.days # Invitations not accepted within this duration from the last invitation email expire, nil to never expire (default: 30 days)
 end
 </pre>
 
@@ -111,11 +112,13 @@ end
 Lato.configure do |config|
   config.session_lifetime = 5.days # Absolute lifetime of the session cookie and of the session database record (default: 30 days)
   config.session_root_path = :tutorial_path # Path to redirect users after login/signup
+  config.session_idle_timeout = 30.minutes # Revoke sessions inactive for longer than this duration, nil to disable (default: nil)
 end
 </pre>
 
 <p>
-  <code>session_lifetime</code> is an absolute lifetime: it is not renewed on activity and there is no idle timeout.
+  <code>session_lifetime</code> is an absolute lifetime: it is not renewed on activity.
+  When <code>session_idle_timeout</code> is set, a session without requests for longer than the timeout is revoked and the user must sign in again (activity is recorded at most once per minute).
   The session cookie is <code>httponly</code>, <code>same_site: :lax</code>, and <code>secure</code> only when the request is SSL, so set <code>config.force_ssl = true</code> in production.
 </p>
 
@@ -184,6 +187,8 @@ Lato.configure do |config|
   config.webauthn_connection = true # Allow users to link WebAuthn to their account
   config.webauthn_origin = 'http://localhost:3000' # Origin URL for WebAuthn (must match the one used in your app)
   config.webauthn_rp_name = 'Lato Example App' # Relying Party name for WebAuthn
+  config.webauthn_user_verification = 'preferred' # WebAuthn user verification: 'discouraged', 'preferred' or 'required' (default: 'preferred')
+  config.encrypt_authenticator_secret = true # Encrypt the authenticator secret with Active Record encryption (default: false)
 end
 </pre>
 
@@ -201,7 +206,8 @@ end
 
 <p>
   The signature counter is persisted and a non-increasing counter is rejected to detect cloned authenticators.
-  Limitations: each user can register one credential, there are no backup codes, and user verification is not required.
+  <code>webauthn_user_verification</code> is sent to the browser for registration and authentication. With <code>'required'</code> the server also rejects responses without user verification (biometrics or PIN): use it only when every user has an authenticator that supports it.
+  Limitations: each user can register one credential and there are no backup codes.
 </p>
 
 <h3>Authenticator (TOTP)</h3>
@@ -209,8 +215,17 @@ end
 <p>
   A code can be used only once (replay protection) and a drift of 15 seconds behind is accepted.
   The pending second factor step after the password expires after 10 minutes and is dropped after 5 wrong codes; the user must sign in again.
-  The authenticator secret is stored in clear in the database, consider Active Record encryption for production.
+  By default the authenticator secret is stored in clear in the database. Set <code>encrypt_authenticator_secret = true</code> to encrypt it with Active Record encryption.
 </p>
+
+<div class="alert alert-warning">
+  <h4 class="h5 alert-heading">Authenticator secret encryption</h4>
+  <ul class="mb-0">
+    <li><code>encrypt_authenticator_secret</code> is read when <code>Lato::User</code> is loaded: set it in an initializer, not at runtime.</li>
+    <li>Configure Active Record encryption keys (<code>bin/rails db:encryption:init</code>, then store them in credentials).</li>
+    <li>Existing plaintext secrets: set <code>config.active_record.encryption.support_unencrypted_data = true</code> until every row is re-encrypted (for example with <code>Lato::User.where.not(authenticator_secret: nil).find_each(&amp;:encrypt)</code>).</li>
+  </ul>
+</div>
 
 <h3>Web3</h3>
 
@@ -229,15 +244,14 @@ Issued At: ...
 
 <p>
   The nonce is single use and expires after 5 minutes. This is not a full SIWE (EIP-4361) implementation. Web3 signin pages require the user to be signed out.
-  The browser loads <code>ethers</code> 5.7.2 from cdnjs with a dynamic <code>import()</code>: the version is pinned but without Subresource Integrity (<code>import()</code> cannot carry an integrity attribute).
-  Applications that need strict supply-chain control should vendor the library.
+  <code>ethers</code> 5.7.2 is vendored in the gem and pinned in the importmap: it is served by the application and loaded only on Web3 pages.
 </p>
 
 <h2>Security</h2>
 
 <p>
-  Web3 and email verification views use inline scripts, so a Content Security Policy needs <code>unsafe-inline</code> or nonces for those pages.
-  See the "Production security checklist" in the <%= link_to 'README', 'https://github.com/lato-org/lato#production-security-checklist', target: '_blank' %> for the full list (force SSL, shared cache, session lifetime, cleaner jobs, invitations, secrets at rest).
+  Engine views do not use inline scripts or inline event handlers: a Content Security Policy without <code>'unsafe-inline'</code> for scripts works when nonces are enabled for the importmap tags.
+  See "Security recommendations for your application" in the <%= link_to 'README', 'https://github.com/lato-org/lato#security-recommendations-for-your-application', target: '_blank' %> for the settings to apply in the host application.
 </p>
 
 <p>

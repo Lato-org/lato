@@ -7,12 +7,11 @@ code ||= nil
 
 
 <%= turbo_frame_tag 'authentication_form_verify_email' do %>
-  <%= form_with model: user, url: lato.authentication_verify_email_action_path(id: user.id), class: 'text-center', data: { turbo_frame: '_self' } do |form| %>
+  <%= form_with model: user, url: lato.authentication_verify_email_action_path(id: user.id), class: 'text-center', data: { turbo_frame: '_self', controller: code ? 'lato-auto-submit' : nil } do |form| %>
     <% if code %>
       <%= form.hidden_field :code, value: code %>
       <%# Visible fallback when JavaScript is disabled or blocked by CSP. %>
       <button type="submit" class="btn btn-primary"><%= I18n.t('lato.verify_email') %></button>
-      <script>document.getElementById('authentication_form_verify_email').querySelector('button[type="submit"]').click()</script>
     <% else %>
       <%= lato_form_notices class: %w[mb-3], fixed: true %>
       <%= lato_form_errors user, class: %w[mb-3], fixed: true %>

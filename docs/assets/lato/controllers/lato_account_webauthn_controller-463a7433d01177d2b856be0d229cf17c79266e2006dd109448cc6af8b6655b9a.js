@@ -54,7 +54,7 @@ export default class extends Controller {
       authenticatorSelection: {
         authenticatorAttachment: 'platform',
         requireResidentKey: false,
-        userVerification: 'preferred'
+        userVerification: options.authenticatorSelection?.userVerification || 'preferred'
       },
       attestation: 'none'
     }

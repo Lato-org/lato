@@ -176,6 +176,7 @@ fr:
               privacy_policy_invalid: Pour accepter la politique de confidentialité, vous devez cocher la case de confirmation
               terms_and_conditions_invalid: Pour accepter les conditions générales, vous devez cocher la case de confirmation
               invitation_invalid: Invitation non valide
+              invitation_expired: Invitation expirée, demandez-en une nouvelle
               web3_address_invalid: L'adresse envoyée n'est pas correctement signée
               web3_connection_error: Impossible de connecter le portefeuille
               authenticator_code_invalid: Le code saisi n'est pas correct

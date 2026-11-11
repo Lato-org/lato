@@ -18,41 +18,12 @@ user ||= Lato::User.new
         </div>
       </div>
       
-      <span id="account_form-web3__nonce" style="display: none;"><%= session[:web3_nonce] %></span>
-      <%= form.hidden_field :web3_address, id: 'account_form-web3__input-web3_address'  %>
-      <%= form.hidden_field :web3_signed_nonce, id: 'account_form-web3__input-web3_signed_nonce' %>
-      <%= lato_form_submit form, I18n.t('lato.confirm'), class: %w[btn-primary d-none], id: 'account_form-web3__submit' %>
-
-      <script>
-        (async () => {
-          // Pinned exact version: dynamic import() can not carry an SRI hash (see README security checklist).
-          const ethers = await import('https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.esm.min.js')
-
-          const nonce = document.getElementById('account_form-web3__nonce').textContent
-          const inputAddress = document.getElementById('account_form-web3__input-web3_address')
-          const inputSignedNonce = document.getElementById('account_form-web3__input-web3_signed_nonce')
-          const submitButton = document.getElementById('account_form-web3__submit')
-
-          let address = ''
-          let signedNonce = ''
-
-          try {
-            if (window.ethereum) {
-              const provider = new ethers.ethers.providers.Web3Provider(window.ethereum)
-              await provider.send('eth_requestAccounts', [])
-              const signer = provider.getSigner()
-              address = await signer.getAddress()
-              signedNonce = await signer.signMessage(nonce)
-            }
-          } catch (error) {
-            console.error(error)
-          }
-
-          inputAddress.value = address
-          inputSignedNonce.value = signedNonce
-          submitButton.click()
-        })()
-      </script>
+      <div data-controller="lato-web3-sign">
+        <span id="account_form-web3__nonce" style="display: none;" data-lato-web3-sign-target="nonce"><%= session[:web3_nonce] %></span>
+        <%= form.hidden_field :web3_address, id: 'account_form-web3__input-web3_address', data: { lato_web3_sign_target: 'address' } %>
+        <%= form.hidden_field :web3_signed_nonce, id: 'account_form-web3__input-web3_signed_nonce', data: { lato_web3_sign_target: 'signedNonce' } %>
+        <%= lato_form_submit form, I18n.t('lato.confirm'), class: %w[btn-primary d-none], id: 'account_form-web3__submit', data: { lato_web3_sign_target: 'submit' } %>
+      </div>
 
     <% else %>
       <div class="text-center">

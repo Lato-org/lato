@@ -145,19 +145,23 @@ rails db:migrate
 
 Read [UPGRADING.md](UPGRADING.md) for the changes and extra steps required by each version.
 
-## Production security checklist
+## Security recommendations for your application
+
+Lato ships secure defaults, but some settings belong to the Rails application that uses it. These recommendations help applications using Lato reach a higher security level in production:
 
 - Set `config.force_ssl = true`: the session cookie is `secure` only when the request is SSL.
-- Use a persistent `Rails.cache` shared across processes (Redis, Solid Cache, Memcached). Recovery codes, verification codes and all rate limits depend on it; Lato logs a warning at boot in production if it is a `NullStore`.
+- Use a persistent `Rails.cache` shared across processes (Redis, Solid Cache, Memcached). Recovery codes, verification codes and rate limits depend on it.
 - Set `config.action_controller.raise_on_open_redirects = true`.
-- Content Security Policy: the Web3 and verify-email views use inline scripts, so those pages need `unsafe-inline` or nonces. `ethers` 5.7.2 is loaded from cdnjs with a dynamic `import()`: pinned to an exact version but without SRI. Vendor it if you need strict supply-chain control.
-- `session_lifetime` (default 30 days) is an absolute lifetime of cookie and database record, with no sliding renewal or idle timeout.
-- WebAuthn: use HTTPS in `webauthn_origin` (a string or an array of origins). There is one credential per user, no backup codes, and user verification is not required.
-- hCaptcha is optional (`hcaptcha_site_key`, `hcaptcha_secret`) and protects signup and password recovery.
-- Schedule `Lato::LatoOperationsCleanerJob` and `Lato::ActiveStorageCleanerJob`, they are not scheduled automatically.
-- Invitations do not expire: destroy pending ones that are no longer needed.
-- `authenticator_secret` is stored in clear in the database: consider Active Record encryption.
-- Signin per-email limiting can be used to temporarily lock a known email: monitor failed signins.
+- Enable a Content Security Policy. Lato views need no inline scripts: enable nonces for the importmap tags (`config.content_security_policy_nonce_generator` and `content_security_policy_nonce_directives = %w[script-src]`) instead of `'unsafe-inline'`. Lato serves all its scripts, stylesheets and fonts through the asset pipeline, so `script-src`, `style-src` and `font-src` need no third-party CDN. Only these extra sources are needed:
+  - `hcaptcha.com` and `*.hcaptcha.com` (only with hCaptcha enabled): `script-src`, `frame-src`, `style-src` and `connect-src`.
+  - `data:` in `img-src` for the authenticator QR code. Views use inline `style` attributes, so `style-src` still needs `'unsafe-inline'`.
+- Set `Lato.config.session_idle_timeout` (e.g. `30.minutes`) and review `session_lifetime` (default 30 days, absolute).
+- Review `Lato.config.invitation_lifetime` (default 30 days) and destroy pending invitations that are no longer needed.
+- WebAuthn: use HTTPS origins in `webauthn_origin`. Set `webauthn_user_verification = "required"` if all your users have authenticators with biometrics or PIN.
+- Encrypt authenticator secrets: configure Active Record encryption keys (`bin/rails db:encryption:init`) and set `Lato.config.encrypt_authenticator_secret = true` in an initializer. With existing plaintext secrets, set `config.active_record.encryption.support_unencrypted_data = true` until they are re-encrypted.
+- Configure hCaptcha (`hcaptcha_site_key`, `hcaptcha_secret`) to protect signup and password recovery.
+- Schedule `Lato::LatoOperationsCleanerJob` and `Lato::ActiveStorageCleanerJob`: they are not scheduled automatically.
+- Monitor failed signins: the per-email signin limit can be used to temporarily lock out a known email.
 
 ## Development
 

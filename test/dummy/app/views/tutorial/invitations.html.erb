@@ -45,7 +45,7 @@ Here are some examples of the operations you can perform with invitations:
   <b>Rate limiting:</b> The <code>send_invite</code> method enforces a 2-minute cooldown between emails. If called again before the cooldown expires, it returns <code>false</code> and adds an <code>:email_sending_limit</code> error to <code>errors[:base]</code>.
   </p>
   <p>
-  <b>Expiration:</b> Invitations do not expire. Destroy pending invitations that are no longer needed.
+  <b>Expiration:</b> Invitations expire after <code>Lato.config.invitation_lifetime</code> (default: 30 days, <code>nil</code> to never expire), counted from the last invitation email. Expired invitations can not be accepted; <code>send_invite</code> restarts the lifetime. Use <code>invitation.expired?</code> to check the state.
   </p>
   <p>
   <b>Destruction guard:</b> Accepted invitations cannot be destroyed. A <code>before_destroy</code> hook prevents deletion if the invitation has already been accepted.

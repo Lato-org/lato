@@ -181,7 +181,14 @@ def download_asset(url, http, cookies)
 
       # Salva il file
       save_file(local_path, response.body)
-      
+
+      # Stylesheets reference local fonts/images through url(): download them too
+      if local_path.end_with?('.css')
+        response.body.scan(%r{url\(["']?(/assets/[^"')?#]+)}).flatten.uniq.each do |asset_url|
+          download_asset(asset_url, http, cookies)
+        end
+      end
+
       return true
     else
       puts "Errore durante il download dell'asset #{url}: #{response.code} #{response.message}"

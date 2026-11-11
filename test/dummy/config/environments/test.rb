@@ -45,6 +45,12 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: "localhost:3000" }
 
+  # Test-only Active Record encryption keys: the suite runs with Lato.config.encrypt_authenticator_secret enabled.
+  config.active_record.encryption.primary_key = "lato-test-primary-key-0000000000"
+  config.active_record.encryption.deterministic_key = "lato-test-deterministic-key-0000"
+  config.active_record.encryption.key_derivation_salt = "lato-test-key-derivation-salt-00"
+  Lato.config.encrypt_authenticator_secret = true
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 

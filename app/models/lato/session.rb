@@ -69,6 +69,21 @@ module Lato
       end
     end
 
+    # Activity is written at most once per interval to avoid a database write on every request.
+    ACTIVITY_TOUCH_INTERVAL = 1.minute
+
+    # Revokes the session when idle for longer than Lato.config.session_idle_timeout, otherwise records the activity.
+    def track_activity
+      timeout = Lato.config.session_idle_timeout
+      return unless timeout && (current = unexpired_record)
+
+      if current.updated_at <= timeout.ago
+        current.destroy!
+      elsif current.updated_at <= [ACTIVITY_TOUCH_INTERVAL, timeout / 2].min.ago
+        current.touch
+      end
+    end
+
     def destroy
       record&.destroy!
       @session = nil
@@ -88,9 +103,23 @@ module Lato
 
     # Always query revocation state, including when a Session instance was already used.
     def record
+      scope = unexpired_record_scope
+      return unless scope
+
+      timeout = Lato.config.session_idle_timeout
+      scope = scope.where("updated_at > ?", timeout.ago) if timeout
+      scope.first
+    end
+
+    # Not expired record, ignoring the idle timeout.
+    def unexpired_record
+      unexpired_record_scope&.first
+    end
+
+    def unexpired_record_scope
       return unless @session&.dig(:token).is_a?(String) && @session[:token].present?
 
-      Lato::SessionRecord.where(lato_user_id: @session[:user_id], token_digest: Digest::SHA256.hexdigest(@session[:token])).where("expires_at > ?", Time.current).first
+      Lato::SessionRecord.where(lato_user_id: @session[:user_id], token_digest: Digest::SHA256.hexdigest(@session[:token])).where("expires_at > ?", Time.current)
     end
 
     def parse_session(session)

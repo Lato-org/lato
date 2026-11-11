@@ -176,6 +176,7 @@ ro:
               privacy_policy_invalid: Pentru a accepta politica de confidențialitate trebuie să bifezi căsuța de confirmare
               terms_and_conditions_invalid: Pentru a accepta termenii și condițiile trebuie să bifezi căsuța de confirmare
               invitation_invalid: Invitație nevalidă
+              invitation_expired: Invitație expirată, solicită una nouă
               web3_address_invalid: Adresa trimisă nu este semnată corect
               web3_connection_error: Imposibil să se conecteze portofelul
               authenticator_code_invalid: Codul introdus nu este corect

@@ -50,6 +50,14 @@ module Lato
       !!accepted_at
     end
 
+    # The lifetime counts from the last time the invitation email was sent (send_invite touches the record).
+    def expired?
+      lifetime = Lato.config.invitation_lifetime
+      return false if lifetime.blank? || accepted?
+
+      updated_at.present? && updated_at <= lifetime.ago
+    end
+
     # Operations
     ##
 
@@ -71,6 +79,7 @@ module Lato
       end
 
       c_email_invite_semaphore(true)
+      touch
 
       true
     end

@@ -188,6 +188,7 @@ module Lato
 
     def accept_invitation
       @user = Lato::User.new(email: @invitation.email)
+      @user.errors.add(:base, :invitation_expired) if @invitation.expired?
     end
 
     def accept_invitation_action

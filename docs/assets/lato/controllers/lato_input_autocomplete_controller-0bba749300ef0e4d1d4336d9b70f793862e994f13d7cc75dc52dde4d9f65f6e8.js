@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import _ from 'lodash'
+import debounce from 'lato/debounce'
 
 export default class extends Controller {
   static values = {
@@ -11,7 +11,7 @@ export default class extends Controller {
    */
 
   connect() {
-    this.search = _.debounce(this.search, 500)
+    this.search = debounce(this.search, 500)
     this.datalist = document.createElement('datalist')
     this.datalist.id = Math.random().toString(36)
     this.element.setAttribute('list', this.datalist.id)

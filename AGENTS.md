@@ -50,6 +50,8 @@ Lato is ecosystem of Rails engines for building admin panels with authentication
 
 - Escape user data in helpers and partials; mark strings `html_safe` only when they never contain user input.
 - In Stimulus controllers never use `innerHTML` with attribute or message data: use `textContent` or DOM APIs.
+- No inline `<script>` or inline event handlers (`onclick=...`) in engine views: put behaviour in Stimulus controllers so host apps can use a CSP without `'unsafe-inline'` for scripts.
+- Vendor new third-party JavaScript under `app/assets/javascripts/lato/vendor` and pin it in `config/importmap.rb` instead of loading it from a CDN at runtime.
 - Rate limits and verification codes rely on a shared `Rails.cache`: do not assume a per-process cache.
 - Add tests for every security fix.
 

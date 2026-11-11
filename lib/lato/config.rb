@@ -9,6 +9,9 @@ module Lato
     # Session configs
     attr_accessor :session_lifetime, :session_root_path
 
+    # Revoke sessions inactive for longer than this duration (nil disables the check)
+    attr_accessor :session_idle_timeout
+
     # Authentication configs
     attr_accessor :auth_disable_signup, :auth_disable_recover_password, :auth_disable_web3, :auth_disable_authenticator, :auth_disable_webauthn, :auth_disable_signin_success_mail
 
@@ -17,6 +20,9 @@ module Lato
 
     # Minimum password length, checked whenever a password is set
     attr_accessor :auth_password_min_length
+
+    # Invitations not accepted within this duration from the last invitation email expire (nil means they never expire)
+    attr_accessor :invitation_lifetime
 
     # Hcaptcha configs
     attr_accessor :hcaptcha_site_key, :hcaptcha_secret
@@ -36,6 +42,13 @@ module Lato
 
     # Webauth connection
     attr_accessor :webauthn_connection, :webauthn_origin, :webauthn_rp_name
+
+    # WebAuthn user verification: "discouraged", "preferred" or "required" (enforced server-side)
+    attr_accessor :webauthn_user_verification
+
+    # Encrypt Lato::User#authenticator_secret with Active Record encryption.
+    # Read when Lato::User is loaded: set it in an initializer.
+    attr_accessor :encrypt_authenticator_secret
 
     # Web3 connection
     # NOTE: It requires the gem 'eth' to be installed in the application Gemfile
@@ -66,6 +79,9 @@ module Lato
 
       @session_lifetime = 30.days
       @session_root_path = nil # :tutorial_path
+      @session_idle_timeout = nil
+
+      @invitation_lifetime = 30.days
 
       @email_from = 'lato@example.com'
 
@@ -79,6 +95,9 @@ module Lato
       @webauthn_connection = false
       @webauthn_origin = 'http://localhost:3000'
       @webauthn_rp_name = 'Lato Application'
+      @webauthn_user_verification = 'preferred'
+
+      @encrypt_authenticator_secret = false
     end
   end
 end

@@ -7,6 +7,9 @@ module Lato
 
     has_secure_password
 
+    # Evaluated when the class loads: Lato.config.encrypt_authenticator_secret must be set in an initializer.
+    encrypts :authenticator_secret if Lato.config.encrypt_authenticator_secret
+
     # Validations
     ##
 
@@ -333,6 +336,11 @@ module Lato
         return
       end
 
+      if invitation.expired?
+        errors.add(:base, :invitation_expired)
+        return
+      end
+
       ActiveRecord::Base.transaction do
         raise ActiveRecord::Rollback unless save && invitation.update(
           accepted_at: Time.now,
@@ -376,13 +384,15 @@ module Lato
           name: email,
           display_name: full_name
         },
-        exclude: webauthn_exclude_credentials.map { |cred| Base64.strict_encode64(cred) }
+        exclude: webauthn_exclude_credentials.map { |cred| Base64.strict_encode64(cred) },
+        authenticator_selection: { user_verification: Lato.config.webauthn_user_verification }
       )
     end
 
     def webauthn_authentication_options
       WebAuthn::Credential.options_for_get(
-        allow: webauthn_allow_credentials.map { |cred| Base64.strict_encode64(cred) }
+        allow: webauthn_allow_credentials.map { |cred| Base64.strict_encode64(cred) },
+        user_verification: Lato.config.webauthn_user_verification
       )
     end
 
@@ -399,7 +409,7 @@ module Lato
 
       parsed_payload = JSON.parse(credential_payload)
       credential = WebAuthn::Credential.from_create(parsed_payload)
-      credential.verify(Base64.strict_decode64(encoded_challenge))
+      credential.verify(Base64.strict_decode64(encoded_challenge), user_verification: webauthn_user_verification_required?)
 
       update(
         webauthn_id: Base64.strict_encode64(credential.raw_id),
@@ -440,7 +450,8 @@ module Lato
       credential.verify(
         encoded_challenge,
         public_key: webauthn_public_key,
-        sign_count: webauthn_sign_count.to_i
+        sign_count: webauthn_sign_count.to_i,
+        user_verification: webauthn_user_verification_required?
       )
       update_column(:webauthn_sign_count, credential.sign_count.to_i)
 
@@ -561,6 +572,11 @@ module Lato
         SecureRandom.hex,
         cost: ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
       )
+    end
+
+    # The client honours the requested level only as a hint: "required" must also be checked on the response.
+    def webauthn_user_verification_required?
+      Lato.config.webauthn_user_verification.to_s == 'required'
     end
 
     def webauthn_user_handle

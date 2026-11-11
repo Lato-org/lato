@@ -5,6 +5,7 @@ module Lato
     included do
       before_action do
         @session = Lato::Session.new(cookies.encrypted[:lato_session])
+        @session.track_activity
       end
     end
 

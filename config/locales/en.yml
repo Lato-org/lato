@@ -169,6 +169,7 @@ en:
               privacy_policy_invalid: To accept the privacy policy you must select the confirmation checkbox
               terms_and_conditions_invalid: To accept the terms and conditions you must select the confirmation checkbox
               invitation_invalid: Invalid invitation
+              invitation_expired: Invitation expired, ask for a new one
               web3_address_invalid: The address you send is not corretly signed
               web3_connection_error: Impossible to connect the wallet
               authenticator_code_invalid: The code you inserted is not correct
